@@ -26,7 +26,11 @@ namespace Http_Post
             {
                 Text = "Lang",
                 Order = ToolbarItemOrder.Primary, // To display it on the right corner
-                Priority = 0 // If there is not enough space - it will be FIRST in the list
+                Priority = 0, // If there is not enough space - it will be FIRST in the list
+                Icon = new FileImageSource
+                {
+                    File = "Language.png"
+                },
             };
 
             lang.Clicked += Lang_Clicked;
@@ -38,7 +42,7 @@ namespace Http_Post
         private async void Lang_Clicked(object sender, EventArgs e)
         {
             string[] languages = { "English", "Russian" };
-            string result = await DisplayActionSheet (" Choose language" , "Cancel", null, languages);
+            string result = await DisplayActionSheet ("Choose language" , "Cancel", null, languages);
         }
 
         private async void Button_login(object sender, EventArgs e)
