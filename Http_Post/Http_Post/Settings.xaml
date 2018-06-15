@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Settings">
     <ContentPage.Content>
-        
+        <StackLayout>
+            <Label Text="Welcome to Settings" HorizontalOptions="Center"/>
+            <Label Text="Add somthing here" HorizontalOptions="Center"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

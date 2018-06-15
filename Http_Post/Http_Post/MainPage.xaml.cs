@@ -34,9 +34,29 @@ namespace Http_Post
             };
 
             lang.Clicked += Lang_Clicked;
-
             ToolbarItems.Add(lang);
 
+            ToolbarItem settings = new ToolbarItem
+            {
+                Text = "Settings",
+                Order = ToolbarItemOrder.Secondary, // To display it in a list of items
+                Priority = 1,
+            };
+            settings.Clicked += Settings_Clicked;
+            ToolbarItems.Add(settings);
+
+            ToolbarItem aboutUs = new ToolbarItem
+            {
+                Text = "About",
+                Order = ToolbarItemOrder.Secondary, // To display it in a list of items
+                Priority = 2, 
+            };
+            ToolbarItems.Add(aboutUs);
+        }
+
+        private async void Settings_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new Settings());
         }
 
         private async void Lang_Clicked(object sender, EventArgs e)
