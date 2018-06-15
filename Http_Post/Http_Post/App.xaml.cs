@@ -13,7 +13,8 @@ namespace Http_Post
 		{
 			InitializeComponent();
 
-			MainPage = new Http_Post.MainPage();
+			//MainPage = new Http_Post.MainPage();
+            MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()

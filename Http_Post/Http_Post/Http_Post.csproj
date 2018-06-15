@@ -21,4 +21,10 @@
   <ItemGroup>
     <Folder Include="Classes\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Settings.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>

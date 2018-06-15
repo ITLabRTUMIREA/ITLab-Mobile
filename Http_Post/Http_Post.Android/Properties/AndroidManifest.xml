@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Http_Post">
-	<uses-sdk android:minSdkVersion="15" />
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.companyname.Http_Post" android:installLocation="auto">
+	<uses-sdk android:minSdkVersion="14" />
 	<application android:label="Http_Post.Android"></application>
 </manifest>

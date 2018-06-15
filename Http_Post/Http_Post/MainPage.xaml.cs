@@ -4,6 +4,7 @@ using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
@@ -15,15 +16,40 @@ namespace Http_Post
 		public MainPage()
 		{
 			InitializeComponent();
-		}
+
+            InitToolbar(); // Configure Toolbar
+        }
+
+        private void InitToolbar()
+        {
+            ToolbarItem lang = new ToolbarItem
+            {
+                Text = "Lang",
+                Order = ToolbarItemOrder.Primary, // To display it on the right corner
+                Priority = 0 // If there is not enough space - it will be FIRST in the list
+            };
+
+            lang.Clicked += Lang_Clicked;
+
+            ToolbarItems.Add(lang);
+
+        }
+
+        private async void Lang_Clicked(object sender, EventArgs e)
+        {
+            string[] languages = { "English", "Russian" };
+            string result = await DisplayActionSheet (" Choose language" , "Cancel", null, languages);
+        }
 
         private async void Button_login(object sender, EventArgs e)
         {
+            // TODO: progressing ring
+
             text_error.Text = String.Empty; // Clear error field
             try
             {
                 HttpClient client = new HttpClient();
-                // Create new User with Login and Password
+                
                 if (!Check())
                     return;
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = text_login.Text, Password = text_password.Text };
@@ -52,6 +78,7 @@ namespace Http_Post
         {
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.OK) // if is OK
             {
+                // TODO: you've autorizated like infoAboutStudent.name, infoAboutStudent.surname
                 text_error.TextColor = Color.Green;
                 text_error.Text = "МАКС ЧЁ ДЕЛАТЬ Я АВТОРИЗОВАЛСЯ";
                 text_error.Text += "\nЗагрузить новую страницу?\n";
@@ -60,12 +87,21 @@ namespace Http_Post
             }
 
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.WrongPassword) // if is ONLY password
+            {
                 text_password.Focus();
-            else
+                ShowError("Wrong password");
+                return;
+            }
+
+            if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.UserNotFound) // if is User Wasn't found
+            {
                 text_login.Focus();
+                ShowError("Check login or password");
+                return;
+            }
 
-
-            //ShowError(info.StatusCode.ToString());
+            text_login.Focus();
+            ShowError(info.StatusCode.ToString());
         }
 
         private void ShowError(string error)
