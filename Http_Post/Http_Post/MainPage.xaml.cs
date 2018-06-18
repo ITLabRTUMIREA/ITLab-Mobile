@@ -41,6 +41,10 @@ namespace Http_Post
                 Text = "Settings",
                 Order = ToolbarItemOrder.Secondary, // To display it in a list of items
                 Priority = 1,
+                Icon = new FileImageSource
+                {
+                    File = "Settings.png"
+                },
             };
             settings.Clicked += Settings_Clicked;
             ToolbarItems.Add(settings);
@@ -49,7 +53,11 @@ namespace Http_Post
             {
                 Text = "About",
                 Order = ToolbarItemOrder.Secondary, // To display it in a list of items
-                Priority = 2, 
+                Priority = 2,
+                Icon = new FileImageSource
+                {
+                    File = "info.png"
+                },
             };
             ToolbarItems.Add(aboutUs);
         }
