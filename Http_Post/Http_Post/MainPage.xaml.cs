@@ -64,11 +64,13 @@ namespace Http_Post
 
         private async void Settings_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings());
+            await Navigation.PushAsync(new Settings()); // Load Settings Page
         }
 
         private async void Lang_Clicked(object sender, EventArgs e)
         {
+            // TODO: change language
+
             string[] languages = { "English", "Russian" };
             string result = await DisplayActionSheet ("Choose language" , "Cancel", null, languages);
         }
@@ -106,7 +108,7 @@ namespace Http_Post
             }
         }
 
-        private void Authorization (OneObjectResponse<LoginResponse> info)
+        private async void Authorization (OneObjectResponse<LoginResponse> info)
         {
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.OK) // if is OK
             {
@@ -115,6 +117,10 @@ namespace Http_Post
                 text_error.Text = "МАКС ЧЁ ДЕЛАТЬ Я АВТОРИЗОВАЛСЯ";
                 text_error.Text += "\nЗагрузить новую страницу?\n";
                 text_error.Text += "Authorizated!";
+
+                Menu menu = new Menu(info);
+                NavigationPage.SetHasBackButton(menu, false); // Don't add back button
+                await Navigation.PushAsync(menu);
                 return;
             }
 
