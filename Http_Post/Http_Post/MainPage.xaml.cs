@@ -53,7 +53,7 @@ namespace Http_Post
             {
                 Text = "About",
                 Order = ToolbarItemOrder.Secondary, // To display it in a list of items
-                Priority = 2,
+                Priority = 100,
                 Icon = new FileImageSource
                 {
                     File = "info.png"

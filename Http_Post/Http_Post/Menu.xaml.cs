@@ -12,7 +12,6 @@ using Xamarin.Forms.Xaml;
 
 namespace Http_Post
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Menu : ContentPage
 	{
 		public Menu ()
