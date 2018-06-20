@@ -16,50 +16,6 @@ namespace Http_Post
 		public MainPage()
 		{
 			InitializeComponent();
-
-            InitToolbar(); // Configure Toolbar
-        }
-
-        private void InitToolbar()
-        {
-            ToolbarItem lang = new ToolbarItem
-            {
-                Text = "Lang",
-                Order = ToolbarItemOrder.Primary, // To display it on the right corner
-                Priority = 0, // If there is not enough space - it will be FIRST in the list
-                Icon = new FileImageSource
-                {
-                    File = "Language.png"
-                },
-            };
-
-            lang.Clicked += Lang_Clicked;
-            ToolbarItems.Add(lang);
-
-            ToolbarItem settings = new ToolbarItem
-            {
-                Text = "Settings",
-                Order = ToolbarItemOrder.Secondary, // To display it in a list of items
-                Priority = 1,
-                Icon = new FileImageSource
-                {
-                    File = "Settings.png"
-                },
-            };
-            settings.Clicked += Settings_Clicked;
-            ToolbarItems.Add(settings);
-
-            ToolbarItem aboutUs = new ToolbarItem
-            {
-                Text = "About",
-                Order = ToolbarItemOrder.Secondary, // To display it in a list of items
-                Priority = 100,
-                Icon = new FileImageSource
-                {
-                    File = "info.png"
-                },
-            };
-            ToolbarItems.Add(aboutUs);
         }
 
         private async void Settings_Clicked(object sender, EventArgs e)
