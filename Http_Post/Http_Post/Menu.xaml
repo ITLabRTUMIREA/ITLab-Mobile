@@ -1,11 +1,29 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Menu">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label x:Name="label_name" Text="..."/>
-            <Label x:Name="label_surname" Text="..."/>
-        </StackLayout>
-    </ContentPage.Content>
-</ContentPage>
+             x:Class="Http_Post.Menu"
+             Title="ITLab-Mobile">
+    
+    <MasterDetailPage.Master>
+        <ContentPage Title="Master">
+            <ContentPage.Content>
+                <StackLayout>
+                    <Label x:Name="label_name" Text="..."/>
+                    <Label x:Name="label_surname" Text="..."/>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <ContentPage>
+            <ContentPage.ToolbarItems>
+                <ToolbarItem Name="lang" Order="Secondary" Icon="Language.png" Text="Language" Priority="0" Clicked="Lang_Clicked"/>
+                <ToolbarItem Name="settings" Order="Secondary" Icon="Settings.png" Text="Settings" Priority="1" Clicked="Settings_Clicked"/>
+                <ToolbarItem Name="aboutUs" Order="Secondary" Icon="info.png" Text="About" Priority="100" />
+                <ToolbarItem Name="logOut" Order="Secondary" Icon="LogOut.png" Text="Log Out" Priority="99" Clicked="LogOut_Clicked" />
+            </ContentPage.ToolbarItems>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>

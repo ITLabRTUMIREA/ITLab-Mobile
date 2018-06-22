@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Http_Post"
-             x:Class="Http_Post.MainPage">
+             x:Class="Http_Post.MainPage"
+             Title="Login">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -24,11 +25,5 @@
             <Label x:Name="text_error" FontSize="Small" HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ScrollView>
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="lang" Order="Primary" Icon="Language.png" Text="Language" Priority="0" Clicked="Lang_Clicked"/>
-        <ToolbarItem Name="settings" Order="Secondary" Icon="Settings.png" Text="Settings" Priority="1" Clicked="Settings_Clicked"/>
-        <ToolbarItem Name="aboutUs" Order="Secondary" Icon="info.png" Text="About" Priority="100" />
-    </ContentPage.ToolbarItems>
 
 </ContentPage>

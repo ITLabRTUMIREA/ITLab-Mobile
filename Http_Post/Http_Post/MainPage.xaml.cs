@@ -16,19 +16,9 @@ namespace Http_Post
 		public MainPage()
 		{
 			InitializeComponent();
-        }
 
-        private async void Settings_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new Settings()); // Load Settings Page
-        }
-
-        private async void Lang_Clicked(object sender, EventArgs e)
-        {
-            // TODO: change language
-
-            string[] languages = { "English", "Russian" };
-            string result = await DisplayActionSheet ("Choose language" , "Cancel", null, languages);
+            text_login.Text = "test@gmail.com"; // --------- Debug
+            text_password.Text = "123456"; // -------------- Debug
         }
 
         private async void Button_login(object sender, EventArgs e)
@@ -42,6 +32,9 @@ namespace Http_Post
                 
                 if (!Check())
                     return;
+
+                text_error.Text = "Loading...\nPlease Wait..";
+
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = text_login.Text, Password = text_password.Text };
 
                 // Convert data to a Json String
@@ -68,11 +61,8 @@ namespace Http_Post
         {
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.OK) // if is OK
             {
-                // TODO: you've autorizated like infoAboutStudent.name, infoAboutStudent.surname
                 text_error.TextColor = Color.Green;
-                text_error.Text = "МАКС ЧЁ ДЕЛАТЬ Я АВТОРИЗОВАЛСЯ";
-                text_error.Text += "\nЗагрузить новую страницу?\n";
-                text_error.Text += "Authorizated!";
+                text_error.Text = "Authorizated!";
 
                 Menu menu = new Menu(info);
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
