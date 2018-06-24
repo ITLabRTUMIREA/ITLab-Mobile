@@ -25,12 +25,13 @@ namespace Http_Post
         {
             // TODO: progressing ring
 
+            text_error.TextColor = Color.Default;
             text_error.Text = String.Empty; // Clear error field
             try
             {
                 HttpClient client = new HttpClient();
                 
-                if (!Check())
+                if (!Check()) // if CHECK - false -> BAD
                     return;
 
                 text_error.Text = "Loading...\nPlease Wait..";
@@ -53,7 +54,7 @@ namespace Http_Post
             }
             catch (Exception ex)
             {
-                ShowError(ex.Message);
+                ShowError(ex.Message + "\nMaybe you need to check Internet connection");
             }
         }
 
@@ -92,22 +93,49 @@ namespace Http_Post
         {
             text_error.TextColor = Color.Red;
             text_error.Text = error;
-
         }
 
         private bool Check()
         {
-            if (text_login.Text == null || text_login.Text == String.Empty)
+            if (text_login.Text == null || text_login.Text == String.Empty) // if no LOGIN - BAD
             {
                 text_login.Focus();
-                ShowError("Wrong login");
+                ShowError("Enter login");
                 return false;
             }
 
-            if (text_password.Text == null || text_password.Text == String.Empty)
+            if (text_password.Text == null || text_password.Text == String.Empty) // if no PASSWORD - BAD
             {
                 text_password.Focus();
-                ShowError("Wrong password");
+                ShowError("Enter password");
+                return false;
+            }
+
+            if (!CheckRight())
+                return false;
+            
+            return true;
+
+        }
+
+        private bool CheckRight()
+        {
+            if (!text_login.Text.Contains("@")) // if no '@' - BAD
+            {
+                text_login.Focus();
+                ShowError("Login doesn't contain '@'");
+                return false;
+            }
+
+            if (text_password.Text.Contains(".") ||
+                text_password.Text.Contains(",") ||
+                text_password.Text.Contains("@") ||
+                text_password.Text.Contains("/") ||
+                text_password.Text.Contains("/") ||
+                text_password.Text.Contains("|"))
+            {
+                text_password.Focus();
+                ShowError("Password mustn't contain special symbols");
                 return false;
             }
 

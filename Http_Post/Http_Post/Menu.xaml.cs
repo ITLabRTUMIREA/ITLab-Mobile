@@ -34,7 +34,9 @@ namespace Http_Post
 
         private async void Settings_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new Settings()); // Load Settings Page
+            // TODO: Titles
+
+            Detail = new NavigationPage (new Settings()); // Load Settings Page
         }
 
         private async void Lang_Clicked(object sender, EventArgs e)
