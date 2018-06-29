@@ -1,10 +1,9 @@
-﻿using Models.PublicAPI.Requests.Account;
+﻿using Http_Post.Classes;
+using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
@@ -13,30 +12,38 @@ namespace Http_Post
 {
 	public partial class MainPage : ContentPage
 	{
+        private string Login, PassWord;
+        private Localization localization = new Localization();
+
+
 		public MainPage()
 		{
 			InitializeComponent();
 
-            text_login.Text = "test@gmail.com"; // --------- Debug
-            text_password.Text = "123456"; // -------------- Debug
+
+            //text_login.Text = "test@gmail.com"; // --------- Debug
+            //text_password.Text = "123456"; // -------------- Debug
+            UpdateLanguage();
         }
 
         private async void Button_login(object sender, EventArgs e)
         {
             // TODO: progressing ring
 
-            text_error.TextColor = Color.Default;
+            text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
             try
             {
                 HttpClient client = new HttpClient();
                 
-                if (!Check()) // if CHECK - false -> BAD
+                Login = text_login.Text;
+                PassWord = text_password.Text;
+                if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;
 
-                text_error.Text = "Loading...\nPlease Wait..";
+                text_error.Text = Resource.eLbl_Loading;
 
-                AccountLoginRequest loginData = new AccountLoginRequest { Username = text_login.Text, Password = text_password.Text };
+                AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = PassWord };
 
                 // Convert data to a Json String
                 var jsonContent = JsonConvert.SerializeObject(loginData);
@@ -54,7 +61,7 @@ namespace Http_Post
             }
             catch (Exception ex)
             {
-                ShowError(ex.Message + "\nMaybe you need to check Internet connection");
+                ShowError(ex.Message + Resource.eCheckConnection);
             }
         }
 
@@ -95,51 +102,85 @@ namespace Http_Post
             text_error.Text = error;
         }
 
-        private bool Check()
+        private bool CheckForNull()
         {
-            if (text_login.Text == null || text_login.Text == String.Empty) // if no LOGIN - BAD
+            if (Login == null || Login == String.Empty) // if login is empty -> enter it
             {
                 text_login.Focus();
-                ShowError("Enter login");
+                ShowError(Resource.eLbl_EnterLog);
                 return false;
             }
 
-            if (text_password.Text == null || text_password.Text == String.Empty) // if no PASSWORD - BAD
+            if (PassWord == null || PassWord== String.Empty) // if password is empty -> enter it
             {
                 text_password.Focus();
-                ShowError("Enter password");
+                ShowError(Resource.eLbl_EnterPass);
                 return false;
             }
 
-            if (!CheckRight())
+            if (!CheckEmail())
                 return false;
             
             return true;
 
         }
 
-        private bool CheckRight()
+        private bool CheckEmail()
         {
-            if (!text_login.Text.Contains("@")) // if no '@' - BAD
+            if (!Login.Contains("@")) // if no '@' -> reEnter
             {
                 text_login.Focus();
-                ShowError("Login doesn't contain '@'");
+                ShowError(Resource.eLbl_LogContain);
                 return false;
             }
 
-            if (text_password.Text.Contains(".") ||
-                text_password.Text.Contains(",") ||
-                text_password.Text.Contains("@") ||
-                text_password.Text.Contains("/") ||
-                text_password.Text.Contains("/") ||
-                text_password.Text.Contains("|"))
+            if (PassWord.Length < 6)
             {
                 text_password.Focus();
-                ShowError("Password mustn't contain special symbols");
+                ShowError(Resource.eLbl_PasLen);
                 return false;
             }
 
             return true;
         }
+
+        private void Lang_Clicked(object sender, EventArgs e)
+        {
+            AskForLanguage(localization);
+        }
+
+        private async void AskForLanguage(Localization loc)
+        {
+            try
+            {
+                string cancel = "Cancel";
+                string result = await DisplayActionSheet("Choose language", cancel, String.Empty, loc.languages);
+
+                if (result.Equals(cancel))
+                    return;
+
+                result = result.ToUpper();
+                loc.ChangeCulture(result);
+
+                UpdateLanguage();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+        private void UpdateLanguage()
+        {
+            text_label.Text = Resource.Lbl_Header;
+            text_login.Placeholder = Resource.Lbl_Login;
+            text_password.Placeholder = Resource.Lbl_Password;
+            button_login.Text = Resource.Btn_Login;
+            text_error.Text = "";
+        }
+
+        // TODO: Make ToolBar only for language
+        // Use Localization class
+        // Make function to return if need to Update Language or not
     }
 }
