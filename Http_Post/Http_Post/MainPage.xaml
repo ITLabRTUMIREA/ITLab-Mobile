@@ -26,8 +26,4 @@
         </StackLayout>
     </ScrollView>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="lang" Order="Primary" Icon="Language.png" Text="Language" Priority="0" Clicked="Lang_Clicked"/>
-    </ContentPage.ToolbarItems>
-
 </ContentPage>

@@ -1,4 +1,5 @@
-﻿using Models.PublicAPI.Requests.Account;
+﻿using Http_Post.Classes;
+using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using System;
@@ -8,13 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace Http_Post
 {
 	public partial class Menu : MasterDetailPage
-	{
-		public Menu ()
+    {
+        private Localization localization = new Localization();
+
+        public Menu ()
 		{
 			InitializeComponent ();
         }
@@ -25,6 +27,8 @@ namespace Http_Post
 
             label_name.Text = student.Data.FirstName;
             label_surname.Text = student.Data.LastName;
+
+            //UpdateLanguage(); ------ Доделать
         }
 
         private async void LogOut_Clicked (object sender, EventArgs e)
@@ -39,12 +43,36 @@ namespace Http_Post
             Detail = new NavigationPage (new Settings()); // Load Settings Page
         }
 
-        private async void Lang_Clicked(object sender, EventArgs e)
+        private void Lang_Clicked(object sender, EventArgs e)
         {
-            // TODO: change language
+            AskForLanguage(localization);
+        }
 
-            string[] languages = { "English", "Russian" };
-            string result = await DisplayActionSheet("Choose language", "Cancel", null, languages);
+        private async void AskForLanguage(Localization loc)
+        {
+            try
+            {
+                string cancel = "Cancel";
+                string result = await DisplayActionSheet("Choose language", cancel, String.Empty, loc.languages);
+
+                if (result.Equals(cancel))
+                    return;
+
+                result = result.ToUpper();
+                loc.ChangeCulture(result);
+
+                UpdateLanguage();
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+        private void UpdateLanguage()
+        {
+            // TODO: update all fields
+            throw new NotImplementedException();
         }
     }
 }

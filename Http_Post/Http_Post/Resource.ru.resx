@@ -117,44 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Btn_Login" xml:space="preserve">
-    <value>Войти</value>
-    <comment>Btn text - what it would do</comment>
-  </data>
-  <data name="eCheckConnection" xml:space="preserve">
-    <value>\nПроверьте подключение к интернету</value>
-    <comment>Then programm can't Post data</comment>
-  </data>
-  <data name="eLbl_EnterLog" xml:space="preserve">
-    <value>Введите логин</value>
-    <comment>Then user forget to enter login</comment>
-  </data>
-  <data name="eLbl_EnterPass" xml:space="preserve">
-    <value>Введите пароль</value>
-    <comment>Then user forget to enter password</comment>
-  </data>
-  <data name="eLbl_Loading" xml:space="preserve">
-    <value>Загрузка...\nПожалуйста, подождите...</value>
-    <comment>Say user - smth is doing</comment>
-  </data>
-  <data name="eLbl_LogContain" xml:space="preserve">
-    <value>Логин не содержит '@'</value>
-    <comment>Then uesr forget to enter '@'</comment>
-  </data>
-  <data name="eLbl_PasLen" xml:space="preserve">
-    <value>Пароль должен быть не меньше 6 символов</value>
-    <comment>Then user enter small password</comment>
-  </data>
-  <data name="Lbl_Header" xml:space="preserve">
-    <value>Введите логин и пароль</value>
-    <comment>Explain user what to do</comment>
-  </data>
-  <data name="Lbl_Login" xml:space="preserve">
-    <value>Логин</value>
-    <comment>Placeholder - 'hint' what to enter</comment>
-  </data>
-  <data name="Lbl_Password" xml:space="preserve">
-    <value>Пароль</value>
-    <comment>Placeholder - 'hint' what to enter</comment>
-  </data>
 </root>

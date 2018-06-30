@@ -21,8 +21,9 @@ namespace Http_Post
 			InitializeComponent();
 
 
-            //text_login.Text = "test@gmail.com"; // --------- Debug
-            //text_password.Text = "123456"; // -------------- Debug
+            text_login.Text = "test@gmail.com"; // --------- Debug
+            text_password.Text = "123456"; // -------------- Debug
+
             UpdateLanguage();
         }
 
@@ -41,7 +42,7 @@ namespace Http_Post
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;
 
-                text_error.Text = Resource.eLbl_Loading;
+                text_error.Text = "Loading...\nPlease Wait...";
 
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = PassWord };
 
@@ -61,7 +62,7 @@ namespace Http_Post
             }
             catch (Exception ex)
             {
-                ShowError(ex.Message + Resource.eCheckConnection);
+                ShowError(ex.Message + "\nCheck Internet connection");
             }
         }
 
@@ -107,14 +108,14 @@ namespace Http_Post
             if (Login == null || Login == String.Empty) // if login is empty -> enter it
             {
                 text_login.Focus();
-                ShowError(Resource.eLbl_EnterLog);
+                ShowError("Enter Login");
                 return false;
             }
 
             if (PassWord == null || PassWord== String.Empty) // if password is empty -> enter it
             {
                 text_password.Focus();
-                ShowError(Resource.eLbl_EnterPass);
+                ShowError("Enter Password");
                 return false;
             }
 
@@ -130,14 +131,14 @@ namespace Http_Post
             if (!Login.Contains("@")) // if no '@' -> reEnter
             {
                 text_login.Focus();
-                ShowError(Resource.eLbl_LogContain);
+                ShowError("Maybe you missed '@'");
                 return false;
             }
 
             if (PassWord.Length < 6)
             {
                 text_password.Focus();
-                ShowError(Resource.eLbl_PasLen);
+                ShowError("Length is less than 6");
                 return false;
             }
 
@@ -172,15 +173,11 @@ namespace Http_Post
 
         private void UpdateLanguage()
         {
-            text_label.Text = Resource.Lbl_Header;
-            text_login.Placeholder = Resource.Lbl_Login;
-            text_password.Placeholder = Resource.Lbl_Password;
-            button_login.Text = Resource.Btn_Login;
+            text_label.Text = "Enter login and password";
+            text_login.Placeholder = "Login";
+            text_password.Placeholder = "Password";
+            button_login.Text = "Login";
             text_error.Text = "";
         }
-
-        // TODO: Make ToolBar only for language
-        // Use Localization class
-        // Make function to return if need to Update Language or not
     }
 }
