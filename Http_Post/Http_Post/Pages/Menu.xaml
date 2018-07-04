@@ -2,7 +2,8 @@
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Menu"
-             Title="ITLab-Mobile">
+             Title="ITLab-Mobile"
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
     
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
@@ -10,6 +11,9 @@
                 <StackLayout>
                     <Label x:Name="label_name" Text="..."/>
                     <Label x:Name="label_surname" Text="..."/>
+                    <Controls:Master_Btns ImageSource="Settings.png" Btn_Text="Settings"/>
+                    <Controls:Master_Btns ImageSource="info.png" Btn_Text="About"/>
+                    <Controls:Master_Btns ImageSource="LogOut.png" Btn_Text="Log Out"/>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>

@@ -58,6 +58,14 @@ namespace Http_Post
                 //stackLayout.Children.Add(label); ---------------------------------------- Debug
 
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
+
+                /*
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", infoAboutStudent.Data.Token);
+                var response = await client.GetStringAsync("http://labworkback.azurewebsites.net:80/api/event/");
+                Label l = new Label { Text = response };
+                stackLayout.Children.Add(l);
+                */
+
                 Authorization(infoAboutStudent);
             }
             catch (Exception ex)
