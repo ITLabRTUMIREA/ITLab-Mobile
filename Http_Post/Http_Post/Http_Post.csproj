@@ -19,7 +19,7 @@
     <Compile Update="MasterDetailPage1_TestMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Resource.Designer.cs">
+    <Compile Update="Res\Resource.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource.resx</DependentUpon>
@@ -36,14 +36,14 @@
     <EmbeddedResource Update="Pages\Menu.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource.en.resx">
+    <EmbeddedResource Update="Res\Resource.en.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource.resx">
+    <EmbeddedResource Update="Res\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resource.ru.resx">
+    <EmbeddedResource Update="Res\Resource.ru.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Settings.xaml">
