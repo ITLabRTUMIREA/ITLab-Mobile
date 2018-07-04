@@ -43,6 +43,7 @@ namespace Http_Post
             Detail = new NavigationPage (new Settings()); // Load Settings Page
         }
 
+        // TODO: transfer to Settings.Page
         private void Lang_Clicked(object sender, EventArgs e)
         {
             AskForLanguage(localization);

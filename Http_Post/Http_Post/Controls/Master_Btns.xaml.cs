@@ -41,9 +41,11 @@ namespace Http_Post.Controls
             (bindableObject as Master_Btns).Btn.Text = Convert.ToString(newValue);
         }
 
+        public event EventHandler Clicked;
+
         private void Btn_Clicked (object sender, EventArgs e)
         {
-                            
+            Clicked?.Invoke(this, EventArgs.Empty);
         }
 
         public Master_Btns ()

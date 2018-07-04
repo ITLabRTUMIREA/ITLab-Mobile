@@ -11,9 +11,9 @@
                 <StackLayout>
                     <Label x:Name="label_name" Text="..."/>
                     <Label x:Name="label_surname" Text="..."/>
-                    <Controls:Master_Btns ImageSource="Settings.png" Btn_Text="Settings"/>
+                    <Controls:Master_Btns ImageSource="Settings.png" Btn_Text="Settings" Clicked="Settings_Clicked"/>
                     <Controls:Master_Btns ImageSource="info.png" Btn_Text="About"/>
-                    <Controls:Master_Btns ImageSource="LogOut.png" Btn_Text="Log Out"/>
+                    <Controls:Master_Btns ImageSource="LogOut.png" Btn_Text="Log Out" Clicked="LogOut_Clicked"/>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>
