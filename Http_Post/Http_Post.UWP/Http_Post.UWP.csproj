@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Calendar.png" />
+    <Content Include="ChangingPencil.png" />
     <Content Include="Hamburger.png" />
     <Content Include="info.png" />
     <Content Include="Language.png" />

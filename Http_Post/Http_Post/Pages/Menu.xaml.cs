@@ -80,36 +80,9 @@ namespace Http_Post
             Detail = new NavigationPage (new Settings()); // Load Settings Page
         }
 
-        // TODO: transfer to Settings.Page
-        private void Lang_Clicked(object sender, EventArgs e)
-        {
-            AskForLanguage(localization);
-        }
-
         private async void AboutUs(object sender, EventArgs e)
         {
             await DisplayAlert("About", "Change with Resources!\nHelp us not to die\nMy name is Your Name\nBye", "Ok");
-        }
-
-        private async void AskForLanguage(Localization loc)
-        {
-            try
-            {
-                string cancel = "Cancel";
-                string result = await DisplayActionSheet("Choose language", cancel, String.Empty, loc.languages);
-
-                if (result.Equals(cancel))
-                    return;
-
-                result = result.ToUpper();
-                loc.ChangeCulture(result);
-
-                UpdateLanguage();
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
         }
 
         private void UpdateLanguage()

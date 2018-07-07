@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Settings"
-             Title="Settings">
+             Title="Settings"
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Settings" HorizontalOptions="Center"/>
-            <Label Text="Add somthing here" HorizontalOptions="Center"/>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Padding="5">
+                <Controls:Master_Btns ImageSource="Language.png" Btn_Text="Change Language" Clicked="Lang_Clicked"/>
+                <Controls:Master_Btns ImageSource="ChangingPencil.png" Btn_Text="Change Theme" Clicked="Theme_Change"/>
+                <Label Text="Welcome to Settings" HorizontalOptions="Center"/>
+                <Label Text="Add somthing here" HorizontalOptions="Center"/>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
