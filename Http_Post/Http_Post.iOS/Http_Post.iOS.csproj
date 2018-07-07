@@ -146,4 +146,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Language.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Calendar.png" />
+  </ItemGroup>
 </Project>

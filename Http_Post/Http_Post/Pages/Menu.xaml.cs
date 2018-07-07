@@ -1,13 +1,12 @@
 ﻿using Http_Post.Classes;
 using Models.PublicAPI.Requests.Account;
+using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+using System.Net.Http;
 using Xamarin.Forms;
 
 namespace Http_Post
@@ -15,6 +14,13 @@ namespace Http_Post
 	public partial class Menu : MasterDetailPage
     {
         private Localization localization = new Localization();
+
+        private string Name;
+        private string LastName;
+        HttpClient client;
+
+        private string host = "labworkback.azurewebsites.net";
+        private string port = "80";
 
         public Menu ()
 		{
@@ -25,10 +31,41 @@ namespace Http_Post
         {
             InitializeComponent();
 
-            label_name.Text = student.Data.FirstName;
-            label_surname.Text = student.Data.LastName;
+            InitComponents(student);
 
             //UpdateLanguage(); ------ Доделать
+        }
+
+        private void InitComponents(OneObjectResponse<LoginResponse> student)
+        {
+            Name = student.Data.FirstName;
+            LastName = student.Data.LastName;
+
+            label_name.Text = Name;
+            label_surname.Text = LastName;
+
+            client = new HttpClient();
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
+        }
+
+        private async void BtnEvents_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
+                var events = JsonConvert.DeserializeObject<ListResponse<EventPresent>>(response);
+
+                ListView listView = new ListView
+                {
+                    ItemsSource = events.Data.Select(ev => ev.Title ?? "no title")
+                };
+
+                stacklayout_Detail.Children.Add(listView);
+            }
+            catch (Exception ex)
+            {
+                stacklayout_Detail.Children.Add(new Label { Text = ex.Message });
+            }
         }
 
         private async void LogOut_Clicked (object sender, EventArgs e)
@@ -47,6 +84,11 @@ namespace Http_Post
         private void Lang_Clicked(object sender, EventArgs e)
         {
             AskForLanguage(localization);
+        }
+
+        private async void AboutUs(object sender, EventArgs e)
+        {
+            await DisplayAlert("About", "Change with Resources!\nHelp us not to die\nMy name is Your Name\nBye", "Ok");
         }
 
         private async void AskForLanguage(Localization loc)
@@ -73,6 +115,7 @@ namespace Http_Post
         private void UpdateLanguage()
         {
             // TODO: update all fields
+
             throw new NotImplementedException();
         }
     }

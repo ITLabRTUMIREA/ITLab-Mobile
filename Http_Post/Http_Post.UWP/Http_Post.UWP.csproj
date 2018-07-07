@@ -104,6 +104,7 @@
     <None Include="Http_Post.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Calendar.png" />
     <Content Include="Hamburger.png" />
     <Content Include="info.png" />
     <Content Include="Language.png" />

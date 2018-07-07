@@ -8,11 +8,12 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
             <ContentPage.Content>
-                <StackLayout>
+                <StackLayout x:Name="stacklayout_Master">
                     <Label x:Name="label_name" Text="..."/>
                     <Label x:Name="label_surname" Text="..."/>
+                    <Controls:Master_Btns ImageSource="Calendar.png" Btn_Text="Events" Clicked="BtnEvents_Clicked"/>
                     <Controls:Master_Btns ImageSource="Settings.png" Btn_Text="Settings" Clicked="Settings_Clicked"/>
-                    <Controls:Master_Btns ImageSource="info.png" Btn_Text="About"/>
+                    <Controls:Master_Btns ImageSource="info.png" Btn_Text="About" Clicked="AboutUs"/>
                     <Controls:Master_Btns ImageSource="LogOut.png" Btn_Text="Log Out" Clicked="LogOut_Clicked"/>
                 </StackLayout>
             </ContentPage.Content>
@@ -21,12 +22,9 @@
 
     <MasterDetailPage.Detail>
         <ContentPage>
-            <ContentPage.ToolbarItems>
-                <ToolbarItem Name="lang" Order="Secondary" Icon="Language.png" Text="Language" Priority="0" Clicked="Lang_Clicked"/>
-                <ToolbarItem Name="settings" Order="Secondary" Icon="Settings.png" Text="Settings" Priority="1" Clicked="Settings_Clicked"/>
-                <ToolbarItem Name="aboutUs" Order="Secondary" Icon="info.png" Text="About" Priority="100" />
-                <ToolbarItem Name="logOut" Order="Secondary" Icon="LogOut.png" Text="Log Out" Priority="99" Clicked="LogOut_Clicked" />
-            </ContentPage.ToolbarItems>
+            <StackLayout x:Name="stacklayout_Detail">
+                
+            </StackLayout>
         </ContentPage>
     </MasterDetailPage.Detail>
 
