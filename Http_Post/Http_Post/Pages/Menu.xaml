@@ -8,13 +8,12 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
             <ContentPage.Content>
-                <StackLayout x:Name="stacklayout_Master">
+                <StackLayout x:Name="stacklayout_Master" Padding="5">
                     <Label x:Name="label_name" Text="..."/>
                     <Label x:Name="label_surname" Text="..."/>
-                    <Controls:Master_Btns ImageSource="Calendar.png" Btn_Text="Events" Clicked="BtnEvents_Clicked"/>
+                    <Controls:Master_Btns ImageSource="News.png" Btn_Text="Events" Clicked="BtnEvents_Clicked"/>
                     <Controls:Master_Btns ImageSource="Settings.png" Btn_Text="Settings" Clicked="Settings_Clicked"/>
                     <Controls:Master_Btns ImageSource="info.png" Btn_Text="About" Clicked="AboutUs"/>
-                    <Controls:Master_Btns ImageSource="LogOut.png" Btn_Text="Log Out" Clicked="LogOut_Clicked"/>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>

@@ -1,4 +1,5 @@
 ﻿using Http_Post.Classes;
+using Http_Post.Res;
 using System;
 using Xamarin.Forms;
 
@@ -11,12 +12,11 @@ namespace Http_Post
 		public Settings ()
 		{
 			InitializeComponent ();
+            UpdateLanguage();
 		}
 
-        private void Lang_Clicked(object sender, EventArgs e)
-        {
-            AskForLanguage(localization);
-        }
+        private void Lang_Clicked(object sender, EventArgs e) 
+            => AskForLanguage(localization);
 
         private async void AskForLanguage(Localization loc)
         {
@@ -41,13 +41,20 @@ namespace Http_Post
 
         private void UpdateLanguage()
         {
-            DisplayAlert("Default", "Lang update", "Default", "Default");
-            //throw new NotImplementedException();
+            //DisplayAlert("Default", "Lang update", "Default", "Default");
+            Btn_Theme.Btn_Text = Resource.Btn_Theme;
+            Btn_LogOut.Btn_Text = Resource.Btn_LogOut;
         }
 
         private void Theme_Change (object sender, EventArgs e)
         {
             DisplayAlert("Default", "Theme update", "Default", "Default");
         }
+
+        private async void LogOut_Clicked(object sender, EventArgs e)
+        {
+            
+        }
+            //=> await Navigation.PopToRootAsync(true); // Go to MainPage --- ( Login )
     }
 }

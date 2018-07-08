@@ -59,5 +59,23 @@ namespace Http_Post.Res {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Log Out.
+        /// </summary>
+        internal static string Btn_LogOut {
+            get {
+                return ResourceManager.GetString("Btn_LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Change Theme.
+        /// </summary>
+        internal static string Btn_Theme {
+            get {
+                return ResourceManager.GetString("Btn_Theme", resourceCulture);
+            }
+        }
     }
 }

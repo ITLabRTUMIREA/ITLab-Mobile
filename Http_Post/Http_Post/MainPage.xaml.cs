@@ -15,11 +15,9 @@ namespace Http_Post
         private string Login, PassWord;
         private Localization localization = new Localization();
 
-
 		public MainPage()
 		{
 			InitializeComponent();
-
 
             text_login.Text = "test@gmail.com"; // --------- Debug
             text_password.Text = "123456"; // -------------- Debug
@@ -72,7 +70,7 @@ namespace Http_Post
 
                 Menu menu = new Menu(info);
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
-                NavigationPage.SetHasNavigationBar(menu, false);
+                NavigationPage.SetHasNavigationBar(menu, false); // Don't show "ITLab-Mobile" 'cause other titles seems confused
                 await Navigation.PushAsync(menu);
                 return;
             }

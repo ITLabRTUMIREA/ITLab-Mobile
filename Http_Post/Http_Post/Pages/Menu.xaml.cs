@@ -6,8 +6,6 @@ using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
-using System.Linq;
-using System.Net.Http;
 using Xamarin.Forms;
 
 namespace Http_Post
@@ -53,11 +51,6 @@ namespace Http_Post
             Close();
         }
 
-        private async void LogOut_Clicked (object sender, EventArgs e)
-        {
-            await Navigation.PopToRootAsync(true); // Go to MainPage --- ( Login )
-        }
-
         private void Settings_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage (new Settings()); // Load Settings Page
@@ -73,7 +66,7 @@ namespace Http_Post
         private void UpdateLanguage()
         {
             // TODO: update all fields
-            DisplayAlert("Default", "Default", "Default", "Default");
+            DisplayAlert("Default", "Lang update", "Default", "Default");
             //throw new NotImplementedException();
         }
 

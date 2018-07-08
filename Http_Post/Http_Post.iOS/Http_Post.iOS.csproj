@@ -152,4 +152,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\ChangingPencil.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\News.png" />
+  </ItemGroup>
 </Project>
