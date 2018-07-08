@@ -1,5 +1,6 @@
 ﻿using Http_Post.Classes;
 using Http_Post.Pages;
+using Http_Post.Res;
 using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
@@ -33,7 +34,8 @@ namespace Http_Post
 
             Detail = new NavigationPage(new EventPage(this.student));
             Close();
-            //UpdateLanguage(); ------ Доделать
+
+            UpdateLanguage();
         }
 
         private void InitComponents()
@@ -65,9 +67,9 @@ namespace Http_Post
 
         private void UpdateLanguage()
         {
-            // TODO: update all fields
-            DisplayAlert("Default", "Lang update", "Default", "Default");
-            //throw new NotImplementedException();
+            Btn_Events.Btn_Text = Resource.Btn_Events;
+            Btn_Settings.Btn_Text = Resource.Btn_Settings;
+            Btn_About.Btn_Text = Resource.Btn_About;
         }
 
         // Close menu

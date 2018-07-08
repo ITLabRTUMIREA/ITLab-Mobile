@@ -61,11 +61,38 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Ищет локализованную строку, похожую на About.
+        /// </summary>
+        internal static string Btn_About {
+            get {
+                return ResourceManager.GetString("Btn_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Events.
+        /// </summary>
+        internal static string Btn_Events {
+            get {
+                return ResourceManager.GetString("Btn_Events", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Ищет локализованную строку, похожую на Log Out.
         /// </summary>
         internal static string Btn_LogOut {
             get {
                 return ResourceManager.GetString("Btn_LogOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings.
+        /// </summary>
+        internal static string Btn_Settings {
+            get {
+                return ResourceManager.GetString("Btn_Settings", resourceCulture);
             }
         }
         
