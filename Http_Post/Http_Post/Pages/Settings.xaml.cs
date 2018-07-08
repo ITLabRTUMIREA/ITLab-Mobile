@@ -8,12 +8,19 @@ namespace Http_Post
 	public partial class Settings : ContentPage
 	{
         Localization localization = new Localization();
+        Menu menuSet;
 
 		public Settings ()
 		{
 			InitializeComponent ();
-            UpdateLanguage();
 		}
+
+        public Settings (Menu menu)
+        {
+            InitializeComponent();
+            menuSet = menu;
+            UpdateLanguage();
+        }
 
         private void Lang_Clicked(object sender, EventArgs e) 
             => AskForLanguage(localization);
@@ -32,6 +39,7 @@ namespace Http_Post
                 loc.ChangeCulture(result);
 
                 UpdateLanguage();
+                menuSet.UpdateLanguage();
             }
             catch (Exception ex)
             {
@@ -50,11 +58,9 @@ namespace Http_Post
         {
             DisplayAlert("Default", "Theme update", "Default", "Default");
         }
-
-        private async void LogOut_Clicked(object sender, EventArgs e)
-        {
-            
-        }
+        
+        private void LogOut_Clicked(object sender, EventArgs e)
+            => menuSet.Logout();
             //=> await Navigation.PopToRootAsync(true); // Go to MainPage --- ( Login )
     }
 }

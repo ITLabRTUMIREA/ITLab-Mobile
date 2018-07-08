@@ -49,13 +49,13 @@ namespace Http_Post
 
         private void BtnEvents_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new EventPage(student));
+            Detail = new NavigationPage(new EventPage(student)); // Load Events Page
             Close();
         }
 
         private void Settings_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage (new Settings()); // Load Settings Page
+            Detail = new NavigationPage (new Settings(this)); // Load Settings Page
             Close();
         }
 
@@ -65,12 +65,15 @@ namespace Http_Post
             Close();
         }
 
-        private void UpdateLanguage()
+        public void UpdateLanguage()
         {
             Btn_Events.Btn_Text = Resource.Btn_Events;
             Btn_Settings.Btn_Text = Resource.Btn_Settings;
             Btn_About.Btn_Text = Resource.Btn_About;
         }
+
+        public async void Logout()
+            => await Navigation.PopToRootAsync(true);
 
         // Close menu
         private void Close()
