@@ -1,4 +1,5 @@
 ﻿using Http_Post.Classes;
+using Http_Post.Pages;
 using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
@@ -15,12 +16,10 @@ namespace Http_Post
     {
         private Localization localization = new Localization();
 
+        private OneObjectResponse<LoginResponse> student;
+
         private string Name;
         private string LastName;
-        HttpClient client;
-
-        private string host = "labworkback.azurewebsites.net";
-        private string port = "80";
 
         public Menu ()
 		{
@@ -31,41 +30,27 @@ namespace Http_Post
         {
             InitializeComponent();
 
-            InitComponents(student);
+            this.student = student;
+            InitComponents();
 
+            Detail = new NavigationPage(new EventPage(this.student));
+            Close();
             //UpdateLanguage(); ------ Доделать
         }
 
-        private void InitComponents(OneObjectResponse<LoginResponse> student)
+        private void InitComponents()
         {
             Name = student.Data.FirstName;
             LastName = student.Data.LastName;
 
             label_name.Text = Name;
             label_surname.Text = LastName;
-
-            client = new HttpClient();
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
         }
 
-        private async void BtnEvents_Clicked(object sender, EventArgs e)
+        private void BtnEvents_Clicked(object sender, EventArgs e)
         {
-            try
-            {
-                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
-                var events = JsonConvert.DeserializeObject<ListResponse<EventPresent>>(response);
-
-                ListView listView = new ListView
-                {
-                    ItemsSource = events.Data.Select(ev => ev.Title ?? "no title")
-                };
-
-                stacklayout_Detail.Children.Add(listView);
-            }
-            catch (Exception ex)
-            {
-                stacklayout_Detail.Children.Add(new Label { Text = ex.Message });
-            }
+            Detail = new NavigationPage(new EventPage(student));
+            Close();
         }
 
         private async void LogOut_Clicked (object sender, EventArgs e)
@@ -73,23 +58,29 @@ namespace Http_Post
             await Navigation.PopToRootAsync(true); // Go to MainPage --- ( Login )
         }
 
-        private async void Settings_Clicked(object sender, EventArgs e)
+        private void Settings_Clicked(object sender, EventArgs e)
         {
-            // TODO: Titles
-
             Detail = new NavigationPage (new Settings()); // Load Settings Page
+            Close();
         }
 
         private async void AboutUs(object sender, EventArgs e)
         {
             await DisplayAlert("About", "Change with Resources!\nHelp us not to die\nMy name is Your Name\nBye", "Ok");
+            Close();
         }
 
         private void UpdateLanguage()
         {
             // TODO: update all fields
+            DisplayAlert("Default", "Default", "Default", "Default");
+            //throw new NotImplementedException();
+        }
 
-            throw new NotImplementedException();
+        // Close menu
+        private void Close()
+        {
+            IsPresented = false;
         }
     }
 }

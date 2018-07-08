@@ -54,18 +54,7 @@ namespace Http_Post
                 var result = await client.PostAsync("https://labworkback.azurewebsites.net/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                //Label label = new Label { Text = $"{resultContent}" }; ------------------ Debug
-                //stackLayout.Children.Add(label); ---------------------------------------- Debug
-
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
-
-                /*
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", infoAboutStudent.Data.Token);
-                var response = await client.GetStringAsync("http://labworkback.azurewebsites.net:80/api/event/");
-                Label l = new Label { Text = response };
-                stackLayout.Children.Add(l);
-                */
-
                 Authorization(infoAboutStudent);
             }
             catch (Exception ex)
@@ -83,6 +72,7 @@ namespace Http_Post
 
                 Menu menu = new Menu(info);
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
+                NavigationPage.SetHasNavigationBar(menu, false);
                 await Navigation.PushAsync(menu);
                 return;
             }
@@ -131,7 +121,6 @@ namespace Http_Post
                 return false;
             
             return true;
-
         }
 
         private bool CheckEmail()
@@ -151,32 +140,6 @@ namespace Http_Post
             }
 
             return true;
-        }
-
-        private void Lang_Clicked(object sender, EventArgs e)
-        {
-            AskForLanguage(localization);
-        }
-
-        private async void AskForLanguage(Localization loc)
-        {
-            try
-            {
-                string cancel = "Cancel";
-                string result = await DisplayActionSheet("Choose language", cancel, String.Empty, loc.languages);
-
-                if (result.Equals(cancel))
-                    return;
-
-                result = result.ToUpper();
-                loc.ChangeCulture(result);
-
-                UpdateLanguage();
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
         }
 
         private void UpdateLanguage()
