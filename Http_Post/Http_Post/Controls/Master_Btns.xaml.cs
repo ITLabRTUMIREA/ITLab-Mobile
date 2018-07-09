@@ -48,6 +48,25 @@ namespace Http_Post.Controls
             Clicked?.Invoke(this, EventArgs.Empty);
         }
 
+        public static readonly BindableProperty BackProperty = BindableProperty.Create("Back",
+           typeof(string),
+           typeof(Master_Btns),
+           null,
+           BindingMode.TwoWay,
+           propertyChanged: BackChanged);
+
+        private static void BackChanged(BindableObject bindableObject, object oldValue, object newValue)
+        {
+            (bindableObject as Master_Btns).Btn.BackgroundColor = Color.FromHex(Convert.ToString(newValue));
+        }
+
+        public string Back
+        {
+            get { return (string)GetValue(BackProperty); }
+            set { SetValue(BackProperty, value); }
+        }
+
+
         public Master_Btns ()
 		{
 			InitializeComponent ();

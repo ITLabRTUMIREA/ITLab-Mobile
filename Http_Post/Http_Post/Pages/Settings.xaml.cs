@@ -52,6 +52,10 @@ namespace Http_Post
             //DisplayAlert("Default", "Lang update", "Default", "Default");
             Btn_Theme.Btn_Text = Resource.Btn_Theme;
             Btn_LogOut.Btn_Text = Resource.Btn_LogOut;
+
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
+            Btn_LogOut.Back = "ff8080"; // Red Color for 'Log out' Button
+            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
         }
 
         private void Theme_Change (object sender, EventArgs e)
