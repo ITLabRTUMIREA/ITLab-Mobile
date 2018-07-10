@@ -137,4 +137,12 @@
     <value>Сменить тему</value>
     <comment>Settings -&gt;btn.Text for Changing Theme</comment>
   </data>
+  <data name="Title_Event" xml:space="preserve">
+    <value>События</value>
+    <comment>Event -&gt;Title</comment>
+  </data>
+  <data name="Title_Settings" xml:space="preserve">
+    <value>Настройки</value>
+    <comment>Settings -&gt; Title</comment>
+  </data>
 </root>

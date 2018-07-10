@@ -22,11 +22,12 @@ namespace Http_Post.Pages
         public EventPage ()
 		{
 			InitializeComponent ();
-		}
+        }
 
         public EventPage(OneObjectResponse<LoginResponse> student)
         {
             InitializeComponent();
+            Title = Res.Resource.Title_Event;
 
             this.student = student;
             GetEvents();

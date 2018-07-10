@@ -49,7 +49,7 @@ namespace Http_Post
 
         private void UpdateLanguage()
         {
-            //DisplayAlert("Default", "Lang update", "Default", "Default");
+            Title = Resource.Title_Settings;
             Btn_Theme.Btn_Text = Resource.Btn_Theme;
             Btn_LogOut.Btn_Text = Resource.Btn_LogOut;
 

@@ -104,5 +104,23 @@ namespace Http_Post.Res {
                 return ResourceManager.GetString("Btn_Theme", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Events.
+        /// </summary>
+        internal static string Title_Event {
+            get {
+                return ResourceManager.GetString("Title_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Ищет локализованную строку, похожую на Settings.
+        /// </summary>
+        internal static string Title_Settings {
+            get {
+                return ResourceManager.GetString("Title_Settings", resourceCulture);
+            }
+        }
     }
 }
