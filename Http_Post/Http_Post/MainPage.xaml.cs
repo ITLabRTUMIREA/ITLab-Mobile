@@ -27,7 +27,7 @@ namespace Http_Post
 
         private async void Button_login(object sender, EventArgs e)
         {
-            // TODO: progressing ring
+            progBar.Progress = 0;
 
             text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
@@ -40,6 +40,7 @@ namespace Http_Post
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;
 
+                await progBar.ProgressTo(0.4, 250, Easing.Linear);
                 text_error.Text = "Loading...\nPlease Wait...";
 
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = PassWord };
@@ -49,9 +50,11 @@ namespace Http_Post
 
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
+                await progBar.ProgressTo(0.7, 300, Easing.Linear);
                 var result = await client.PostAsync("https://labworkback.azurewebsites.net/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
+                await progBar.ProgressTo(1, 300, Easing.Linear);
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
                 Authorization(infoAboutStudent);
             }

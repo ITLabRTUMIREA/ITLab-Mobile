@@ -22,6 +22,7 @@
             <Entry x:Name="text_login" IsPassword="False" Placeholder="Login"/>
             <Entry x:Name="text_password" IsPassword="True" Placeholder="Password"/>
             <Button x:Name="button_login" Text="Login" FontSize="Small" Clicked="Button_login"/>
+            <ProgressBar x:Name="progBar" Progress="0"/>
             <Label x:Name="text_error" FontSize="Small" HorizontalTextAlignment="Center"/>
         </StackLayout>
     </ScrollView>
