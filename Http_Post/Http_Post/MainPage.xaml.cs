@@ -19,7 +19,7 @@ namespace Http_Post
 		{
 			InitializeComponent();
 
-            text_login.Text = "test@gmail.com"; // --------- Debug
+            text_login.Text = "test1@gmail.com"; // --------- Debug
             text_password.Text = "123456"; // -------------- Debug
 
             UpdateLanguage();

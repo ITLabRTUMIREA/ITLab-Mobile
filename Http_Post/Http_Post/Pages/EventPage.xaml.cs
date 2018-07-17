@@ -1,8 +1,10 @@
-﻿using Models.PublicAPI.Responses.Event;
+﻿using Http_Post.Controls;
+using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 
@@ -18,6 +20,7 @@ namespace Http_Post.Pages
         private string port = "80";
 
         private OneObjectResponse<LoginResponse> student;
+        private ListResponse<CompactEventView> events;
 
         public EventPage ()
 		{
@@ -41,14 +44,38 @@ namespace Http_Post.Pages
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
 
                 var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
-                var events = JsonConvert.DeserializeObject<ListResponse<EventPresent>>(response);
+                events = JsonConvert.DeserializeObject<ListResponse<CompactEventView>>(response);
 
-                listView.ItemsSource = events.Data.Select(ev => ev.Title ?? "no title");
+                ShowEvents();
             }
             catch (Exception ex)
             {
                 stacklayout.Children.Add(new Label { Text = ex.Message });
             }
         }
+
+        private async void ShowEvents()
+        {
+            try
+            {
+                listView.ItemsSource = events.Data;
+            }
+            catch (Exception ex)
+            {
+                stacklayout.Children.Add(new Label { Text = ex.Message });
+            }
+        }
+    }
+
+    public class CompactEventView
+    {
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+        public EventTypePresent EventType { get; set; }
+        public int Сompleteness { get; set; }
+        public DateTime BeginTime { get; set; }
+        public double TotalDurationInMinutes { get; set; }
+        public int ShiftsCount { get; set; }
+        public double CustomProg => Сompleteness / 100.0;
     }
 }
