@@ -12,7 +12,7 @@
                 <Label Text="{Binding BeginTime}"/>
                 <Label Text="{Binding TotalDurationInMinutes}"/>
             </StackLayout>
-            <Label Text="{Binding ShiftCount}"/>
+            <Label Text="{Binding ShiftsCount}"/>
         </StackLayout>
 
         <!-- Layout for Phones -->
