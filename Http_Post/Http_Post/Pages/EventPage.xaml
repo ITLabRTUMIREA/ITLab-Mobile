@@ -7,7 +7,7 @@
 
     <ScrollView>
         <StackLayout x:Name="stacklayout" Padding="5">
-            <ListView x:Name="listView">
+            <ListView x:Name="listView" ItemSelected="ListView_ItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:EventView></Controls:EventView>

@@ -1,10 +1,4 @@
-﻿using Models.PublicAPI.Responses.Event;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿using System;
 using Xamarin.Forms;
 
 namespace Http_Post.Controls
@@ -14,26 +8,22 @@ namespace Http_Post.Controls
         public EventView ()
         {
             InitializeComponent();
+
+            //SetLayout();
+        }
+
+        private void SetLayout()
+        {
             if (Device.Idiom == TargetIdiom.Phone)
             {
-                Phone.IsVisible = true;
-                Non_Phone.IsVisible = false;
+               // Phone.IsVisible = true;
+                //Non_Phone.IsVisible = false;
             }
             else
             {
-                Phone.IsVisible = false;
-                Non_Phone.IsVisible = true;
+                //Phone.IsVisible = false;
+                //Non_Phone.IsVisible = true;
             }
-        }
-
-        private async void BtnGo_Clicked (object sender, EventArgs e)
-        {
-
-        }
-
-        private async void BtnWontGo_Clicked (object sender, EventArgs e)
-        {
-
         }
     }
 }

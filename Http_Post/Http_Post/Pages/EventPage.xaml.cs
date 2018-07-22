@@ -5,9 +5,12 @@ using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Dynamic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
-
+using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace Http_Post.Pages
@@ -65,6 +68,13 @@ namespace Http_Post.Pages
                 stacklayout.Children.Add(new Label { Text = ex.Message });
             }
         }
+
+        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = (CompactEventView)e.SelectedItem;
+
+            // Open new page
+        }
     }
 
     public class CompactEventView
@@ -73,9 +83,17 @@ namespace Http_Post.Pages
         public string Title { get; set; }
         public EventTypePresent EventType { get; set; }
         public int Сompleteness { get; set; }
-        public DateTime BeginTime { get; set; }
+        public DateTime BeginTime { get; set; } 
         public double TotalDurationInMinutes { get; set; }
         public int ShiftsCount { get; set; }
         public double CustomProg => Сompleteness / 100.0;
     }
+
+    // Show:
+    //
+    // Title
+    // Description
+    // Begin time
+    // Total duration minutes
+    // Shift count
 }

@@ -5,25 +5,27 @@
              x:Class="Http_Post.MainPage"
              Title="Login">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Label">
-                <Setter Property="FontSize" Value="Small"/>
-            </Style>
-            <Style TargetType="Entry">
-                <Setter Property="FontSize" Value="Small"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <ScrollView>
         <StackLayout x:Name="stackLayout" Spacing ="10" Margin="12">
-            <Label x:Name="text_label" Text="Enter login and password:"/>
-            <Entry x:Name="text_login" IsPassword="False" Placeholder="Login"/>
-            <Entry x:Name="text_password" IsPassword="True" Placeholder="Password"/>
-            <Button x:Name="button_login" Text="Login" FontSize="Small" Clicked="Button_login"/>
+
+            <Label x:Name="text_label" Text="Enter login and password:" 
+                   HorizontalOptions="Center"/>
+
+            <Entry x:Name="text_login" IsPassword="False" Placeholder="Login" 
+                   HorizontalOptions="Center"
+                   WidthRequest="250"/>
+
+            <Entry x:Name="text_password" IsPassword="True" Placeholder="Password" 
+                   HorizontalOptions="Center"
+                   WidthRequest="250"/>
+
+            <Button x:Name="button_login" Text="Login" FontSize="Small" Clicked="Button_login" 
+                    HorizontalOptions="Center"
+                    WidthRequest="150"/>
+
             <ProgressBar x:Name="progBar" Progress="0"/>
             <Label x:Name="text_error" FontSize="Small" HorizontalTextAlignment="Center"/>
+
         </StackLayout>
     </ScrollView>
 

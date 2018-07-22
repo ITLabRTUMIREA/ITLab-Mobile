@@ -12,6 +12,13 @@ namespace Http_Post
 {
 	public partial class MainPage : ContentPage
 	{
+        private void SPECIAL_DEBUG_FUNCTION()
+        {
+            text_login.Text = "test1@gmail.com"; // --------- Debug
+            text_password.Text = "123456"; // --------------- Debug
+            button_login.Focus(); // ------------------------ Debug
+        }
+
         private string Login, PassWord;
         private Localization localization = new Localization();
 
@@ -19,10 +26,9 @@ namespace Http_Post
 		{
 			InitializeComponent();
 
-            text_login.Text = "test1@gmail.com"; // --------- Debug
-            text_password.Text = "123456"; // -------------- Debug
-
             UpdateLanguage();
+
+            SPECIAL_DEBUG_FUNCTION();
         }
 
         private async void Button_login(object sender, EventArgs e)
