@@ -1,4 +1,5 @@
-﻿using Http_Post.Controls;
+﻿using Http_Post.Classes;
+using Http_Post.Controls;
 using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
@@ -38,6 +39,18 @@ namespace Http_Post.Pages
 
             this.student = student;
             GetEvents();
+
+            UpdateTheme();
+        }
+
+        private void UpdateTheme()
+        {
+            ThemeChanger themeChanger = new ThemeChanger();
+            if (App.Current.Properties.TryGetValue("theme", out object name))
+            {
+                if (App.Current.Properties["theme"].Equals(themeChanger.themes[1]))
+                    stacklayout.BackgroundColor = Color.FromHex(themeChanger.Dark_ColorBG);
+            }
         }
 
         private async void GetEvents()

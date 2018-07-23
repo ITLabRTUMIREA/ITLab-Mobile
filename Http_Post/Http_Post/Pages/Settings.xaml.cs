@@ -5,31 +5,33 @@ using Xamarin.Forms;
 
 namespace Http_Post
 {
-	public partial class Settings : ContentPage
-	{
+    public partial class Settings : ContentPage
+    {
         Localization localization = new Localization();
+        ThemeChanger themeChanger = new ThemeChanger();
         Menu menuSet;
 
-		public Settings ()
-		{
-			InitializeComponent ();
-		}
+        string cancel = "Cancel";
 
-        public Settings (Menu menu)
+        public Settings()
+        {
+            InitializeComponent();
+        }
+
+        public Settings(Menu menu)
         {
             InitializeComponent();
             menuSet = menu;
             UpdateLanguage();
         }
 
-        private void Lang_Clicked(object sender, EventArgs e) 
+        private void Lang_Clicked(object sender, EventArgs e)
             => AskForLanguage(localization);
 
         private async void AskForLanguage(Localization loc)
         {
             try
             {
-                string cancel = "Cancel";
                 string result = await DisplayActionSheet("Choose language", cancel, String.Empty, loc.languages);
 
                 if (result.Equals(cancel))
@@ -58,14 +60,25 @@ namespace Http_Post
             // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
         }
 
-        private void Theme_Change (object sender, EventArgs e)
+        private async void Theme_Change (object sender, EventArgs e)
         {
-            DisplayAlert("Default", "Theme update", "Default", "Default");
+            try
+            {
+                themeChanger.Init();
+
+                string result = await DisplayActionSheet(Resource.ThemeChoose, cancel, String.Empty, themeChanger.ThemesForUser.ToArray());
+                if (result.Equals(cancel))
+                    return;
+
+                themeChanger.ChangeTheme(result);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
-        
+
         private void LogOut_Clicked(object sender, EventArgs e)
             => menuSet.Logout();
-
-
     }
 }

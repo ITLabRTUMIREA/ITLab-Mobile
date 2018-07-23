@@ -149,6 +149,26 @@
     <value>No title</value>
     <comment>If Event has No Title -&gt;show it user</comment>
   </data>
+  <data name="ThemeChoose" xml:space="preserve">
+    <value>Choose theme</value>
+    <comment>Text for Choosing Themes</comment>
+  </data>
+  <data name="ThemeDark" xml:space="preserve">
+    <value>Dark theme</value>
+    <comment>Text for Dark Theme</comment>
+  </data>
+  <data name="ThemeDefault" xml:space="preserve">
+    <value>Default theme</value>
+    <comment>Text for Default Theme</comment>
+  </data>
+  <data name="ThemeLight" xml:space="preserve">
+    <value>Light theme</value>
+    <comment>Text for Light Theme</comment>
+  </data>
+  <data name="ThemeRainbow" xml:space="preserve">
+    <value>Rainbow theme</value>
+    <comment>Text for Rainbow Theme</comment>
+  </data>
   <data name="Title_Event" xml:space="preserve">
     <value>Events</value>
     <comment>Event -&gt;Title</comment>

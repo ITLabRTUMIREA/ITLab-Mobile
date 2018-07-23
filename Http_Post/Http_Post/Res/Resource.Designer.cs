@@ -133,6 +133,51 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Choose theme.
+        /// </summary>
+        internal static string ThemeChoose {
+            get {
+                return ResourceManager.GetString("ThemeChoose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark theme.
+        /// </summary>
+        internal static string ThemeDark {
+            get {
+                return ResourceManager.GetString("ThemeDark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default theme.
+        /// </summary>
+        internal static string ThemeDefault {
+            get {
+                return ResourceManager.GetString("ThemeDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light theme.
+        /// </summary>
+        internal static string ThemeLight {
+            get {
+                return ResourceManager.GetString("ThemeLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rainbow theme.
+        /// </summary>
+        internal static string ThemeRainbow {
+            get {
+                return ResourceManager.GetString("ThemeRainbow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Events.
         /// </summary>
         internal static string Title_Event {
