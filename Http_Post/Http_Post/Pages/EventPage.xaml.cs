@@ -1,4 +1,5 @@
 ﻿using Http_Post.Controls;
+using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
@@ -23,7 +24,7 @@ namespace Http_Post.Pages
         private string port = "80";
 
         private OneObjectResponse<LoginResponse> student;
-        private ListResponse<CompactEventView> events;
+        private ListResponse<CompactEventViewExtended> events;
 
         public EventPage ()
 		{
@@ -47,7 +48,7 @@ namespace Http_Post.Pages
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
 
                 var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
-                events = JsonConvert.DeserializeObject<ListResponse<CompactEventView>>(response);
+                events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
                 ShowEvents();
             }

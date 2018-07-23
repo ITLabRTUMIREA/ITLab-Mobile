@@ -8,22 +8,6 @@ namespace Http_Post.Controls
         public EventView ()
         {
             InitializeComponent();
-
-            //SetLayout();
-        }
-
-        private void SetLayout()
-        {
-            if (Device.Idiom == TargetIdiom.Phone)
-            {
-               // Phone.IsVisible = true;
-                //Non_Phone.IsVisible = false;
-            }
-            else
-            {
-                //Phone.IsVisible = false;
-                //Non_Phone.IsVisible = true;
-            }
         }
     }
 }
