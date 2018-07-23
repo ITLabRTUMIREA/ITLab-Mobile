@@ -27,7 +27,8 @@ namespace Http_Post
 			InitializeComponent();
 
             UpdateLanguage();
-
+            SetProgress(0.0);
+            
             SPECIAL_DEBUG_FUNCTION();
         }
 
@@ -46,7 +47,7 @@ namespace Http_Post
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;
 
-                await progBar.ProgressTo(0.4, 250, Easing.Linear);
+                SetProgress(0.4);
                 text_error.Text = "Loading...\nPlease Wait...";
 
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = PassWord };
@@ -56,17 +57,27 @@ namespace Http_Post
 
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                await progBar.ProgressTo(0.7, 300, Easing.Linear);
+                SetProgress(0.7);
                 var result = await client.PostAsync("https://labworkback.azurewebsites.net/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                await progBar.ProgressTo(1, 300, Easing.Linear);
+                SetProgress(1);
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
                 Authorization(infoAboutStudent);
             }
             catch (Exception ex)
             {
                 ShowError(ex.Message + "\nCheck Internet connection");
+            }
+        }
+
+        private async void SetProgress(double value)
+        {
+            if (Device.Idiom == TargetIdiom.Phone)
+            
+                progBar.IsVisible = false;
+            else {
+                await progBar.ProgressTo(value, 300, Easing.Linear);
             }
         }
 

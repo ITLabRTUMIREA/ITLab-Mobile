@@ -65,6 +65,7 @@ namespace Http_Post
         
         private void LogOut_Clicked(object sender, EventArgs e)
             => menuSet.Logout();
-            //=> await Navigation.PopToRootAsync(true); // Go to MainPage --- ( Login )
+
+
     }
 }
