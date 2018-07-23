@@ -76,24 +76,4 @@ namespace Http_Post.Pages
             // Open new page
         }
     }
-
-    public class CompactEventView
-    {
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public EventTypePresent EventType { get; set; }
-        public int Сompleteness { get; set; }
-        public DateTime BeginTime { get; set; } 
-        public double TotalDurationInMinutes { get; set; }
-        public int ShiftsCount { get; set; }
-        public double CustomProg => Сompleteness / 100.0;
-    }
-
-    // Show:
-    //
-    // Title
-    // Description
-    // Begin time
-    // Total duration minutes
-    // Shift count
 }

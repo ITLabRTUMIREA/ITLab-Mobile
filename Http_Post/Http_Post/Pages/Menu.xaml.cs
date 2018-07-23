@@ -1,11 +1,8 @@
 ﻿using Http_Post.Classes;
 using Http_Post.Pages;
 using Http_Post.Res;
-using Models.PublicAPI.Requests.Account;
-using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
-using Newtonsoft.Json;
 using System;
 using Xamarin.Forms;
 
