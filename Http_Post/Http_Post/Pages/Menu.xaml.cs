@@ -33,6 +33,7 @@ namespace Http_Post
             Close();
 
             UpdateLanguage();
+            UpdateTheme();
         }
 
         private void InitComponents()
@@ -67,6 +68,18 @@ namespace Http_Post
             Btn_Events.Btn_Text = Resource.Btn_Events;
             Btn_Settings.Btn_Text = Resource.Btn_Settings;
             Btn_About.Btn_Text = Resource.Btn_About;
+        }
+
+        private void UpdateTheme()
+        {
+            ThemeChanger theme = new ThemeChanger();
+            stacklayout_Master.BackgroundColor = theme.ColorBG();
+            stacklayout_Detail.BackgroundColor = theme.ColorBG();
+            stackUser.BackgroundColor = theme.ColorBG();
+
+            Btn_Events.BackgroundColor = theme.ColorBG();
+            Btn_Settings.BackgroundColor = theme.ColorBG();
+            Btn_About.BackgroundColor = theme.ColorBG();
         }
 
         public async void Logout()

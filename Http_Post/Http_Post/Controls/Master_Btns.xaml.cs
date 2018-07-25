@@ -70,6 +70,14 @@ namespace Http_Post.Controls
         public Master_Btns ()
 		{
 			InitializeComponent ();
+
+            UpdateTheme();
 		}
+
+        private void UpdateTheme()
+        {
+            Btn.BackgroundColor = new Classes.ThemeChanger().ColorBtn();
+            Btn.TextColor = new Classes.ThemeChanger().ColorLbl();
+        }
 	}
 }

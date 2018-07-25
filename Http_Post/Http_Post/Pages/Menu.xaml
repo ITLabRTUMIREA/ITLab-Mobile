@@ -9,7 +9,7 @@
         <ContentPage Title="Master">
             <ContentPage.Content>
                 <StackLayout x:Name="stacklayout_Master" Padding="5">
-                    <StackLayout Orientation="Horizontal" Margin="0,0,0,20">
+                    <StackLayout x:Name="stackUser" Orientation="Horizontal" Margin="0,0,0,20">
                         <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png"/>
                         <StackLayout Orientation="Vertical">
                             <Label x:Name="label_name" Text="..."/>

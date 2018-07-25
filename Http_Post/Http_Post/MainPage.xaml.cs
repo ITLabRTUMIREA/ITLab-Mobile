@@ -34,7 +34,7 @@ namespace Http_Post
 
         private async void Button_login(object sender, EventArgs e)
         {
-            progBar.Progress = 0;
+            SetProgress(0);
 
             text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
@@ -77,7 +77,7 @@ namespace Http_Post
             
                 progBar.IsVisible = false;
             else {
-                await progBar.ProgressTo(value, 300, Easing.Linear);
+                await progBar.ProgressTo(value, 350, Easing.Linear);
             }
         }
 

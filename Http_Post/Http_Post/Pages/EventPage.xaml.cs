@@ -1,18 +1,11 @@
 ﻿using Http_Post.Classes;
-using Http_Post.Controls;
 using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Dynamic;
-using System.Linq;
-using System.Linq.Expressions;
 using System.Net.Http;
-using System.Runtime.CompilerServices;
 using Xamarin.Forms;
 
 namespace Http_Post.Pages
@@ -46,11 +39,8 @@ namespace Http_Post.Pages
         private void UpdateTheme()
         {
             ThemeChanger themeChanger = new ThemeChanger();
-            if (App.Current.Properties.TryGetValue("theme", out object name))
-            {
-                if (App.Current.Properties["theme"].Equals(themeChanger.themes[1]))
-                    stacklayout.BackgroundColor = Color.FromHex(themeChanger.Dark_ColorBG);
-            }
+            stacklayout.BackgroundColor = themeChanger.ColorBG();
+            listView.BackgroundColor = themeChanger.ColorBG();
         }
 
         private async void GetEvents()
