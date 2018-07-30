@@ -12,6 +12,10 @@ namespace Http_Post
 {
 	public partial class MainPage : ContentPage
 	{
+        private readonly string host = "localhost"; // labworkback.azurewebsites.net // localhost
+        private readonly string port = "5000"; // 80 // 5000
+        private readonly string security = "http"; // https // http
+
         private void SPECIAL_DEBUG_FUNCTION()
         {
             text_login.Text = "test1@gmail.com"; // --------- Debug
@@ -58,7 +62,7 @@ namespace Http_Post
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 SetProgress(0.7);
-                var result = await client.PostAsync("https://labworkback.azurewebsites.net/api/Authentication/login", content);
+                var result = await client.PostAsync($"{security}://{host}:{port}/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
                 SetProgress(1);

@@ -14,8 +14,8 @@ namespace Http_Post.Pages
 	{
         HttpClient client;
 
-        private string host = "labworkback.azurewebsites.net";
-        private string port = "80";
+        private readonly string host = "localhost"; // labworkback.azurewebsites.net // localhost
+        private readonly string port = "5000"; // 80 // 5000
 
         private OneObjectResponse<LoginResponse> student;
         private ListResponse<CompactEventViewExtended> events;

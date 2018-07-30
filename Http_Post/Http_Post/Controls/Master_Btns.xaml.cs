@@ -48,25 +48,6 @@ namespace Http_Post.Controls
             Clicked?.Invoke(this, EventArgs.Empty);
         }
 
-        public static readonly BindableProperty BackProperty = BindableProperty.Create("Back",
-           typeof(string),
-           typeof(Master_Btns),
-           null,
-           BindingMode.TwoWay,
-           propertyChanged: BackChanged);
-
-        private static void BackChanged(BindableObject bindableObject, object oldValue, object newValue)
-        {
-            (bindableObject as Master_Btns).Btn.BackgroundColor = Color.FromHex(Convert.ToString(newValue));
-        }
-
-        public string Back
-        {
-            get { return (string)GetValue(BackProperty); }
-            set { SetValue(BackProperty, value); }
-        }
-
-
         public Master_Btns ()
 		{
 			InitializeComponent ();
@@ -74,10 +55,20 @@ namespace Http_Post.Controls
             UpdateTheme();
 		}
 
-        private void UpdateTheme()
+        public void UpdateTheme()
         {
-            Btn.BackgroundColor = new Classes.ThemeChanger().ColorBtn();
-            Btn.TextColor = new Classes.ThemeChanger().ColorLbl();
+            var theme = new Classes.ThemeChanger();
+            BackgroundColor = theme.ColorBG();
+            Btn.BackgroundColor = theme.ColorBtn();
+            Btn.TextColor = theme.ColorLbl();
         }
-	}
+
+        // Only for 'Log out' button
+        public void UpdateThemeRed()
+        {
+            BackgroundColor = new Classes.ThemeChanger().ColorBG();
+            Btn.BackgroundColor = Color.FromHex("ff8080");
+            Btn.TextColor = Color.Default;
+        }
+    }
 }

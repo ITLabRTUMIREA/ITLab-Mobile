@@ -23,6 +23,7 @@ namespace Http_Post
             InitializeComponent();
             menuSet = menu;
             UpdateLanguage();
+            UpdateTheme();
         }
 
         private void Lang_Clicked(object sender, EventArgs e)
@@ -54,10 +55,6 @@ namespace Http_Post
             Title = Resource.Title_Settings;
             Btn_Theme.Btn_Text = Resource.Btn_Theme;
             Btn_LogOut.Btn_Text = Resource.Btn_LogOut;
-
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
-            Btn_LogOut.Back = "ff8080"; // Red Color for 'Log out' Button
-            // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! //
         }
 
         private async void Theme_Change (object sender, EventArgs e)
@@ -71,11 +68,21 @@ namespace Http_Post
                     return;
 
                 themeChanger.ChangeTheme(result);
+                UpdateTheme();
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
             }
+        }
+
+        private void UpdateTheme()
+        {
+            BackgroundColor = themeChanger.ColorBG();
+
+            Btn_Lang.UpdateTheme();
+            Btn_Theme.UpdateTheme();
+            Btn_LogOut.UpdateThemeRed();
         }
 
         private void LogOut_Clicked(object sender, EventArgs e)

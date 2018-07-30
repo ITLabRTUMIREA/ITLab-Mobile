@@ -77,9 +77,12 @@ namespace Http_Post
             stacklayout_Detail.BackgroundColor = theme.ColorBG();
             stackUser.BackgroundColor = theme.ColorBG();
 
-            Btn_Events.BackgroundColor = theme.ColorBG();
-            Btn_Settings.BackgroundColor = theme.ColorBG();
-            Btn_About.BackgroundColor = theme.ColorBG();
+            label_name.TextColor = theme.ColorLbl();
+            label_surname.TextColor = theme.ColorLbl();
+
+            Btn_Events.UpdateTheme();
+            Btn_Settings.UpdateTheme();
+            Btn_About.UpdateTheme();
         }
 
         public async void Logout()
