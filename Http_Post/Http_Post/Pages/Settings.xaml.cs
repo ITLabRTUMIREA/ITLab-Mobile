@@ -77,6 +77,9 @@ namespace Http_Post
 
         private void UpdateTheme()
         {
+            Application.Current.Resources["themeStack"] = Application.Current.Resources
+                [new ThemeChanger().Theme + "_Stack"];
+
             Btn_Lang.UpdateTheme();
             Btn_Theme.UpdateTheme();
             Btn_LogOut.UpdateTheme();
