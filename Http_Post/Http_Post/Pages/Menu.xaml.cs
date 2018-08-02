@@ -70,7 +70,7 @@ namespace Http_Post
             Btn_About.Btn_Text = Resource.Btn_About;
         }
 
-        private void UpdateTheme()
+        public void UpdateTheme()
         {
             ThemeChanger theme = new ThemeChanger();
             stacklayout_Master.BackgroundColor = theme.ColorBG();

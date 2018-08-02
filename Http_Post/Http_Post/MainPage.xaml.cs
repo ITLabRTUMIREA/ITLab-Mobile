@@ -62,7 +62,11 @@ namespace Http_Post
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 SetProgress(0.7);
-                var result = await client.PostAsync($"{security}://{host}:{port}/api/Authentication/login", content);
+
+                // Phone localhost debug:
+                var result = await client.PostAsync($"http://ce8604c9.ngrok.io/api/Authentication/login", content);
+
+                //var result = await client.PostAsync($"{security}://{host}:{port}/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
                 SetProgress(1);

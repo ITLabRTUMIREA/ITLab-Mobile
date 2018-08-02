@@ -83,6 +83,8 @@ namespace Http_Post
             Btn_Lang.UpdateTheme();
             Btn_Theme.UpdateTheme();
             Btn_LogOut.UpdateThemeRed();
+
+            menuSet.UpdateTheme();
         }
 
         private void LogOut_Clicked(object sender, EventArgs e)

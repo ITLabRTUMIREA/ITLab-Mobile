@@ -50,7 +50,11 @@ namespace Http_Post.Pages
                 client = new HttpClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
 
-                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
+                // Phone localhost debug http://ce8604c9.ngrok.io
+                var response = await client.GetStringAsync($"http://ce8604c9.ngrok.io/api/event/");
+
+                //var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
+
                 events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
                 ShowEvents();
