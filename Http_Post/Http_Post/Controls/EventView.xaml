@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Controls.EventView">
 
-    <Grid>
+    <Grid Style="{DynamicResource themeStack}">
         <Grid.RowDefinitions>
             <!-- Title -->
             <RowDefinition Height="Auto"/>
@@ -21,14 +21,31 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblTitle" Text="{Binding EventTitle}" Grid.Row="0" Grid.ColumnSpan="3"/>
-        <Label x:Name="lblTypeTitle" Text="{Binding EventTypeTitle}" Grid.Row="1" Grid.ColumnSpan="3"/>
-        <Label x:Name="lblDescription" Text="{Binding EventTypeDescription}" Grid.Row="2" Grid.ColumnSpan="3"/>
-        <Label x:Name="lblBeginTime" Text="{Binding BeginTime}" Grid.Row="3" Grid.Column="0"/>
-        <Label x:Name="lblDuration" Text="{Binding Duration}" Grid.Row="3" Grid.Column="1"/>
-        <Label x:Name="lblShiftsCount" Text="{Binding ShiftsCount}" Grid.Row="4" Grid.Column="0"/>
-        <ProgressBar x:Name="ProgBar" Progress="{Binding ProgressToBar}" Grid.Row="4" Grid.Column="1"/>
-        <Label x:Name="lblCompletness" Text="{Binding СompletenessPercent}" Grid.Row="4" Grid.Column="2"/>
+        <Label x:Name="lblTitle" Text="{Binding EventTitle}" 
+               Grid.Row="0" Grid.ColumnSpan="3"
+               Style="{DynamicResource themeLabel}"/>
+        <Label x:Name="lblTypeTitle" Text="{Binding EventTypeTitle}" 
+               Grid.Row="1" Grid.ColumnSpan="3"
+               Style="{DynamicResource themeLabel}"/>
+        <Label x:Name="lblDescription" Text="{Binding EventTypeDescription}" 
+               Grid.Row="2" Grid.ColumnSpan="3"
+               Style="{DynamicResource themeLabel}"/>
+        <Label x:Name="lblBeginTime" Text="{Binding BeginTime}" 
+               Grid.Row="3" Grid.Column="0"
+               Style="{DynamicResource themeLabel}"/>
+        <Label x:Name="lblDuration" Text="{Binding Duration}" 
+               Grid.Row="3" Grid.Column="1"
+               Style="{DynamicResource themeLabel}"/>
+        <Label x:Name="lblShiftsCount" Text="{Binding ShiftsCount}" 
+               Grid.Row="4" Grid.Column="0"
+               Style="{DynamicResource themeLabel}"/>
+        <ProgressBar x:Name="ProgBar" Progress="{Binding ProgressToBar}"
+                     Grid.Row="4" Grid.Column="1"
+                     Style="{DynamicResource themeStack}"/>
+        <Label x:Name="lblCompletness" Text="{Binding СompletenessPercent}" 
+               Grid.Row="4" Grid.Column="2"
+               Style="{DynamicResource themeLabel}"/>
+
     </Grid>
 
 </ViewCell>

@@ -6,8 +6,10 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
 
     <ScrollView>
-        <StackLayout x:Name="stacklayout" Padding="5">
-            <ListView x:Name="listView" ItemSelected="ListView_ItemSelected">
+        <StackLayout x:Name="stacklayout" Padding="5"
+                     Style="{DynamicResource themeStack}">
+            <ListView x:Name="listView" ItemSelected="ListView_ItemSelected"
+                      Style="{DynamicResource themeStack}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:EventView></Controls:EventView>

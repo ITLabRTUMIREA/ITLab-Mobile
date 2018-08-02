@@ -38,9 +38,9 @@ namespace Http_Post.Pages
 
         private void UpdateTheme()
         {
-            ThemeChanger themeChanger = new ThemeChanger();
-            stacklayout.BackgroundColor = themeChanger.ColorBG();
-            listView.BackgroundColor = themeChanger.ColorBG();
+            var th = new ThemeChanger();
+            var col = Application.Current.Resources;
+            col["themeStack"] = col[th.Theme + "_Stack"];
         }
 
         private async void GetEvents()

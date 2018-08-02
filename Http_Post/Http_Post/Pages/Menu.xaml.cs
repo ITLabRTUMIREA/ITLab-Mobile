@@ -43,6 +43,15 @@ namespace Http_Post
 
             label_name.Text = Name;
             label_surname.Text = LastName;
+
+            var col = Application.Current.Resources;
+            var th = new ThemeChanger();
+            col["themeStack"] = col[th.Theme + "_Stack"];
+            col["themeLabel"] = col[th.Theme + "_Lbl"];
+
+            Btn_Events.UpdateTheme();
+            Btn_Settings.UpdateTheme();
+            Btn_About.UpdateTheme();
         }
 
         private void BtnEvents_Clicked(object sender, EventArgs e)
@@ -73,13 +82,7 @@ namespace Http_Post
         public void UpdateTheme()
         {
             ThemeChanger theme = new ThemeChanger();
-            stacklayout_Master.BackgroundColor = theme.ColorBG();
-            stacklayout_Detail.BackgroundColor = theme.ColorBG();
-            stackUser.BackgroundColor = theme.ColorBG();
-
-            label_name.TextColor = theme.ColorLbl();
-            label_surname.TextColor = theme.ColorLbl();
-
+            
             Btn_Events.UpdateTheme();
             Btn_Settings.UpdateTheme();
             Btn_About.UpdateTheme();

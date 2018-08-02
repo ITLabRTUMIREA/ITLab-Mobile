@@ -27,10 +27,6 @@ namespace Http_Post.Classes
 
         public ThemeChanger()
         {
-        }
-
-        public void Init()
-        {
             ThemesForUser.Clear();
             ThemesForUser.Add(Resource.ThemeDefault);
             ThemesForUser.Add(Resource.ThemeDark);
@@ -52,98 +48,23 @@ namespace Http_Post.Classes
 
         private void Set(string value)
         {
-            object name = "";
-            if (App.Current.Properties.TryGetValue(KEY, out name))
-            {
+            if (App.Current.Properties.TryGetValue(KEY, out object name))
                 // выполняем действия, если в словаре есть ключ "name"
                 App.Current.Properties[KEY] = value;
-            }
             else
-            {
                 // Добавить ключ "name" в словарь
                 App.Current.Properties.Add(KEY, value);
-            }
         }
 
-        public Xamarin.Forms.Color ColorBG()
+        public string Theme
         {
-            if (App.Current.Properties.TryGetValue(KEY, out object name))
+            get
             {
-                name = (string)name;
-                if (name.Equals(themes[0]))
-                    return Xamarin.Forms.Color.Default;
-
-                else if (name.Equals(themes[1]))
-                    return Xamarin.Forms.Color.FromHex(Dark_ColorBG);
-
-                else if (name.Equals(themes[2]))
-                    return Xamarin.Forms.Color.FromHex(Light_ColorBG);
-
-                else if (name.Equals(themes[3]))
-                    return Xamarin.Forms.Color.FromHex(Rainbow_ColorBG);
+                if (App.Current.Properties.TryGetValue(KEY, out object name))
+                    return name.ToString();
                 else
-                    return Xamarin.Forms.Color.Default;
+                    return "Default";
             }
-            else
-                return Xamarin.Forms.Color.Default;
         }
-
-        public Xamarin.Forms.Color ColorBtn()
-        {
-            if (App.Current.Properties.TryGetValue(KEY, out object name))
-            {
-                name = (string)name;
-                if (name.Equals(themes[0]))
-                    return Xamarin.Forms.Color.Default;
-
-                else if (name.Equals(themes[1]))
-                    return Xamarin.Forms.Color.FromHex(Dark_ColorBtn);
-
-                else if (name.Equals(themes[2]))
-                    return Xamarin.Forms.Color.FromHex(Light_ColorBtn);
-
-                else if (name.Equals(themes[3]))
-                    return Xamarin.Forms.Color.FromHex(Rainbow_ColorBtn);
-                else
-                    return Xamarin.Forms.Color.Default;
-            }
-            else
-                return Xamarin.Forms.Color.Default;
-        }
-
-        public Xamarin.Forms.Color ColorLbl()
-        {
-            if (App.Current.Properties.TryGetValue(KEY, out object name))
-            {
-                name = (string)name;
-                if (name.Equals(themes[0]))
-                    return Xamarin.Forms.Color.Default;
-
-                else if (name.Equals(themes[1]))
-                    return Xamarin.Forms.Color.FromHex(Dark_ColorLbl);
-
-                else if (name.Equals(themes[2]))
-                    return Xamarin.Forms.Color.FromHex(Light_ColorLbl);
-
-                else if (name.Equals(themes[3]))
-                    return Xamarin.Forms.Color.FromHex(Rainbow_ColorLbl);
-                else
-                    return Xamarin.Forms.Color.Default;
-            }
-            else
-                return Xamarin.Forms.Color.Default;
-        }
-
-        private string Dark_ColorBG = "#1a1a1a";
-        private string Dark_ColorBtn = "#333333"; // #262626 (darker)
-        private string Dark_ColorLbl = "#f2f2f2"; // #e6e6e6 (darker)
-        
-        private string Light_ColorBG = "";
-        private string Light_ColorBtn = "";
-        private string Light_ColorLbl = "";
-        
-        private string Rainbow_ColorBG = "";
-        private string Rainbow_ColorBtn = "";
-        private string Rainbow_ColorLbl = "";
     }
 }

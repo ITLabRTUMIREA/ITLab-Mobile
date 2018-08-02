@@ -8,7 +8,6 @@ namespace Http_Post
     public partial class Settings : ContentPage
     {
         Localization localization = new Localization();
-        ThemeChanger themeChanger = new ThemeChanger();
         Menu menuSet;
 
         string cancel = "Cancel";
@@ -61,7 +60,7 @@ namespace Http_Post
         {
             try
             {
-                themeChanger.Init();
+                var themeChanger = new ThemeChanger();
 
                 string result = await DisplayActionSheet(Resource.ThemeChoose, cancel, String.Empty, themeChanger.ThemesForUser.ToArray());
                 if (result.Equals(cancel))
@@ -78,11 +77,9 @@ namespace Http_Post
 
         private void UpdateTheme()
         {
-            BackgroundColor = themeChanger.ColorBG();
-
             Btn_Lang.UpdateTheme();
             Btn_Theme.UpdateTheme();
-            Btn_LogOut.UpdateThemeRed();
+            Btn_LogOut.UpdateTheme();
 
             menuSet.UpdateTheme();
         }

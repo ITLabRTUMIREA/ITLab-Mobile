@@ -10,12 +10,15 @@
             <ContentPage.Content>
                 <StackLayout x:Name="stacklayout_Master" Padding="5" 
                              VerticalOptions="FillAndExpand"
-                             HorizontalOptions="FillAndExpand">
+                             HorizontalOptions="FillAndExpand"
+                             Style="{DynamicResource themeStack}">
                     <StackLayout x:Name="stackUser" Orientation="Horizontal" Margin="0,0,0,20">
                         <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png"/>
                         <StackLayout Orientation="Vertical">
-                            <Label x:Name="label_name" Text="..."/>
-                            <Label x:Name="label_surname" Text="..."/>
+                            <Label x:Name="label_name" Text="..."
+                                   Style="{DynamicResource themeLabel}"/>
+                            <Label x:Name="label_surname" Text="..."
+                                   Style="{DynamicResource themeLabel}"/>
                         </StackLayout>
                     </StackLayout>
                     
@@ -29,8 +32,8 @@
 
     <MasterDetailPage.Detail>
         <ContentPage>
-            <StackLayout x:Name="stacklayout_Detail">
-                
+            <StackLayout x:Name="stacklayout_Detail"
+                         Style="{DynamicResource themeStack}">
             </StackLayout>
         </ContentPage>
     </MasterDetailPage.Detail>

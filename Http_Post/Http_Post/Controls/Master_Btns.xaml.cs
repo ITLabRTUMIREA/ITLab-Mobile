@@ -57,18 +57,9 @@ namespace Http_Post.Controls
 
         public void UpdateTheme()
         {
-            var theme = new Classes.ThemeChanger();
-            BackgroundColor = theme.ColorBG();
-            Btn.BackgroundColor = theme.ColorBtn();
-            Btn.TextColor = theme.ColorLbl();
-        }
-
-        // Only for 'Log out' button
-        public void UpdateThemeRed()
-        {
-            BackgroundColor = new Classes.ThemeChanger().ColorBG();
-            Btn.BackgroundColor = Color.FromHex("ff8080");
-            Btn.TextColor = Color.Default;
+            var col = Application.Current.Resources;
+            var th = new Classes.ThemeChanger();
+            col["themeButton"] = col[th.Theme + "_Btn"];
         }
     }
 }
