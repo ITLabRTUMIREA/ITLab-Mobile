@@ -12,9 +12,8 @@ namespace Http_Post
 {
 	public partial class MainPage : ContentPage
 	{
-        private readonly string host = "localhost"; // labworkback.azurewebsites.net // localhost
-        private readonly string port = "5000"; // 80 // 5000
-        private readonly string security = "http"; // https // http
+        private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
+        private readonly string port = "80"; // 80 // 5000
 
         private void SPECIAL_DEBUG_FUNCTION()
         {
@@ -64,9 +63,9 @@ namespace Http_Post
                 SetProgress(0.7);
 
                 // Phone localhost debug:
-                var result = await client.PostAsync($"http://ce8604c9.ngrok.io/api/Authentication/login", content);
+                //var result = await client.PostAsync($"http://ce8604c9.ngrok.io/api/Authentication/login", content);
 
-                //var result = await client.PostAsync($"{security}://{host}:{port}/api/Authentication/login", content);
+                var result = await client.PostAsync($"http://{host}:{port}/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
                 SetProgress(1);

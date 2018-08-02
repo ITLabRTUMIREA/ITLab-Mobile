@@ -14,8 +14,8 @@ namespace Http_Post.Pages
 	{
         HttpClient client;
 
-        private readonly string host = "localhost"; // labworkback.azurewebsites.net // localhost
-        private readonly string port = "5000"; // 80 // 5000
+        private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
+        private readonly string port = "80"; // 80 // 5000
 
         private OneObjectResponse<LoginResponse> student;
         private ListResponse<CompactEventViewExtended> events;
@@ -51,9 +51,9 @@ namespace Http_Post.Pages
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
 
                 // Phone localhost debug http://ce8604c9.ngrok.io
-                var response = await client.GetStringAsync($"http://ce8604c9.ngrok.io/api/event/");
+                //var response = await client.GetStringAsync($"http://ce8604c9.ngrok.io/api/event/");
 
-                //var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
+                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
 
                 events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
