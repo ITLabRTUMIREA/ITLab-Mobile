@@ -21,28 +21,28 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblTitle" Text="{Binding EventTitle}" 
+        <Label Text="{Binding EventTitle}" 
                Grid.Row="0" Grid.ColumnSpan="3"
                Style="{DynamicResource themeLabel}"/>
-        <Label x:Name="lblTypeTitle" Text="{Binding EventTypeTitle}" 
+        <Label Text="{Binding EventTypeTitle}" 
                Grid.Row="1" Grid.ColumnSpan="3"
                Style="{DynamicResource themeLabel}"/>
-        <Label x:Name="lblDescription" Text="{Binding EventTypeDescription}" 
+        <Label Text="{Binding EventTypeDescription}" 
                Grid.Row="2" Grid.ColumnSpan="3"
                Style="{DynamicResource themeLabel}"/>
-        <Label x:Name="lblBeginTime" Text="{Binding BeginTime}" 
+        <Label Text="{Binding BeginTime}" 
                Grid.Row="3" Grid.Column="0"
                Style="{DynamicResource themeLabel}"/>
-        <Label x:Name="lblDuration" Text="{Binding Duration}" 
+        <Label Text="{Binding Duration}" 
                Grid.Row="3" Grid.Column="1"
                Style="{DynamicResource themeLabel}"/>
-        <Label x:Name="lblShiftsCount" Text="{Binding ShiftsCount}" 
+        <Label Text="{Binding ShiftsCount}" 
                Grid.Row="4" Grid.Column="0"
                Style="{DynamicResource themeLabel}"/>
-        <ProgressBar x:Name="ProgBar" Progress="{Binding ProgressToBar}"
+        <ProgressBar Progress="{Binding ProgressToBar}"
                      Grid.Row="4" Grid.Column="1"
                      Style="{DynamicResource themeStack}"/>
-        <Label x:Name="lblCompletness" Text="{Binding СompletenessPercent}" 
+        <Label Text="{Binding СompletenessPercent}" 
                Grid.Row="4" Grid.Column="2"
                Style="{DynamicResource themeLabel}"/>
 

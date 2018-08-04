@@ -57,6 +57,12 @@ namespace Http_Post
             Close();
         }
 
+        private void BtnCreate_Clicked (object sender, EventArgs e)
+        {
+            Detail = new NavigationPage(new CreateEventPage());
+            Close();
+        }
+
         private async void AboutUs(object sender, EventArgs e)
         {
             await DisplayAlert("About", "Change with Resources!\nHelp us not to die\nMy name is Your Name\nBye", "Ok");
@@ -68,6 +74,7 @@ namespace Http_Post
             Btn_Events.Btn_Text = Resource.Btn_Events;
             Btn_Settings.Btn_Text = Resource.Btn_Settings;
             Btn_About.Btn_Text = Resource.Btn_About;
+            Btn_Create.Btn_Text = Resource.Btn_Create;
         }
 
         public void UpdateTheme()
@@ -80,6 +87,7 @@ namespace Http_Post
             Btn_Events.UpdateTheme();
             Btn_Settings.UpdateTheme();
             Btn_About.UpdateTheme();
+            Btn_Create.UpdateTheme();
         }
 
         public async void Logout()

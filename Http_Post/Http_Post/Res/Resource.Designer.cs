@@ -22,7 +22,7 @@ namespace Http_Post.Res {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resource {
+    public class Resource {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace Http_Post.Res {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Http_Post.Res.Resource", typeof(Resource).Assembly);
@@ -51,7 +51,7 @@ namespace Http_Post.Res {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,16 +63,25 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
-        internal static string Btn_About {
+        public static string Btn_About {
             get {
                 return ResourceManager.GetString("Btn_About", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create event.
+        /// </summary>
+        public static string Btn_Create {
+            get {
+                return ResourceManager.GetString("Btn_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Events.
         /// </summary>
-        internal static string Btn_Events {
+        public static string Btn_Events {
             get {
                 return ResourceManager.GetString("Btn_Events", resourceCulture);
             }
@@ -81,7 +90,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Log Out.
         /// </summary>
-        internal static string Btn_LogOut {
+        public static string Btn_LogOut {
             get {
                 return ResourceManager.GetString("Btn_LogOut", resourceCulture);
             }
@@ -90,7 +99,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
-        internal static string Btn_Settings {
+        public static string Btn_Settings {
             get {
                 return ResourceManager.GetString("Btn_Settings", resourceCulture);
             }
@@ -99,7 +108,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Change Theme.
         /// </summary>
-        internal static string Btn_Theme {
+        public static string Btn_Theme {
             get {
                 return ResourceManager.GetString("Btn_Theme", resourceCulture);
             }
@@ -108,7 +117,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to No description.
         /// </summary>
-        internal static string NoDescriptionError {
+        public static string NoDescriptionError {
             get {
                 return ResourceManager.GetString("NoDescriptionError", resourceCulture);
             }
@@ -117,7 +126,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to No event title.
         /// </summary>
-        internal static string NoEventTypeTitleError {
+        public static string NoEventTypeTitleError {
             get {
                 return ResourceManager.GetString("NoEventTypeTitleError", resourceCulture);
             }
@@ -126,16 +135,25 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to No title.
         /// </summary>
-        internal static string NoTitleError {
+        public static string NoTitleError {
             get {
                 return ResourceManager.GetString("NoTitleError", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TESTTESTESTTESTTESTEST.
+        /// </summary>
+        public static string TESTTESTESTTESTTESTEST {
+            get {
+                return ResourceManager.GetString("TESTTESTESTTESTTESTEST", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose theme.
         /// </summary>
-        internal static string ThemeChoose {
+        public static string ThemeChoose {
             get {
                 return ResourceManager.GetString("ThemeChoose", resourceCulture);
             }
@@ -144,7 +162,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Dark theme.
         /// </summary>
-        internal static string ThemeDark {
+        public static string ThemeDark {
             get {
                 return ResourceManager.GetString("ThemeDark", resourceCulture);
             }
@@ -153,7 +171,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Default theme.
         /// </summary>
-        internal static string ThemeDefault {
+        public static string ThemeDefault {
             get {
                 return ResourceManager.GetString("ThemeDefault", resourceCulture);
             }
@@ -162,7 +180,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Light theme.
         /// </summary>
-        internal static string ThemeLight {
+        public static string ThemeLight {
             get {
                 return ResourceManager.GetString("ThemeLight", resourceCulture);
             }
@@ -171,16 +189,25 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Rainbow theme.
         /// </summary>
-        internal static string ThemeRainbow {
+        public static string ThemeRainbow {
             get {
                 return ResourceManager.GetString("ThemeRainbow", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create.
+        /// </summary>
+        public static string Title_Create {
+            get {
+                return ResourceManager.GetString("Title_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Events.
         /// </summary>
-        internal static string Title_Event {
+        public static string Title_Event {
             get {
                 return ResourceManager.GetString("Title_Event", resourceCulture);
             }
@@ -189,7 +216,7 @@ namespace Http_Post.Res {
         /// <summary>
         ///   Looks up a localized string similar to Settings.
         /// </summary>
-        internal static string Title_Settings {
+        public static string Title_Settings {
             get {
                 return ResourceManager.GetString("Title_Settings", resourceCulture);
             }
