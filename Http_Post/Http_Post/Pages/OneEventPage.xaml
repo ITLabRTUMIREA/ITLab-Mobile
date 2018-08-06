@@ -5,8 +5,21 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}">
-                <Controls:OneEventView/>
+            <StackLayout x:Name="stacklayout"
+                Style="{DynamicResource themeStack}">
+                <Label Text="{Binding Event.Title}"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label Text="{Binding Event.Description}"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label Text="{Binding Event.Address}"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label Text="{Binding Event.EventType.Title}"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label Text="{Binding Event.EventType.Description}"
+                       Style="{DynamicResource themeLabel}"/>
+                <ListView>
+
+                </ListView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

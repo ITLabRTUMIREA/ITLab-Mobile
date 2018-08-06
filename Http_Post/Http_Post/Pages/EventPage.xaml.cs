@@ -31,9 +31,9 @@ namespace Http_Post.Pages
             Title = Res.Resource.Title_Event;
 
             this.student = student;
-            GetEvents();
-
             UpdateTheme();
+
+            GetEvents();
         }
 
         private void UpdateTheme()
@@ -76,9 +76,15 @@ namespace Http_Post.Pages
 
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            try { 
             var item = (CompactEventView)e.SelectedItem;
             
-            Navigation.PushAsync(new OneEventPage(item.Id));
+            Navigation.PushAsync(new OneEventPage(item.Id, student));
+            }
+            catch (Exception ex)
+            {
+                stacklayout.Children.Add(new Label { Text = ex.Message });
+            }
         }
     }
 }
