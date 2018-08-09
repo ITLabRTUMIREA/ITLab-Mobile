@@ -7,7 +7,13 @@
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}">
             <!-- Это я тогда сделаю через C# код -->
-                <Entry Placeholder="{x:Static res:TESTTESTTESTTESTTESTTEST}"/>
+                <Entry Placeholder="Default"/>
+                <Entry Placeholder="Default"/>
+                <Entry Placeholder="Default"/>
+                <Entry Placeholder="Default"/>
+                <Entry Placeholder="Default"/>
+                <Entry Placeholder="Default"/>
+                <Entry Placeholder="Default"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

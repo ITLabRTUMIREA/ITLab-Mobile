@@ -14,8 +14,8 @@ using Models.PublicAPI.Responses.Login;
 
 namespace Http_Post.Pages
 {
-	public partial class OneEventPage : ContentPage
-	{
+    public partial class OneEventPage : ContentPage
+    {
         private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
         private readonly string port = "80"; // 80 // 5000
 
@@ -24,19 +24,23 @@ namespace Http_Post.Pages
         private readonly Guid eventId;
         public EventView Event { get; set; }
 
-        public OneEventPage ()
-		{
-			InitializeComponent ();
-		}
+        public OneEventPage()
+        {
+            InitializeComponent();
+        }
 
         public OneEventPage(Guid id, OneObjectResponse<LoginResponse> student)
         {
-            InitializeComponent();
-
             this.student = student;
             eventId = id;
-            UpdateTheme();
             Show();
+        }
+
+        private void Init()
+        {
+            BindingContext = Event;
+            InitializeComponent();
+            UpdateTheme();
         }
 
         private async void Show()
@@ -52,6 +56,8 @@ namespace Http_Post.Pages
                 if (receivedData.StatusCode != ResponseStatusCode.OK)
                     throw new Exception($"error {receivedData.StatusCode}");
                 Event = receivedData.Data;
+
+                Init();
             } catch (Exception ex)
             {
                 stacklayout.Children.Add(new Label { Text = ex.Message });
