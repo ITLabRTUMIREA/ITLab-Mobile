@@ -58,8 +58,8 @@ namespace Http_Post.Controls
         public void UpdateTheme()
         {
             var col = Application.Current.Resources;
-            var th = new Classes.ThemeChanger();
-            col["themeButton"] = col[th.Theme + "_Btn"];
+            var th = new Classes.ThemeChanger().Theme;
+            col["themeButton"] = col[th + "_Btn"];
         }
     }
 }

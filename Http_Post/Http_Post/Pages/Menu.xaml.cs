@@ -86,9 +86,9 @@ namespace Http_Post
         public void UpdateTheme()
         {
             var col = Application.Current.Resources;
-            var th = new ThemeChanger();
-            col["themeStack"] = col[th.Theme + "_Stack"];
-            col["themeLabel"] = col[th.Theme + "_Lbl"];
+            var th = new ThemeChanger().Theme;
+            col["themeStack"] = col[th + "_Stack"];
+            col["themeLabel"] = col[th + "_Lbl"];
 
             Btn_Events.UpdateTheme();
             Btn_Settings.UpdateTheme();

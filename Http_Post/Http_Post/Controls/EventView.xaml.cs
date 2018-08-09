@@ -14,10 +14,10 @@ namespace Http_Post.Controls
 
         private void UpdateTheme()
         {
-            var th = new Classes.ThemeChanger();
+            var th = new Classes.ThemeChanger().Theme;
             var col = Application.Current.Resources;
-            col["themeStack"] = col[th.Theme + "_Stack"];
-            col["themeLabel"] = col[th.Theme + "_Lbl"];
+            col["themeStack"] = col[th + "_Stack"];
+            col["themeLabel"] = col[th + "_Lbl"];
         }
     }
 }
