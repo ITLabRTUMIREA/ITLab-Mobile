@@ -26,6 +26,10 @@
             <Style x:Key="Default_Stack" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="Default"/>
             </Style>
+            <Style x:Key="Default_Bar" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="Default"/>
+                <Setter Property="BarTextColor" Value="Default"/>
+            </Style>
 
             <!-- Dark theme -->
             <Style x:Key="Dark_Lbl" TargetType="Label">
@@ -38,6 +42,10 @@
             </Style>
             <Style x:Key="Dark_Stack" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="#1a1a1a"/>
+            </Style>
+            <Style x:Key="Dark_Bar" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#262626"/>
+                <Setter Property="BarTextColor" Value="#f2f2f2"/>
             </Style>
 
             <!-- Light theme -->
@@ -52,6 +60,10 @@
             <Style x:Key="Light_Stack" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="Default"/>
             </Style>
+            <Style x:Key="Light_Bar" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="Default"/>
+                <Setter Property="BarTextColor" Value="Default"/>
+            </Style>
 
             <!-- Rainbow theme -->
             <Style x:Key="Rainbow_Lbl" TargetType="Label">
@@ -64,6 +76,10 @@
             </Style>
             <Style x:Key="Rainbow_Stack" TargetType="StackLayout">
                 <Setter Property="BackgroundColor" Value="Default"/>
+            </Style>
+            <Style x:Key="Rainbow_Bar" TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="Default"/>
+                <Setter Property="BarTextColor" Value="Default"/>
             </Style>
 
         </ResourceDictionary>

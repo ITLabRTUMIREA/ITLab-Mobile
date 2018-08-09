@@ -29,11 +29,10 @@ namespace Http_Post
             this.student = student;
             InitComponents();
 
-            Detail = new NavigationPage(new EventPage(this.student));
-            Close();
-
             UpdateLanguage();
             UpdateTheme();
+
+            BtnEvents_Clicked(Btn_Events, EventArgs.Empty);
         }
 
         private void InitComponents()
@@ -47,19 +46,26 @@ namespace Http_Post
 
         private void BtnEvents_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new EventPage(student)); // Load Events Page
+            Detail = new NavigationPage(new EventPage(student)) {
+                Style = Application.Current.Resources[new ThemeChanger().Theme +"_Bar"] as Style
+            }; // Load Events page
             Close();
         }
 
         private void Settings_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage (new Settings(this)); // Load Settings Page
+            Detail = new NavigationPage(new Settings(this)) {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Settings page
+
             Close();
         }
 
         private void BtnCreate_Clicked (object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new CreateEventPage());
+            Detail = new NavigationPage(new CreateEventPage()) {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Creation page
             Close();
         }
 
