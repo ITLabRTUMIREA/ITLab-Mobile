@@ -141,9 +141,17 @@
     <value>Change Theme</value>
     <comment>Settings -&gt;btn.Text for Changing Theme</comment>
   </data>
+  <data name="NoAddressError" xml:space="preserve">
+    <value>No address</value>
+    <comment>If Event has No Address -&gt;show it user</comment>
+  </data>
   <data name="NoDescriptionError" xml:space="preserve">
     <value>No description</value>
     <comment>If Event has No Description -&gt; show it user</comment>
+  </data>
+  <data name="NoEventTypeDescriptionError" xml:space="preserve">
+    <value>No event description</value>
+    <comment>If Event has No Event Description -&gt;show it user</comment>
   </data>
   <data name="NoEventTypeTitleError" xml:space="preserve">
     <value>No event title</value>

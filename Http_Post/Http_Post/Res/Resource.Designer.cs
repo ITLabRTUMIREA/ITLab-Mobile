@@ -115,11 +115,29 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No address.
+        /// </summary>
+        public static string NoAddressError {
+            get {
+                return ResourceManager.GetString("NoAddressError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No description.
         /// </summary>
         public static string NoDescriptionError {
             get {
                 return ResourceManager.GetString("NoDescriptionError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No event description.
+        /// </summary>
+        public static string NoEventTypeDescriptionError {
+            get {
+                return ResourceManager.GetString("NoEventTypeDescriptionError", resourceCulture);
             }
         }
         

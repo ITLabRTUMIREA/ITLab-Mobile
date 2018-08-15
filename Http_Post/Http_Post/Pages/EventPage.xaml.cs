@@ -74,12 +74,13 @@ namespace Http_Post.Pages
             }
         }
 
-        private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            try { 
-            var item = (CompactEventView)e.SelectedItem;
+            try
+            { 
+                var item = (CompactEventView) e.Item;
             
-            Navigation.PushAsync(new OneEventPage(item.Id, student));
+                Navigation.PushAsync(new OneEventPage(item.Id, client));
             }
             catch (Exception ex)
             {

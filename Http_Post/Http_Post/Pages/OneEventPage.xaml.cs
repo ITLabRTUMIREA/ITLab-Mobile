@@ -1,5 +1,4 @@
-﻿using Models.PublicAPI.Responses.Event;
-using Models.PublicAPI.Responses.General;
+﻿using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +10,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Models.PublicAPI.Responses.Login;
+using Http_Post.Extensions.Responses.Event;
 
 namespace Http_Post.Pages
 {
@@ -20,25 +20,19 @@ namespace Http_Post.Pages
         private readonly string port = "80"; // 80 // 5000
 
         private HttpClient client;
-        private readonly OneObjectResponse<LoginResponse> student;
         private readonly Guid eventId;
-        public EventView Event { get; set; }
+        private EventViewExtended OneEvent { get; set; }
 
-        public OneEventPage()
+        public OneEventPage(Guid id, HttpClient httpClient)
         {
-            InitializeComponent();
-        }
-
-        public OneEventPage(Guid id, OneObjectResponse<LoginResponse> student)
-        {
-            this.student = student;
+            client = httpClient;
             eventId = id;
             Show();
         }
 
         private void Init()
         {
-            BindingContext = Event;
+            BindingContext = OneEvent; // necessarilly before 'InitializeComponent'
             InitializeComponent();
             UpdateTheme();
         }
@@ -47,17 +41,15 @@ namespace Http_Post.Pages
         {
             try
             {
-                client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
-
-                var response = await client.GetStringAsync($" http://{host}:{port}/api/event/{eventId}");
-                var receivedData = JsonConvert.DeserializeObject<OneObjectResponse<EventView>>(response);
+                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/{eventId}");
+                var receivedData = JsonConvert.DeserializeObject<OneObjectResponse<EventViewExtended>>(response);
 
                 if (receivedData.StatusCode != ResponseStatusCode.OK)
                     throw new Exception($"error {receivedData.StatusCode}");
-                Event = receivedData.Data;
+                OneEvent = receivedData.Data;
+                
+                Init(); // init binding content 
 
-                Init();
             } catch (Exception ex)
             {
                 stacklayout.Children.Add(new Label { Text = ex.Message });
