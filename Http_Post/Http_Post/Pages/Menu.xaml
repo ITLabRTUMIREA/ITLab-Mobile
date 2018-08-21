@@ -23,8 +23,10 @@
                     </StackLayout>
                     
                     <Controls:Master_Btns x:Name="Btn_Events" ImageSource="News.png" Clicked="BtnEvents_Clicked"/>
-                    <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="Settings.png" Clicked="Settings_Clicked"/>
+                    <Controls:Master_Btns x:Name="Btn_DateSearch" ImageSource="" Clicked="BtnDateSearch_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_Create" ImageSource="Create.png" Clicked="BtnCreate_Clicked"/>
+                    
+                    <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="Settings.png" Clicked="Settings_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
                 </StackLayout>
             </ContentPage.Content>

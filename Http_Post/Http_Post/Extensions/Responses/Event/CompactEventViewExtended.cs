@@ -11,7 +11,7 @@ namespace Http_Post.Extensions.Responses.Event
         public string EventTypeDescription => string.IsNullOrEmpty(EventType.Description) ? Res.Resource.NoDescriptionError : EventType.Description;
         public string EventTitle => string.IsNullOrEmpty(Title) ? Res.Resource.NoTitleError : Title;
         public string EventTypeTitle => string.IsNullOrEmpty(EventType.Title) ? Res.Resource.NoEventTypeTitleError : EventType.Title;
-        public double ProgressToBar => Сompleteness / 100.0;
-        public string СompletenessPercent => Convert.ToString(Сompleteness + " %");
+        public double ProgressToBar => Convert.ToDouble(CurrentParticipantsCount) / TargetParticipantsCount;
+        public string СompletenessPercent => Convert.ToString(ProgressToBar + " %");
     }
 }

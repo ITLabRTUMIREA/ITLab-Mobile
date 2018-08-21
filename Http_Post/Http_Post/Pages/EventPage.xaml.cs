@@ -20,11 +20,6 @@ namespace Http_Post.Pages
         private OneObjectResponse<LoginResponse> student;
         private ListResponse<CompactEventViewExtended> events;
 
-        public EventPage ()
-		{
-			InitializeComponent ();
-        }
-
         public EventPage(OneObjectResponse<LoginResponse> student)
         {
             InitializeComponent();
@@ -74,7 +69,7 @@ namespace Http_Post.Pages
             }
         }
 
-        private void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        public void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             try
             { 

@@ -17,11 +17,6 @@ namespace Http_Post
         private string Name;
         private string LastName;
 
-        public Menu ()
-		{
-			InitializeComponent ();
-        }
-
         public Menu(OneObjectResponse<LoginResponse> student)
         {
             InitializeComponent();
@@ -52,12 +47,11 @@ namespace Http_Post
             Close();
         }
 
-        private void Settings_Clicked(object sender, EventArgs e)
+        private void BtnDateSearch_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new Settings(this)) {
+            Detail = new NavigationPage(new DateSearchPage(student)) {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
-            }; // Load Settings page
-
+            }; // Load Date searching page
             Close();
         }
 
@@ -66,6 +60,15 @@ namespace Http_Post
             Detail = new NavigationPage(new CreateEventPage()) {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
             }; // Load Creation page
+            Close();
+        }
+
+        private void Settings_Clicked(object sender, EventArgs e)
+        {
+            Detail = new NavigationPage(new Settings(this)) {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Settings page
+
             Close();
         }
 
@@ -94,6 +97,7 @@ namespace Http_Post
             Btn_Settings.UpdateTheme();
             Btn_About.UpdateTheme();
             Btn_Create.UpdateTheme();
+            Btn_DateSearch.UpdateTheme();
         }
 
         public async void Logout()
