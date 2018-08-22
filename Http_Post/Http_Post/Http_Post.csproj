@@ -5,9 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ITLab.Extensions" Version="1.0.497" />
-    <PackageReference Include="ITLab.Models.PublicAPI" Version="1.0.497" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="RTUITLab.ITLab.Models.PublicAPI" Version="1.0.573" />
     <PackageReference Include="Xamarin.Forms" Version="3.1.0.697729" />
   </ItemGroup>
 
