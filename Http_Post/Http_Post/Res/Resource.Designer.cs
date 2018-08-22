@@ -79,6 +79,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Search by date.
+        /// </summary>
+        public static string Btn_DateSearch {
+            get {
+                return ResourceManager.GetString("Btn_DateSearch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Events.
         /// </summary>
         public static string Btn_Events {
@@ -111,6 +120,42 @@ namespace Http_Post.Res {
         public static string Btn_Theme {
             get {
                 return ResourceManager.GetString("Btn_Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ending date is less than Begining date.
+        /// </summary>
+        public static string DateError {
+            get {
+                return ResourceManager.GetString("DateError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No such events.
+        /// </summary>
+        public static string DateErrorNoEvents {
+            get {
+                return ResourceManager.GetString("DateErrorNoEvents", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose dates.
+        /// </summary>
+        public static string DateSearching {
+            get {
+                return ResourceManager.GetString("DateSearching", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search.
+        /// </summary>
+        public static string DateSearchingBtn {
+            get {
+                return ResourceManager.GetString("DateSearchingBtn", resourceCulture);
             }
         }
         

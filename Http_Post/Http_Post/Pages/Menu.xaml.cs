@@ -84,6 +84,7 @@ namespace Http_Post
             Btn_Settings.Btn_Text = Resource.Btn_Settings;
             Btn_About.Btn_Text = Resource.Btn_About;
             Btn_Create.Btn_Text = Resource.Btn_Create;
+            Btn_DateSearch.Btn_Text = Resource.Btn_DateSearch;
         }
 
         public void UpdateTheme()

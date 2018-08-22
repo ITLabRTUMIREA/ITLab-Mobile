@@ -35,7 +35,7 @@ namespace Http_Post.Pages
         {
             var th = new ThemeChanger();
             var col = Application.Current.Resources;
-            col["themeStack"] = col[th.Theme + "_Stack"];
+            //col["themeStack"] = col[th.Theme + "_Stack"];
         }
 
         private async void GetEvents()

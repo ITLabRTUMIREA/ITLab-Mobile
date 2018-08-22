@@ -18,6 +18,7 @@
                 
                 <Label x:Name="errorLabel"
                        Text="Choose date and time"
+                       HorizontalOptions="Center"
                        Style="{DynamicResource themeLabel}"/>
 
                 <Button x:Name="BtnSearch" 

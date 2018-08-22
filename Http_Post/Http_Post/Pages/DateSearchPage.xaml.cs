@@ -40,8 +40,8 @@ namespace Http_Post.Pages
         {
             try
             {
-                //if (DateEnd.Date < DateBegin.Date)
-                //throw new Exception($"Error: {Res.Resource.DateError}"); // RESOURCES
+                if (DateEnd.Date < DateBegin.Date)
+                    throw new Exception($"Error: {Res.Resource.DateError}"); // Ending date can't be less than begining date!
 
                 client = new HttpClient();
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
@@ -54,6 +54,8 @@ namespace Http_Post.Pages
                 if (events.StatusCode != ResponseStatusCode.OK)
                     throw new Exception($"Error: {events.StatusCode}");
 
+                if (events.Data.Count() == 0)
+                    throw new Exception($"Error: {Res.Resource.DateErrorNoEvents}");
                 listView.ItemsSource = events.Data;
             }
             catch (Exception ex)
@@ -78,7 +80,8 @@ namespace Http_Post.Pages
 
         private void UpdateTheme()
         {
-            
+            errorLabel.Text = Res.Resource.DateSearching;
+            BtnSearch.Text = Res.Resource.DateSearchingBtn;
         }
     }
 }

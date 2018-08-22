@@ -125,6 +125,10 @@
     <value>Создать событие</value>
     <comment>Menu -&gt; btn.Text for Create</comment>
   </data>
+  <data name="Btn_DateSearch" xml:space="preserve">
+    <value>Поиск по дате</value>
+    <comment>Menu -&gt; btn.Text for Searching by Date</comment>
+  </data>
   <data name="Btn_Events" xml:space="preserve">
     <value>События</value>
     <comment>Menu -&gt; btn.Text for Events</comment>
@@ -140,6 +144,22 @@
   <data name="Btn_Theme" xml:space="preserve">
     <value>Сменить тему</value>
     <comment>Settings -&gt;btn.Text for Changing Theme</comment>
+  </data>
+  <data name="DateError" xml:space="preserve">
+    <value>Дата окончания не может быть меньше даты начала</value>
+    <comment>Searching by date -&gt; end can't be less than begin</comment>
+  </data>
+  <data name="DateErrorNoEvents" xml:space="preserve">
+    <value>Нет подходящих событий</value>
+    <comment>Searching by date -&gt; than no events in these dates</comment>
+  </data>
+  <data name="DateSearching" xml:space="preserve">
+    <value>Выберете даты</value>
+    <comment>Searchind by date -&gt; text displays what to do</comment>
+  </data>
+  <data name="DateSearchingBtn" xml:space="preserve">
+    <value>Поиск</value>
+    <comment>Searching by date -&gt; btn text</comment>
   </data>
   <data name="NoAddressError" xml:space="preserve">
     <value>Нет адреса</value>

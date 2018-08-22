@@ -125,6 +125,10 @@
     <value>Create event</value>
     <comment>Menu -&gt; btn.Text for Create</comment>
   </data>
+  <data name="Btn_DateSearch" xml:space="preserve">
+    <value>Search by date</value>
+    <comment>Menu -&gt; btn.Text for Searching by Date</comment>
+  </data>
   <data name="Btn_Events" xml:space="preserve">
     <value>Events</value>
     <comment>Menu -&gt; btn.Text for Events</comment>
@@ -140,6 +144,22 @@
   <data name="Btn_Theme" xml:space="preserve">
     <value>Change Theme</value>
     <comment>Settings -&gt;btn.Text for Changing Theme</comment>
+  </data>
+  <data name="DateError" xml:space="preserve">
+    <value>Ending date is less than Begining date</value>
+    <comment>Searching by date -&gt; end can't be less than begin</comment>
+  </data>
+  <data name="DateErrorNoEvents" xml:space="preserve">
+    <value>No such events</value>
+    <comment>Searching by date -&gt; than no events in these dates</comment>
+  </data>
+  <data name="DateSearching" xml:space="preserve">
+    <value>Choose dates</value>
+    <comment>Searchind by date -&gt; text displays what to do</comment>
+  </data>
+  <data name="DateSearchingBtn" xml:space="preserve">
+    <value>Search</value>
+    <comment>Searching by date -&gt; btn text</comment>
   </data>
   <data name="NoAddressError" xml:space="preserve">
     <value>No address</value>
