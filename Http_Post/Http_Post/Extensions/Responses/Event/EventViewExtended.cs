@@ -1,6 +1,5 @@
 ﻿using Models.PublicAPI.Responses.Event;
 using Http_Post.Res;
-using System.Collections.Generic;
 
 namespace Http_Post.Extensions.Responses.Event
 {

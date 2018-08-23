@@ -5,7 +5,6 @@ using System;
 using System.Net.Http;
 
 using Xamarin.Forms;
-using Models.PublicAPI.Responses.Login;
 using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses.Event;
 
@@ -31,9 +30,10 @@ namespace Http_Post.Pages
         {
             BindingContext = OneEvent; // necessarilly before 'InitializeComponent'
             InitializeComponent();
+
             listView.ItemsSource = OneEvent.Shifts;
             lbl.Text = Res.Resource.Shifts;
-            UpdateTheme();
+            //UpdateTheme(); // It works without updating ))
         }
 
         private async void Show()
@@ -57,14 +57,14 @@ namespace Http_Post.Pages
 
         private void UpdateTheme()
         {
-            
+            // It works without updating ))
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var tapped = e.Item as ShiftView;
             var index = OneEvent.Shifts.IndexOf(tapped);
-            var a = 8;
+            // new Page
         }
     }
 }

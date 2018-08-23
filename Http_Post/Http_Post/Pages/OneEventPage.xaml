@@ -17,6 +17,8 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Label Text="{Binding EventTypeDescription}"
                        Style="{DynamicResource themeLabel}"/>
+
+                <!-- This label will show that next comes Shifts -->
                 <Label x:Name="lbl"
                        Margin="0, 10"
                        Style="{DynamicResource themeLabel}"
