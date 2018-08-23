@@ -165,6 +165,10 @@
     <value>Нет адреса</value>
     <comment>If Event has No Address -&gt;show it user</comment>
   </data>
+  <data name="NoBeginTime" xml:space="preserve">
+    <value>Нет времени начала</value>
+    <comment>If Events has No Begin Time -&gt; show it user</comment>
+  </data>
   <data name="NoDescriptionError" xml:space="preserve">
     <value>Нет описания</value>
     <comment>If Event has No Description -&gt; show it user</comment>
@@ -180,6 +184,10 @@
   <data name="NoTitleError" xml:space="preserve">
     <value>Нет заголовка</value>
     <comment>If Event has No Title -&gt;show it user</comment>
+  </data>
+  <data name="Shifts" xml:space="preserve">
+    <value>Смены:</value>
+    <comment>Title for 'shifts' on One Event Page</comment>
   </data>
   <data name="TESTTESTESTTESTTESTEST" xml:space="preserve">
     <value>TESTTESTESTTESTTESTEST</value>

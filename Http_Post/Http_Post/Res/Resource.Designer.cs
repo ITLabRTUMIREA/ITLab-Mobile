@@ -169,6 +169,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No begin time.
+        /// </summary>
+        public static string NoBeginTime {
+            get {
+                return ResourceManager.GetString("NoBeginTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No description.
         /// </summary>
         public static string NoDescriptionError {
@@ -201,6 +210,15 @@ namespace Http_Post.Res {
         public static string NoTitleError {
             get {
                 return ResourceManager.GetString("NoTitleError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shifts:.
+        /// </summary>
+        public static string Shifts {
+            get {
+                return ResourceManager.GetString("Shifts", resourceCulture);
             }
         }
         

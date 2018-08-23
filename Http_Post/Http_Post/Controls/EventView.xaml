@@ -45,7 +45,6 @@
         <Label Text="{Binding СompletenessPercent}" 
                Grid.Row="4" Grid.Column="2"
                Style="{DynamicResource themeLabel}"/>
-
     </Grid>
 
 </ViewCell>

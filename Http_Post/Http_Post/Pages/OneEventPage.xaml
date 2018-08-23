@@ -17,8 +17,27 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Label Text="{Binding EventTypeDescription}"
                        Style="{DynamicResource themeLabel}"/>
-                <ListView>
-                    <!-- Make view on all thiiiis elements -->
+                <Label x:Name="lbl"
+                       Margin="0, 10"
+                       Style="{DynamicResource themeLabel}"
+                       FontSize="Large"
+                       FontAttributes="Italic, Bold"/>
+                <ListView x:Name="listView"
+                          Style="{DynamicResource themeStack}"
+                          ItemTapped="listView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Style="{DynamicResource themeStack}">
+                                    <Label Text="{Binding BeginTime, StringFormat=' {0:MMMM dd, yyyy. HH:mm}'}"
+                                           Style="{DynamicResource themeLabel}"/>
+                                    <Label Text="{Binding EndTime, StringFormat=' {0:MMMM dd, yyyy. HH:mm}'}"
+                                           Style="{DynamicResource themeLabel}"
+                                           Margin="0,0,0,10"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
         </ScrollView>

@@ -1,11 +1,12 @@
 ﻿using Models.PublicAPI.Responses.Event;
 using Http_Post.Res;
+using System.Collections.Generic;
 
 namespace Http_Post.Extensions.Responses.Event
 {
     class EventViewExtended : EventView
     {
-        public string EventTitle 
+        public string EventTitle
             => string.IsNullOrEmpty(Title) ? Resource.NoTitleError : Title;
         public string EventDescription
             => string.IsNullOrEmpty(Description) ? Resource.NoDescriptionError : Description;

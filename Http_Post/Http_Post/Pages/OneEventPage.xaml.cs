@@ -2,15 +2,12 @@
 using Models.PublicAPI.Responses;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Models.PublicAPI.Responses.Login;
 using Http_Post.Extensions.Responses.Event;
+using Models.PublicAPI.Responses.Event;
 
 namespace Http_Post.Pages
 {
@@ -34,6 +31,8 @@ namespace Http_Post.Pages
         {
             BindingContext = OneEvent; // necessarilly before 'InitializeComponent'
             InitializeComponent();
+            listView.ItemsSource = OneEvent.Shifts;
+            lbl.Text = Res.Resource.Shifts;
             UpdateTheme();
         }
 
@@ -47,7 +46,7 @@ namespace Http_Post.Pages
                 if (receivedData.StatusCode != ResponseStatusCode.OK)
                     throw new Exception($"error {receivedData.StatusCode}");
                 OneEvent = receivedData.Data;
-                
+
                 Init(); // init binding content 
 
             } catch (Exception ex)
@@ -59,6 +58,13 @@ namespace Http_Post.Pages
         private void UpdateTheme()
         {
             
+        }
+
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var tapped = e.Item as ShiftView;
+            var index = OneEvent.Shifts.IndexOf(tapped);
+            var a = 8;
         }
     }
 }
