@@ -43,7 +43,7 @@ namespace Http_Post.Pages
             try
             {
                 client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
 
                 var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
 

@@ -44,7 +44,7 @@ namespace Http_Post.Pages
                     throw new Exception($"Error: {Res.Resource.DateError}"); // Ending date can't be less than begining date!
 
                 client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.Token);
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
 
                 var begin = DateBegin.Date.ToString("yyyy-MM-ddTHH:mm:ss");
                 var end = DateEnd.Date.ToString("yyyy-MM-ddTHH:mm:ss");

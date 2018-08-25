@@ -27,6 +27,8 @@ namespace Http_Post
 
 		public MainPage()
 		{
+            TryLogin();
+
 			InitializeComponent();
 
             UpdateLanguage();
@@ -37,7 +39,7 @@ namespace Http_Post
 
         private async void Button_login(object sender, EventArgs e)
         {
-            SetProgress(0);
+            SetProgress(0.0);
 
             text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
@@ -65,7 +67,7 @@ namespace Http_Post
                 var result = await client.PostAsync($"http://{host}:{port}/api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                SetProgress(1);
+                SetProgress(1.0);
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
                 Authorization(infoAboutStudent);
             }
@@ -91,6 +93,8 @@ namespace Http_Post
             {
                 text_error.TextColor = Color.Green;
                 text_error.Text = "Authorizated!";
+
+                RememberToken(info);
 
                 Menu menu = new Menu(info);
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
@@ -171,6 +175,30 @@ namespace Http_Post
             text_password.Placeholder = "Password";
             button_login.Text = "Login";
             text_error.Text = "";
+        }
+
+        private readonly string KEY = "refreshToken";
+        private async void TryLogin()
+        {
+            if (App.Current.Properties.TryGetValue(KEY, out object value))
+            {
+                value = (string)value;
+                var content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json");
+                var response = await new HttpClient().PostAsync($"http://{host}:{port}/api/Authentication/refresh", content);
+                string result = await response.Content.ReadAsStringAsync();
+
+                OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
+                if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    return;
+
+                RememberToken(infoAboutStudent);
+                Authorization(infoAboutStudent);
+            }
+        }
+
+        private void RememberToken(OneObjectResponse<LoginResponse> infoAboutStudent)
+        {
+            App.Current.Properties[KEY] = infoAboutStudent.Data.RefreshToken;
         }
     }
 }
