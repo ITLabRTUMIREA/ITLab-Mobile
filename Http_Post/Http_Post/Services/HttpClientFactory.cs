@@ -16,7 +16,7 @@ namespace Http_Post.Services
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent());
-            httpClient.BaseAddress = new Uri("https://62356ec7.ngrok.io");
+            httpClient.BaseAddress = new Uri(url);
             return httpClient;
         }
         private static string UserAgent()

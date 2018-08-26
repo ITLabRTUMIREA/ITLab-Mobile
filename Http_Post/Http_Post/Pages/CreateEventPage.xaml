@@ -7,7 +7,6 @@
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}">
             <!-- Это я тогда сделаю через C# код -->
-                <!--<Label Text="{x:Static res:Resources.}"/>-->
                 <Entry Placeholder="Default"/>
                 <Entry Placeholder="Default"/>
                 <Entry Placeholder="Default"/>
