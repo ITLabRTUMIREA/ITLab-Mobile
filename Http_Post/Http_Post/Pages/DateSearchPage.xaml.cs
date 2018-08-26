@@ -11,12 +11,13 @@ using Xamarin.Forms;
 using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses;
 using Models.PublicAPI.Responses.Event;
+using Http_Post.Services;
 
 namespace Http_Post.Pages
 {
 	public partial class DateSearchPage : ContentPage
 	{
-        private HttpClient client;
+        private readonly HttpClient client = HttpClientFactory.HttpClient;
         private OneObjectResponse<LoginResponse> student;
         private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
         private readonly string port = "80"; // 80 // 5000
@@ -43,12 +44,9 @@ namespace Http_Post.Pages
                 if (DateEnd.Date < DateBegin.Date)
                     throw new Exception($"Error: {Res.Resource.DateError}"); // Ending date can't be less than begining date!
 
-                client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
-
                 var begin = DateBegin.Date.ToString("yyyy-MM-ddTHH:mm:ss");
                 var end = DateEnd.Date.ToString("yyyy-MM-ddTHH:mm:ss");
-                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/?begin={begin}&end={end}");
+                var response = await client.GetStringAsync($"api/event/?begin={begin}&end={end}");
 
                 var events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
                 if (events.StatusCode != ResponseStatusCode.OK)
@@ -70,7 +68,7 @@ namespace Http_Post.Pages
             {
                 var item = (CompactEventView)e.Item;
 
-                Navigation.PushAsync(new OneEventPage(item.Id, client));
+                Navigation.PushAsync(new OneEventPage(item.Id));
             }
             catch (Exception ex)
             {

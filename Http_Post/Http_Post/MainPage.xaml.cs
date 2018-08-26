@@ -1,4 +1,5 @@
 ﻿using Http_Post.Classes;
+using Http_Post.Services;
 using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
@@ -14,6 +15,7 @@ namespace Http_Post
 	{
         private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
         private readonly string port = "80"; // 80 // 5000
+        private readonly HttpClient client = HttpClientFactory.HttpClient;
 
         private void SPECIAL_DEBUG_FUNCTION()
         {
@@ -44,9 +46,7 @@ namespace Http_Post
             text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
             try
-            {
-                HttpClient client = new HttpClient();
-                
+            {                
                 Login = text_login.Text;
                 PassWord = text_password.Text;
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
@@ -64,7 +64,7 @@ namespace Http_Post
 
                 SetProgress(0.7);
 
-                var result = await client.PostAsync($"http://{host}:{port}/api/Authentication/login", content);
+                var result = await client.PostAsync("api/Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
                 SetProgress(1.0);
@@ -182,16 +182,20 @@ namespace Http_Post
         {
             if (App.Current.Properties.TryGetValue(KEY, out object value))
             {
-                value = (string)value;
-                var content = new StringContent(JsonConvert.SerializeObject(value), Encoding.UTF8, "application/json");
-                var response = await new HttpClient().PostAsync($"http://{host}:{port}/api/Authentication/refresh", content);
+                value = JsonConvert.SerializeObject(value);
+                var content = new StringContent(value.ToString(), Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync("api/Authentication/refresh", content);
+
                 string result = await response.Content.ReadAsStringAsync();
 
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
                 if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                {
+                    ShowError(infoAboutStudent.StatusCode.ToString());
                     return;
+                }
 
-                RememberToken(infoAboutStudent);
                 Authorization(infoAboutStudent);
             }
         }

@@ -1,5 +1,6 @@
 ﻿using Http_Post.Classes;
 using Http_Post.Extensions.Responses.Event;
+using Http_Post.Services;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
@@ -23,12 +24,19 @@ namespace Http_Post.Pages
         public EventPage(OneObjectResponse<LoginResponse> student)
         {
             InitializeComponent();
-            Title = Res.Resource.Title_Event;
-
             this.student = student;
+            Init();
+
             UpdateTheme();
 
             GetEvents();
+        }
+
+        private void Init()
+        {
+            Title = Res.Resource.Title_Event;
+            client = HttpClientFactory.HttpClient;
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
         }
 
         private void UpdateTheme()
@@ -42,9 +50,6 @@ namespace Http_Post.Pages
         {
             try
             {
-                client = new HttpClient();
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
-
                 var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
 
                 events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
@@ -75,7 +80,7 @@ namespace Http_Post.Pages
             { 
                 var item = (CompactEventView) e.Item;
             
-                Navigation.PushAsync(new OneEventPage(item.Id, client));
+                Navigation.PushAsync(new OneEventPage(item.Id));
             }
             catch (Exception ex)
             {

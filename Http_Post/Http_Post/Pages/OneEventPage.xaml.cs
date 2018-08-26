@@ -7,6 +7,7 @@ using System.Net.Http;
 using Xamarin.Forms;
 using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses.Event;
+using Http_Post.Services;
 
 namespace Http_Post.Pages
 {
@@ -15,13 +16,12 @@ namespace Http_Post.Pages
         private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
         private readonly string port = "80"; // 80 // 5000
 
-        private HttpClient client;
+        private readonly HttpClient client = HttpClientFactory.HttpClient;
         private readonly Guid eventId;
         private EventViewExtended OneEvent { get; set; }
 
-        public OneEventPage(Guid id, HttpClient httpClient)
+        public OneEventPage(Guid id)
         {
-            client = httpClient;
             eventId = id;
             Show();
         }
@@ -40,7 +40,7 @@ namespace Http_Post.Pages
         {
             try
             {
-                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/{eventId}");
+                var response = await client.GetStringAsync($"api/event/{eventId}");
                 var receivedData = JsonConvert.DeserializeObject<OneObjectResponse<EventViewExtended>>(response);
 
                 if (receivedData.StatusCode != ResponseStatusCode.OK)
