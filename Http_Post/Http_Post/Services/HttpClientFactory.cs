@@ -9,7 +9,7 @@ namespace Http_Post.Services
 {
     class HttpClientFactory
     {
-        private const string url = "https://labworkback.azurewebsites.net";
+        private const string url = "https://itlab.azurewebsites.net/api/";
 
         public static HttpClient HttpClient { get; } = CreateHttpClient();
         private static HttpClient CreateHttpClient()

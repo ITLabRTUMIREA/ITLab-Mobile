@@ -13,8 +13,6 @@ namespace Http_Post
 {
 	public partial class MainPage : ContentPage
 	{
-        private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
-        private readonly string port = "80"; // 80 // 5000
         private readonly HttpClient client = HttpClientFactory.HttpClient;
 
         private void SPECIAL_DEBUG_FUNCTION()
@@ -24,7 +22,7 @@ namespace Http_Post
             button_login.Focus(); // ------------------------ Debug
         }
 
-        private string Login, PassWord;
+        private string Login, Password;
         private Localization localization = new Localization();
 
 		public MainPage()
@@ -48,26 +46,26 @@ namespace Http_Post
             try
             {                
                 Login = text_login.Text;
-                PassWord = text_password.Text;
+                Password = text_password.Text;
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;
 
-                SetProgress(0.4);
+                SetProgress(0.4d);
                 text_error.Text = "Loading...\nPlease Wait...";
 
-                AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = PassWord };
+                AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = Password };
 
                 // Convert data to a Json String
                 var jsonContent = JsonConvert.SerializeObject(loginData);
 
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                SetProgress(0.7);
+                SetProgress(0.7d);
 
-                var result = await client.PostAsync("api/Authentication/login", content);
+                var result = await client.PostAsync("Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                SetProgress(1.0);
+                SetProgress(1.0d);
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
                 Authorization(infoAboutStudent);
             }
@@ -80,7 +78,6 @@ namespace Http_Post
         private async void SetProgress(double value)
         {
             if (Device.Idiom == TargetIdiom.Phone)
-            
                 progBar.IsVisible = false;
             else {
                 await progBar.ProgressTo(value, 350, Easing.Linear);
@@ -136,7 +133,7 @@ namespace Http_Post
                 return false;
             }
 
-            if (PassWord == null || PassWord== String.Empty) // if password is empty -> enter it
+            if (Password == null || Password == String.Empty) // if password is empty -> enter it
             {
                 text_password.Focus();
                 ShowError("Enter Password");
@@ -158,7 +155,7 @@ namespace Http_Post
                 return false;
             }
 
-            if (PassWord.Length < 6)
+            if (Password.Length < 6)
             {
                 text_password.Focus();
                 ShowError("Length is less than 6");
@@ -180,23 +177,31 @@ namespace Http_Post
         private readonly string KEY = "refreshToken";
         private async void TryLogin()
         {
-            if (App.Current.Properties.TryGetValue(KEY, out object value))
+            try
             {
-                value = JsonConvert.SerializeObject(value);
-                var content = new StringContent(value.ToString(), Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync("api/Authentication/refresh", content);
-
-                string result = await response.Content.ReadAsStringAsync();
-
-                OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
-                if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                if (App.Current.Properties.TryGetValue(KEY, out object value))
                 {
-                    ShowError(infoAboutStudent.StatusCode.ToString());
-                    return;
-                }
+                    value = JsonConvert.SerializeObject(value);
+                    var content = new StringContent(value.ToString(), Encoding.UTF8, "application/json");
 
-                Authorization(infoAboutStudent);
+                    var response = await client.PostAsync("Authentication/refresh", content);
+
+                    string result = await response.Content.ReadAsStringAsync();
+
+                    OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
+                    if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    {
+                        ShowError(infoAboutStudent.StatusCode.ToString());
+                        return;
+                    }
+
+                    Authorization(infoAboutStudent);
+                }
+            }
+            catch (Exception ex)
+            {
+                text_error.Text = ex.Message + '\n' + 
+                    "Can't use refresh token to login";
             }
         }
 

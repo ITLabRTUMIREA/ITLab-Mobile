@@ -19,8 +19,6 @@ namespace Http_Post.Pages
 	{
         private readonly HttpClient client = HttpClientFactory.HttpClient;
         private OneObjectResponse<LoginResponse> student;
-        private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
-        private readonly string port = "80"; // 80 // 5000
 
         public DateSearchPage(OneObjectResponse<LoginResponse> student)
         {
@@ -46,7 +44,7 @@ namespace Http_Post.Pages
 
                 var begin = DateBegin.Date.ToString("yyyy-MM-ddTHH:mm:ss");
                 var end = DateEnd.Date.ToString("yyyy-MM-ddTHH:mm:ss");
-                var response = await client.GetStringAsync($"api/event/?begin={begin}&end={end}");
+                var response = await client.GetStringAsync($"event/?begin={begin}&end={end}");
 
                 var events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
                 if (events.StatusCode != ResponseStatusCode.OK)

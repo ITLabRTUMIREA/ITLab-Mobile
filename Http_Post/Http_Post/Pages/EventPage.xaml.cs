@@ -13,10 +13,7 @@ namespace Http_Post.Pages
 {
 	public partial class EventPage : ContentPage
 	{
-        HttpClient client;
-
-        private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
-        private readonly string port = "80"; // 80 // 5000
+        HttpClient client = HttpClientFactory.HttpClient;
 
         private OneObjectResponse<LoginResponse> student;
         private ListResponse<CompactEventViewExtended> events;
@@ -35,7 +32,6 @@ namespace Http_Post.Pages
         private void Init()
         {
             Title = Res.Resource.Title_Event;
-            client = HttpClientFactory.HttpClient;
             client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
         }
 
@@ -50,7 +46,7 @@ namespace Http_Post.Pages
         {
             try
             {
-                var response = await client.GetStringAsync($"http://{host}:{port}/api/event/");
+                var response = await client.GetStringAsync("event/");
 
                 events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 

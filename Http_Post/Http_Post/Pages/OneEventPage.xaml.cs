@@ -13,9 +13,6 @@ namespace Http_Post.Pages
 {
     public partial class OneEventPage : ContentPage
     {
-        private readonly string host = "labworkback.azurewebsites.net"; // labworkback.azurewebsites.net // localhost
-        private readonly string port = "80"; // 80 // 5000
-
         private readonly HttpClient client = HttpClientFactory.HttpClient;
         private readonly Guid eventId;
         private EventViewExtended OneEvent { get; set; }
@@ -40,7 +37,7 @@ namespace Http_Post.Pages
         {
             try
             {
-                var response = await client.GetStringAsync($"api/event/{eventId}");
+                var response = await client.GetStringAsync($"event/{eventId}");
                 var receivedData = JsonConvert.DeserializeObject<OneObjectResponse<EventViewExtended>>(response);
 
                 if (receivedData.StatusCode != ResponseStatusCode.OK)

@@ -35,7 +35,9 @@
                                            Style="{DynamicResource themeLabel}"/>
                                     <Label Text="{Binding EndTime, StringFormat=' {0:MMMM dd, yyyy. HH:mm}'}"
                                            Style="{DynamicResource themeLabel}"
-                                           Margin="0,0,0,10"/>
+                                           Margin="0,0,0,20"/>
+                                    <!--<BoxView BackgroundColor="Silver" HeightRequest="1" HorizontalOptions="FillAndExpand"/> 
+                                    if you want more distance between shifts -->
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>

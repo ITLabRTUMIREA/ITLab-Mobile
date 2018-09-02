@@ -42,7 +42,7 @@ namespace Http_Post
         private void BtnEvents_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage(new EventPage(student)) {
-                Style = Application.Current.Resources[new ThemeChanger().Theme +"_Bar"] as Style
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style,
             }; // Load Events page
             Close();
         }
