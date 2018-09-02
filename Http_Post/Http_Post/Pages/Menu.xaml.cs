@@ -63,6 +63,14 @@ namespace Http_Post
             Close();
         }
 
+        private void BtnEquip_Clicked(object sender, EventArgs e)
+        {
+            Detail = new NavigationPage(new EquipmentPage()) {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Equipment page
+            Close();
+        }
+
         private void Settings_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage(new Settings(this)) {
@@ -85,6 +93,7 @@ namespace Http_Post
             Btn_About.Btn_Text = Resource.Btn_About;
             Btn_Create.Btn_Text = Resource.Btn_Create;
             Btn_DateSearch.Btn_Text = Resource.Btn_DateSearch;
+            Btn_Equip.Btn_Text = Resource.Btn_Equipment;
         }
 
         public void UpdateTheme()
@@ -99,6 +108,7 @@ namespace Http_Post
             Btn_About.UpdateTheme();
             Btn_Create.UpdateTheme();
             Btn_DateSearch.UpdateTheme();
+            Btn_Equip.UpdateTheme();
         }
 
         public async void Logout()

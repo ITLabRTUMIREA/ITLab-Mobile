@@ -107,6 +107,7 @@
     <Content Include="Calendar.png" />
     <Content Include="ChangingPencil.png" />
     <Content Include="Create.png" />
+    <Content Include="Equipment.png" />
     <Content Include="Hamburger.png" />
     <Content Include="info.png" />
     <Content Include="Language.png" />
@@ -146,6 +147,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="Settings.png" />
+    <Content Include="SettingsGear.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

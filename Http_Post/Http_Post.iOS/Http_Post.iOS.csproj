@@ -162,4 +162,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\Create.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Equipment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SettingsGear.png" />
+  </ItemGroup>
 </Project>

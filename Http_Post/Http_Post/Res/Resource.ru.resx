@@ -129,6 +129,10 @@
     <value>Поиск по дате</value>
     <comment>Menu -&gt; btn.Text for Searching by Date</comment>
   </data>
+  <data name="Btn_Equipment" xml:space="preserve">
+    <value>Оборудование</value>
+    <comment>Menu -&gt; btn.Text for Equipment</comment>
+  </data>
   <data name="Btn_Events" xml:space="preserve">
     <value>События</value>
     <comment>Menu -&gt; btn.Text for Events</comment>
@@ -216,6 +220,10 @@
   <data name="Title_Create" xml:space="preserve">
     <value>Создать</value>
     <comment>Create -&gt; Title</comment>
+  </data>
+  <data name="Title_Equipment" xml:space="preserve">
+    <value>Оборудование</value>
+    <comment>Equipment -&gt; Title</comment>
   </data>
   <data name="Title_Event" xml:space="preserve">
     <value>События</value>

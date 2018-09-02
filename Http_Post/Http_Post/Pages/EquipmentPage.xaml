@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Pages.EquipmentPage">
+    <ContentPage.Content>
+        <ScrollView>
+
+            <!-- Replace stacklayout with Grid -->
+            <Grid Style="{DynamicResource themeStack}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="Label_Type" FontAttributes="Bold"
+                           Grid.Row="0" Grid.Column="0"
+                           Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="Label_Owner" FontAttributes="Bold"
+                           Grid.Row="0" Grid.Column="1"
+                           Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="Label_SerialNumber" FontAttributes="Bold"
+                           Grid.Row="0" Grid.Column="2"
+                           Style="{DynamicResource themeLabel}"/>
+                <ListView x:Name="listView"
+                          Style="{DynamicResource themeStack}"
+                          ItemTapped="listView_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid Style="{DynamicResource themeStack}">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Text="{Binding EquipmentType.Title}"
+                                           Grid.Row="0" Grid.Column="0"
+                                           Style="{DynamicResource themeLabel}"/>
+                                    <Label Text="{Binding OwnerId}"
+                                           Grid.Row="0" Grid.Column="1"
+                                           Style="{DynamicResource themeLabel}"/>
+                                    <Label Text="{Binding SerialNumber}"
+                                           Grid.Row="0" Grid.Column="2"
+                                           Style="{DynamicResource themeLabel}"/>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -88,6 +88,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Equipment.
+        /// </summary>
+        public static string Btn_Equipment {
+            get {
+                return ResourceManager.GetString("Btn_Equipment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Events.
         /// </summary>
         public static string Btn_Events {
@@ -282,6 +291,15 @@ namespace Http_Post.Res {
         public static string Title_Create {
             get {
                 return ResourceManager.GetString("Title_Create", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Equipment.
+        /// </summary>
+        public static string Title_Equipment {
+            get {
+                return ResourceManager.GetString("Title_Equipment", resourceCulture);
             }
         }
         

@@ -4,6 +4,17 @@
              x:Class="Http_Post.Menu"
              Title="ITLab-Mobile"
              xmlns:Controls="clr-namespace:Http_Post.Controls">
+
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="BoxView">
+                <Setter Property="BackgroundColor" Value="Silver"/>
+                <Setter Property="HeightRequest" Value="1"/>
+                <Setter Property="Margin" Value="0,10,0,10"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            </Style>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
     
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
@@ -21,12 +32,16 @@
                                    Style="{DynamicResource themeLabel}"/>
                         </StackLayout>
                     </StackLayout>
-                    
+
+                    <BoxView/>
                     <Controls:Master_Btns x:Name="Btn_Events" ImageSource="News.png" Clicked="BtnEvents_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_DateSearch" ImageSource="Calendar.png" Clicked="BtnDateSearch_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_Create" ImageSource="Create.png" Clicked="BtnCreate_Clicked"/>
-                    
-                    <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="Settings.png" Clicked="Settings_Clicked"/>
+                    <BoxView/>
+                    <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
+
+                    <BoxView/>
+                    <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
                 </StackLayout>
             </ContentPage.Content>
