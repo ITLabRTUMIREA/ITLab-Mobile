@@ -26,6 +26,7 @@
                        FontAttributes="Italic, Bold"/>
                 <ListView x:Name="listView"
                           Style="{DynamicResource themeStack}"
+                          RowHeight="70"
                           ItemTapped="listView_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>

@@ -39,7 +39,6 @@
                     <Controls:Master_Btns x:Name="Btn_Create" ImageSource="Create.png" Clicked="BtnCreate_Clicked"/>
                     <BoxView/>
                     <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
-
                     <BoxView/>
                     <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
