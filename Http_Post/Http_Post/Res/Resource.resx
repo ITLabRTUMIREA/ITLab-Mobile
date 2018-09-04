@@ -165,6 +165,18 @@
     <value>Search</value>
     <comment>Searching by date -&gt; btn text</comment>
   </data>
+  <data name="Equipment_Owner" xml:space="preserve">
+    <value>Owner</value>
+    <comment>Equipment page -&gt; text for Owner of equip</comment>
+  </data>
+  <data name="Equipment_SerialNumber" xml:space="preserve">
+    <value>Serial number</value>
+    <comment>Equipment page -&gt; text for Serial number of equip</comment>
+  </data>
+  <data name="Equipment_Type" xml:space="preserve">
+    <value>Type</value>
+    <comment>Equipment page -&gt; text for Type of equip</comment>
+  </data>
   <data name="NoAddressError" xml:space="preserve">
     <value>No address</value>
     <comment>If Event has No Address -&gt;show it user</comment>

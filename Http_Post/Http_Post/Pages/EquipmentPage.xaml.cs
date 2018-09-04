@@ -35,21 +35,22 @@ namespace Http_Post.Pages
                 listView.ItemsSource = equip.Data;
             } catch(Exception ex)
             {
-
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
-        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-
+            // TODO: get owner name, change owner
+            await DisplayAlert("Tapped", "How to get owner name?\nHow to change owner?", "Ok", "Cancel");
         }
 
         private void UpdateLanguage()
         {
             Title = Resource.Title_Equipment;
-            Label_Type.Text = "Type (def)";
-            Label_Owner.Text = "Owner (def)";
-            Label_SerialNumber.Text = "Serial Number (def)";
+            Label_Type.Text = Resource.Equipment_Type;
+            Label_Owner.Text = Resource.Equipment_Owner;
+            Label_SerialNumber.Text = Resource.Equipment_SerialNumber;
         }
     }
 }

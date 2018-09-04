@@ -32,7 +32,7 @@ namespace Http_Post
         {
             try
             {
-                string result = await DisplayActionSheet("Choose language", cancel, String.Empty, loc.languages);
+                string result = await DisplayActionSheet("Choose language", cancel, null, loc.languages);
 
                 if (result.Equals(cancel))
                     return;
@@ -62,7 +62,7 @@ namespace Http_Post
             {
                 var themeChanger = new ThemeChanger();
 
-                string result = await DisplayActionSheet(Resource.ThemeChoose, cancel, String.Empty, themeChanger.ThemesForUser.ToArray());
+                string result = await DisplayActionSheet(Resource.ThemeChoose, cancel, null, themeChanger.ThemesForUser.ToArray());
                 if (result.Equals(cancel))
                     return;
 

@@ -21,7 +21,7 @@ namespace Http_Post.Services
         }
         private static string UserAgent()
         {
-            //TODO Get correct app version
+            //TODO: Get correct app version
             var version = $"1.0.0";
             return $"Xamarin.{Device.RuntimePlatform}/{version}";
         }

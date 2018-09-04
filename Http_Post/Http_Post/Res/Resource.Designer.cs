@@ -169,6 +169,33 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Owner.
+        /// </summary>
+        public static string Equipment_Owner {
+            get {
+                return ResourceManager.GetString("Equipment_Owner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serial number.
+        /// </summary>
+        public static string Equipment_SerialNumber {
+            get {
+                return ResourceManager.GetString("Equipment_SerialNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type.
+        /// </summary>
+        public static string Equipment_Type {
+            get {
+                return ResourceManager.GetString("Equipment_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No address.
         /// </summary>
         public static string NoAddressError {

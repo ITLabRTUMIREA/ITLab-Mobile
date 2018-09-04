@@ -29,6 +29,7 @@
             <Style x:Key="Default_Bar" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="Default"/>
                 <Setter Property="BarTextColor" Value="Default"/>
+                <Setter Property="BackgroundColor" Value="Default"/>
             </Style>
 
             <!-- Dark theme -->
@@ -46,6 +47,7 @@
             <Style x:Key="Dark_Bar" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="#262626"/>
                 <Setter Property="BarTextColor" Value="#f2f2f2"/>
+                <Setter Property="BackgroundColor" Value="#1a1a1a"/>
             </Style>
 
             <!-- Light theme -->
@@ -63,6 +65,7 @@
             <Style x:Key="Light_Bar" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="Default"/>
                 <Setter Property="BarTextColor" Value="Default"/>
+                <Setter Property="BackgroundColor" Value="Default"/>
             </Style>
 
             <!-- Rainbow theme -->
@@ -80,6 +83,7 @@
             <Style x:Key="Rainbow_Bar" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="Default"/>
                 <Setter Property="BarTextColor" Value="Default"/>
+                <Setter Property="BackgroundColor" Value="Default"/>
             </Style>
 
         </ResourceDictionary>

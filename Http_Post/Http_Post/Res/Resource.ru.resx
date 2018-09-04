@@ -165,6 +165,18 @@
     <value>Поиск</value>
     <comment>Searching by date -&gt; btn text</comment>
   </data>
+  <data name="Equipment_Owner" xml:space="preserve">
+    <value>Владелец</value>
+    <comment>Equipment page -&gt; text for Owner of equip</comment>
+  </data>
+  <data name="Equipment_SerialNumber" xml:space="preserve">
+    <value>Серий номер</value>
+    <comment>Equipment page -&gt; text for Serial number of equip</comment>
+  </data>
+  <data name="Equipment_Type" xml:space="preserve">
+    <value>Тип</value>
+    <comment>Equipment page -&gt; text for Type of equip</comment>
+  </data>
   <data name="NoAddressError" xml:space="preserve">
     <value>Нет адреса</value>
     <comment>If Event has No Address -&gt;show it user</comment>

@@ -4,26 +4,18 @@
              x:Class="Http_Post.Pages.EquipmentPage">
     <ContentPage.Content>
         <ScrollView>
-
-            <!-- Replace stacklayout with Grid -->
-            <Grid Style="{DynamicResource themeStack}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <StackLayout x:Name="stackLayout"  Style="{DynamicResource themeStack}">
+                <StackLayout Orientation="Horizontal"
+                             Style="{DynamicResource themeStack}">
                 <Label x:Name="Label_Type" FontAttributes="Bold"
-                           Grid.Row="0" Grid.Column="0"
+                       WidthRequest="200"
                            Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="Label_Owner" FontAttributes="Bold"
-                           Grid.Row="0" Grid.Column="1"
+                       WidthRequest="280"
                            Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="Label_SerialNumber" FontAttributes="Bold"
-                           Grid.Row="0" Grid.Column="2"
                            Style="{DynamicResource themeLabel}"/>
+                </StackLayout>
                 <ListView x:Name="listView"
                           Style="{DynamicResource themeStack}"
                           ItemTapped="listView_ItemTapped">
@@ -35,8 +27,8 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="200"/>
+                                        <ColumnDefinition Width="280"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
                                     <Label Text="{Binding EquipmentType.Title}"
@@ -53,7 +45,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </Grid>
+            </StackLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>
