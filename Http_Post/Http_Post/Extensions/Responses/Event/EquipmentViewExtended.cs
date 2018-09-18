@@ -7,6 +7,6 @@ namespace Http_Post.Extensions.Responses.Event
 {
     class EquipmentViewExtended : EquipmentView
     {
-        public string OwerName { get; set; }
+        public string OwnerName { get; set; }
     }
 }

@@ -37,11 +37,14 @@ namespace Http_Post.Pages
 
                 foreach(var e in equip.Data)
                 {
+                    if (e.OwnerId == null)
+                        continue;
+
                     var userRaw = await client.GetStringAsync($"user/{e.OwnerId}");
                     var user = JsonConvert.DeserializeObject<OneObjectResponse<UserView>>(userRaw);
-                    e.OwerName = user.Data.FirstName + user.Data.LastName;
+                    e.OwnerName = user.Data.FirstName + " " + user.Data.LastName;
                 }
-
+                    
                 listView.ItemsSource = equip.Data;
             } catch(Exception ex)
             {
@@ -51,7 +54,7 @@ namespace Http_Post.Pages
 
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            // TODO: get owner name, change owner
+            // TODO: change owner
             await DisplayAlert("Default", "Default", "Default", "Default");
         }
 

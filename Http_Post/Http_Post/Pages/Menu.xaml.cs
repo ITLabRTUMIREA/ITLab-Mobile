@@ -32,8 +32,9 @@ namespace Http_Post
 
         private void InitComponents()
         {
-            Name = student.Data.FirstName;
-            LastName = student.Data.LastName;
+            Name = student.Data.User.FirstName;
+            LastName = student.Data.User.LastName;
+            // TODO: Show phone number also
 
             label_name.Text = Name;
             label_surname.Text = LastName;
