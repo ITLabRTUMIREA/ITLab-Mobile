@@ -34,7 +34,7 @@
                                     <Label Text="{Binding EquipmentType.Title}"
                                            Grid.Row="0" Grid.Column="0"
                                            Style="{DynamicResource themeLabel}"/>
-                                    <Label Text="{Binding OwnerId}"
+                                    <Label Text="{Binding OwnerName}"
                                            Grid.Row="0" Grid.Column="1"
                                            Style="{DynamicResource themeLabel}"/>
                                     <Label Text="{Binding SerialNumber}"

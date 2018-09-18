@@ -1,7 +1,9 @@
-﻿using Http_Post.Res;
+﻿using Http_Post.Extensions.Responses.Event;
+using Http_Post.Res;
 using Http_Post.Services;
 using Models.PublicAPI.Responses.Equipment;
 using Models.PublicAPI.Responses.General;
+using Models.PublicAPI.Responses.People;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,7 +33,15 @@ namespace Http_Post.Pages
             try
             {
                 var response = await client.GetStringAsync("Equipment/");
-                var equip = JsonConvert.DeserializeObject<ListResponse<EquipmentView>>(response);
+                var equip = JsonConvert.DeserializeObject<ListResponse<EquipmentViewExtended>>(response);
+
+                foreach(var e in equip.Data)
+                {
+                    var userRaw = await client.GetStringAsync($"user/{e.OwnerId}");
+                    var user = JsonConvert.DeserializeObject<OneObjectResponse<UserView>>(userRaw);
+                    e.OwerName = user.Data.FirstName + user.Data.LastName;
+                }
+
                 listView.ItemsSource = equip.Data;
             } catch(Exception ex)
             {
@@ -42,7 +52,7 @@ namespace Http_Post.Pages
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             // TODO: get owner name, change owner
-            await DisplayAlert("Tapped", "How to get owner name?\nHow to change owner?", "Ok", "Cancel");
+            await DisplayAlert("Default", "Default", "Default", "Default");
         }
 
         private void UpdateLanguage()
