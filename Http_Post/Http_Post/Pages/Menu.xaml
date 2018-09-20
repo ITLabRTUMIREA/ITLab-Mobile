@@ -24,7 +24,12 @@
                              HorizontalOptions="FillAndExpand"
                              Style="{DynamicResource themeStack}">
                     <StackLayout x:Name="stackUser" Orientation="Horizontal" Margin="0,0,0,20">
-                        <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png"/>
+                        <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="ProfileImage_Tapped"
+                                                      NumberOfTapsRequired="1"/>
+                            </Image.GestureRecognizers>
+                        </Image>
                         <StackLayout Orientation="Vertical">
                             <Label x:Name="label_name" Text="..."
                                    Style="{DynamicResource themeLabel}"/>

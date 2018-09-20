@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Pages.OneEquipmentPage">
+    <ContentPage.Content>
+        <StackLayout Style="{DynamicResource themeStack}">
+            <Label x:Name="Label_Type"
+                   Style="{DynamicResource themeLabel}"/>
+            <Entry x:Name="Entry_Type"
+                   Margin="0,0,0,20"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="Label_Number"
+                   Style="{DynamicResource themeLabel}"/>
+            <Entry x:Name="Entry_Number"
+                   Margin="0,0,0,20"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="Label_Description"
+                   Style="{DynamicResource themeLabel}"/>
+            <Entry x:Name="Entry_Description"
+                   Margin="0,0,0,20"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="Label_OwnerTitle"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="Label_Owner"
+                   Style="{DynamicResource themeLabel}"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

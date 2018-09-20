@@ -169,6 +169,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Equipment_Description {
+            get {
+                return ResourceManager.GetString("Equipment_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Owner.
         /// </summary>
         public static string Equipment_Owner {

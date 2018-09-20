@@ -165,6 +165,10 @@
     <value>Search</value>
     <comment>Searching by date -&gt; btn text</comment>
   </data>
+  <data name="Equipment_Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Equipment page -&gt; text for Description of equip</comment>
+  </data>
   <data name="Equipment_Owner" xml:space="preserve">
     <value>Owner</value>
     <comment>Equipment page -&gt; text for Owner of equip</comment>

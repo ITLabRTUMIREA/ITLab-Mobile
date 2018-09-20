@@ -120,5 +120,10 @@ namespace Http_Post
         {
             IsPresented = false;
         }
+
+        private async void ProfileImage_Tapped(object sender, EventArgs e)
+        {
+            // TODO: Profile page
+        }
     }
 }
