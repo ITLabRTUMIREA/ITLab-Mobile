@@ -61,6 +61,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Laboratory.
+        /// </summary>
+        public static string ADMIN_Laboratory {
+            get {
+                return ResourceManager.GetString("ADMIN_Laboratory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Btn_About {

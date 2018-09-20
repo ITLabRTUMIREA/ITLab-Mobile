@@ -54,8 +54,8 @@ namespace Http_Post.Pages
 
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            // TODO: change owner
-            await DisplayAlert("Default", "Default", "Default", "Default");
+            var equip = (EquipmentViewExtended)e.Item;
+            await Navigation.PushAsync(new OneEquipmentPage(equip.Id));
         }
 
         private void UpdateLanguage()

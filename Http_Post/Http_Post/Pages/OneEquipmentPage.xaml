@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.OneEquipmentPage">
     <ContentPage.Content>
-        <StackLayout Style="{DynamicResource themeStack}">
+        <StackLayout Style="{DynamicResource themeStack}"
+                     Spacing="5">
             <Label x:Name="Label_Type"
                    Style="{DynamicResource themeLabel}"/>
             <Entry x:Name="Entry_Type"
@@ -22,6 +23,7 @@
             <Label x:Name="Label_OwnerTitle"
                    Style="{DynamicResource themeLabel}"/>
             <Label x:Name="Label_Owner"
+                   Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
 
         </StackLayout>
