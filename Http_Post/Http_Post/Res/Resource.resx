@@ -121,6 +121,18 @@
     <value>Laboratory</value>
     <comment>if equip has no owner</comment>
   </data>
+  <data name="ADMIN_No" xml:space="preserve">
+    <value>No</value>
+    <comment>Profile page asking for change data</comment>
+  </data>
+  <data name="ADMIN_Sure" xml:space="preserve">
+    <value>Sure</value>
+    <comment>Profile page asking for change data</comment>
+  </data>
+  <data name="ADMIN_Yes" xml:space="preserve">
+    <value>Yes</value>
+    <comment>Profile page asking for change data</comment>
+  </data>
   <data name="Btn_About" xml:space="preserve">
     <value>About</value>
     <comment>Menu -&gt; btn.Text for About</comment>
@@ -209,6 +221,26 @@
     <value>No title</value>
     <comment>If Event has No Title -&gt;show it user</comment>
   </data>
+  <data name="ProfileBtn_Save" xml:space="preserve">
+    <value>Save</value>
+    <comment>Profile page text for Save Button</comment>
+  </data>
+  <data name="ProfileLbl_Firstname" xml:space="preserve">
+    <value>Firstname</value>
+    <comment>Profile page text for Firstname</comment>
+  </data>
+  <data name="ProfileLbl_Lastname" xml:space="preserve">
+    <value>Lastname</value>
+    <comment>Profile page text for Lastname</comment>
+  </data>
+  <data name="ProfileLbl_PhoneNumber" xml:space="preserve">
+    <value>Phone number</value>
+    <comment>Profile page text for Phone number</comment>
+  </data>
+  <data name="Profile_Updated" xml:space="preserve">
+    <value>Updated</value>
+    <comment>Profile page text after Put request</comment>
+  </data>
   <data name="Shifts" xml:space="preserve">
     <value>Shifts:</value>
     <comment>Title for 'shifts' on One Event Page</comment>
@@ -248,6 +280,10 @@
   <data name="Title_Event" xml:space="preserve">
     <value>Events</value>
     <comment>Event -&gt;Title</comment>
+  </data>
+  <data name="Title_Profile" xml:space="preserve">
+    <value>Profile</value>
+    <comment>Profile -&gt; Title</comment>
   </data>
   <data name="Title_Settings" xml:space="preserve">
     <value>Settings</value>

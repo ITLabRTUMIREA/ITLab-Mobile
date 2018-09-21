@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Pages.ProfilePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Entry">
+                <Setter Property="HeightRequest" Value="10"/>
+                <Setter Property="Margin" Value="0,0,0,20"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{DynamicResource themeStack}"
+                         Spacing="5"
+                         Orientation="Vertical">
+                <Label x:Name="Lbl_Email"
+                       Margin="0,0,0,20"
+                       Text="{Binding Email}"
+                       Style="{DynamicResource themeLabel}"/>
+
+                <Label x:Name="Lbl_Firstname"
+                       Style="{DynamicResource themeLabel}"/>
+                <Entry x:Name="Entry_Firstname"
+                       Text="{Binding FirstName}"
+                       Margin="0,0,0,20"
+                       HeightRequest="50"
+                       Style="{DynamicResource themeLabel}"/>
+
+                <Label x:Name="Lbl_Lastname"
+                       Style="{DynamicResource themeLabel}"/>
+                <Entry x:Name="Entry_Lastname"
+                       Margin="0,0,0,20"
+                       HeightRequest="50"
+                       Text="{Binding LastName}"
+                       Style="{DynamicResource themeLabel}"/>
+
+                <Label x:Name="Lbl_PhoneNumber"
+                       Style="{DynamicResource themeLabel}"/>
+                <Entry x:Name="Entry_PhoneNumber"
+                       Margin="0,0,0,20"
+                       HeightRequest="50"
+                       Text="{Binding PhoneNumber}"
+                       Style="{DynamicResource themeLabel}"/>
+
+                <Button x:Name="Btn_Save"
+                        Clicked="Btn_Save_Clicked"
+                        Style="{DynamicResource themeButton}"/>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

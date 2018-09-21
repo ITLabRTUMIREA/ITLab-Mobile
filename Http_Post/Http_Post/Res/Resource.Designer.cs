@@ -70,6 +70,33 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string ADMIN_No {
+            get {
+                return ResourceManager.GetString("ADMIN_No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sure.
+        /// </summary>
+        public static string ADMIN_Sure {
+            get {
+                return ResourceManager.GetString("ADMIN_Sure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string ADMIN_Yes {
+            get {
+                return ResourceManager.GetString("ADMIN_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Btn_About {
@@ -268,6 +295,51 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updated.
+        /// </summary>
+        public static string Profile_Updated {
+            get {
+                return ResourceManager.GetString("Profile_Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ProfileBtn_Save {
+            get {
+                return ResourceManager.GetString("ProfileBtn_Save", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Firstname.
+        /// </summary>
+        public static string ProfileLbl_Firstname {
+            get {
+                return ResourceManager.GetString("ProfileLbl_Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lastname.
+        /// </summary>
+        public static string ProfileLbl_Lastname {
+            get {
+                return ResourceManager.GetString("ProfileLbl_Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone number.
+        /// </summary>
+        public static string ProfileLbl_PhoneNumber {
+            get {
+                return ResourceManager.GetString("ProfileLbl_PhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Shifts:.
         /// </summary>
         public static string Shifts {
@@ -354,6 +426,15 @@ namespace Http_Post.Res {
         public static string Title_Event {
             get {
                 return ResourceManager.GetString("Title_Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profile.
+        /// </summary>
+        public static string Title_Profile {
+            get {
+                return ResourceManager.GetString("Title_Profile", resourceCulture);
             }
         }
         

@@ -15,13 +15,11 @@ namespace Http_Post.Pages
 	{
         HttpClient client = HttpClientFactory.HttpClient;
 
-        private OneObjectResponse<LoginResponse> student;
         private ListResponse<CompactEventViewExtended> events;
 
-        public EventPage(OneObjectResponse<LoginResponse> student)
+        public EventPage()
         {
             InitializeComponent();
-            this.student = student;
             Init();
 
             UpdateTheme();
@@ -32,7 +30,6 @@ namespace Http_Post.Pages
         private void Init()
         {
             Title = Res.Resource.Title_Event;
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
         }
 
         private void UpdateTheme()

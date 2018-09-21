@@ -1,9 +1,13 @@
 ﻿using Http_Post.Classes;
 using Http_Post.Pages;
 using Http_Post.Res;
+using Http_Post.Services;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
+using Models.PublicAPI.Responses.People;
+using Newtonsoft.Json;
 using System;
+using System.Net.Http;
 using Xamarin.Forms;
 
 namespace Http_Post
@@ -12,10 +16,8 @@ namespace Http_Post
     {
         private Localization localization = new Localization();
 
+        private HttpClient client = HttpClientFactory.HttpClient;
         private OneObjectResponse<LoginResponse> student;
-
-        private string Name;
-        private string LastName;
 
         public Menu(OneObjectResponse<LoginResponse> student)
         {
@@ -30,19 +32,30 @@ namespace Http_Post
             BtnEvents_Clicked(Btn_Events, EventArgs.Empty);
         }
 
-        private void InitComponents()
+        public async void InitComponents()
         {
-            Name = student.Data.User.FirstName;
-            LastName = student.Data.User.LastName;
-            // TODO: Show phone number also
+            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
 
-            label_name.Text = Name;
-            label_surname.Text = LastName;
+            try
+            {
+                var response = await client.GetStringAsync($"user/{student.Data.User.Id}");
+                var currentUserObject = JsonConvert.DeserializeObject<OneObjectResponse<UserView>>(response);
+
+                if (currentUserObject.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {currentUserObject.StatusCode}");
+
+                label_name.Text = currentUserObject.Data.FirstName;
+                label_surname.Text = currentUserObject.Data.LastName;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         private void BtnEvents_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new EventPage(student)) {
+            Detail = new NavigationPage(new EventPage()) {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style,
             }; // Load Events page
             Close();
@@ -121,9 +134,14 @@ namespace Http_Post
             IsPresented = false;
         }
 
-        private async void ProfileImage_Tapped(object sender, EventArgs e)
+        private void ProfileImage_Tapped(object sender, EventArgs e)
         {
-            // TODO: Profile page
+            Detail = new NavigationPage(new ProfilePage(student.Data.User.Id, this))
+            {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Profile page
+
+            Close();
         }
     }
 }
