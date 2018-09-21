@@ -1,10 +1,6 @@
 ﻿using System;
 using Http_Post.Res;
 using Http_Post.Services;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using System.Net.Http;
@@ -72,6 +68,48 @@ namespace Http_Post.Pages
             Label_Number.Text = Resource.Equipment_SerialNumber;
             Label_Description.Text = Resource.Equipment_Description;
             Label_OwnerTitle.Text = Resource.Equipment_Owner;
+            /////////////////////////////////////////////////////
+            Button_Confirm.Text = "Confirm";
+            Button_ChangeOwner.Text = "Change Owner";
+            Button_Delete.Text = "Delete";
+            ////////////////////////////////////////////////////
+            Button_Delete.BackgroundColor = Color.FromHex("#ff8080"); // Pretty red
+        }
+
+        private async void Button_Confirm_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+        private async void Button_ChangeOwner_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+        private async void Button_Delete_Clicked(object sender, EventArgs e)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
     }
 }
