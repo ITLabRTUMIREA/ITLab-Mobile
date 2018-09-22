@@ -29,6 +29,7 @@ namespace Http_Post.Pages
         {
             try
             {
+                // TODO: replace with stacklayout
                 listView.IsVisible = true;
                 var lbl = (Entry)sender;
                 var response = await client.GetStringAsync($"EquipmentType?match={lbl.Text}");
@@ -46,7 +47,7 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            
+            Title = Resource.Title_Create;
         }
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)

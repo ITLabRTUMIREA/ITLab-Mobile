@@ -142,10 +142,11 @@ namespace Http_Post.Pages
                 if (delete)
                 {
                     var jsonConent = $"{{\"id\":\"{equipment.Id}\"}}";
-                    var content = new StringContent(jsonConent, Encoding.UTF8, "application/json");
 
-                    //var result = await client.DeleteAsync("Equipment/");
-                    //var result = await client.SendAsync();
+                    var request = new HttpRequestMessage(HttpMethod.Delete, "Equipment") {
+                        Content = new StringContent(jsonConent, Encoding.UTF8, "application/json")
+                    };
+                    var result = await client.SendAsync(request);
                 }
             }
             catch (Exception ex)
