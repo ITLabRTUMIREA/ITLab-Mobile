@@ -129,6 +129,10 @@
     <value>Sure</value>
     <comment>Profile page asking for change data</comment>
   </data>
+  <data name="ADMIN_Updated" xml:space="preserve">
+    <value>Updated</value>
+    <comment>When smth is updated</comment>
+  </data>
   <data name="ADMIN_Yes" xml:space="preserve">
     <value>Yes</value>
     <comment>Profile page asking for change data</comment>
@@ -180,6 +184,18 @@
   <data name="DateSearchingBtn" xml:space="preserve">
     <value>Search</value>
     <comment>Searching by date -&gt; btn text</comment>
+  </data>
+  <data name="Equipment_BtnChangeOwner" xml:space="preserve">
+    <value>Change owner</value>
+    <comment>Text for button to change owner</comment>
+  </data>
+  <data name="Equipment_BtnConfirm" xml:space="preserve">
+    <value>Confirm</value>
+    <comment>Text for button to save changes</comment>
+  </data>
+  <data name="Equipment_BtnDelete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Text for button to delete equipment</comment>
   </data>
   <data name="Equipment_Description" xml:space="preserve">
     <value>Description</value>
@@ -236,10 +252,6 @@
   <data name="ProfileLbl_PhoneNumber" xml:space="preserve">
     <value>Phone number</value>
     <comment>Profile page text for Phone number</comment>
-  </data>
-  <data name="Profile_Updated" xml:space="preserve">
-    <value>Updated</value>
-    <comment>Profile page text after Put request</comment>
   </data>
   <data name="Shifts" xml:space="preserve">
     <value>Shifts:</value>

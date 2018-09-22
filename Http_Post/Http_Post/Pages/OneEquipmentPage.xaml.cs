@@ -8,12 +8,15 @@ using Http_Post.Extensions.Responses.Event;
 using Newtonsoft.Json;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
+using Models.PublicAPI.Responses.Equipment;
+using System.Text;
 
 namespace Http_Post.Pages
 {
 	public partial class OneEquipmentPage : ContentPage
 	{
         private Guid EquipId { get; }
+        private Guid OwnerId;
         private HttpClient client = HttpClientFactory.HttpClient;
         private EquipmentViewExtended equipment { get; set; }
 
@@ -69,9 +72,9 @@ namespace Http_Post.Pages
             Label_Description.Text = Resource.Equipment_Description;
             Label_OwnerTitle.Text = Resource.Equipment_Owner;
             /////////////////////////////////////////////////////
-            Button_Confirm.Text = "Confirm";
-            Button_ChangeOwner.Text = "Change Owner";
-            Button_Delete.Text = "Delete";
+            Button_Confirm.Text = Resource.Equipment_BtnConfirm;
+            Button_ChangeOwner.Text = Resource.Equipment_BtnChangeOwner;
+            Button_Delete.Text = Resource.Equipment_BtnDelete;
             ////////////////////////////////////////////////////
             Button_Delete.BackgroundColor = Color.FromHex("#ff8080"); // Pretty red
         }
@@ -80,7 +83,37 @@ namespace Http_Post.Pages
         {
             try
             {
+                bool save = await DisplayAlert("", Resource.ADMIN_Sure, Resource.ADMIN_Yes, Resource.ADMIN_No);
+                if (save) {
+                    EquipmentView equipmentView = new EquipmentView
+                    {
+                        Id = equipment.Id, // BY DEFAULT
+                        EquipmentTypeId = equipment.EquipmentTypeId, // BY DEFAULT
+                        EquipmentType = new EquipmentTypeView
+                        {
+                            Title = Entry_Type.Text,
+                            Description = equipment.EquipmentType.Description,
+                            Id = equipment.EquipmentTypeId,
+                            Childs = equipment.EquipmentType.Childs, // BY DEFAULT
+                            Parent = equipment.EquipmentType.Parent // BY DEFAULT
+                        },
+                        Description = Entry_Description.Text,
+                        SerialNumber = Entry_Number.Text,
+                        OwnerId = equipment.OwnerId
+                    };
 
+                    var jsonContent = JsonConvert.SerializeObject(equipmentView);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                    var result = await client.PutAsync("Equipment/", content);
+                    string resultContent = await result.Content.ReadAsStringAsync();
+                    var newEquip = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentView>>(resultContent);
+
+                    if (newEquip.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                        throw new Exception($"Error: {newEquip.StatusCode}");
+                    else
+                        await DisplayAlert("Message", Resource.ADMIN_Updated, "Ok");
+                }
             }
             catch (Exception ex)
             {
@@ -92,7 +125,8 @@ namespace Http_Post.Pages
         {
             try
             {
-
+                // display new name
+                // change equipment.OwnerId
             }
             catch (Exception ex)
             {
@@ -104,7 +138,14 @@ namespace Http_Post.Pages
         {
             try
             {
+                bool delete = await DisplayAlert("", Resource.ADMIN_Sure, Resource.ADMIN_Yes, Resource.ADMIN_No);
+                if (delete)
+                {
+                    var jsonConent = $"{{\"id\":\"{equipment.Id}\"}}";
+                    var content = new StringContent(jsonConent, Encoding.UTF8, "application/json");
 
+                    //var result = await client.DeleteAsync("Equipment/");
+                }
             }
             catch (Exception ex)
             {

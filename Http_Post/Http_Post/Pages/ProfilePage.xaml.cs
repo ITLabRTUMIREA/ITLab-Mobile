@@ -85,7 +85,7 @@ namespace Http_Post.Pages
                     if (newUser.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                         throw new Exception($"Error: {newUser.StatusCode}");
                     else
-                        await DisplayAlert("Message", Resource.Profile_Updated, "Ok");
+                        await DisplayAlert("Message", Resource.ADMIN_Updated, "Ok");
 
                     menu.InitComponents();
                 }

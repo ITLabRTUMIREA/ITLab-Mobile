@@ -88,6 +88,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Updated.
+        /// </summary>
+        public static string ADMIN_Updated {
+            get {
+                return ResourceManager.GetString("ADMIN_Updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string ADMIN_Yes {
@@ -205,6 +214,33 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change owner.
+        /// </summary>
+        public static string Equipment_BtnChangeOwner {
+            get {
+                return ResourceManager.GetString("Equipment_BtnChangeOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string Equipment_BtnConfirm {
+            get {
+                return ResourceManager.GetString("Equipment_BtnConfirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Equipment_BtnDelete {
+            get {
+                return ResourceManager.GetString("Equipment_BtnDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Equipment_Description {
@@ -291,15 +327,6 @@ namespace Http_Post.Res {
         public static string NoTitleError {
             get {
                 return ResourceManager.GetString("NoTitleError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Updated.
-        /// </summary>
-        public static string Profile_Updated {
-            get {
-                return ResourceManager.GetString("Profile_Updated", resourceCulture);
             }
         }
         
