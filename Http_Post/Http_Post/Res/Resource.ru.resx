@@ -141,9 +141,13 @@
     <value>О приложении</value>
     <comment>Menu -&gt; btn.Text for About</comment>
   </data>
-  <data name="Btn_Create" xml:space="preserve">
-    <value>Создать событие</value>
-    <comment>Menu -&gt; btn.Text for Create</comment>
+  <data name="Btn_CreateEquip" xml:space="preserve">
+    <value>Добавить оборудование</value>
+    <comment>Menu -&gt; btn.Text for Create Equip</comment>
+  </data>
+  <data name="Btn_CreateEvent" xml:space="preserve">
+    <value>Добавить событие</value>
+    <comment>Menu -&gt; btn.Text for Create Event</comment>
   </data>
   <data name="Btn_DateSearch" xml:space="preserve">
     <value>Поиск по дате</value>

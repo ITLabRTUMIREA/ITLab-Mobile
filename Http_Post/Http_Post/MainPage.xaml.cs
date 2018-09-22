@@ -88,6 +88,8 @@ namespace Http_Post
         {
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.OK) // if is OK
             {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", info.Data.AccessToken);
+
                 text_error.TextColor = Color.Green;
                 text_error.Text = "Authorizated!";
 
@@ -203,6 +205,16 @@ namespace Http_Post
                 text_error.Text = ex.Message + '\n' + 
                     "Can't use refresh token to login";
             }
+        }
+
+        private void text_login_Completed(object sender, EventArgs e)
+        {
+            text_password.Focus();
+        }
+
+        private void text_password_Completed(object sender, EventArgs e)
+        {
+            Button_login(button_login, EventArgs.Empty);
         }
 
         private void RememberToken(OneObjectResponse<LoginResponse> infoAboutStudent)

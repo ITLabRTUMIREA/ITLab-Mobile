@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Pages.CreateEquipment">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Style="{DynamicResource themeStack}"
+                         Spacing="5">
+                <Label x:Name="Lbl_EquipType"
+                       Style="{DynamicResource themeLabel}"/>
+                <Entry x:Name="Entry_EquipType"
+                       TextChanged="EntryEquipType_TextChanged"
+                       Style="{DynamicResource themeLabel}"/>
+
+                <ListView x:Name="listView"
+                          IsVisible="False"
+                          Style="{DynamicResource themeStack}"
+                          ItemTapped="listView_ItemTapped"
+                          HeightRequest="40">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Label Text="{Binding Title}"
+                                       Style="{DynamicResource themeLabel}"/>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                
+                <Label x:Name="Lbl_SerialNumber"
+                       Style="{DynamicResource themeLabel}"/>
+                <Entry x:Name="Entry_SerialNumber"
+                       Margin="0,0,0,20"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="Lbl_Description"
+                       Style="{DynamicResource themeLabel}"/>
+                <Entry x:Name="Entry_Description"
+                       HeightRequest="120"
+                       Margin="0,0,0,20"
+                       Style="{DynamicResource themeLabel}"/>
+                <StackLayout Orientation="Horizontal"
+                             Spacing="15"
+                             Style="{DynamicResource themeStack}">
+                    <Button Text="hgsdkjghsd"/>
+                    <Button Text="hgsdkjghsd"/>
+                    <Button Text="hgsdkjghsd"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

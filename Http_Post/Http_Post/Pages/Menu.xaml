@@ -41,9 +41,10 @@
                     <BoxView/>
                     <Controls:Master_Btns x:Name="Btn_Events" ImageSource="News.png" Clicked="BtnEvents_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_DateSearch" ImageSource="Calendar.png" Clicked="BtnDateSearch_Clicked"/>
-                    <Controls:Master_Btns x:Name="Btn_Create" ImageSource="Create.png" Clicked="BtnCreate_Clicked"/>
+                    <Controls:Master_Btns x:Name="Btn_CreateEvent" ImageSource="Create.png" Clicked="BtnCreateEvent_Clicked"/>
                     <BoxView/>
                     <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
+                    <Controls:Master_Btns x:Name="Btn_CreateEquip" ImageSource="Create.png" Clicked="BtnCreateEquip_Clicked"/>
                     <BoxView/>
                     <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
                     <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>

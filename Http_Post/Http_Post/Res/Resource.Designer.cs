@@ -115,11 +115,20 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create equipment.
+        /// </summary>
+        public static string Btn_CreateEquip {
+            get {
+                return ResourceManager.GetString("Btn_CreateEquip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create event.
         /// </summary>
-        public static string Btn_Create {
+        public static string Btn_CreateEvent {
             get {
-                return ResourceManager.GetString("Btn_Create", resourceCulture);
+                return ResourceManager.GetString("Btn_CreateEvent", resourceCulture);
             }
         }
         

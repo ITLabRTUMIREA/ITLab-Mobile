@@ -34,8 +34,6 @@ namespace Http_Post
 
         public async void InitComponents()
         {
-            client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", student.Data.AccessToken);
-
             try
             {
                 var response = await client.GetStringAsync($"user/{student.Data.User.Id}");
@@ -69,7 +67,7 @@ namespace Http_Post
             Close();
         }
 
-        private void BtnCreate_Clicked (object sender, EventArgs e)
+        private void BtnCreateEvent_Clicked (object sender, EventArgs e)
         {
             Detail = new NavigationPage(new CreateEventPage()) {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
@@ -82,6 +80,15 @@ namespace Http_Post
             Detail = new NavigationPage(new EquipmentPage()) {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
             }; // Load Equipment page
+            Close();
+        }
+
+        private void BtnCreateEquip_Clicked(object sender, EventArgs e)
+        {
+            Detail = new NavigationPage(new CreateEquipment())
+            {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style,
+            }; // Load Events page
             Close();
         }
 
@@ -105,9 +112,10 @@ namespace Http_Post
             Btn_Events.Btn_Text = Resource.Btn_Events;
             Btn_Settings.Btn_Text = Resource.Btn_Settings;
             Btn_About.Btn_Text = Resource.Btn_About;
-            Btn_Create.Btn_Text = Resource.Btn_Create;
+            Btn_CreateEvent.Btn_Text = Resource.Btn_CreateEvent;
             Btn_DateSearch.Btn_Text = Resource.Btn_DateSearch;
             Btn_Equip.Btn_Text = Resource.Btn_Equipment;
+            Btn_CreateEquip.Btn_Text = Resource.Btn_CreateEquip;
         }
 
         public void UpdateTheme()
@@ -120,9 +128,10 @@ namespace Http_Post
             Btn_Events.UpdateTheme();
             Btn_Settings.UpdateTheme();
             Btn_About.UpdateTheme();
-            Btn_Create.UpdateTheme();
+            Btn_CreateEvent.UpdateTheme();
             Btn_DateSearch.UpdateTheme();
             Btn_Equip.UpdateTheme();
+            Btn_CreateEquip.UpdateTheme();
         }
 
         public async void Logout()
