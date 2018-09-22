@@ -38,7 +38,26 @@
                     <Button x:Name="Button_Delete"
                             Clicked="Button_Delete_Clicked"
                             Style="{DynamicResource themeButton}"/>
+                </StackLayout>
 
+                <StackLayout x:Name="stackFind"
+                             IsVisible="True"
+                         Style="{DynamicResource themeStack}"
+                         Orientation="Vertical">
+                    <Entry x:Name="Entry_Find"
+                           TextChanged="Entry_Find_TextChanged"
+                           Style="{DynamicResource themeLabel}"/>
+                    <ListView x:Name="listView"
+                              Style="{DynamicResource themeStack}"
+                              ItemTapped="listView_ItemTapped">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <!-- Put stack layout here -->
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

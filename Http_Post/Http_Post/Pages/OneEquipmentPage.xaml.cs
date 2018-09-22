@@ -125,7 +125,7 @@ namespace Http_Post.Pages
         {
             try
             {
-                // display new name
+                // TODO: display new name
                 // change equipment.OwnerId
             }
             catch (Exception ex)
@@ -145,11 +145,30 @@ namespace Http_Post.Pages
                     var content = new StringContent(jsonConent, Encoding.UTF8, "application/json");
 
                     //var result = await client.DeleteAsync("Equipment/");
+                    //var result = await client.SendAsync();
                 }
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            // TODO: set new Owner
+        }
+
+        private async void Entry_Find_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                //var response = await client.GetStringAsync($"user/?email={Entry_Find.Text}&firstname={Entry_Find.Text}&lastname={Entry_Find.Text}");
+                // PageOfListResponse ?
+            }
+            catch (Exception ex)
+            {
+
             }
         }
     }
