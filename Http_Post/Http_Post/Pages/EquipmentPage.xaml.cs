@@ -28,7 +28,7 @@ namespace Http_Post.Pages
             GetEquipment();
 		}
 
-        private async void GetEquipment()
+        public async void GetEquipment()
         {
             try
             {
@@ -38,7 +38,10 @@ namespace Http_Post.Pages
                 foreach(var e in equip.Data)
                 {
                     if (e.OwnerId == null)
+                    {
+                        e.OwnerName = Resource.ADMIN_Laboratory;
                         continue;
+                    }
 
                     var userRaw = await client.GetStringAsync($"user/{e.OwnerId}");
                     var user = JsonConvert.DeserializeObject<OneObjectResponse<UserView>>(userRaw);
@@ -51,11 +54,11 @@ namespace Http_Post.Pages
                 await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
-
+        
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var equip = (EquipmentViewExtended)e.Item;
-            await Navigation.PushAsync(new OneEquipmentPage(equip.Id));
+            await Navigation.PushAsync(new OneEquipmentPage(equip.Id, GetEquipment));
         }
 
         private void UpdateLanguage()

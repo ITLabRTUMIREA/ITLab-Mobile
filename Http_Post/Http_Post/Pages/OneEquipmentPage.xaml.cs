@@ -10,6 +10,7 @@ using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
 using Models.PublicAPI.Responses.Equipment;
 using System.Text;
+using Models.PublicAPI.Responses.Exceptions;
 
 namespace Http_Post.Pages
 {
@@ -19,11 +20,13 @@ namespace Http_Post.Pages
         private Guid OwnerId;
         private HttpClient client = HttpClientFactory.HttpClient;
         private EquipmentViewExtended equipment { get; set; }
+        private Action updateEquip;
 
-		public OneEquipmentPage (Guid id)
+		public OneEquipmentPage (Guid id, Action action)
 		{
 			InitializeComponent ();
 
+            updateEquip = action;
             EquipId = id;
             UpdateLanguage();
             GetEquip();
@@ -83,6 +86,7 @@ namespace Http_Post.Pages
         {
             try
             {
+                // TODO: equipment type list while text changing
                 bool save = await DisplayAlert("", Resource.ADMIN_Sure, Resource.ADMIN_Yes, Resource.ADMIN_No);
                 if (save) {
                     EquipmentView equipmentView = new EquipmentView
@@ -147,6 +151,15 @@ namespace Http_Post.Pages
                         Content = new StringContent(jsonConent, Encoding.UTF8, "application/json")
                     };
                     var result = await client.SendAsync(request);
+
+                    string resultContent = await result.Content.ReadAsStringAsync();
+                    var message = JsonConvert.DeserializeObject<ExceptionResponse>(resultContent);
+                    if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                        throw new Exception($"Error: {message.StatusCode}");
+
+                    await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
+                    updateEquip.Invoke();
+                    await Navigation.PopAsync();
                 }
             }
             catch (Exception ex)
