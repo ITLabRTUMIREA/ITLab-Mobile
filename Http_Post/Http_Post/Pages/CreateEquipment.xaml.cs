@@ -62,7 +62,7 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-
+                // TODO: show user about error
             }
         }
 
@@ -229,7 +229,7 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                // TODO: show error to user
+                // TODO: show error to user OR REPLACE WITH PLUGIN
                 return tcs.Task;
             }
         }
