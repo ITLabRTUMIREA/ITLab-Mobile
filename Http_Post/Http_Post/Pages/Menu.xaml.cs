@@ -85,7 +85,7 @@ namespace Http_Post
 
         private void BtnCreateEquip_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new CreateEquipment())
+            Detail = new NavigationPage(new CreateEquipment(student.Data.User.Id))
             {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style,
             }; // Load Events page

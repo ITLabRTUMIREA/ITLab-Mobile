@@ -11,6 +11,10 @@
                 <Entry x:Name="Entry_EquipType"
                        TextChanged="EntryEquipType_TextChanged"
                        Style="{DynamicResource themeLabel}"/>
+                <Button x:Name="Btn_CreateEqType"
+                        Clicked="BtnCreateEqType_Clicked"
+                        IsVisible="False"
+                        Style="{DynamicResource themeButton}"/>
 
                 <ListView x:Name="listView"
                           IsVisible="False"
@@ -31,6 +35,7 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Entry x:Name="Entry_SerialNumber"
                        Margin="0,0,0,20"
+                       Focused="Entry_SerialNumber_Focused"
                        Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="Lbl_Description"
                        Style="{DynamicResource themeLabel}"/>
@@ -38,13 +43,9 @@
                        HeightRequest="120"
                        Margin="0,0,0,20"
                        Style="{DynamicResource themeLabel}"/>
-                <StackLayout Orientation="Horizontal"
-                             Spacing="15"
-                             Style="{DynamicResource themeStack}">
-                    <Button Text="hgsdkjghsd"/>
-                    <Button Text="hgsdkjghsd"/>
-                    <Button Text="hgsdkjghsd"/>
-                </StackLayout>
+                <Button x:Name="Btn_Confirm"
+                        Clicked="BtnConfirm_Clicked"
+                        Style="{DynamicResource themeButton}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
