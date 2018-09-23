@@ -210,7 +210,7 @@
     <comment>Equipment page -&gt; text for Owner of equip</comment>
   </data>
   <data name="Equipment_SerialNumber" xml:space="preserve">
-    <value>Серий номер</value>
+    <value>Серийный номер</value>
     <comment>Equipment page -&gt; text for Serial number of equip</comment>
   </data>
   <data name="Equipment_Type" xml:space="preserve">

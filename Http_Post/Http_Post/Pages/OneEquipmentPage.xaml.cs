@@ -22,12 +22,12 @@ namespace Http_Post.Pages
         private EquipmentViewExtended equipment { get; set; }
         private Action updateEquip;
 
-		public OneEquipmentPage (Guid id, Action action)
+		public OneEquipmentPage (Guid equipId, Action actionToUpdateEquip)
 		{
 			InitializeComponent ();
 
-            updateEquip = action;
-            EquipId = id;
+            updateEquip = actionToUpdateEquip;
+            EquipId = equipId;
             UpdateLanguage();
             GetEquip();
 		}
@@ -86,7 +86,7 @@ namespace Http_Post.Pages
         {
             try
             {
-                // TODO: equipment type list while text changing
+                // TODO: equipment TYPE (Like in creation) list while text changing
                 bool save = await DisplayAlert("", Resource.ADMIN_Sure, Resource.ADMIN_Yes, Resource.ADMIN_No);
                 if (save) {
                     EquipmentView equipmentView = new EquipmentView
@@ -158,7 +158,7 @@ namespace Http_Post.Pages
                         throw new Exception($"Error: {message.StatusCode}");
 
                     await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
-                    updateEquip.Invoke();
+                    updateEquip?.Invoke();
                     await Navigation.PopAsync();
                 }
             }

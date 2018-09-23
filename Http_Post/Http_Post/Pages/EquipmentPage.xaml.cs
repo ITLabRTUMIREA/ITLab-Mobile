@@ -59,6 +59,7 @@ namespace Http_Post.Pages
         {
             var equip = (EquipmentViewExtended)e.Item;
             await Navigation.PushAsync(new OneEquipmentPage(equip.Id, GetEquipment));
+            GetEquipment();
         }
 
         private void UpdateLanguage()

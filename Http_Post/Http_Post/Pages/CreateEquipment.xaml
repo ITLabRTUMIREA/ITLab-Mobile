@@ -8,7 +8,7 @@
                          Spacing="5">
                 <Label x:Name="Lbl_EquipType"
                        Style="{DynamicResource themeLabel}"/>
-                <Entry x:Name="Entry_EquipType"
+                <Editor x:Name="Entry_EquipType"
                        TextChanged="EntryEquipType_TextChanged"
                        Style="{DynamicResource themeLabel}"/>
                 <Button x:Name="Btn_CreateEqType"
@@ -16,35 +16,27 @@
                         IsVisible="False"
                         Style="{DynamicResource themeButton}"/>
 
-                <ListView x:Name="listView"
-                          IsVisible="False"
-                          Style="{DynamicResource themeStack}"
-                          ItemTapped="listView_ItemTapped"
-                          HeightRequest="40">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <Label Text="{Binding Title}"
-                                       Style="{DynamicResource themeLabel}"/>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                
+                <StackLayout x:Name="stackLayout"
+                             IsVisible="False"
+                             Orientation="Vertical"
+                             Margin="0,0,0,20"
+                             Style="{DynamicResource themeStack}"/>
+
                 <Label x:Name="Lbl_SerialNumber"
                        Style="{DynamicResource themeLabel}"/>
-                <Entry x:Name="Entry_SerialNumber"
+                <Editor x:Name="Entry_SerialNumber"
                        Margin="0,0,0,20"
                        Focused="Entry_SerialNumber_Focused"
                        Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="Lbl_Description"
                        Style="{DynamicResource themeLabel}"/>
-                <Entry x:Name="Entry_Description"
-                       HeightRequest="120"
+                <Editor x:Name="Entry_Description"
                        Margin="0,0,0,20"
                        Style="{DynamicResource themeLabel}"/>
                 <Button x:Name="Btn_Confirm"
                         Clicked="BtnConfirm_Clicked"
+                        WidthRequest="350"
+                        HorizontalOptions="Center"
                         Style="{DynamicResource themeButton}"/>
             </StackLayout>
         </ScrollView>

@@ -12,6 +12,11 @@
             <Style TargetType="Entry">
                 <Setter Property="FontSize" Value="Medium"/>
             </Style>
+            <Style TargetType="Editor">
+                <Setter Property="AutoSize" Value="TextChanges"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="IsSpellCheckEnabled" Value="True"/>
+            </Style>
 
             <!-- Themes -->
             <!-- Default theme -->
