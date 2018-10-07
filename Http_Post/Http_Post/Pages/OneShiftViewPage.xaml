@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Pages.OneShiftViewPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="stacklayout"
+                     Style="{DynamicResource themeStack}">
+            <Label x:Name="lblDescription"
+                   Style="{DynamicResource themeLabel}"/>
+
+            <Label x:Name="lblStart"
+                   FontAttributes="Italic"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="lblEnd"
+                   FontAttributes="Italic"
+                   Style="{DynamicResource themeLabel}"/>
+
+            <Label x:Name="lblPlaceHeader"
+                   FontAttributes="Bold"
+                   Margin="7"
+                   Style="{DynamicResource themeLabel}"/>
+
+            <ListView x:Name="listView"
+                      Margin="14"
+                      ItemTapped="listView_ItemTapped"
+                      Style="{DynamicResource themeStack}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

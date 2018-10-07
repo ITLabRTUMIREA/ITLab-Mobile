@@ -35,6 +35,9 @@ namespace Http_Post.Pages
                 var response = await client.GetStringAsync("Equipment/");
                 var equip = JsonConvert.DeserializeObject<ListResponse<EquipmentViewExtended>>(response);
 
+                if (equip.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: " + equip.StatusCode);
+
                 foreach(var e in equip.Data)
                 {
                     if (e.OwnerId == null)

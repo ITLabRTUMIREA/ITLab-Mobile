@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Pages.OnePlaceViewPage">
+    <ContentPage.Content>
+        <StackLayout x:Name="stacklayout"
+                     Style="{DynamicResource themeStack}">
+            <Label x:Name="lblDescription"
+                   FontAttributes="Italic"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="lblTarget"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="lblParticipants"
+                   FontAttributes="Bold"
+                   Style="{DynamicResource themeLabel}"/>
+            <StackLayout x:Name="stackParticipants"
+                         Margin="10"
+                         Padding="0"
+                         Spacing="2"
+                         IsVisible="False"
+                         Style="{DynamicResource themeStack}">
+                <Label Text="No participants"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       Style="{DynamicResource themelabel}"/>
+            </StackLayout>
+            <Label x:Name="lblEquipment"
+                   FontAttributes="Bold"
+                   Style="{DynamicResource themeLabel}"/>
+            <StackLayout x:Name="stackEquipment"
+                         Margin="10"
+                         Padding="0"
+                         Spacing="2"
+                         IsVisible="False"
+                         Style="{DynamicResource themeStack}">
+                <Label Text="No equipment"
+                       TextColor="Red"
+                       FontAttributes="Bold"
+                       Style="{DynamicResource themelabel}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

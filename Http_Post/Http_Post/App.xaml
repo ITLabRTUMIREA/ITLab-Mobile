@@ -6,6 +6,7 @@
         <!-- Application resource dictionary -->
 
         <ResourceDictionary>
+            <!-- Some properties for better view -->
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
             </Style>
@@ -16,6 +17,10 @@
                 <Setter Property="AutoSize" Value="TextChanges"/>
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="IsSpellCheckEnabled" Value="True"/>
+            </Style>
+            <Style TargetType="StackLayout">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Spacing" Value="5"/>
             </Style>
 
             <!-- Themes -->

@@ -30,7 +30,6 @@ namespace Http_Post.Pages
 
             listView.ItemsSource = OneEvent.Shifts;
             lbl.Text = Res.Resource.Shifts;
-            //UpdateTheme(); // It works without updating ))
         }
 
         private async void Show()
@@ -52,16 +51,11 @@ namespace Http_Post.Pages
             }
         }
 
-        private void UpdateTheme()
-        {
-            // It works without updating ))
-        }
-
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            var tapped = e.Item as ShiftView;
-            var index = OneEvent.Shifts.IndexOf(tapped);
-            // new Page
+            // Detect on which shift user has tapped
+            // Load new Page
+            Navigation.PushAsync(new OneShiftViewPage(e.Item as ShiftView));
         }
     }
 }
