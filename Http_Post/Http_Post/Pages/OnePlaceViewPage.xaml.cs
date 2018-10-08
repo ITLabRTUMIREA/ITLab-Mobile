@@ -3,11 +3,6 @@ using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -19,7 +14,7 @@ namespace Http_Post.Pages
 		public OnePlaceViewPage (PlaceView place, int index)
 		{
 			InitializeComponent ();
-            Title = "Place №" + index;
+            Title = $"{Resource.Place} №" + index;
             this.place = place;
 
             UpdateLanguage();
@@ -28,14 +23,18 @@ namespace Http_Post.Pages
 
         void UpdateLanguage()
         {
-            lblParticipants.Text = "Participants" + ':';
-            lblEquipment.Text = "Equipment" + ':';
-            lblDescription.Text = place.Description;
-            lblTarget.Text = place.Participants.Count.ToString() + " of " + place.TargetParticipantsCount.ToString();
+            noEquip.Text = Resource.NoEquipmentError; // if no equipment in this place
+            noPart.Text = Resource.NoParticipantsError; // if no participants in this place
+            lblParticipants.Text = $"{Resource.Participants}:"; // set title
+            lblEquipment.Text = $"{Resource.Equipment}:"; // set title
+            lblDescription.Text = string.IsNullOrEmpty(place.Description) ? Resource.NoDescriptionError : place.Description; // set description
+            lblTarget.Text = $"{Resource.Participants}: " + place.Participants.Count.ToString() + $" {Resource.Of} " + place.TargetParticipantsCount.ToString(); // set how many participants now in this place
         }
 
+        // Set properties for better view
         async void SetProperties()
         {
+            #region set participants
             for (int i = 0; i < place.Participants.Count; i++)
             {
                 stackParticipants.Children.Clear();
@@ -48,6 +47,8 @@ namespace Http_Post.Pages
                     TextColor = Color.Green,
                 });
             }
+            #endregion
+            #region set people who were invited
             for (int i = 0; i < place.Invited.Count; i++)
             {
                 stackParticipants.Children.Clear();
@@ -60,6 +61,8 @@ namespace Http_Post.Pages
                     TextColor = Color.Blue,
                 });
             }
+            #endregion
+            #region set people who want to take part in this place
             for (int i = 0; i < place.Wishers.Count; i++)
             {
                 stackParticipants.Children.Clear();
@@ -72,6 +75,8 @@ namespace Http_Post.Pages
                     TextColor = Color.SandyBrown,
                 });
             }
+            #endregion
+            #region set equipment on this place
             for (int i = 0; i < place.Equipment.Count; i++)
             {
                 var response = await Services.HttpClientFactory.HttpClient.GetStringAsync($"user/{place.Equipment[i].OwnerId}");
@@ -93,17 +98,20 @@ namespace Http_Post.Pages
                            '(' + ownerName + ')',
                 });
             }
+            #endregion
 
+            #region set 'TapGestureRecognizer' for Label which show titles of participants or equipment
             var tgr = new TapGestureRecognizer();
             tgr.Tapped += (s, e) =>
             {
-                if (((Label)s).Text.Equals("Participants" + ':'))
+                if (((Label)s).Text.Equals($"{Resource.Participants}:"))
                     stackParticipants.IsVisible = !stackParticipants.IsVisible;
-                else if (((Label)s).Text.Equals("Equipment" + ':'))
+                else if (((Label)s).Text.Equals($"{Resource.Equipment}:"))
                     stackEquipment.IsVisible = !stackEquipment.IsVisible;
             };
             lblParticipants.GestureRecognizers.Add(tgr);
             lblEquipment.GestureRecognizers.Add(tgr);
+            #endregion
         }
-	}
+    }
 }

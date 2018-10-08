@@ -189,6 +189,10 @@
     <value>Поиск</value>
     <comment>Searching by date -&gt; btn text</comment>
   </data>
+  <data name="Equipment" xml:space="preserve">
+    <value>Оборудование</value>
+    <comment>One place page -&gt; title for equipment list</comment>
+  </data>
   <data name="Equipment_BtnChangeOwner" xml:space="preserve">
     <value>Сменить владельца</value>
     <comment>Text for button to change owner</comment>
@@ -229,6 +233,10 @@
     <value>Нет описания</value>
     <comment>If Event has No Description -&gt; show it user</comment>
   </data>
+  <data name="NoEquipmentError" xml:space="preserve">
+    <value>Нет оборудования</value>
+    <comment>if Place or Event has no equipment -&gt;show it user</comment>
+  </data>
   <data name="NoEventTypeDescriptionError" xml:space="preserve">
     <value>Нет описания события</value>
     <comment>If Event has No Event Description -&gt;show it user</comment>
@@ -237,9 +245,29 @@
     <value>Нет заголовка события</value>
     <comment>If EventType has No title -&gt; show it user</comment>
   </data>
+  <data name="NoParticipantsError" xml:space="preserve">
+    <value>Нет участников</value>
+    <comment>if Place or Event has no participants-&gt;show it user</comment>
+  </data>
   <data name="NoTitleError" xml:space="preserve">
     <value>Нет заголовка</value>
     <comment>If Event has No Title -&gt;show it user</comment>
+  </data>
+  <data name="Of" xml:space="preserve">
+    <value>Из</value>
+    <comment>One place page -&gt; how many participants</comment>
+  </data>
+  <data name="Participants" xml:space="preserve">
+    <value>Участники</value>
+    <comment>One place page -&gt; title for participants list</comment>
+  </data>
+  <data name="Place" xml:space="preserve">
+    <value>Место</value>
+    <comment>Title for ONE 'place' on One Shift Page</comment>
+  </data>
+  <data name="Places" xml:space="preserve">
+    <value>Места</value>
+    <comment>Title for 'places' on One Shift Page</comment>
   </data>
   <data name="ProfileBtn_Save" xml:space="preserve">
     <value>Сохранить</value>

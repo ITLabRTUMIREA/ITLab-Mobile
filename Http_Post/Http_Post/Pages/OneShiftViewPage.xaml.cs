@@ -1,10 +1,6 @@
-﻿using Http_Post.Controls;
+﻿using Http_Post.Res;
 using Models.PublicAPI.Responses.Event;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -27,7 +23,7 @@ namespace Http_Post.Pages
         private void SetProperties()
         {
             Title = shift.BeginTime.ToString("dd MMMM, yyyy. HH: mm");
-            lblDescription.Text = shift.Description;
+            lblDescription.Text = string.IsNullOrEmpty(shift.Description) ? Resource.NoDescriptionError : shift.Description;
             lblStart.Text = shift.BeginTime.ToString("dd MMMM, yyyy. HH:mm");
             lblEnd.Text = shift.EndTime.ToString("dd MMMM, yyyy. HH:mm");
             ///////////////////////////////////////
@@ -35,7 +31,7 @@ namespace Http_Post.Pages
             for (int i = 0; i < places.Count; i++)
             {
                 var pview = new TextCell();
-                pview.Text = $"Place №{(i + 1).ToString()}";
+                pview.Text = $"{Resource.Place} №{(i + 1).ToString()}";
                 pview.TextColor = lblDescription.TextColor;
                 ps.Add(pview);
             }
@@ -55,7 +51,7 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            lblPlaceHeader.Text = "Places:";
+            lblPlaceHeader.Text = $"{Resource.Places}:";
         }
     }
 }
