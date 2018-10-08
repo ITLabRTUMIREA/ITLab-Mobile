@@ -55,7 +55,7 @@ namespace Http_Post.Pages
                 {
                     Text = place.Invited[i].User.FirstName +
                             place.Invited[i].User.LastName + '(' +
-                            place.Invited[i].EventRole + ')',
+                            place.Invited[i].EventRole.Title + ')',
                     Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
                     TextColor = Color.Blue,
                 });
@@ -67,7 +67,7 @@ namespace Http_Post.Pages
                 {
                     Text = place.Wishers[i].User.FirstName +
                             place.Wishers[i].User.LastName + '(' +
-                            place.Wishers[i].EventRole + ')',
+                            place.Wishers[i].EventRole.Title + ')',
                     Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
                     TextColor = Color.SandyBrown,
                 });
