@@ -1,4 +1,5 @@
-﻿using Models.PublicAPI.Responses.Event;
+﻿using Http_Post.Controls;
+using Models.PublicAPI.Responses.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +26,19 @@ namespace Http_Post.Pages
 
         private void SetProperties()
         {
+            Title = shift.BeginTime.ToString("dd MMMM, yyyy. HH: mm");
             lblDescription.Text = shift.Description;
             lblStart.Text = shift.BeginTime.ToString("dd MMMM, yyyy. HH:mm");
             lblEnd.Text = shift.EndTime.ToString("dd MMMM, yyyy. HH:mm");
             ///////////////////////////////////////
-            var ps = new List<string>();
+            var ps = new List<TextCell>();
             for (int i = 0; i < places.Count; i++)
-                ps.Add("Place №" + (i+1));
+            {
+                var pview = new TextCell();
+                pview.Text = $"Place №{(i + 1).ToString()}";
+                pview.TextColor = lblDescription.TextColor;
+                ps.Add(pview);
+            }
             listView.ItemsSource = ps;
         }
 
@@ -40,7 +47,7 @@ namespace Http_Post.Pages
             // Detect which place user has tapped
             // Index of place required for Title in new page (better view for user)
             // Load new Page
-            string tapped = e.Item as string;
+            string tapped = (e.Item as TextCell).Text;
             int index = tapped[tapped.Length - 1] - 49; // I don't know why Convert.ToInt32 doesn't work
             var place = places[index];
             Navigation.PushAsync(new OnePlaceViewPage(place, index + 1));

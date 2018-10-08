@@ -51,11 +51,11 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                stacklayout.Children.Add(new Label { Text = ex.Message });
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
-        private void ShowEvents()
+        private async void ShowEvents()
         {
             try
             {
@@ -63,7 +63,7 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                stacklayout.Children.Add(new Label { Text = ex.Message });
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
