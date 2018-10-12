@@ -13,12 +13,22 @@ namespace Http_Post.Pages
 		public CreateEventPage ()
 		{
 			InitializeComponent ();
-            Title = Res.Resource.Title_Create;
+            UpdateLanguage();
 		}
 
-        private void UpdateTheme()
+        private void UpdateLanguage()
         {
-
+            Title = Res.Resource.Title_Create;
+            lblEventType.Text = "Event Type";
+            lblName.Text = "Name";
+            lblDescription.Text = "Description";
+            lblAddress.Text = "Address";
+            btnAddShift.Text = "Shifts";
+            ///////////////////////////////////////
+            editEventType.Placeholder = lblEventType.Text;
+            editName.Placeholder = lblName.Text;
+            editDescription.Placeholder = lblDescription.Text;
+            editAddress.Placeholder = lblAddress.Text;
         }
 	}
 }

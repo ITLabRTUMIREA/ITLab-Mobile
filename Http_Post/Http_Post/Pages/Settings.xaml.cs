@@ -34,7 +34,7 @@ namespace Http_Post
             {
                 string result = await DisplayActionSheet("Choose language", cancel, null, loc.languages);
 
-                if (result.Equals(cancel))
+                if (result.Equals(cancel) || string.IsNullOrEmpty(result))
                     return;
 
                 result = result.ToUpper();
@@ -63,7 +63,7 @@ namespace Http_Post
                 var themeChanger = new ThemeChanger();
 
                 string result = await DisplayActionSheet(Resource.ThemeChoose, cancel, null, themeChanger.ThemesForUser.ToArray());
-                if (result.Equals(cancel))
+                if (result.Equals(cancel) || string.IsNullOrEmpty(result))
                     return;
 
                 themeChanger.ChangeTheme(result);
