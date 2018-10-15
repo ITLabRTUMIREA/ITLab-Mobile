@@ -18,6 +18,8 @@ namespace Http_Post.Pages
 	{
         private HttpClient client = HttpClientFactory.HttpClient;
         private Guid ownerId;
+        private EquipmentTypeView newETV;
+
         public CreateEquipment (Guid id)
 		{
 			InitializeComponent ();
@@ -65,8 +67,6 @@ namespace Http_Post.Pages
                 // TODO: show user about error
             }
         }
-
-        private EquipmentTypeView newETV;
 
         private async void BtnConfirm_Clicked(object sender, EventArgs e)
         {
@@ -121,7 +121,6 @@ namespace Http_Post.Pages
             await InputBox(Navigation);
         }
         
-        // TODO: replace with plugin
         public Task<string> InputBox(INavigation navigation)
         {
                 // wait in this proc, until user did his input 
@@ -229,7 +228,7 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                // TODO: show error to user OR REPLACE WITH PLUGIN
+                // TODO: think how to show error to user
                 return tcs.Task;
             }
         }
@@ -260,6 +259,5 @@ namespace Http_Post.Pages
         {
             Hide();
         }
-
     }
 }

@@ -189,6 +189,10 @@
     <value>Search</value>
     <comment>Searching by date -&gt; btn text</comment>
   </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+    <comment>Equipment page -&gt; text for Description of equip</comment>
+  </data>
   <data name="Equipment" xml:space="preserve">
     <value>Equipment</value>
     <comment>One place page -&gt; title for equipment list</comment>
@@ -204,10 +208,6 @@
   <data name="Equipment_BtnDelete" xml:space="preserve">
     <value>Delete</value>
     <comment>Text for button to delete equipment</comment>
-  </data>
-  <data name="Equipment_Description" xml:space="preserve">
-    <value>Description</value>
-    <comment>Equipment page -&gt; text for Description of equip</comment>
   </data>
   <data name="Equipment_Owner" xml:space="preserve">
     <value>Owner</value>
@@ -286,7 +286,7 @@
     <comment>Profile page text for Phone number</comment>
   </data>
   <data name="Shifts" xml:space="preserve">
-    <value>Shifts:</value>
+    <value>Shifts</value>
     <comment>Title for 'shifts' on One Event Page</comment>
   </data>
   <data name="TESTTESTESTTESTTESTEST" xml:space="preserve">

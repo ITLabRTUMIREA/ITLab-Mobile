@@ -223,6 +223,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Equipment.
         /// </summary>
         public static string Equipment {
@@ -255,15 +264,6 @@ namespace Http_Post.Res {
         public static string Equipment_BtnDelete {
             get {
                 return ResourceManager.GetString("Equipment_BtnDelete", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        public static string Equipment_Description {
-            get {
-                return ResourceManager.GetString("Equipment_Description", resourceCulture);
             }
         }
         
@@ -439,7 +439,7 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Shifts:.
+        ///   Looks up a localized string similar to Shifts.
         /// </summary>
         public static string Shifts {
             get {

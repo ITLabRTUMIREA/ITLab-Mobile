@@ -18,6 +18,7 @@
     
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
+            <ScrollView>
             <ContentPage.Content>
                 <StackLayout x:Name="stacklayout_Master" Padding="5" 
                              VerticalOptions="FillAndExpand"
@@ -50,6 +51,7 @@
                     <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
                 </StackLayout>
             </ContentPage.Content>
+            </ScrollView>
         </ContentPage>
     </MasterDetailPage.Master>
 
