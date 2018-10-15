@@ -203,7 +203,6 @@ namespace Http_Post.Pages
                     {
                         Title = entryTitle.Text,
                         Description = entryDescription.Text,
-                        // TODO: wait for Maksim PARENT and CHILD's
                     };
                     var jsonContent = JsonConvert.SerializeObject(newEventType);
                     var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
@@ -393,10 +392,21 @@ namespace Http_Post.Pages
                     var newShiftView = new ShiftView
                     {
                         Description = entryDescription.Text,
-                        // TODO: FIRSTLY THIS FIRE !   КОД КРАСНЫЙ   !
-                        // Show from back-end while debugging - how set them in the right way
-                        // Begin
-                        // End
+                        BeginTime = new DateTime (beginDate.Date.Year,
+                        beginDate.Date.Month,
+                        beginDate.Date.Day,
+                        beginTime.Time.Hours,
+                        beginTime.Time.Minutes,
+                        beginTime.Time.Seconds
+                        ),
+                        EndTime = new DateTime(endDate.Date.Year,
+                        endDate.Date.Month,
+                        endDate.Date.Day,
+                        endTime.Time.Hours,
+                        endTime.Time.Minutes,
+                        endTime.Time.Seconds
+                        ),
+                        // TODO: places
                     };
 
                     await navigation.PopModalAsync();

@@ -64,7 +64,11 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                // TODO: show user about error
+                stackLayout.Children.Add(new Label
+                {
+                    Text = ex.Message,
+                    Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style
+                });
             }
         }
 
@@ -125,13 +129,20 @@ namespace Http_Post.Pages
         {
                 // wait in this proc, until user did his input 
             var tcs = new TaskCompletionSource<string>();
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
+            };
             try
             {
-                var st = Application.Current.Resources;
                 var th = new Classes.ThemeChanger().Theme;
-                Style styleLbl = st[th + "_Lbl"] as Style;
-                Style styleBtn = st[th + "_Btn"] as Style;
-                Style styleStack = st[th + "_Stack"] as Style;
+                Style styleLbl = Application.Current.Resources[th + "_Lbl"] as Style;
+                Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
+                Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
 
                 var lbl = new Label { Text = "Create", HorizontalOptions = LayoutOptions.Center, FontAttributes = FontAttributes.Bold, Style = styleLbl };
                 var entryTitle = new Editor { Text = Entry_EquipType.Text, Placeholder = "Title", Style = styleLbl, PlaceholderColor = Btn_Confirm.BackgroundColor };
@@ -205,15 +216,10 @@ namespace Http_Post.Pages
                     Style = styleStack
                 };
 
-                var layout = new StackLayout
-                {
-                    Padding = new Thickness(0, 40, 0, 0),
-                    VerticalOptions = LayoutOptions.StartAndExpand,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    Orientation = StackOrientation.Vertical,
-                    Style = styleStack,
-                    Children = { lbl, entryTitle, entryDescription, slButtons },
-                };
+                layout.Children.Add(lbl);
+                layout.Children.Add(entryTitle);
+                layout.Children.Add(entryDescription);
+                layout.Children.Add(slButtons);
 
                 // create and show page
                 var page = new ContentPage()
@@ -228,8 +234,21 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                // TODO: think how to show error to user
-                return tcs.Task;
+                var itisLabel = layout.Children[layout.Children.Count - 1];
+                if (itisLabel.Equals(new Label()))
+                {
+                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
+                }
+                else
+                {
+                    layout.Children.Add(new Label
+                    {
+                        Text = ex.Message,
+                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
+                        HorizontalOptions = LayoutOptions.Center
+                    });
+                }
+                return tcs.Task; // while Task != "good" -> invoke Task
             }
         }
 
