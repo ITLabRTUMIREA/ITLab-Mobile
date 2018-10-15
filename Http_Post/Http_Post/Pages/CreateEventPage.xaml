@@ -38,6 +38,7 @@
                 <!-- Button to add shifts in event -->
                 <Button x:Name="btnAddShift"
                         Margin="10,20"
+                        Clicked="btnAddShift_Clicked"
                         Style="{DynamicResource themeButton}"/>
                 <StackLayout x:Name="stackShifts"
                              IsVisible="False"

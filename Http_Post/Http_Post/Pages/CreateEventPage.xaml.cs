@@ -4,7 +4,6 @@ using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +16,7 @@ namespace Http_Post.Pages
 	{
         private HttpClient client = Services.HttpClientFactory.HttpClient;
         private EventTypeView newETV;
+        private List<ShiftView> newShifts;
 
         public CreateEventPage ()
 		{
@@ -40,15 +40,53 @@ namespace Http_Post.Pages
             editAddress.Placeholder = lblAddress.Text;
         }
 
-        private void editEventType_TextChanged(object sender, TextChangedEventArgs e)
+        private async Task editEventType_TextChangedAsync(object sender, TextChangedEventArgs e)
         {
-            // TODO: запрос на уже сущесвующие
-            // подлглядеть в EquipmentCreate
+            Show();
+            stackEventType.Children.Clear();
+            try
+            {
+                var lbl = (Editor)sender;
+                var response = await client.GetStringAsync($"EventType?all=true&match={lbl.Text}");
+                var equipType = JsonConvert.DeserializeObject<ListResponse<EventTypeView>>(response);
+                if (equipType.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {equipType.StatusCode}");
+
+                Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
+                foreach (var eq in equipType.Data)
+                {
+                    var tapGestureRecognizer = new TapGestureRecognizer();
+                    tapGestureRecognizer.Tapped += (s, args) => {
+                        Hide();
+                        editEventType.Text = eq.Title;
+                        newETV = eq;
+                        editName.Focus();
+                    };
+                    var label = new Label
+                    {
+                        Style = styleLbl,
+                        Text = eq.Title
+                    };
+                    label.GestureRecognizers.Add(tapGestureRecognizer);
+                    stackEventType.Children.Add(label);
+                    if (stackEventType.Children.Count >= 5)
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                stackEventType.Children.Add(new Label
+                {
+                    Text = ex.Message,
+                    Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style
+                });
+            }
         }
 
         private async void btnCreateEventType_Clicked(object sender, EventArgs e)
         {
-            await InputBox(Navigation);
+            await AddEventType(Navigation);
         }
 
         private async void btnCreateEvent_Clicked(object sender, EventArgs e)
@@ -109,9 +147,17 @@ namespace Http_Post.Pages
             return true;
         }
 
-        public Task<string> InputBox(INavigation navigation)
+        public Task<string> AddEventType(INavigation navigation)
         { 
             var tcs = new TaskCompletionSource<string>();
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
+            };
             try
             {
                 var th = new Classes.ThemeChanger().Theme;
@@ -195,15 +241,10 @@ namespace Http_Post.Pages
                     Style = styleStack
                 };
 
-                var layout = new StackLayout
-                {
-                    Padding = new Thickness(0, 40, 0, 0),
-                    VerticalOptions = LayoutOptions.StartAndExpand,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    Orientation = StackOrientation.Vertical,
-                    Style = styleStack,
-                    Children = { lbl, entryTitle, entryDescription, slButtons },
-                };
+                layout.Children.Add(lbl);
+                layout.Children.Add(entryTitle);
+                layout.Children.Add(entryDescription);
+                layout.Children.Add(slButtons);
 
                 var page = new ContentPage()
                 {
@@ -216,8 +257,21 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                // TODO: think how to show error to user
-                return tcs.Task;
+                var itisLabel = layout.Children[layout.Children.Count - 1];
+                if (itisLabel.Equals(new Label()))
+                {
+                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
+                }
+                else
+                {
+                    layout.Children.Add(new Label
+                    {
+                        Text = ex.Message,
+                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
+                        HorizontalOptions = LayoutOptions.Center
+                    });
+                }
+                return tcs.Task; // while Task != "good" -> invoke Task
             }
         }
 
@@ -236,6 +290,175 @@ namespace Http_Post.Pages
         private void editName_Focused(object sender, FocusEventArgs e)
         {
             Hide();
+        }
+
+        private async void btnAddShift_Clicked(object sender, EventArgs e)
+        {
+            await AddShift(Navigation);
+        }
+
+        public Task<string> AddShift(INavigation navigation)
+        {
+            var tcs = new TaskCompletionSource<string>();
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
+            }; // init here in a way to use it in 'catch' block
+            try
+            {
+                var th = new Classes.ThemeChanger().Theme;
+                Style styleLbl = Application.Current.Resources[th + "_Lbl"] as Style;
+                Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
+                Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
+
+                var lbl = new Label
+                {
+                    Text = "Create",
+                    HorizontalOptions = LayoutOptions.Center,
+                    FontAttributes = FontAttributes.Bold,
+                    Style = styleLbl
+                };
+                #region Adding labels which will show user, where is beginig and ending time/date
+                var lblBegin = new Label
+                {
+                    Text = "Begin",
+                    Style = styleLbl
+                };
+                var lblEnd = new Label
+                {
+                    Text = "End",
+                    Style = styleLbl
+                };
+                var slHints = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Children = { lblBegin, lblEnd },
+                    Style = styleStack
+                };
+                #endregion
+                var entryDescription = new Editor
+                {
+                    Text = "",
+                    Placeholder = "Desciption",
+                    Style = styleLbl,
+                };
+                #region Adding time/date pickers and create special layouts for them
+                var beginDate = new DatePicker
+                {
+                    MinimumDate = DateTime.Now.AddDays(-3)
+                };
+                var endDate = new DatePicker
+                {
+                    MinimumDate = DateTime.Now.AddDays(-3)
+                };
+                var slDates = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Children = { beginDate, beginDate },
+                    Style = styleStack
+                };
+                var beginTime = new TimePicker();
+                var endTime = new TimePicker();
+                var slTimes = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Children = { beginTime, endTime },
+                    Style = styleStack
+                };
+                #endregion
+                var btnOk = new Button
+                {
+                    Text = "Ok",
+                    WidthRequest = 100,
+                    Style = styleBtn
+                };
+                btnOk.Clicked += async (s, e) =>
+                {
+                    if (string.IsNullOrEmpty(entryDescription.Text) || string.IsNullOrWhiteSpace(entryDescription.Text))
+                    {
+                        entryDescription.Focus();
+                        return;
+                    }
+
+                    if (endDate.Date < beginDate.Date)
+                        throw new Exception($"Error: {Resource.DateError}"); // Ending date can't be less than begining date!
+
+                    var newShiftView = new ShiftView
+                    {
+                        Description = entryDescription.Text,
+                        // TODO: FIRSTLY THIS FIRE !   КОД КРАСНЫЙ   !
+                        // Show from back-end while debugging - how set them in the right way
+                        // Begin
+                        // End
+                    };
+
+                    await navigation.PopModalAsync();
+                    newShifts.Add(newShiftView);
+                    editName.Focus();
+                    tcs.SetResult(null);
+                };
+
+                var btnCancel = new Button
+                {
+                    Text = "Cancel",
+                    WidthRequest = 100,
+                    Style = styleBtn
+                };
+                btnCancel.Clicked += async (s, e) =>
+                {
+                    await navigation.PopModalAsync();
+                    tcs.SetResult(null);
+                };
+
+                var slButtons = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Children = { btnOk, btnCancel },
+                    Style = styleStack
+                };
+
+                layout.Children.Add(lbl);
+                layout.Children.Add(entryDescription);
+                layout.Children.Add(slHints);
+                layout.Children.Add(slDates);
+                layout.Children.Add(slTimes);
+                layout.Children.Add(slButtons);
+
+                var page = new ContentPage()
+                {
+                    Style = styleStack
+                };
+                page.Content = layout;
+                navigation.PushModalAsync(page);
+                entryDescription.Focus();
+                return tcs.Task;
+            }
+            catch (Exception ex)
+            {
+                var itisLabel = layout.Children[layout.Children.Count - 1];
+                if (itisLabel.Equals(new Label()))
+                {
+                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
+                }
+                else
+                {
+                    layout.Children.Add(new Label
+                    {
+                        Text = ex.Message,
+                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
+                        HorizontalOptions = LayoutOptions.Center
+                    });
+                }
+                return tcs.Task; // while Task != "good" -> invoke Task
+            }
         }
     }
 }

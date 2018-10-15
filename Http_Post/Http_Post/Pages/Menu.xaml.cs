@@ -61,7 +61,7 @@ namespace Http_Post
 
         private void BtnDateSearch_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new DateSearchPage(student)) {
+            Detail = new NavigationPage(new DateSearchPage()) {
                 Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
             }; // Load Date searching page
             Close();

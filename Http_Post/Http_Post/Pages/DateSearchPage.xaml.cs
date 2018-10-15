@@ -18,13 +18,11 @@ namespace Http_Post.Pages
 	public partial class DateSearchPage : ContentPage
 	{
         private readonly HttpClient client = HttpClientFactory.HttpClient;
-        private OneObjectResponse<LoginResponse> student;
 
-        public DateSearchPage(OneObjectResponse<LoginResponse> student)
+        public DateSearchPage()
         {
 			InitializeComponent ();
             SetDates();
-            this.student = student;
             UpdateTheme();
         }
 
