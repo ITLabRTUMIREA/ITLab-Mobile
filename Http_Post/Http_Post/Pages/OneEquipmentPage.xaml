@@ -6,58 +6,38 @@
         <ScrollView>
         <StackLayout Style="{DynamicResource themeStack}"
                      Spacing="5">
-            <Label x:Name="Label_Type"
+            <Label x:Name="lblType"
                    Style="{DynamicResource themeLabel}"/>
-            <Editor x:Name="Entry_Type"
+            <Editor x:Name="editType"
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
-            <Label x:Name="Label_Number"
+            <Label x:Name="lblNumber"
                    Style="{DynamicResource themeLabel}"/>
-            <Editor x:Name="Entry_Number"
+            <Editor x:Name="editNumber"
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
-            <Label x:Name="Label_Description"
+            <Label x:Name="lblDescription"
                    Style="{DynamicResource themeLabel}"/>
-            <Editor x:Name="Entry_Description"
+            <Editor x:Name="editDescription"
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
-            <Label x:Name="Label_OwnerTitle"
+            <Label x:Name="lblOwnerTitle"
                    Style="{DynamicResource themeLabel}"/>
-            <Label x:Name="Label_Owner"
+                <Label x:Name="lblOwner"
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
 
                 <StackLayout Orientation="Horizontal"
                          Style="{DynamicResource themeStack}">
-                    <Button x:Name="Button_Confirm"
-                            Clicked="Button_Confirm_Clicked"
+                    <Button x:Name="btnConfirm"
+                            Clicked="btnConfirm_Clicked"
                             Style="{DynamicResource themeButton}"/>
-                    <Button x:Name="Button_ChangeOwner"
-                            Clicked="Button_ChangeOwner_Clicked"
+                    <Button x:Name="btnChangeOwner"
+                            Clicked="btnChangeOwner_Clicked"
                             Style="{DynamicResource themeButton}"/>
-                    <Button x:Name="Button_Delete"
-                            Clicked="Button_Delete_Clicked"
+                    <Button x:Name="btnDelete"
+                            Clicked="btnDelete_Clicked"
                             Style="{DynamicResource themeButton}"/>
-                </StackLayout>
-
-                <StackLayout x:Name="stackFind"
-                             IsVisible="True"
-                         Style="{DynamicResource themeStack}"
-                         Orientation="Vertical">
-                    <Editor x:Name="Entry_Find"
-                           TextChanged="Entry_Find_TextChanged"
-                           Style="{DynamicResource themeLabel}"/>
-                    <ListView x:Name="listView"
-                              Style="{DynamicResource themeStack}"
-                              ItemTapped="listView_ItemTapped">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <!-- Put stack layout here -->
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

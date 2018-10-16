@@ -11,6 +11,7 @@ using Models.PublicAPI.Responses.People;
 using Models.PublicAPI.Responses.Equipment;
 using System.Text;
 using Models.PublicAPI.Responses.Exceptions;
+using System.Threading.Tasks;
 
 namespace Http_Post.Pages
 {
@@ -18,6 +19,7 @@ namespace Http_Post.Pages
 	{
         private Guid EquipId { get; }
         private Guid OwnerId;
+        private UserView newUser;
         private HttpClient client = HttpClientFactory.HttpClient;
         private EquipmentViewExtended equipment { get; set; }
         private Action updateEquip;
@@ -61,28 +63,28 @@ namespace Http_Post.Pages
 
         private void SetInfo()
         {
-            Entry_Type.Text = equipment.EquipmentType.Title;
-            Entry_Number.Text = equipment.SerialNumber;
-            Entry_Description.Text = equipment.Description;
-            Label_Owner.Text = equipment.OwnerName;
+            editType.Text = equipment.EquipmentType.Title;
+            editNumber.Text = equipment.SerialNumber;
+            editDescription.Text = equipment.Description;
+            lblOwner.Text = equipment.OwnerName;
         }
 
         private void UpdateLanguage()
         {
             Title = Resource.Title_Equipment;
-            Label_Type.Text = Resource.Equipment_Type;
-            Label_Number.Text = Resource.Equipment_SerialNumber;
-            Label_Description.Text = Resource.Equipment_Description;
-            Label_OwnerTitle.Text = Resource.Equipment_Owner;
+            lblType.Text = Resource.Equipment_Type;
+            lblNumber.Text = Resource.Equipment_SerialNumber;
+            lblDescription.Text = Resource.Description;
+            lblOwnerTitle.Text = Resource.Equipment_Owner;
             /////////////////////////////////////////////////////
-            Button_Confirm.Text = Resource.Equipment_BtnConfirm;
-            Button_ChangeOwner.Text = Resource.Equipment_BtnChangeOwner;
-            Button_Delete.Text = Resource.Equipment_BtnDelete;
+            btnConfirm.Text = Resource.Equipment_BtnConfirm;
+            btnChangeOwner.Text = Resource.Equipment_BtnChangeOwner;
+            btnDelete.Text = Resource.Equipment_BtnDelete;
             ////////////////////////////////////////////////////
-            Button_Delete.BackgroundColor = Color.FromHex("#ff8080"); // Pretty red
+            btnDelete.BackgroundColor = Color.FromHex("#ff8080"); // Pretty red
         }
 
-        private async void Button_Confirm_Clicked(object sender, EventArgs e)
+        private async void btnConfirm_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -95,15 +97,15 @@ namespace Http_Post.Pages
                         EquipmentTypeId = equipment.EquipmentTypeId, // BY DEFAULT
                         EquipmentType = new EquipmentTypeView
                         {
-                            Title = Entry_Type.Text,
+                            Title = editType.Text,
                             Description = equipment.EquipmentType.Description,
                             Id = equipment.EquipmentTypeId,
                             Childs = equipment.EquipmentType.Childs, // BY DEFAULT
                             Parent = equipment.EquipmentType.Parent // BY DEFAULT
                         },
-                        Description = Entry_Description.Text,
-                        SerialNumber = Entry_Number.Text,
-                        OwnerId = equipment.OwnerId
+                        Description = editDescription.Text,
+                        SerialNumber = editNumber.Text,
+                        OwnerId = newUser == null ? equipment.OwnerId : newUser.Id // if we change owner it won't be null
                     };
 
                     var jsonContent = JsonConvert.SerializeObject(equipmentView);
@@ -125,20 +127,12 @@ namespace Http_Post.Pages
             }
         }
 
-        private async void Button_ChangeOwner_Clicked(object sender, EventArgs e)
+        private async void btnChangeOwner_Clicked(object sender, EventArgs e)
         {
-            try
-            {
-                // TODO: display new name
-                // change equipment.OwnerId
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
+            await ChangeOwner(Navigation);
         }
 
-        private async void Button_Delete_Clicked(object sender, EventArgs e)
+        private async void btnDelete_Clicked(object sender, EventArgs e)
         {
             try
             {
@@ -168,21 +162,166 @@ namespace Http_Post.Pages
             }
         }
 
-        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        public Task<string> ChangeOwner(INavigation navigation)
         {
-            // TODO: set new Owner
-        }
-
-        private async void Entry_Find_TextChanged(object sender, TextChangedEventArgs e)
-        {
+            // wait in this proc, until user did his input 
+            var tcs = new TaskCompletionSource<string>();
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
+            };
             try
             {
-                //var response = await client.GetStringAsync($"user/?email={Entry_Find.Text}&firstname={Entry_Find.Text}&lastname={Entry_Find.Text}");
-                // PageOfListResponse ?
+                var th = new Classes.ThemeChanger().Theme;
+                Style styleLbl = Application.Current.Resources[th + "_Lbl"] as Style;
+                Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
+                Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
+
+                var lbl = new Label { Text = "Change",
+                    HorizontalOptions = LayoutOptions.Center,
+                    FontAttributes = FontAttributes.Bold,
+                    Style = styleLbl };
+                var edit = new Editor { Text = "",
+                    Placeholder = "Enter name here",
+                    Style = styleLbl, };
+                var stack = new StackLayout
+                {
+                    Orientation = StackOrientation.Vertical,
+                    HorizontalOptions = LayoutOptions.Center,
+                    IsVisible = false,
+                    Style = styleStack
+                }; // stack for adding here names of people
+
+                edit.TextChanged += async (sender, e) =>
+                {
+                    stack.IsVisible = true;
+                    stack.Children.Clear();
+                    try
+                    {
+                        var txt = (Editor)sender;
+                        var response = await client.GetStringAsync($"user/count/?email={txt.Text}&count=10&firstname={txt.Text}&lastname={txt.Text}&match=gmail");
+                        var users = JsonConvert.DeserializeObject<ListResponse<UserView>>(response);
+                        if (users.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                            throw new Exception($"Error: {users.StatusCode}");
+
+                        Style st = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
+                        foreach (var u in users.Data)
+                        {
+                            var tapGestureRecognizer = new TapGestureRecognizer();
+                            tapGestureRecognizer.Tapped += (s, args) =>
+                            {
+                                stack.IsVisible = false;
+                                edit.Text = u.FirstName + " " + u.LastName;
+                                newUser = u;
+                            };
+                            var label = new Label
+                            {
+                                Style = st,
+                                Text = u.FirstName + " " + u.LastName
+                            };
+                            label.GestureRecognizers.Add(tapGestureRecognizer);
+                            stack.Children.Add(label);
+                            if (stack.Children.Count >= 5)
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        stack.Children.Add(new Label
+                        {
+                            Text = ex.Message,
+                            Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style
+                        });
+                    }
+                };
+
+                var btnOk = new Button
+                {
+                    Text = "Ok",
+                    WidthRequest = 100,
+                    Style = styleBtn
+                };
+                btnOk.Clicked += async (s, e) =>
+                {
+                    if (string.IsNullOrEmpty(edit.Text) || string.IsNullOrWhiteSpace(edit.Text))
+                    {
+                        edit.Focus();
+                        return;
+                    }
+
+                    if (newUser == null)
+                        tcs.SetResult(null);
+
+                    btnConfirm.BackgroundColor = Color.FromHex("#17cf54");
+                    lblOwner.Text = newUser.FirstName + " " + newUser.LastName + ", " +
+                        newUser.Email;
+
+                    // change, close
+                    await navigation.PopModalAsync();
+                    btnConfirm.Focus();
+                    // pass result
+                    tcs.SetResult(null);
+                };
+
+                var btnCancel = new Button
+                {
+                    Text = "Cancel",
+                    WidthRequest = 100,
+                    Style = styleBtn
+                };
+                btnCancel.Clicked += async (s, e) =>
+                {
+                    // close page
+                    await navigation.PopModalAsync();
+                    // pass empty result
+                    tcs.SetResult(null);
+                };
+
+                var slButtons = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Children = { btnOk, btnCancel },
+                    Style = styleStack
+                };
+
+                layout.Children.Add(lbl);
+                layout.Children.Add(stack);
+                layout.Children.Add(edit);
+                layout.Children.Add(slButtons);
+
+                // create and show page
+                var page = new ContentPage()
+                {
+                    Style = styleStack
+                };
+                page.Content = layout;
+                navigation.PushModalAsync(page);
+                // open keyboard
+                edit.Focus();
+                return tcs.Task;
             }
             catch (Exception ex)
             {
-
+                var itisLabel = layout.Children[layout.Children.Count - 1];
+                if (itisLabel.Equals(new Label()))
+                {
+                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
+                }
+                else
+                {
+                    layout.Children.Add(new Label
+                    {
+                        Text = ex.Message,
+                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
+                        HorizontalOptions = LayoutOptions.Center
+                    });
+                }
+                return tcs.Task; // while Task != "good" -> invoke Task
             }
         }
     }
