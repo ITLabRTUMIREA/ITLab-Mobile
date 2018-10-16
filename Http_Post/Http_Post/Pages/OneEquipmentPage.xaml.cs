@@ -23,8 +23,9 @@ namespace Http_Post.Pages
         private HttpClient client = HttpClientFactory.HttpClient;
         private EquipmentViewExtended equipment { get; set; }
         private Action updateEquip;
+        private EquipmentTypeView newETV;
 
-		public OneEquipmentPage (Guid equipId, Action actionToUpdateEquip)
+        public OneEquipmentPage (Guid equipId, Action actionToUpdateEquip)
 		{
 			InitializeComponent ();
 
@@ -80,6 +81,7 @@ namespace Http_Post.Pages
             btnConfirm.Text = Resource.Equipment_BtnConfirm;
             btnChangeOwner.Text = Resource.Equipment_BtnChangeOwner;
             btnDelete.Text = Resource.Equipment_BtnDelete;
+            btnCreateType.Text = "Create equipment type"; // TODO: localization
             ////////////////////////////////////////////////////
             btnDelete.BackgroundColor = Color.FromHex("#ff8080"); // Pretty red
         }
@@ -88,14 +90,13 @@ namespace Http_Post.Pages
         {
             try
             {
-                // TODO: equipment TYPE (Like in creation) list while text changing
                 bool save = await DisplayAlert("", Resource.ADMIN_Sure, Resource.ADMIN_Yes, Resource.ADMIN_No);
                 if (save) {
                     EquipmentView equipmentView = new EquipmentView
                     {
                         Id = equipment.Id, // BY DEFAULT
                         EquipmentTypeId = equipment.EquipmentTypeId, // BY DEFAULT
-                        EquipmentType = new EquipmentTypeView
+                        EquipmentType = newETV ?? new EquipmentTypeView
                         {
                             Title = editType.Text,
                             Description = equipment.EquipmentType.Description,
@@ -303,6 +304,191 @@ namespace Http_Post.Pages
                 navigation.PushModalAsync(page);
                 // open keyboard
                 edit.Focus();
+                return tcs.Task;
+            }
+            catch (Exception ex)
+            {
+                var itisLabel = layout.Children[layout.Children.Count - 1];
+                if (itisLabel.Equals(new Label()))
+                {
+                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
+                }
+                else
+                {
+                    layout.Children.Add(new Label
+                    {
+                        Text = ex.Message,
+                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
+                        HorizontalOptions = LayoutOptions.Center
+                    });
+                }
+                return tcs.Task; // while Task != "good" -> invoke Task
+            }
+        }
+
+        private async void btnCreateType_Clicked(object sender, EventArgs e)
+        {
+            await CreateEquipmentType(Navigation);
+        }
+
+        private async void editType_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            btnCreateType.IsVisible = true;
+            stackCreateType.IsVisible = true;
+            stackCreateType.Children.Clear();
+            try
+            {
+                var txt = (Editor)sender;
+                var response = await client.GetStringAsync($"EquipmentType?match={txt.Text}&all=true");
+                var equipType = JsonConvert.DeserializeObject<ListResponse<EquipmentTypeView>>(response);
+                if (equipType.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {equipType.StatusCode}");
+
+                Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
+                foreach (var eq in equipType.Data)
+                {
+                    var tapGestureRecognizer = new TapGestureRecognizer();
+                    tapGestureRecognizer.Tapped += (s, args) => {
+                        btnCreateType.IsVisible = false;
+                        stackCreateType.IsVisible = false;
+                        editType.Text = eq.Title;
+                        newETV = eq;
+                        editNumber.Focus();
+                    };
+                    var label = new Label
+                    {
+                        Style = styleLbl,
+                        Text = eq.Title
+                    };
+                    label.GestureRecognizers.Add(tapGestureRecognizer);
+                    stackCreateType.Children.Add(label);
+                    if (stackCreateType.Children.Count >= 5)
+                        break;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                stackCreateType.Children.Add(new Label
+                {
+                    Text = ex.Message,
+                    Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style
+                });
+            }
+        }
+
+        public Task<string> CreateEquipmentType(INavigation navigation)
+        {
+            // wait in this proc, until user did his input 
+            var tcs = new TaskCompletionSource<string>();
+            var layout = new StackLayout
+            {
+                Padding = new Thickness(0, 40, 0, 0),
+                VerticalOptions = LayoutOptions.StartAndExpand,
+                HorizontalOptions = LayoutOptions.CenterAndExpand,
+                Orientation = StackOrientation.Vertical,
+                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
+            };
+            try
+            {
+                var th = new Classes.ThemeChanger().Theme;
+                Style styleLbl = Application.Current.Resources[th + "_Lbl"] as Style;
+                Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
+                Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
+
+                var lbl = new Label { Text = "Create",
+                    HorizontalOptions = LayoutOptions.Center,
+                    FontAttributes = FontAttributes.Bold,
+                    Style = styleLbl };
+                var entryTitle = new Editor { Text = editType.Text,
+                    Placeholder = "Title", 
+                    Style = styleLbl, };
+                var entryDescription = new Editor { Text = "",
+                    Placeholder = "Desciption",
+                    Style = styleLbl, };
+
+                entryTitle.Completed += (s, e) =>
+                { entryDescription.Focus(); };
+
+                var btnOk = new Button
+                {
+                    Text = "Ok",
+                    WidthRequest = 100,
+                    Style = styleBtn
+                };
+                btnOk.Clicked += async (s, e) =>
+                {
+                    if (string.IsNullOrEmpty(entryTitle.Text) || string.IsNullOrWhiteSpace(entryTitle.Text))
+                    {
+                        entryTitle.Focus();
+                        return;
+                    }
+
+                    if (string.IsNullOrEmpty(entryDescription.Text) || string.IsNullOrWhiteSpace(entryDescription.Text))
+                    {
+                        entryDescription.Focus();
+                        return;
+                    }
+
+                    var newEqType = new EquipmentTypeView
+                    {
+                        Title = entryTitle.Text,
+                        Description = entryDescription.Text,
+                        // TODO: wait for Maksim PARENT and CHILD's
+                    };
+                    var jsonContent = JsonConvert.SerializeObject(newEqType);
+                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                    var result = await client.PostAsync("EquipmentType", content);
+
+                    var resultContent = await result.Content.ReadAsStringAsync();
+                    var message = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentTypeView>>(resultContent);
+                    if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                        throw new Exception($"Error: {message.StatusCode}");
+
+                    await navigation.PopModalAsync();
+                    editType.Text = message.Data.Title;
+                    newETV = message.Data;
+                    editNumber.Focus();
+                    // pass result
+                    tcs.SetResult(null);
+                };
+
+                var btnCancel = new Button
+                {
+                    Text = "Cancel",
+                    WidthRequest = 100,
+                    Style = styleBtn
+                };
+                btnCancel.Clicked += async (s, e) =>
+                {
+                    // close page
+                    await navigation.PopModalAsync();
+                    // pass empty result
+                    tcs.SetResult(null);
+                };
+
+                var slButtons = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.Center,
+                    Children = { btnOk, btnCancel },
+                    Style = styleStack
+                };
+
+                layout.Children.Add(lbl);
+                layout.Children.Add(entryTitle);
+                layout.Children.Add(entryDescription);
+                layout.Children.Add(slButtons);
+
+                // create and show page
+                var page = new ContentPage()
+                {
+                    Style = styleStack
+                };
+                page.Content = layout;
+                navigation.PushModalAsync(page);
+                // open keyboard
+                entryTitle.Focus();
                 return tcs.Task;
             }
             catch (Exception ex)

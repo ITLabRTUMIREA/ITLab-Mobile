@@ -255,6 +255,7 @@ namespace Http_Post.Pages
         private void UpdateLanguage()
         {
             Title = Resource.Title_Create;
+            // TODO: localization
             Btn_CreateEqType.Text = "Create new Type";
             Btn_Confirm.Text = "Confirm";
             Lbl_EquipType.Text = Entry_EquipType.Placeholder = "Type";
