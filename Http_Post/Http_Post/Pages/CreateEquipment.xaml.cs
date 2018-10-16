@@ -30,12 +30,14 @@ namespace Http_Post.Pages
             eqId = equipment.Id;
 
             editEquipType.Text = equipment.EquipmentType.Title;
-            Hide();
+            Hide(null, null);
             editSerialNumber.Text = equipment.SerialNumber;
             editDescription.Text = equipment.Description;
             lblOwner.Text = equipment.OwnerName;
             newETV = equipment.EquipmentType;
             ownerId = equipment.OwnerId;
+
+            btnConfirm.BackgroundColor = btnChangeOwner.BackgroundColor;
         }
 
         public CreateEquipment ()
@@ -50,6 +52,12 @@ namespace Http_Post.Pages
             UpdateLanguage();
         }
 
+        // if user write smth 'Confirm' btn will glow green to show - you need to save it
+        private void DefaultTextChanged(object sender, TextChangedEventArgs e)
+        {
+            SetGreenColorToConfirm();
+        }
+
         private void SetGreenColorToConfirm()
         {
             btnConfirm.BackgroundColor = Color.FromHex("#004d00");
@@ -58,6 +66,7 @@ namespace Http_Post.Pages
         private async void editEquipType_TextChanged(object sender, TextChangedEventArgs e)
         {
             Show();
+            SetGreenColorToConfirm();
             stack.Children.Clear();
             try
             {
@@ -72,11 +81,10 @@ namespace Http_Post.Pages
                 {
                     var tapGestureRecognizer = new TapGestureRecognizer();
                     tapGestureRecognizer.Tapped += (s, args) => {
-                        Hide();
+                        Hide(null, null);
                         editEquipType.Text = eq.Title;
                         newETV = eq;
                         editSerialNumber.Focus();
-                        SetGreenColorToConfirm();
                     };
                     var label = new Label
                     {
@@ -219,6 +227,7 @@ namespace Http_Post.Pages
                     editEquipType.Text = message.Data.Title;
                     newETV = message.Data;
                     editSerialNumber.Focus();
+                    SetGreenColorToConfirm();
                     // pass result
                     tcs.SetResult(null);
                 };
@@ -280,34 +289,6 @@ namespace Http_Post.Pages
                 return tcs.Task; // while Task != "good" -> invoke Task
             }
         }
-
-        private void UpdateLanguage()
-        {
-            Title = Resource.Title_Create;
-            // TODO: localization
-            btnCreateEqType.Text = "Create new Type";
-            btnConfirm.Text = "Confirm";
-            btnChangeOwner.Text = "Change owner";
-            lblEquipType.Text = editEquipType.Placeholder = "Type";
-            lblSerialNumber.Text = editSerialNumber.Placeholder = "Serial Number";
-            lblDescription.Text = editDescription.Placeholder = "Description";
-            lblOwnerTitle.Text = "Owner";
-        }
-
-        private void Show()
-        {
-            stack.IsVisible = true;
-            btnCreateEqType.IsVisible = true;
-        }
-
-        private void Hide()
-        {
-            stack.IsVisible = false;
-            btnCreateEqType.IsVisible = false;
-        }
-
-        private void editSerialNumber_Focused(object sender, FocusEventArgs e)
-            => Hide();
 
         private async void btnChangeOwner_Clicked(object sender, EventArgs e)
             => await ChangeOwner(Navigation);
@@ -473,6 +454,31 @@ namespace Http_Post.Pages
                 }
                 return tcs.Task; // while Task != "good" -> invoke Task
             }
+        }
+
+        private void UpdateLanguage()
+        {
+            Title = Resource.Title_Create;
+            // TODO: localization
+            btnCreateEqType.Text = "Create new Type";
+            btnConfirm.Text = "Confirm";
+            btnChangeOwner.Text = "Change owner";
+            lblEquipType.Text = editEquipType.Placeholder = "Type";
+            lblSerialNumber.Text = editSerialNumber.Placeholder = "Serial Number";
+            lblDescription.Text = editDescription.Placeholder = "Description";
+            lblOwnerTitle.Text = "Owner";
+        }
+
+        private void Show()
+        {
+            stack.IsVisible = true;
+            btnCreateEqType.IsVisible = true;
+        }
+
+        private void Hide(object sender, FocusEventArgs e)
+        {
+            stack.IsVisible = false;
+            btnCreateEqType.IsVisible = false;
         }
     }
 }

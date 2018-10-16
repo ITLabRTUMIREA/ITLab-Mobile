@@ -11,6 +11,7 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editEquipType"
                        TextChanged="editEquipType_TextChanged"
+                        Unfocused="Hide"
                        Style="{DynamicResource themeLabel}"/>
                 <Button x:Name="btnCreateEqType"
                         Clicked="btnCreateEqType_Clicked"
@@ -26,12 +27,13 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editSerialNumber"
                        Margin="0,0,0,20"
-                       Focused="editSerialNumber_Focused"
+                        TextChanged="DefaultTextChanged"
                        Style="{DynamicResource themeLabel}"/>
                 <!-- Description -->
                 <Label x:Name="lblDescription"
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editDescription"
+                        TextChanged="DefaultTextChanged"
                        Margin="0,0,0,20"
                        Style="{DynamicResource themeLabel}"/>
                 <!-- Owner -->

@@ -289,10 +289,6 @@
     <value>Shifts</value>
     <comment>Title for 'shifts' on One Event Page</comment>
   </data>
-  <data name="TESTTESTESTTESTTESTEST" xml:space="preserve">
-    <value>TESTTESTESTTESTTESTEST</value>
-    <comment>TESTTESTESTTESTTESTEST</comment>
-  </data>
   <data name="ThemeChoose" xml:space="preserve">
     <value>Choose theme</value>
     <comment>Text for Choosing Themes</comment>

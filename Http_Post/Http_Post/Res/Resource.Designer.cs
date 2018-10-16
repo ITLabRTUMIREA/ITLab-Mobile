@@ -448,15 +448,6 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to TESTTESTESTTESTTESTEST.
-        /// </summary>
-        public static string TESTTESTESTTESTTESTEST {
-            get {
-                return ResourceManager.GetString("TESTTESTESTTESTTESTEST", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Choose theme.
         /// </summary>
         public static string ThemeChoose {
