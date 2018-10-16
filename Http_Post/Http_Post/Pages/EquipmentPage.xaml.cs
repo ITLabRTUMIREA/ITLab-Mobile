@@ -61,7 +61,7 @@ namespace Http_Post.Pages
         private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var equip = (EquipmentViewExtended)e.Item;
-            await Navigation.PushAsync(new OneEquipmentPage(equip.Id, GetEquipment));
+            await Navigation.PushAsync(new OneEquipmentPage(equip.Id));
             GetEquipment();
         }
 

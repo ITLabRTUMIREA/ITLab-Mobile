@@ -3,7 +3,7 @@ using Http_Post.Res;
 
 namespace Http_Post.Extensions.Responses.Event
 {
-    class EventViewExtended : EventView
+    public class EventViewExtended : EventView
     {
         public string EventTitle
             => string.IsNullOrEmpty(Title) ? Resource.NoTitleError : Title;

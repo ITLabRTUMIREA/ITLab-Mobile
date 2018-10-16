@@ -15,43 +15,43 @@
             </Style>
         </ResourceDictionary>
     </MasterDetailPage.Resources>
-    
+
     <MasterDetailPage.Master>
         <ContentPage Title="Master">
-            <ScrollView>
             <ContentPage.Content>
-                <StackLayout x:Name="stacklayout_Master" Padding="5" 
+                <ScrollView>
+                    <StackLayout x:Name="stacklayout_Master" Padding="5" 
                              VerticalOptions="FillAndExpand"
                              HorizontalOptions="FillAndExpand"
                              Style="{DynamicResource themeStack}">
-                    <StackLayout x:Name="stackUser" Orientation="Horizontal" Margin="0,0,0,20">
-                        <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="ProfileImage_Tapped"
+                        <StackLayout x:Name="stackUser" Orientation="Horizontal" Margin="0,0,0,20">
+                            <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="ProfileImage_Tapped"
                                                       NumberOfTapsRequired="1"/>
-                            </Image.GestureRecognizers>
-                        </Image>
-                        <StackLayout Orientation="Vertical">
-                            <Label x:Name="label_name" Text="..."
+                                </Image.GestureRecognizers>
+                            </Image>
+                            <StackLayout Orientation="Vertical">
+                                <Label x:Name="label_name" Text="..."
                                    Style="{DynamicResource themeLabel}"/>
-                            <Label x:Name="label_surname" Text="..."
+                                <Label x:Name="label_surname" Text="..."
                                    Style="{DynamicResource themeLabel}"/>
+                            </StackLayout>
                         </StackLayout>
-                    </StackLayout>
 
-                    <BoxView/>
-                    <Controls:Master_Btns x:Name="Btn_Events" ImageSource="News.png" Clicked="BtnEvents_Clicked"/>
-                    <Controls:Master_Btns x:Name="Btn_DateSearch" ImageSource="Calendar.png" Clicked="BtnDateSearch_Clicked"/>
-                    <Controls:Master_Btns x:Name="Btn_CreateEvent" ImageSource="Create.png" Clicked="BtnCreateEvent_Clicked"/>
-                    <BoxView/>
-                    <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
-                    <Controls:Master_Btns x:Name="Btn_CreateEquip" ImageSource="Create.png" Clicked="BtnCreateEquip_Clicked"/>
-                    <BoxView/>
-                    <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
-                    <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
-                </StackLayout>
+                        <BoxView/>
+                        <Controls:Master_Btns x:Name="Btn_Events" ImageSource="News.png" Clicked="BtnEvents_Clicked"/>
+                        <Controls:Master_Btns x:Name="Btn_DateSearch" ImageSource="Calendar.png" Clicked="BtnDateSearch_Clicked"/>
+                        <Controls:Master_Btns x:Name="Btn_CreateEvent" ImageSource="Create.png" Clicked="BtnCreateEvent_Clicked"/>
+                        <BoxView/>
+                        <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
+                        <Controls:Master_Btns x:Name="Btn_CreateEquip" ImageSource="Create.png" Clicked="BtnCreateEquip_Clicked"/>
+                        <BoxView/>
+                        <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
+                        <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
+                    </StackLayout>
+                </ScrollView>
             </ContentPage.Content>
-            </ScrollView>
         </ContentPage>
     </MasterDetailPage.Master>
 

@@ -6,27 +6,19 @@
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}"
                      Spacing="5">
+                <Label x:Name="lblTypeTitle"
+                   Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="lblType"
-                   Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="editType"
-                        TextChanged="editType_TextChanged"
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
-                <Button x:Name="btnCreateType"
-                        IsVisible="False"
-                        Clicked="btnCreateType_Clicked"
-                        Style="{DynamicResource themeButton}"/>
-                <StackLayout x:Name="stackCreateType"
-                         IsVisible="False"
-                         Style="{DynamicResource themeStack}"/>
+                <Label x:Name="lblNumberTitle"
+                   Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="lblNumber"
-                   Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="editNumber"
                    Margin="0,0,0,20"
+                   Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblDescriptionTitle"
                    Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="lblDescription"
-                   Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="editDescription"
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="lblOwnerTitle"
@@ -35,18 +27,11 @@
                    Margin="0,0,0,20"
                    Style="{DynamicResource themeLabel}"/>
 
-                <StackLayout Orientation="Horizontal"
-                         Style="{DynamicResource themeStack}">
-                    <Button x:Name="btnConfirm"
-                            Clicked="btnConfirm_Clicked"
-                            Style="{DynamicResource themeButton}"/>
-                    <Button x:Name="btnChangeOwner"
-                            Clicked="btnChangeOwner_Clicked"
-                            Style="{DynamicResource themeButton}"/>
-                    <Button x:Name="btnDelete"
-                            Clicked="btnDelete_Clicked"
-                            Style="{DynamicResource themeButton}"/>
-                </StackLayout>
+                <Button x:Name="btnChange"
+                        WidthRequest="125"
+                        HorizontalOptions="Center"
+                        Clicked="btnChange_Clicked"
+                        Style="{DynamicResource themeButton}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

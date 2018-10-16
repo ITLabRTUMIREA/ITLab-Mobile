@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Http_Post.Extensions.Responses.Event
 {
-    class EquipmentViewExtended : EquipmentView
+    public class EquipmentViewExtended : EquipmentView
     {
         public string OwnerName { get; set; }
 

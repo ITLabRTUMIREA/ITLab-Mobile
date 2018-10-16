@@ -3,7 +3,7 @@ using System;
 
 namespace Http_Post.Extensions.Responses.Event
 {
-    class CompactEventViewExtended : CompactEventView
+    public class CompactEventViewExtended : CompactEventView
     {
         public string Duration
             => TimeSpan.FromMinutes(TotalDurationInMinutes).ToString(@"dd\.hh\:mm");

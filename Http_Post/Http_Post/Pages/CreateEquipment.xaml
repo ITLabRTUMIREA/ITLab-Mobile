@@ -6,38 +6,52 @@
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}"
                          Spacing="5">
-                <Label x:Name="Lbl_EquipType"
+                <!-- Equipment type and stack + btn to change or create type -->
+                <Label x:Name="lblEquipType"
                        Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="Entry_EquipType"
-                       TextChanged="EntryEquipType_TextChanged"
+                <Editor x:Name="editEquipType"
+                       TextChanged="editEquipType_TextChanged"
                        Style="{DynamicResource themeLabel}"/>
-                <Button x:Name="Btn_CreateEqType"
-                        Clicked="BtnCreateEqType_Clicked"
+                <Button x:Name="btnCreateEqType"
+                        Clicked="btnCreateEqType_Clicked"
                         IsVisible="False"
                         Style="{DynamicResource themeButton}"/>
-
-                <StackLayout x:Name="stackLayout"
+                <StackLayout x:Name="stack"
                              IsVisible="False"
                              Orientation="Vertical"
                              Margin="0,0,0,20"
                              Style="{DynamicResource themeStack}"/>
-
-                <Label x:Name="Lbl_SerialNumber"
+                <!-- Serial number -->
+                <Label x:Name="lblSerialNumber"
                        Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="Entry_SerialNumber"
+                <Editor x:Name="editSerialNumber"
                        Margin="0,0,0,20"
-                       Focused="Entry_SerialNumber_Focused"
+                       Focused="editSerialNumber_Focused"
                        Style="{DynamicResource themeLabel}"/>
-                <Label x:Name="Lbl_Description"
+                <!-- Description -->
+                <Label x:Name="lblDescription"
                        Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="Entry_Description"
+                <Editor x:Name="editDescription"
                        Margin="0,0,0,20"
                        Style="{DynamicResource themeLabel}"/>
-                <Button x:Name="Btn_Confirm"
-                        Clicked="BtnConfirm_Clicked"
+                <!-- Owner -->
+                <Label x:Name="lblOwnerTitle"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblOwner"
+                       Margin="0,0,0,20"
+                       Style="{DynamicResource themeLabel}"/>
+                <!-- Confirm and change owner -->
+                <StackLayout Orientation="Horizontal"
+                             Style="{DynamicResource themeStack}">
+                    <Button x:Name="btnConfirm"
+                        Clicked="btnConfirm_Clicked"
                         WidthRequest="350"
-                        HorizontalOptions="Center"
                         Style="{DynamicResource themeButton}"/>
+                    <Button x:Name="btnChangeOwner"
+                        Clicked="btnChangeOwner_Clicked"
+                        WidthRequest="350"
+                        Style="{DynamicResource themeButton}"/>
+                </StackLayout>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>
