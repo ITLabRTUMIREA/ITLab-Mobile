@@ -17,6 +17,8 @@ namespace Http_Post.Controls
             var col = Application.Current.Resources;
             col["themeStack"] = col[th + "_Stack"];
             col["themeLabel"] = col[th + "_Lbl"];
+
+            lblPercent.BackgroundColor = progBar.ProgressColor;
         }
     }
 }

@@ -47,11 +47,11 @@
                              Style="{DynamicResource themeStack}">
                     <Button x:Name="btnConfirm"
                         Clicked="btnConfirm_Clicked"
-                        WidthRequest="350"
+                        WidthRequest="170"
                         Style="{DynamicResource themeButton}"/>
                     <Button x:Name="btnChangeOwner"
                         Clicked="btnChangeOwner_Clicked"
-                        WidthRequest="350"
+                        WidthRequest="170"
                         Style="{DynamicResource themeButton}"/>
                 </StackLayout>
             </StackLayout>

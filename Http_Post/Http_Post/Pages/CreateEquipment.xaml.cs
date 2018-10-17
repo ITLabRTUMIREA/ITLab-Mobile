@@ -15,6 +15,7 @@ namespace Http_Post.Pages
 {
 	public partial class CreateEquipment : ContentPage
 	{
+        // TODO: maksim - help
         private HttpClient client = HttpClientFactory.HttpClient;
         private Guid? ownerId; // if empty - laboratory, if not empty - has owner
         private UserView newUser;
@@ -25,16 +26,16 @@ namespace Http_Post.Pages
         // pass to this ctor if needed to change equipment
         public CreateEquipment (EquipmentViewExtended equipment)
         {
-            Init();
+            //Init(); ----------------------------------------
             isCreating = false;
             eqId = equipment.Id;
 
             editEquipType.Text = equipment.EquipmentType.Title;
-            Hide(null, null);
+            //Hide(null, null); ----------------------------------------
             editSerialNumber.Text = equipment.SerialNumber;
             editDescription.Text = equipment.Description;
             lblOwner.Text = equipment.OwnerName;
-            newETV = equipment.EquipmentType;
+            //newETV = equipment.EquipmentType; ----------------------------------------
             ownerId = equipment.OwnerId;
 
             btnConfirm.BackgroundColor = btnChangeOwner.BackgroundColor;
@@ -42,10 +43,10 @@ namespace Http_Post.Pages
 
         public CreateEquipment ()
         {
-            Init();
+            //Init(); ----------------------------------------
             isCreating = true;
         }
-
+        /*
         private void Init()
         {
             InitializeComponent();
@@ -479,5 +480,6 @@ namespace Http_Post.Pages
             stack.IsVisible = false;
             btnCreateEqType.IsVisible = false;
         }
+        */
     }
 }

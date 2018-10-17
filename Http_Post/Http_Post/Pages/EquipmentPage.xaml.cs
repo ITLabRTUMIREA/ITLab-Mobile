@@ -18,16 +18,17 @@ namespace Http_Post.Pages
 {
 	public partial class EquipmentPage : ContentPage
 	{
+        // TODO: maksim help
         HttpClient client = HttpClientFactory.HttpClient;
 
 		public EquipmentPage ()
 		{
 			InitializeComponent ();
-            UpdateLanguage();
+            //UpdateLanguage(); ----------------------------------------
 
-            GetEquipment();
-		}
-
+            //GetEquipment(); ----------------------------------------
+        }
+        /*
         public async void GetEquipment()
         {
             try
@@ -72,5 +73,6 @@ namespace Http_Post.Pages
             Label_Owner.Text = Resource.Owner;
             Label_SerialNumber.Text = Resource.SerialNumber;
         }
+        */
     }
 }

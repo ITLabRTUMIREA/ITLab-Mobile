@@ -15,8 +15,7 @@ namespace Http_Post.Classes
         public Localization()
         {
             MakeDictionary();
-            object name = "";
-            if (App.Current.Properties.TryGetValue(KEY, out name))
+            if (App.Current.Properties.TryGetValue(KEY, out object name))
             {
                 // выполняем действия, если в словаре есть ключ "name"
                 string lang = (string)name;
