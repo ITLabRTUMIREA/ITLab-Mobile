@@ -8,8 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 
 namespace Http_Post.Pages
@@ -54,11 +52,11 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            Title = Resource.Title_Profile;
-            Lbl_Firstname.Text = Resource.ProfileLbl_Firstname;
-            Lbl_Lastname.Text = Resource.ProfileLbl_Lastname;
-            Lbl_PhoneNumber.Text = Resource.ProfileLbl_PhoneNumber;
-            Btn_Save.Text = Resource.ProfileBtn_Save;
+            Title = Resource.TitleProfile;
+            Lbl_Firstname.Text = Resource.Firstname;
+            Lbl_Lastname.Text = Resource.Lastname;
+            Lbl_PhoneNumber.Text = Resource.PhoneNumber;
+            Btn_Save.Text = Resource.Save;
         }
 
         private async void Btn_Save_Clicked(object sender, EventArgs e)

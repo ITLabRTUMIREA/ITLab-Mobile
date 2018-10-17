@@ -67,10 +67,10 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            Title = Resource.Title_Equipment;
-            Label_Type.Text = Resource.Equipment_Type;
-            Label_Owner.Text = Resource.Equipment_Owner;
-            Label_SerialNumber.Text = Resource.Equipment_SerialNumber;
+            Title = Resource.TitleEquipment;
+            Label_Type.Text = Resource.EquipmentType;
+            Label_Owner.Text = Resource.Owner;
+            Label_SerialNumber.Text = Resource.SerialNumber;
         }
     }
 }

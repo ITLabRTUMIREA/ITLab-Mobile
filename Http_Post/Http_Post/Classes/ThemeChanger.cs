@@ -1,7 +1,5 @@
 ﻿using Http_Post.Res;
-using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Http_Post.Classes
 {
@@ -12,26 +10,20 @@ namespace Http_Post.Classes
         private readonly string KEY = "theme";
         public readonly string[] themes =
         {
-            Themes.Default.ToString(),
-            Themes.Dark.ToString(),
             Themes.Light.ToString(),
-            Themes.Rainbow.ToString()
+            Themes.Dark.ToString()
         };
         enum Themes
         {
-            Default,
-            Dark,
             Light,
-            Rainbow
+            Dark
         }
 
         public ThemeChanger()
         {
             ThemesForUser.Clear();
-            ThemesForUser.Add(Resource.ThemeDefault);
-            ThemesForUser.Add(Resource.ThemeDark);
             ThemesForUser.Add(Resource.ThemeLight);
-            ThemesForUser.Add(Resource.ThemeRainbow);
+            ThemesForUser.Add(Resource.ThemeDark);
         }
 
         public void ChangeTheme(string theme)
@@ -40,10 +32,6 @@ namespace Http_Post.Classes
                 Set(themes[0]);
             else if (theme.Equals(ThemesForUser[1]))
                 Set(themes[1]);
-            else if (theme.Equals(ThemesForUser[2]))
-                Set(themes[2]);
-            else if (theme.Equals(ThemesForUser[3]))
-                Set(themes[3]);
         }
 
         private void Set(string value)
@@ -63,7 +51,7 @@ namespace Http_Post.Classes
                 if (App.Current.Properties.TryGetValue(KEY, out object name))
                     return name.ToString();
                 else
-                    return "Default";
+                    return "Light";
             }
         }
     }

@@ -8,11 +8,11 @@ namespace Http_Post.Extensions.Responses.Event
         public string Duration
             => TimeSpan.FromMinutes(TotalDurationInMinutes).ToString(@"dd\.hh\:mm");
         public string EventTypeDescription 
-            => string.IsNullOrEmpty(EventType.Description) ? Res.Resource.NoDescriptionError : EventType.Description;
+            => string.IsNullOrEmpty(EventType.Description) ? Res.Resource.ErrorNoDescription : EventType.Description;
         public string EventTitle 
-            => string.IsNullOrEmpty(Title) ? Res.Resource.NoTitleError : Title;
+            => string.IsNullOrEmpty(Title) ? Res.Resource.ErrorNoTitle : Title;
         public string EventTypeTitle 
-            => string.IsNullOrEmpty(EventType.Title) ? Res.Resource.NoEventTypeTitleError : EventType.Title;
+            => string.IsNullOrEmpty(EventType.Title) ? Res.Resource.ErrorNoTitle : EventType.Title;
         public double ProgressToBar
             => Convert.ToDouble(CurrentParticipantsCount) / TargetParticipantsCount;
         public string СompletenessPercent 

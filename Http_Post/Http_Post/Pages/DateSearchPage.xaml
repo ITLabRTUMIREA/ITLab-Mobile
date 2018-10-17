@@ -16,7 +16,7 @@
                     <DatePicker x:Name="DateEnd" />
                 </StackLayout>
                 
-                <Label x:Name="errorLabel"
+                <Label x:Name="lblHint"
                        Text="Choose date and time"
                        HorizontalOptions="Center"
                        Style="{DynamicResource themeLabel}"/>

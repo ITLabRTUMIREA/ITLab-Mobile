@@ -23,11 +23,11 @@ namespace Http_Post.Pages
 
         void UpdateLanguage()
         {
-            noEquip.Text = Resource.NoEquipmentError; // if no equipment in this place
-            noPart.Text = Resource.NoParticipantsError; // if no participants in this place
+            noEquip.Text = Resource.ErrorNoEquipment; // if no equipment in this place
+            noPart.Text = Resource.ErrorNoParticipants; // if no participants in this place
             lblParticipants.Text = $"{Resource.Participants}:"; // set title
-            lblEquipment.Text = $"{Resource.Equipment}:"; // set title
-            lblDescription.Text = string.IsNullOrEmpty(place.Description) ? Resource.NoDescriptionError : place.Description; // set description
+            lblEquipment.Text = $"{Resource.TitleEquipment}:"; // set title
+            lblDescription.Text = string.IsNullOrEmpty(place.Description) ? Resource.ErrorNoDescription : place.Description; // set description
             lblTarget.Text = $"{Resource.Participants}: " + place.Participants.Count.ToString() + $" {Resource.Of} " + place.TargetParticipantsCount.ToString(); // set how many participants now in this place
         }
 
@@ -106,7 +106,7 @@ namespace Http_Post.Pages
             {
                 if (((Label)s).Text.Equals($"{Resource.Participants}:"))
                     stackParticipants.IsVisible = !stackParticipants.IsVisible;
-                else if (((Label)s).Text.Equals($"{Resource.Equipment}:"))
+                else if (((Label)s).Text.Equals($"{Resource.TitleEquipment}:"))
                     stackEquipment.IsVisible = !stackEquipment.IsVisible;
             };
             lblParticipants.GestureRecognizers.Add(tgr);

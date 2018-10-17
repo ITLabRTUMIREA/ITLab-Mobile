@@ -1,8 +1,6 @@
 ﻿using Models.PublicAPI.Responses.Equipment;
 using Models.PublicAPI.Responses.General;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Http_Post.Extensions.Responses.Event
 {

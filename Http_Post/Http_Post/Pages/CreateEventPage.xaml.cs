@@ -24,22 +24,6 @@ namespace Http_Post.Pages
             UpdateLanguage();
 		}
 
-        private void UpdateLanguage()
-        {
-            Title = Resource.Title_Create;
-            lblEventType.Text = "Event Type";
-            lblName.Text = "Name";
-            lblDescription.Text = Resource.Description;
-            lblAddress.Text = "Address";
-            btnAddShift.Text = Resource.Shifts;
-            btnCreateEvent.Text = Resource.Title_Create;
-            ///////////////////////////////////////
-            editEventType.Placeholder = lblEventType.Text;
-            editName.Placeholder = lblName.Text;
-            editDescription.Placeholder = lblDescription.Text;
-            editAddress.Placeholder = lblAddress.Text;
-        }
-
         private async Task editEventType_TextChangedAsync(object sender, TextChangedEventArgs e)
         {
             Show();
@@ -89,7 +73,7 @@ namespace Http_Post.Pages
             await AddEventType(Navigation);
         }
 
-        private async void btnCreateEvent_Clicked(object sender, EventArgs e)
+        private async void btnSave_Clicked(object sender, EventArgs e)
         {
             if (!await CheckAllFieldsForNull())
                 return;
@@ -165,15 +149,15 @@ namespace Http_Post.Pages
                 Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
                 Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
 
-                var lbl = new Label { Text = "Create",
+                var lbl = new Label { Text = Resource.Create,
                     HorizontalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold,
                     Style = styleLbl };
                 var entryTitle = new Editor { Text = editEventType.Text, // if no such title - add it to new event type
-                    Placeholder = "Title",
+                    Placeholder = Resource.EventType,
                     Style = styleLbl, };
                 var entryDescription = new Editor { Text = "",
-                    Placeholder = "Desciption",
+                    Placeholder = Resource.Description,
                     Style = styleLbl, };
 
                 entryTitle.Completed += (s, e) 
@@ -222,7 +206,7 @@ namespace Http_Post.Pages
 
                 var btnCancel = new Button
                 {
-                    Text = "Cancel",
+                    Text = Resource.ADMIN_Cancel,
                     WidthRequest = 100,
                     Style = styleBtn
                 };
@@ -286,6 +270,8 @@ namespace Http_Post.Pages
             btnCreateEventType.IsVisible = false;
         }
 
+        //TODO: Unfocus -> Hide
+        // Hide (sender, focusEventArgs)
         private void editName_Focused(object sender, FocusEventArgs e)
         {
             Hide();
@@ -316,7 +302,7 @@ namespace Http_Post.Pages
 
                 var lbl = new Label
                 {
-                    Text = "Create",
+                    Text = Resource.Create,
                     HorizontalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold,
                     Style = styleLbl
@@ -324,7 +310,7 @@ namespace Http_Post.Pages
                 #region Adding labels which will show user, where is beginig and ending time/date
                 var lblBegin = new Label
                 {
-                    Text = "Begin",
+                    Text = "Begin", // TODO: thinks what to do with this
                     Style = styleLbl
                 };
                 var lblEnd = new Label
@@ -343,7 +329,7 @@ namespace Http_Post.Pages
                 var entryDescription = new Editor
                 {
                     Text = "",
-                    Placeholder = "Desciption",
+                    Placeholder = Resource.Description,
                     Style = styleLbl,
                 };
                 #region Adding time/date pickers and create special layouts for them
@@ -380,44 +366,51 @@ namespace Http_Post.Pages
                 };
                 btnOk.Clicked += async (s, e) =>
                 {
-                    if (string.IsNullOrEmpty(entryDescription.Text) || string.IsNullOrWhiteSpace(entryDescription.Text))
+                    try
                     {
-                        entryDescription.Focus();
-                        return;
+                        if (string.IsNullOrEmpty(entryDescription.Text) || string.IsNullOrWhiteSpace(entryDescription.Text))
+                        {
+                            entryDescription.Focus();
+                            return;
+                        }
+
+                        if (endDate.Date < beginDate.Date)
+                            throw new Exception($"Error: {Resource.ErrorNoDate}"); // Ending date can't be less than begining date!
+
+                        var newShiftView = new ShiftView
+                        {
+                            Description = entryDescription.Text,
+                            BeginTime = new DateTime(beginDate.Date.Year,
+                            beginDate.Date.Month,
+                            beginDate.Date.Day,
+                            beginTime.Time.Hours,
+                            beginTime.Time.Minutes,
+                            beginTime.Time.Seconds
+                            ),
+                            EndTime = new DateTime(endDate.Date.Year,
+                            endDate.Date.Month,
+                            endDate.Date.Day,
+                            endTime.Time.Hours,
+                            endTime.Time.Minutes,
+                            endTime.Time.Seconds
+                            ),
+                            // TODO: places
+                        };
+
+                        await navigation.PopModalAsync();
+                        newShifts.Add(newShiftView);
+                        editName.Focus();
+                        tcs.SetResult(null);
                     }
-
-                    if (endDate.Date < beginDate.Date)
-                        throw new Exception($"Error: {Resource.DateError}"); // Ending date can't be less than begining date!
-
-                    var newShiftView = new ShiftView
+                    catch (Exception ex)
                     {
-                        Description = entryDescription.Text,
-                        BeginTime = new DateTime (beginDate.Date.Year,
-                        beginDate.Date.Month,
-                        beginDate.Date.Day,
-                        beginTime.Time.Hours,
-                        beginTime.Time.Minutes,
-                        beginTime.Time.Seconds
-                        ),
-                        EndTime = new DateTime(endDate.Date.Year,
-                        endDate.Date.Month,
-                        endDate.Date.Day,
-                        endTime.Time.Hours,
-                        endTime.Time.Minutes,
-                        endTime.Time.Seconds
-                        ),
-                        // TODO: places
-                    };
-
-                    await navigation.PopModalAsync();
-                    newShifts.Add(newShiftView);
-                    editName.Focus();
-                    tcs.SetResult(null);
+                        await DisplayAlert("Error", ex.Message, "Ok");
+                    }
                 };
 
                 var btnCancel = new Button
                 {
-                    Text = "Cancel",
+                    Text = Resource.ADMIN_Cancel,
                     WidthRequest = 100,
                     Style = styleBtn
                 };
@@ -469,6 +462,22 @@ namespace Http_Post.Pages
                 }
                 return tcs.Task; // while Task != "good" -> invoke Task
             }
+        }
+
+        private void UpdateLanguage()
+        {
+            Title = Resource.TitleCreateEvent;
+            lblEventType.Text = Resource.EventType;
+            lblName.Text = Resource.Name;
+            lblDescription.Text = Resource.Description;
+            lblAddress.Text = Resource.Address;
+            btnAddShift.Text = Resource.Shifts;
+            btnSave.Text = Resource.Save;
+            ///////////////////////////////////////
+            editEventType.Placeholder = lblEventType.Text;
+            editName.Placeholder = lblName.Text;
+            editDescription.Placeholder = lblDescription.Text;
+            editAddress.Placeholder = lblAddress.Text;
         }
     }
 }

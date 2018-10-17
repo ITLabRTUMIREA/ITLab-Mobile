@@ -6,14 +6,14 @@ namespace Http_Post.Extensions.Responses.Event
     public class EventViewExtended : EventView
     {
         public string EventTitle
-            => string.IsNullOrEmpty(Title) ? Resource.NoTitleError : Title;
+            => string.IsNullOrEmpty(Title) ? Resource.ErrorNoTitle : Title;
         public string EventDescription
-            => string.IsNullOrEmpty(Description) ? Resource.NoDescriptionError : Description;
+            => string.IsNullOrEmpty(Description) ? Resource.ErrorNoDescription : Description;
         public string EventAddress
-            => string.IsNullOrEmpty(Address) ? Resource.NoAddressError : Address;
+            => string.IsNullOrEmpty(Address) ? Resource.ErrorNoAddress : Address;
         public string EventTypeTitle
-            => string.IsNullOrEmpty(EventType.Title) ? Resource.NoEventTypeTitleError : EventType.Title;
+            => string.IsNullOrEmpty(EventType.Title) ? Resource.ErrorNoTitle : EventType.Title;
         public string EventTypeDescription
-            => string.IsNullOrEmpty(EventType.Description) ? Resource.NoEventTypeDescriptionError : EventType.Description;
+            => string.IsNullOrEmpty(EventType.Description) ? Resource.ErrorNoDescription : EventType.Description;
     }
 }

@@ -3,7 +3,6 @@ using Http_Post.Extensions.Responses.Event;
 using Http_Post.Services;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
-using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
@@ -20,16 +19,11 @@ namespace Http_Post.Pages
         public EventPage()
         {
             InitializeComponent();
-            Init();
+            Title = Res.Resource.TitleEvents;
 
             UpdateTheme();
 
             GetEvents();
-        }
-
-        private void Init()
-        {
-            Title = Res.Resource.Title_Event;
         }
 
         private void UpdateTheme()

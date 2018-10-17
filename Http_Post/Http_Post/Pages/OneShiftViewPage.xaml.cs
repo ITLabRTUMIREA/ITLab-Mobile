@@ -23,7 +23,8 @@ namespace Http_Post.Pages
         private void SetProperties()
         {
             Title = shift.BeginTime.ToString("dd MMMM, yyyy. HH: mm");
-            lblDescription.Text = string.IsNullOrEmpty(shift.Description) ? Resource.NoDescriptionError : shift.Description;
+            lblDescription.Text = string.IsNullOrEmpty(shift.Description) ? 
+                Resource.ErrorNoDescription : shift.Description;
             lblStart.Text = shift.BeginTime.ToString("dd MMMM, yyyy. HH:mm");
             lblEnd.Text = shift.EndTime.ToString("dd MMMM, yyyy. HH:mm");
             ///////////////////////////////////////

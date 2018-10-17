@@ -114,13 +114,13 @@ namespace Http_Post.Pages
             try
             {
                 if (newETV == null)
-                    throw new Exception("Error: equipment type is null");
+                    throw new Exception($"Error: {Resource.EquipmentType} is null");
 
                 if (string.IsNullOrEmpty(editDescription.Text) || string.IsNullOrWhiteSpace(editDescription.Text))
-                    throw new Exception("Error: description is null");
+                    throw new Exception($"Error: {Resource.Description} is null");
 
                 if (string.IsNullOrEmpty(editSerialNumber.Text) || string.IsNullOrWhiteSpace(editSerialNumber.Text))
-                    throw new Exception("Error: serial number is null");
+                    throw new Exception($"Error: {Resource.SerialNumber} is null");
 
                 Guid? ownerGuid = newUser == null ? ownerId : newUser.Id;
                 EquipmentView equipmentView = new EquipmentView
@@ -174,15 +174,15 @@ namespace Http_Post.Pages
                 Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
                 Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
 
-                var lbl = new Label { Text = "Create",
+                var lbl = new Label { Text = Resource.Create,
                     HorizontalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold,
                     Style = styleLbl };
                 var entryTitle = new Editor { Text = editEquipType.Text,
-                    Placeholder = "Title",
+                    Placeholder = Resource.EquipmentType,
                     Style = styleLbl, };
                 var entryDescription = new Editor { Text = "",
-                    Placeholder = "Desciption",
+                    Placeholder = Resource.Description,
                     Style = styleLbl, };
 
                 entryTitle.Completed += (s, e) 
@@ -234,7 +234,7 @@ namespace Http_Post.Pages
 
                 var btnCancel = new Button
                 {
-                    Text = "Cancel",
+                    Text = Resource.ADMIN_Cancel,
                     WidthRequest = 100,
                     Style = styleBtn
                 };
@@ -322,7 +322,7 @@ namespace Http_Post.Pages
                 var edit = new Editor
                 {
                     Text = "",
-                    Placeholder = "Start typing",
+                    Placeholder = "Start typing", // TODO: think what to do with this
                     Style = styleLbl,
                 };
                 var stackOwner = new StackLayout
@@ -400,7 +400,7 @@ namespace Http_Post.Pages
 
                 var btnCancel = new Button
                 {
-                    Text = "Cancel",
+                    Text = Resource.ADMIN_Cancel,
                     WidthRequest = 100,
                     Style = styleBtn
                 };
@@ -458,15 +458,14 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            Title = Resource.Title_Create;
-            // TODO: localization
-            btnCreateEqType.Text = "Create new Type";
-            btnConfirm.Text = "Confirm";
-            btnChangeOwner.Text = "Change owner";
-            lblEquipType.Text = editEquipType.Placeholder = "Type";
-            lblSerialNumber.Text = editSerialNumber.Placeholder = "Serial Number";
-            lblDescription.Text = editDescription.Placeholder = "Description";
-            lblOwnerTitle.Text = "Owner";
+            Title = Resource.TitleCreateEquipment;
+            btnCreateEqType.Text = Resource.Create + " " + Resource.EquipmentType;
+            btnConfirm.Text = Resource.Save;
+            btnChangeOwner.Text = Resource.ChangeOwner;
+            lblEquipType.Text = editEquipType.Placeholder = Resource.EquipmentType;
+            lblSerialNumber.Text = editSerialNumber.Placeholder = Resource.SerialNumber;
+            lblDescription.Text = editDescription.Placeholder = Resource.Description;
+            lblOwnerTitle.Text = Resource.Owner;
         }
 
         private void Show()

@@ -38,7 +38,7 @@ namespace Http_Post.Pages
             try
             {
                 if (DateEnd.Date < DateBegin.Date)
-                    throw new Exception($"Error: {Res.Resource.DateError}"); // Ending date can't be less than begining date!
+                    throw new Exception($"Error: {Res.Resource.ErrorNoDate}"); // Ending date can't be less than begining date!
 
                 var begin = DateBegin.Date.ToString("yyyy-MM-ddTHH:mm:ss");
                 var end = DateEnd.Date.ToString("yyyy-MM-ddTHH:mm:ss");
@@ -49,12 +49,12 @@ namespace Http_Post.Pages
                     throw new Exception($"Error: {events.StatusCode}");
 
                 if (events.Data.Count() == 0)
-                    throw new Exception($"Error: {Res.Resource.DateErrorNoEvents}");
+                    throw new Exception($"Error: {Res.Resource.ErrorNoEvent}");
                 listView.ItemsSource = events.Data;
             }
             catch (Exception ex)
             {
-                errorLabel.Text = ex.Message;
+                lblHint.Text = ex.Message;
             }
         }
 
@@ -68,14 +68,14 @@ namespace Http_Post.Pages
             }
             catch (Exception ex)
             {
-                errorLabel.Text = ex.Message;
+                lblHint.Text = ex.Message;
             }
         }
 
         private void UpdateTheme()
         {
-            errorLabel.Text = Res.Resource.DateSearching;
-            BtnSearch.Text = Res.Resource.DateSearchingBtn;
+            lblHint.Text = Res.Resource.ChooseDates;
+            BtnSearch.Text = Res.Resource.Search;
         }
     }
 }

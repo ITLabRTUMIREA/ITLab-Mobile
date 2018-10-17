@@ -10,7 +10,7 @@ namespace Http_Post
         Localization localization = new Localization();
         Menu menuSet;
 
-        string cancel = "Cancel";
+        string cancel = Resource.ADMIN_Cancel;
 
         public Settings()
         {
@@ -51,9 +51,9 @@ namespace Http_Post
 
         private void UpdateLanguage()
         {
-            Title = Resource.Title_Settings;
-            Btn_Theme.Btn_Text = Resource.Btn_Theme;
-            Btn_LogOut.Btn_Text = Resource.Btn_LogOut;
+            Title = Resource.TitleSettings;
+            Btn_Theme.Btn_Text = Resource.ChangeTheme;
+            Btn_LogOut.Btn_Text = Resource.LogOut;
         }
 
         private async void Theme_Change (object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace Http_Post
             {
                 var themeChanger = new ThemeChanger();
 
-                string result = await DisplayActionSheet(Resource.ThemeChoose, cancel, null, themeChanger.ThemesForUser.ToArray());
+                string result = await DisplayActionSheet(Resource.ChangeTheme, cancel, null, themeChanger.ThemesForUser.ToArray());
                 if (result.Equals(cancel) || string.IsNullOrEmpty(result))
                     return;
 

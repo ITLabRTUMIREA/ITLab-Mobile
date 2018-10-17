@@ -109,13 +109,13 @@ namespace Http_Post
 
         public void UpdateLanguage()
         {
-            Btn_Events.Btn_Text = Resource.Btn_Events;
-            Btn_Settings.Btn_Text = Resource.Btn_Settings;
-            Btn_About.Btn_Text = Resource.Btn_About;
-            Btn_CreateEvent.Btn_Text = Resource.Btn_CreateEvent;
-            Btn_DateSearch.Btn_Text = Resource.Btn_DateSearch;
-            Btn_Equip.Btn_Text = Resource.Btn_Equipment;
-            Btn_CreateEquip.Btn_Text = Resource.Btn_CreateEquip;
+            Btn_Events.Btn_Text = Resource.TitleEvents;
+            Btn_DateSearch.Btn_Text = Resource.TitleDateSearch;
+            Btn_CreateEvent.Btn_Text = Resource.TitleCreateEvent;
+            Btn_Equip.Btn_Text = Resource.TitleEquipment;
+            Btn_CreateEquip.Btn_Text = Resource.TitleCreateEquipment;
+            Btn_Settings.Btn_Text = Resource.TitleSettings;
+            Btn_About.Btn_Text = Resource.TitleAboutApp;
         }
 
         public void UpdateTheme()

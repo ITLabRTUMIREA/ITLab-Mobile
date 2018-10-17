@@ -64,13 +64,13 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            Title = Resource.Title_Equipment;
-            lblTypeTitle.Text = Resource.Equipment_Type;
-            lblNumberTitle.Text = Resource.Equipment_SerialNumber;
+            Title = Resource.TitleEquipment;
+            lblTypeTitle.Text = Resource.EquipmentType;
+            lblNumberTitle.Text = Resource.SerialNumber;
             lblDescriptionTitle.Text = Resource.Description;
-            lblOwnerTitle.Text = Resource.Equipment_Owner;
+            lblOwnerTitle.Text = Resource.Owner;
             /////////////////////////////////////////////////////
-            btnChange.Text = "Change";
+            btnChange.Text = Resource.Change;
         }
 
         private void btnChange_Clicked(object sender, EventArgs e)

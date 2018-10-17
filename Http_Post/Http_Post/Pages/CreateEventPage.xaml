@@ -46,10 +46,10 @@
                 
                 <!-- Button to check all fields
                 If all is Ok - create event -->
-                <Button x:Name="btnCreateEvent"
+                <Button x:Name="btnSave"
                         WidthRequest="150"
                         HorizontalOptions="Center"
-                        Clicked="btnCreateEvent_Clicked"
+                        Clicked="btnSave_Clicked"
                         Style="{DynamicResource themeButton}"/>
             </StackLayout>
         </ScrollView>

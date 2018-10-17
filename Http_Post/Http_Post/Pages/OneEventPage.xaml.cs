@@ -13,6 +13,8 @@ namespace Http_Post.Pages
 {
     public partial class OneEventPage : ContentPage
     {
+        //TODO: create titles - already exist!!!
+        //TODO: btnChange -. push to CreateEvent like CreateEquipment
         private readonly HttpClient client = HttpClientFactory.HttpClient;
         private readonly Guid eventId;
         private EventViewExtended OneEvent { get; set; }
