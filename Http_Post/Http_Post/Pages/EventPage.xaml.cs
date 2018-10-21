@@ -67,7 +67,7 @@ namespace Http_Post.Pages
             { 
                 var item = (CompactEventView) e.Item;
             
-                Navigation.PushAsync(new OneEventPage(item.Id));
+                Navigation.PushAsync(new OneEventPage(item.Id, item.BeginTime, item.EndTime));
             }
             catch (Exception ex)
             {

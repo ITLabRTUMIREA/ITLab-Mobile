@@ -1,7 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Pages.CreateEventPage">
+             x:Class="Http_Post.Pages.CreateEventPage"
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}">
@@ -11,6 +12,7 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editEventType"
                         TextChanged="editEventType_TextChanged"
+                        Unfocused="Hide"
                         Style="{DynamicResource themeLabel}"/>
                 <Button x:Name="btnCreateEventType"
                         IsVisible="False"
@@ -23,7 +25,6 @@
                 <Label x:Name="lblName"
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editName"
-                        Focused="editName_Focused"
                         Style="{DynamicResource themeLabel}"/>
                 <!-- Description of event -->
                 <Label x:Name="lblDescription"
@@ -40,10 +41,17 @@
                         Margin="10,20"
                         Clicked="btnAddShift_Clicked"
                         Style="{DynamicResource themeButton}"/>
-                <StackLayout x:Name="stackShifts"
-                             IsVisible="False"
-                             Style="{DynamicResource themeStack}"/>
-                
+                <ListView x:Name="listShifts"
+                          ItemTapped="listShifts_ItemTapped"
+                          IsVisible="False"
+                          Style="{DynamicResource themeStack}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Controls:ShiftsView/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
                 <!-- Button to check all fields
                 If all is Ok - create event -->
                 <Button x:Name="btnSave"

@@ -41,6 +41,11 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
+                <Button x:Name="btnChange"
+                        WidthRequest="170"
+                        HorizontalOptions="Center"
+                        Clicked="btnChange_Clicked"
+                        Style="{DynamicResource themeButton}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

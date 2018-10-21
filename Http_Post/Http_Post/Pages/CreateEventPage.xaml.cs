@@ -1,4 +1,5 @@
-﻿using Http_Post.Res;
+﻿using Http_Post.Extensions.Responses.Event;
+using Http_Post.Res;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
@@ -17,14 +18,33 @@ namespace Http_Post.Pages
         private HttpClient client = Services.HttpClientFactory.HttpClient;
         private EventTypeView newETV;
         private List<ShiftView> newShifts;
+        private bool isCreating;
+
+        public CreateEventPage(EventViewExtended Event)
+        {
+            Init();
+
+            editEventType.Text = Event.EventTypeTitle;
+            editName.Text = Event.EventTitle;
+            editDescription.Text = Event.EventDescription;
+            editAddress.Text = Event.EventAddress;
+
+            listShifts.IsVisible = true;
+            listShifts.ItemsSource = Event.Shifts;
+        }
 
         public CreateEventPage ()
 		{
-			InitializeComponent ();
-            UpdateLanguage();
+            Init();
 		}
 
-        private async Task editEventType_TextChangedAsync(object sender, TextChangedEventArgs e)
+        private void Init()
+        {
+            InitializeComponent();
+            UpdateLanguage();
+        }
+
+        private async void editEventType_TextChanged(object sender, TextChangedEventArgs e)
         {
             Show();
             stackEventType.Children.Clear();
@@ -41,7 +61,7 @@ namespace Http_Post.Pages
                 {
                     var tapGestureRecognizer = new TapGestureRecognizer();
                     tapGestureRecognizer.Tapped += (s, args) => {
-                        Hide();
+                        Hide(null, null);
                         editEventType.Text = eq.Title;
                         newETV = eq;
                         editName.Focus();
@@ -122,7 +142,8 @@ namespace Http_Post.Pages
             }
 
             // Event's shifts
-            if (stackShifts.Children.Count <= 0)
+            if (listShifts.ItemsSource == null)
+            //if (stackShifts.Children.Count <= 0)
             {
                 await DisplayAlert("Error", $"Please add '{Resource.Shifts}'", "Ok");
                 return false;
@@ -258,25 +279,6 @@ namespace Http_Post.Pages
             }
         }
 
-        private void Show()
-        {
-            stackEventType.IsVisible = true;
-            btnCreateEventType.IsVisible = true;
-        }
-
-        private void Hide()
-        {
-            stackEventType.IsVisible = false;
-            btnCreateEventType.IsVisible = false;
-        }
-
-        //TODO: Unfocus -> Hide
-        // Hide (sender, focusEventArgs)
-        private void editName_Focused(object sender, FocusEventArgs e)
-        {
-            Hide();
-        }
-
         private async void btnAddShift_Clicked(object sender, EventArgs e)
         {
             await AddShift(Navigation);
@@ -285,14 +287,15 @@ namespace Http_Post.Pages
         public Task<string> AddShift(INavigation navigation)
         {
             var tcs = new TaskCompletionSource<string>();
-            var layout = new StackLayout
+            var grid = new Grid
             {
                 Padding = new Thickness(0, 40, 0, 0),
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Orientation = StackOrientation.Vertical,
                 Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
             }; // init here in a way to use it in 'catch' block
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
+            grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             try
             {
                 var th = new Classes.ThemeChanger().Theme;
@@ -310,20 +313,15 @@ namespace Http_Post.Pages
                 #region Adding labels which will show user, where is beginig and ending time/date
                 var lblBegin = new Label
                 {
-                    Text = "Begin", // TODO: thinks what to do with this
+                    Text = "Begin", // TODO: localize??
+                    HorizontalOptions = LayoutOptions.Center,
                     Style = styleLbl
                 };
                 var lblEnd = new Label
                 {
                     Text = "End",
-                    Style = styleLbl
-                };
-                var slHints = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
                     HorizontalOptions = LayoutOptions.Center,
-                    Children = { lblBegin, lblEnd },
-                    Style = styleStack
+                    Style = styleLbl
                 };
                 #endregion
                 var entryDescription = new Editor
@@ -341,21 +339,33 @@ namespace Http_Post.Pages
                 {
                     MinimumDate = DateTime.Now.AddDays(-3)
                 };
-                var slDates = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.Center,
-                    Children = { beginDate, beginDate },
-                    Style = styleStack
-                };
                 var beginTime = new TimePicker();
                 var endTime = new TimePicker();
-                var slTimes = new StackLayout
+                #endregion
+                #region Adding places label hints and places editros
+                var lblPlaces = new Label
                 {
-                    Orientation = StackOrientation.Horizontal,
+                    Text = "Places quantity",
                     HorizontalOptions = LayoutOptions.Center,
-                    Children = { beginTime, endTime },
-                    Style = styleStack
+                    Style = styleLbl
+                };
+                var lblPeople = new Label
+                {
+                    Text = "People quantity",
+                    HorizontalOptions = LayoutOptions.Center,
+                    Style = styleLbl
+                };
+                var editPlaces = new Editor
+                {
+                    Text = "",
+                    Placeholder = lblPlaces.Text,
+                    Style = styleLbl
+                };
+                var editPeople = new Editor
+                {
+                    Text = "",
+                    Placeholder = lblPeople.Text,
+                    Style = styleLbl
                 };
                 #endregion
                 var btnOk = new Button
@@ -399,6 +409,7 @@ namespace Http_Post.Pages
 
                         await navigation.PopModalAsync();
                         newShifts.Add(newShiftView);
+                        listShifts.ItemsSource = newShifts;
                         editName.Focus();
                         tcs.SetResult(null);
                     }
@@ -420,48 +431,62 @@ namespace Http_Post.Pages
                     tcs.SetResult(null);
                 };
 
-                var slButtons = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.Center,
-                    Children = { btnOk, btnCancel },
-                    Style = styleStack
-                };
-
-                layout.Children.Add(lbl);
-                layout.Children.Add(entryDescription);
-                layout.Children.Add(slHints);
-                layout.Children.Add(slDates);
-                layout.Children.Add(slTimes);
-                layout.Children.Add(slButtons);
+                grid.Children.Add(lbl, 0, 0);
+                Grid.SetColumnSpan(lbl, 2);
+                grid.Children.Add(entryDescription, 0, 1);
+                Grid.SetColumnSpan(entryDescription, 2);
+                grid.Children.Add(lblBegin, 0, 2);
+                grid.Children.Add(lblEnd, 1, 2);
+                grid.Children.Add(beginDate, 0, 3);
+                grid.Children.Add(endDate, 1, 3);
+                grid.Children.Add(beginTime, 0, 4);
+                grid.Children.Add(endTime, 1, 4);
+                grid.Children.Add(lblPlaces, 0, 5);
+                grid.Children.Add(lblPeople, 1, 5);
+                grid.Children.Add(editPlaces, 0, 6);
+                grid.Children.Add(editPeople, 1, 6);
+                grid.Children.Add(btnOk, 0, 7);
+                grid.Children.Add(btnCancel, 1, 7);
 
                 var page = new ContentPage()
                 {
                     Style = styleStack
                 };
-                page.Content = layout;
+                page.Content = grid;
                 navigation.PushModalAsync(page);
                 entryDescription.Focus();
                 return tcs.Task;
             }
             catch (Exception ex)
             {
-                var itisLabel = layout.Children[layout.Children.Count - 1];
+                var itisLabel = grid.Children[grid.Children.Count - 1];
                 if (itisLabel.Equals(new Label()))
                 {
-                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
+                    ((Label)grid.Children[grid.Children.Count - 1]).Text = ex.Message;
                 }
                 else
                 {
-                    layout.Children.Add(new Label
+                    grid.Children.Add(new Label
                     {
                         Text = ex.Message,
                         Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
                         HorizontalOptions = LayoutOptions.Center
-                    });
+                    }, 0, 8);
                 }
                 return tcs.Task; // while Task != "good" -> invoke Task
             }
+        }
+
+        private void Show()
+        {
+            stackEventType.IsVisible = true;
+            btnCreateEventType.IsVisible = true;
+        }
+
+        private void Hide(object sender, FocusEventArgs e)
+        {
+            stackEventType.IsVisible = false;
+            btnCreateEventType.IsVisible = false;
         }
 
         private void UpdateLanguage()
@@ -471,6 +496,7 @@ namespace Http_Post.Pages
             lblName.Text = Resource.Name;
             lblDescription.Text = Resource.Description;
             lblAddress.Text = Resource.Address;
+            ///////////////////////////////////////
             btnAddShift.Text = Resource.Shifts;
             btnSave.Text = Resource.Save;
             ///////////////////////////////////////
@@ -478,6 +504,11 @@ namespace Http_Post.Pages
             editName.Placeholder = lblName.Text;
             editDescription.Placeholder = lblDescription.Text;
             editAddress.Placeholder = lblAddress.Text;
+        }
+
+        private void listShifts_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            // TODO: load one shift page; isChanging - true
         }
     }
 }

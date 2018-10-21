@@ -1,13 +1,12 @@
-﻿using Models.PublicAPI.Responses.General;
+﻿using Http_Post.Extensions.Responses.Event;
+using Http_Post.Services;
+using Models.PublicAPI.Responses.Event;
+using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
-
 using Xamarin.Forms;
-using Http_Post.Extensions.Responses.Event;
-using Models.PublicAPI.Responses.Event;
-using Http_Post.Services;
 
 namespace Http_Post.Pages
 {
@@ -59,8 +58,7 @@ namespace Http_Post.Pages
 
         private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            // Detect on which shift user has tapped
-            // Load new Page
+            // push to shift page
             Navigation.PushAsync(new OneShiftViewPage(e.Item as ShiftView));
         }
 
@@ -69,6 +67,12 @@ namespace Http_Post.Pages
             lblShifts.Text = Res.Resource.Shifts;
             lblBeginTime.Text = beginTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
             lblEndTime.Text = endTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
+            btnChange.Text = Res.Resource.Change;
+        }
+
+        private void btnChange_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new CreateEventPage(OneEvent));
         }
     }
 }
