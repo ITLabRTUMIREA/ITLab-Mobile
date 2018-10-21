@@ -17,12 +17,16 @@ namespace Http_Post.Pages
 	{
         private HttpClient client = Services.HttpClientFactory.HttpClient;
         private EventTypeView newETV;
+        private EventViewExtended Event;
         private List<ShiftView> newShifts;
         private bool isCreating;
 
         public CreateEventPage(EventViewExtended Event)
         {
             Init();
+
+            isCreating = false;
+            this.Event = Event;
 
             editEventType.Text = Event.EventTypeTitle;
             editName.Text = Event.EventTitle;
@@ -36,6 +40,7 @@ namespace Http_Post.Pages
         public CreateEventPage ()
 		{
             Init();
+            isCreating = true;
 		}
 
         private void Init()
@@ -104,7 +109,37 @@ namespace Http_Post.Pages
 
         private async void CreateEvent()
         {
+            try
+            {
+                EventView eventView = new EventView
+                {
+                    Id = Event != null ? Event.Id : Guid.Empty,
+                    Title = editName.Text,
+                    Description = editDescription.Text,
+                    Address = editAddress.Text,
+                    EventType = newETV ?? Event.EventType, // TODO: logic
+                    Shifts = newShifts ?? Event.Shifts // the same
+                };
 
+                var jsonContent = JsonConvert.SerializeObject(eventView);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var result = isCreating ?
+                    await client.PostAsync("event/", content) : await client.PutAsync("event/", content);
+
+                var resultContent = await result.Content.ReadAsStringAsync();
+                var message = JsonConvert.DeserializeObject<OneObjectResponse<EventView>>(resultContent);
+                var message2 = JsonConvert.DeserializeObject<OneObjectResponse<CompactEventViewExtended>>(resultContent);
+                if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {message.StatusCode}");
+
+                await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
+
+                await Navigation.PushAsync(new OneEventPage(message2.Data.Id, message2.Data.BeginTime, message2.Data.EndTime));
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         private async Task<bool> CheckAllFieldsForNull()
@@ -359,12 +394,14 @@ namespace Http_Post.Pages
                 {
                     Text = "",
                     Placeholder = lblPlaces.Text,
+                    Keyboard = Keyboard.Numeric,
                     Style = styleLbl
                 };
                 var editPeople = new Editor
                 {
                     Text = "",
                     Placeholder = lblPeople.Text,
+                    Keyboard = Keyboard.Numeric,
                     Style = styleLbl
                 };
                 #endregion
@@ -387,31 +424,46 @@ namespace Http_Post.Pages
                         if (endDate.Date < beginDate.Date)
                             throw new Exception($"Error: {Resource.ErrorNoDate}"); // Ending date can't be less than begining date!
 
+                        var places = new List<PlaceView>();
+                        for (int i = 0; i < Convert.ToInt32(editPlaces.Text); i++)
+                        {
+                            places.Add(new PlaceView
+                            {
+                                TargetParticipantsCount = Convert.ToInt32(editPeople.Text),
+                            });
+                        }
+
                         var newShiftView = new ShiftView
                         {
                             Description = entryDescription.Text,
-                            BeginTime = new DateTime(beginDate.Date.Year,
+                            BeginTime = new DateTime(
+                            beginDate.Date.Year,
                             beginDate.Date.Month,
                             beginDate.Date.Day,
                             beginTime.Time.Hours,
                             beginTime.Time.Minutes,
                             beginTime.Time.Seconds
                             ),
-                            EndTime = new DateTime(endDate.Date.Year,
+                            EndTime = new DateTime(
+                            endDate.Date.Year,
                             endDate.Date.Month,
                             endDate.Date.Day,
                             endTime.Time.Hours,
                             endTime.Time.Minutes,
                             endTime.Time.Seconds
                             ),
-                            // TODO: places
+                            Places = places,
+                            // TODO: проверить делает ли он Пут запрос или всегда создаёт новый ШифтВью и ПлэйсВью
                         };
 
                         await navigation.PopModalAsync();
                         newShifts.Add(newShiftView);
                         listShifts.ItemsSource = newShifts;
-                        editName.Focus();
                         tcs.SetResult(null);
+                    }
+                    catch(FormatException ex)
+                    {
+                        await DisplayAlert("Error", "Enter only numbrers '0-9'", "Ok");
                     }
                     catch (Exception ex)
                     {

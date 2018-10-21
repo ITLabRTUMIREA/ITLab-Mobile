@@ -52,10 +52,14 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
+                <BoxView BackgroundColor="Silver"
+                         HorizontalOptions="FillAndExpand"
+                         HeightRequest="1"/>
                 <!-- Button to check all fields
                 If all is Ok - create event -->
                 <Button x:Name="btnSave"
                         WidthRequest="150"
+                        Margin="0, 25"
                         HorizontalOptions="Center"
                         Clicked="btnSave_Clicked"
                         Style="{DynamicResource themeButton}"/>
