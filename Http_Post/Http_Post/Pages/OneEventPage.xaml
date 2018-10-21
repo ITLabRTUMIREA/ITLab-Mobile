@@ -3,31 +3,34 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.OneEventPage"
              xmlns:Controls="clr-namespace:Http_Post.Controls">
-
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout x:Name="stacklayout"
-                Style="{DynamicResource themeStack}">
+            <StackLayout Style="{DynamicResource themeStack}">
+                <!-- Event title -->
                 <Label Text="{Binding EventTitle}"
                        FontAttributes="Bold"
                        Style="{DynamicResource themeLabel}"/>
+                <!-- Event type title (maybe smaller font size) -->
+                <Label Text="{Binding EventTypeTitle}"
+                       FontSize="Small"
+                       Style="{DynamicResource themeLabel}"/>
+                <!-- Event begin and end hours -->
+                <Label x:Name="lblBeginTime"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblEndTime"
+                       Style="{DynamicResource themeLabel}"/>
+                <!-- Event description (italic?) -->
                 <Label Text="{Binding EventDescription}"
                        FontAttributes="Italic"
                        Style="{DynamicResource themeLabel}"/>
+                <!-- Event address -->
                 <Label Text="{Binding EventAddress}"
                        Style="{DynamicResource themeLabel}"/>
-                <Label Text="{Binding EventTypeTitle}"
-                       Style="{DynamicResource themeLabel}"/>
-                <Label Text="{Binding EventTypeDescription}"
-                       FontAttributes="Italic"
-                       Style="{DynamicResource themeLabel}"/>
-
-                <!-- This label will show that next comes Shifts -->
-                <Label x:Name="lbl"
+                <!-- Shifts -->
+                <Label x:Name="lblShifts"
                        Margin="0, 10"
-                       Style="{DynamicResource themeLabel}"
-                       FontSize="Large"
-                       FontAttributes="Italic, Bold"/>
+                       FontAttributes="Italic, Bold"
+                       Style="{DynamicResource themeLabel}"/>
                 <ListView x:Name="listView"
                           Style="{DynamicResource themeStack}"
                           RowHeight="70"

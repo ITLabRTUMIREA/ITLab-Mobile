@@ -13,15 +13,19 @@ namespace Http_Post.Pages
 {
     public partial class OneEventPage : ContentPage
     {
-        //TODO: create titles - already exist!!!
-        //TODO: btnChange -. push to CreateEvent like CreateEquipment
+        //TODO: btnChange -> push to CreateEvent like CreateEquipment
         private readonly HttpClient client = HttpClientFactory.HttpClient;
         private readonly Guid eventId;
         private EventViewExtended OneEvent { get; set; }
 
-        public OneEventPage(Guid id)
+        private DateTime beginTime;
+        private DateTime endTime;
+
+        public OneEventPage(Guid id, DateTime begin, DateTime end)
         {
             eventId = id;
+            beginTime = begin;
+            endTime = end;
             Show();
         }
 
@@ -31,7 +35,7 @@ namespace Http_Post.Pages
             InitializeComponent();
 
             listView.ItemsSource = OneEvent.Shifts;
-            lbl.Text = Res.Resource.Shifts;
+            UpdateLanguage();
         }
 
         private async void Show()
@@ -49,7 +53,7 @@ namespace Http_Post.Pages
 
             } catch (Exception ex)
             {
-                stacklayout.Children.Add(new Label { Text = ex.Message });
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
@@ -58,6 +62,13 @@ namespace Http_Post.Pages
             // Detect on which shift user has tapped
             // Load new Page
             Navigation.PushAsync(new OneShiftViewPage(e.Item as ShiftView));
+        }
+
+        private void UpdateLanguage()
+        {
+            lblShifts.Text = Res.Resource.Shifts;
+            lblBeginTime.Text = beginTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
+            lblEndTime.Text = endTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
         }
     }
 }
