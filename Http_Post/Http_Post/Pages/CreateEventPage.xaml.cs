@@ -17,8 +17,8 @@ namespace Http_Post.Pages
 	{
         private HttpClient client = Services.HttpClientFactory.HttpClient;
         private EventTypeView newETV;
-        private EventViewExtended Event;
-        private List<ShiftView> newShifts;
+        private Guid eventId;
+        private List<ShiftView> newShifts = new List<ShiftView>();
         private bool isCreating;
 
         public CreateEventPage(EventViewExtended Event)
@@ -26,7 +26,11 @@ namespace Http_Post.Pages
             Init();
 
             isCreating = false;
-            this.Event = Event;
+            eventId = Event.Id;
+            newShifts = Event.Shifts;
+            listShifts.ItemsSource = newShifts;
+            listShifts.IsVisible = true;
+            newETV = Event.EventType;
 
             editEventType.Text = Event.EventTypeTitle;
             editName.Text = Event.EventTitle;
@@ -66,7 +70,6 @@ namespace Http_Post.Pages
                 {
                     var tapGestureRecognizer = new TapGestureRecognizer();
                     tapGestureRecognizer.Tapped += (s, args) => {
-                        Hide(null, null);
                         editEventType.Text = eq.Title;
                         newETV = eq;
                         editName.Focus();
@@ -93,13 +96,9 @@ namespace Http_Post.Pages
             }
         }
 
-        private async void btnCreateEventType_Clicked(object sender, EventArgs e)
-        {
-            await AddEventType(Navigation);
-        }
-
         private async void btnSave_Clicked(object sender, EventArgs e)
         {
+            Hide();
             if (!await CheckAllFieldsForNull())
                 return;
 
@@ -113,12 +112,12 @@ namespace Http_Post.Pages
             {
                 EventView eventView = new EventView
                 {
-                    Id = Event != null ? Event.Id : Guid.Empty,
+                    Id = eventId != null ? eventId : Guid.Empty,
                     Title = editName.Text,
                     Description = editDescription.Text,
                     Address = editAddress.Text,
-                    EventType = newETV ?? Event.EventType, // TODO: logic
-                    Shifts = newShifts ?? Event.Shifts // the same
+                    EventType = newETV, // TODO: logic
+                    Shifts = newShifts // the same
                 };
 
                 var jsonContent = JsonConvert.SerializeObject(eventView);
@@ -128,13 +127,14 @@ namespace Http_Post.Pages
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventView>>(resultContent);
-                var message2 = JsonConvert.DeserializeObject<OneObjectResponse<CompactEventViewExtended>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
 
                 await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
 
-                await Navigation.PushAsync(new OneEventPage(message2.Data.Id, message2.Data.BeginTime, message2.Data.EndTime));
+                var message2 = JsonConvert.DeserializeObject<OneObjectResponse<CompactEventViewExtended>>(resultContent);
+                await Navigation.PushAsync(new OneEventPage(
+                    message2.Data.Id, message2.Data.BeginTime, message2.Data.EndTime));
             }
             catch (Exception ex)
             {
@@ -185,6 +185,11 @@ namespace Http_Post.Pages
             }
 
             return true;
+        }
+
+        private async void btnCreateEventType_Clicked(object sender, EventArgs e)
+        {
+            await AddEventType(Navigation);
         }
 
         public Task<string> AddEventType(INavigation navigation)
@@ -316,6 +321,7 @@ namespace Http_Post.Pages
 
         private async void btnAddShift_Clicked(object sender, EventArgs e)
         {
+            Hide();
             await AddShift(Navigation);
         }
 
@@ -459,6 +465,7 @@ namespace Http_Post.Pages
                         await navigation.PopModalAsync();
                         newShifts.Add(newShiftView);
                         listShifts.ItemsSource = newShifts;
+                        listShifts.IsVisible = true;
                         tcs.SetResult(null);
                     }
                     catch(FormatException ex)
@@ -482,7 +489,7 @@ namespace Http_Post.Pages
                     await navigation.PopModalAsync();
                     tcs.SetResult(null);
                 };
-
+                #region adding views to grid
                 grid.Children.Add(lbl, 0, 0);
                 Grid.SetColumnSpan(lbl, 2);
                 grid.Children.Add(entryDescription, 0, 1);
@@ -499,7 +506,7 @@ namespace Http_Post.Pages
                 grid.Children.Add(editPeople, 1, 6);
                 grid.Children.Add(btnOk, 0, 7);
                 grid.Children.Add(btnCancel, 1, 7);
-
+                #endregion
                 var page = new ContentPage()
                 {
                     Style = styleStack
@@ -535,10 +542,15 @@ namespace Http_Post.Pages
             btnCreateEventType.IsVisible = true;
         }
 
-        private void Hide(object sender, FocusEventArgs e)
+        private void Hide()
         {
             stackEventType.IsVisible = false;
             btnCreateEventType.IsVisible = false;
+        }
+
+        private void editName_Focused(object sender, FocusEventArgs e)
+        {
+            Hide();
         }
 
         private void UpdateLanguage()
@@ -551,6 +563,7 @@ namespace Http_Post.Pages
             ///////////////////////////////////////
             btnAddShift.Text = Resource.Shifts;
             btnSave.Text = Resource.Save;
+            btnCreateEventType.Text = Resource.Create + " " + Resource.EventType;
             ///////////////////////////////////////
             editEventType.Placeholder = lblEventType.Text;
             editName.Placeholder = lblName.Text;

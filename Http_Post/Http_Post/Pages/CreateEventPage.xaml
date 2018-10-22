@@ -12,7 +12,6 @@
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editEventType"
                         TextChanged="editEventType_TextChanged"
-                        Unfocused="Hide"
                         Style="{DynamicResource themeLabel}"/>
                 <Button x:Name="btnCreateEventType"
                         IsVisible="False"
@@ -25,6 +24,7 @@
                 <Label x:Name="lblName"
                        Style="{DynamicResource themeLabel}"/>
                 <Editor x:Name="editName"
+                        Focused="editName_Focused"
                         Style="{DynamicResource themeLabel}"/>
                 <!-- Description of event -->
                 <Label x:Name="lblDescription"
@@ -38,7 +38,9 @@
                         Style="{DynamicResource themeLabel}"/>
                 <!-- Button to add shifts in event -->
                 <Button x:Name="btnAddShift"
-                        Margin="10,20"
+                        WidthRequest="200"
+                        HorizontalOptions="Center"
+                        Margin="20"
                         Clicked="btnAddShift_Clicked"
                         Style="{DynamicResource themeButton}"/>
                 <ListView x:Name="listShifts"
