@@ -171,4 +171,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\SettingsGear.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Calendar_Dots.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\People.png" />
+  </ItemGroup>
 </Project>

@@ -491,5 +491,23 @@ namespace Http_Post.Res {
                 return ResourceManager.GetString("TitleSettings", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Types.
+        /// </summary>
+        public static string TitleTypes {
+            get {
+                return ResourceManager.GetString("TitleTypes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Users.
+        /// </summary>
+        public static string TitleUsers {
+            get {
+                return ResourceManager.GetString("TitleUsers", resourceCulture);
+            }
+        }
     }
 }

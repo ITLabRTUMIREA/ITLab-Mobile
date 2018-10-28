@@ -47,6 +47,9 @@
                         <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
                         <Controls:Master_Btns x:Name="Btn_CreateEquip" ImageSource="Create.png" Clicked="BtnCreateEquip_Clicked"/>
                         <BoxView/>
+                        <Controls:Master_Btns x:Name="Btn_Types" ImageSource="Calendar_Dots.png" Clicked="BtnTypes_Clicked"/>
+                        <Controls:Master_Btns x:Name="Btn_Users" ImageSource="People.png" Clicked="BtnUsers_Clicked"/>
+                        <BoxView/>
                         <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
                         <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
                     </StackLayout>

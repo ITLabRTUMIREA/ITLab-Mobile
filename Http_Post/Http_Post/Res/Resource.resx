@@ -309,4 +309,12 @@
     <value>Number</value>
     <comment>Equipment number</comment>
   </data>
+  <data name="TitleTypes" xml:space="preserve">
+    <value>Types</value>
+    <comment>Title of pages and buttons</comment>
+  </data>
+  <data name="TitleUsers" xml:space="preserve">
+    <value>Users</value>
+    <comment>Title of pages and buttons</comment>
+  </data>
 </root>

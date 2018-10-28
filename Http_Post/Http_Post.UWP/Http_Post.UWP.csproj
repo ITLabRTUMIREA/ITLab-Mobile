@@ -105,6 +105,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Calendar.png" />
+    <Content Include="Calendar_Dots.png" />
     <Content Include="ChangingPencil.png" />
     <Content Include="Create.png" />
     <Content Include="Equipment.png" />
@@ -114,6 +115,7 @@
     <Content Include="LogOut.png" />
     <Content Include="News.png" />
     <Content Include="Noname_Avatar.png" />
+    <Content Include="People.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />

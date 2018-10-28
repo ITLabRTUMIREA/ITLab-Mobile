@@ -309,4 +309,12 @@
     <value>Номер</value>
     <comment>Equipment number</comment>
   </data>
+  <data name="TitleTypes" xml:space="preserve">
+    <value>Типы</value>
+    <comment>Title of pages and buttons</comment>
+  </data>
+  <data name="TitleUsers" xml:space="preserve">
+    <value>Пользователи</value>
+    <comment>Title of pages and buttons</comment>
+  </data>
 </root>

@@ -92,6 +92,26 @@ namespace Http_Post
             Close();
         }
 
+        private void BtnTypes_Clicked(object sender, EventArgs e)
+        {
+            Detail = new NavigationPage(new TypesPage())
+            {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Types page
+
+            Close();
+        }
+
+        private void BtnUsers_Clicked(object sender, EventArgs e)
+        {
+            Detail = new NavigationPage(new Settings(this))
+            {
+                Style = Application.Current.Resources[new ThemeChanger().Theme + "_Bar"] as Style
+            }; // Load Users page
+
+            Close();
+        }
+
         private void Settings_Clicked(object sender, EventArgs e)
         {
             Detail = new NavigationPage(new Settings(this)) {
@@ -116,6 +136,8 @@ namespace Http_Post
             Btn_CreateEquip.Btn_Text = Resource.TitleCreateEquipment;
             Btn_Settings.Btn_Text = Resource.TitleSettings;
             Btn_About.Btn_Text = Resource.TitleAboutApp;
+            Btn_Types.Btn_Text = Resource.TitleTypes;
+            Btn_Users.Btn_Text = Resource.TitleUsers;
         }
 
         public void UpdateTheme()
