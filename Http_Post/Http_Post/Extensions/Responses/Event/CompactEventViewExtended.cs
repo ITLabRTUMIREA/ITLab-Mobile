@@ -7,7 +7,7 @@ namespace Http_Post.Extensions.Responses.Event
     {
         // day of week
         public string DayOfWeek
-            => BeginTime.DayOfWeek.ToString(); // TODO: help me to localize
+            => BeginTime.ToString("dddd"); // TODO: help me to localize
         // begin time
         public string BeginHour
             => BeginTime.ToLocalTime().Hour.ToString();

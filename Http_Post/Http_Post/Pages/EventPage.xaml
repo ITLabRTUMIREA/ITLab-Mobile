@@ -13,7 +13,6 @@
                 <ListView.RowHeight>
                     <OnPlatform x:TypeArguments="x:Int32">
                         <On Platform="IOS, Android" Value="180"/>
-                      
                     </OnPlatform>
                 </ListView.RowHeight>
                 <ListView.ItemTemplate>

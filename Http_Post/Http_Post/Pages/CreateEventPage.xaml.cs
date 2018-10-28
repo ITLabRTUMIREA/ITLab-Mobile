@@ -27,7 +27,6 @@ namespace Http_Post.Pages
         public CreateEventPage(EventViewExtended Event)
         {
             Init(false);
-
             eventId = Event.Id; // set id
             // TODO: place equipment and invited
             for (int i = 0; i < Event.Shifts.Count; i++)
@@ -138,7 +137,7 @@ namespace Http_Post.Pages
                         Address = editAddress.Text,
                         Description = editDescription.Text,
                         Title = editName.Text,
-                        Shifts = null // TODO: shift logic
+                        Shifts = ShiftCreates // TODO: shift logic
                     };
                 else
                     eventView = new EventEditRequest
@@ -164,9 +163,7 @@ namespace Http_Post.Pages
 
                 await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
 
-                var messageToShow = JsonConvert.DeserializeObject<OneObjectResponse<CompactEventViewExtended>>(resultContent);
-                await Navigation.PushAsync(new OneEventPage(
-                    messageToShow.Data.Id, messageToShow.Data.BeginTime, messageToShow.Data.EndTime));
+                await Navigation.PushAsync(new OneEventPage(message.Data.Id));
 
             }
             catch (Exception ex)
@@ -413,7 +410,7 @@ namespace Http_Post.Pages
                 {
                     MinimumDate = DateTime.Now.AddDays(-3)
                 };
-                var beginTime = new TimePicker();
+                var beginTime = new TimePicker { Format = "HH:mm" };
                 var endTime = new TimePicker();
                 #endregion
                 #region Adding places label hints and places editros
@@ -465,7 +462,7 @@ namespace Http_Post.Pages
                                 {
                                     TargetParticipantsCount = Convert.ToInt32(editPeople.Text)
                                 });
-
+                            
                             var newShift = new ShiftCreateRequest
                             {
                                 Description = entryDescription.Text,

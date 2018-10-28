@@ -17,14 +17,9 @@ namespace Http_Post.Pages
         private readonly Guid eventId;
         private EventViewExtended OneEvent { get; set; }
 
-        private DateTime beginTime;
-        private DateTime endTime;
-
-        public OneEventPage(Guid id, DateTime begin, DateTime end)
+        public OneEventPage(Guid id)
         {
             eventId = id;
-            beginTime = begin;
-            endTime = end;
             Show();
         }
 
@@ -65,8 +60,8 @@ namespace Http_Post.Pages
         private void UpdateLanguage()
         {
             lblShifts.Text = Res.Resource.Shifts;
-            lblBeginTime.Text = beginTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
-            lblEndTime.Text = endTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
+            lblBeginTime.Text = OneEvent.Shifts[0].BeginTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
+            lblEndTime.Text = OneEvent.Shifts[OneEvent.Shifts.Count - 1].EndTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
             btnChange.Text = Res.Resource.Change;
         }
 
