@@ -1,4 +1,6 @@
 ﻿using Http_Post.Res;
+using Models.PublicAPI.Requests.Events.Event.Create;
+using Models.PublicAPI.Requests.Events.Event.Edit;
 using Models.PublicAPI.Responses.Event;
 using System.Collections.Generic;
 
@@ -9,16 +11,29 @@ namespace Http_Post.Pages
 	public partial class OneShiftViewPage : ContentPage
 	{
         ShiftView shift;
-        List<PlaceView> places;
 
 		public OneShiftViewPage (ShiftView tappedShift)
 		{
-			InitializeComponent ();
-            UpdateLanguage();
+            Init();
             shift = tappedShift;
-            places = shift.Places;
             SetProperties();
 		}
+
+        public OneShiftViewPage (ShiftCreateRequest shift)
+        {
+            Init();
+        }
+
+        public OneShiftViewPage(ShiftEditRequest shift)
+        {
+            Init();
+        }
+
+        private void Init()
+        {
+            InitializeComponent();
+            UpdateLanguage();
+        }
 
         private void SetProperties()
         {
@@ -29,7 +44,7 @@ namespace Http_Post.Pages
             lblEnd.Text = shift.EndTime.ToString("dd MMMM, yyyy. HH:mm");
             ///////////////////////////////////////
             var ps = new List<TextCell>();
-            for (int i = 0; i < places.Count; i++)
+            for (int i = 0; i < shift.Places.Count; i++)
             {
                 var pview = new TextCell();
                 pview.Text = $"{Resource.Place} №{(i + 1).ToString()}";
@@ -46,7 +61,7 @@ namespace Http_Post.Pages
             // Load new Page
             string tapped = (e.Item as TextCell).Text;
             int index = tapped[tapped.Length - 1] - 49; // I don't know why Convert.ToInt32 doesn't work
-            var place = places[index];
+            var place = shift.Places[index];
             Navigation.PushAsync(new OnePlaceViewPage(place, index + 1));
         }
 

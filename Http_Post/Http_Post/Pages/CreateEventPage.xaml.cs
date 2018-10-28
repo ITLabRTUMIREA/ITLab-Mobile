@@ -1,5 +1,7 @@
 ﻿using Http_Post.Extensions.Responses.Event;
 using Http_Post.Res;
+using Models.PublicAPI.Requests.Events.Event.Create;
+using Models.PublicAPI.Requests.Events.Event.Edit;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
@@ -18,39 +20,56 @@ namespace Http_Post.Pages
         private HttpClient client = Services.HttpClientFactory.HttpClient;
         private EventTypeView newETV;
         private Guid eventId;
-        private List<ShiftView> newShifts = new List<ShiftView>();
+        private List<ShiftEditRequest> ShiftEdit = new List<ShiftEditRequest>();
+        private List<ShiftCreateRequest> ShiftCreates = new List<ShiftCreateRequest>();
         private bool isCreating;
 
         public CreateEventPage(EventViewExtended Event)
         {
-            Init();
+            Init(false);
 
-            isCreating = false;
-            eventId = Event.Id;
-            newShifts = Event.Shifts;
-            listShifts.ItemsSource = newShifts;
-            listShifts.IsVisible = true;
-            newETV = Event.EventType;
+            eventId = Event.Id; // set id
+            // TODO: place equipment and invited
+            for (int i = 0; i < Event.Shifts.Count; i++)
+            {
+                ShiftEdit.Add(new ShiftEditRequest
+                {
+                    Id = Event.Shifts[i].Id,
+                    BeginTime = Event.Shifts[i].BeginTime,
+                    EndTime = Event.Shifts[i].EndTime,
+                    Description = Event.Shifts[i].Description,
+                    Places = new List<PlaceEditRequest>()
+                });
+                for (int j = 0; j < Event.Shifts[i].Places.Count; j++)
+                {
+                    ShiftEdit[i].Places.Add(new PlaceEditRequest
+                    {
+                        Id = Event.Shifts[i].Places[j].Id,
+                        Description = Event.Shifts[i].Places[j].Description,
+                        TargetParticipantsCount = Event.Shifts[i].Places[j].TargetParticipantsCount,
+                    });
+                }
+            } // cast from ShiftView to ShiftEditRequest
+            listShifts.ItemsSource = ShiftEdit;
+            listShifts.IsVisible = true; // make it visible
+            newETV = Event.EventType; // set event type
 
-            editEventType.Text = Event.EventTypeTitle;
-            editName.Text = Event.EventTitle;
-            editDescription.Text = Event.EventDescription;
-            editAddress.Text = Event.EventAddress;
-
-            listShifts.IsVisible = true;
-            listShifts.ItemsSource = Event.Shifts;
+            editEventType.Text = Event.EventTypeTitle; // event type title
+            editName.Text = Event.EventTitle; // event title
+            editDescription.Text = Event.EventDescription; // event description
+            editAddress.Text = Event.EventAddress; // event address
         }
 
         public CreateEventPage ()
 		{
-            Init();
-            isCreating = true;
+            Init(true);
 		}
 
-        private void Init()
+        private void Init(bool creating)
         {
             InitializeComponent();
             UpdateLanguage();
+            isCreating = creating;
         }
 
         private async void editEventType_TextChanged(object sender, TextChangedEventArgs e)
@@ -110,17 +129,30 @@ namespace Http_Post.Pages
         {
             try
             {
-                EventView eventView = new EventView
-                {
-                    Id = eventId != null ? eventId : Guid.Empty,
-                    Title = editName.Text,
-                    Description = editDescription.Text,
-                    Address = editAddress.Text,
-                    EventType = newETV, // TODO: logic
-                    Shifts = newShifts // the same
-                };
+                EventCreateRequest eventCreate = null;
+                EventEditRequest eventView = null;
+                if (isCreating)
+                    eventCreate = new EventCreateRequest
+                    {
+                        EventTypeId = newETV.Id,
+                        Address = editAddress.Text,
+                        Description = editDescription.Text,
+                        Title = editName.Text,
+                        Shifts = null // TODO: shift logic
+                    };
+                else
+                    eventView = new EventEditRequest
+                    {
+                        Id = eventId,
+                        Title = editName.Text,
+                        Description = editDescription.Text,
+                        Address = editAddress.Text,
+                        //EventType = newETV,
+                        Shifts = null // TODO: shift logic
+                    };
 
-                var jsonContent = JsonConvert.SerializeObject(eventView);
+                var jsonContent = isCreating ?
+                    JsonConvert.SerializeObject(eventCreate) : JsonConvert.SerializeObject(eventView);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var result = isCreating ?
                     await client.PostAsync("event/", content) : await client.PutAsync("event/", content);
@@ -132,9 +164,10 @@ namespace Http_Post.Pages
 
                 await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
 
-                var message2 = JsonConvert.DeserializeObject<OneObjectResponse<CompactEventViewExtended>>(resultContent);
+                var messageToShow = JsonConvert.DeserializeObject<OneObjectResponse<CompactEventViewExtended>>(resultContent);
                 await Navigation.PushAsync(new OneEventPage(
-                    message2.Data.Id, message2.Data.BeginTime, message2.Data.EndTime));
+                    messageToShow.Data.Id, messageToShow.Data.BeginTime, messageToShow.Data.EndTime));
+
             }
             catch (Exception ex)
             {
@@ -421,50 +454,76 @@ namespace Http_Post.Pages
                 {
                     try
                     {
-                        if (string.IsNullOrEmpty(entryDescription.Text) || string.IsNullOrWhiteSpace(entryDescription.Text))
-                        {
-                            entryDescription.Focus();
-                            return;
-                        }
-
                         if (endDate.Date < beginDate.Date)
                             throw new Exception($"Error: {Resource.ErrorNoDate}"); // Ending date can't be less than begining date!
 
-                        var places = new List<PlaceView>();
-                        for (int i = 0; i < Convert.ToInt32(editPlaces.Text); i++)
+                        if (isCreating)
                         {
-                            places.Add(new PlaceView
+                            var placesCreate = new List<PlaceCreateRequest>();
+                            for (int i = 0; i < Convert.ToInt32(editPlaces.Text); i++)
+                                placesCreate.Add(new PlaceCreateRequest
+                                {
+                                    TargetParticipantsCount = Convert.ToInt32(editPeople.Text)
+                                });
+
+                            var newShift = new ShiftCreateRequest
                             {
-                                TargetParticipantsCount = Convert.ToInt32(editPeople.Text),
-                            });
+                                Description = entryDescription.Text,
+                                BeginTime = new DateTime(
+                                beginDate.Date.Year,
+                                beginDate.Date.Month,
+                                beginDate.Date.Day,
+                                beginTime.Time.Hours,
+                                beginTime.Time.Minutes,
+                                beginTime.Time.Seconds
+                                ),
+                                EndTime = new DateTime(
+                                endDate.Date.Year,
+                                endDate.Date.Month,
+                                endDate.Date.Day,
+                                endTime.Time.Hours,
+                                endTime.Time.Minutes,
+                                endTime.Time.Seconds
+                                ),
+                                Places = placesCreate
+                            };
+                            ShiftCreates.Add(newShift);
+                            listShifts.ItemsSource = ShiftCreates;
                         }
-
-                        var newShiftView = new ShiftView
+                        else
                         {
-                            Description = entryDescription.Text,
-                            BeginTime = new DateTime(
-                            beginDate.Date.Year,
-                            beginDate.Date.Month,
-                            beginDate.Date.Day,
-                            beginTime.Time.Hours,
-                            beginTime.Time.Minutes,
-                            beginTime.Time.Seconds
-                            ),
-                            EndTime = new DateTime(
-                            endDate.Date.Year,
-                            endDate.Date.Month,
-                            endDate.Date.Day,
-                            endTime.Time.Hours,
-                            endTime.Time.Minutes,
-                            endTime.Time.Seconds
-                            ),
-                            Places = places,
-                            // TODO: проверить делает ли он Пут запрос или всегда создаёт новый ШифтВью и ПлэйсВью
-                        };
+                            var placesEdit = new List<PlaceEditRequest>();
+                            for (int i = 0; i < Convert.ToInt32(editPlaces.Text); i++)
+                                placesEdit.Add(new PlaceEditRequest
+                                {
+                                    TargetParticipantsCount = Convert.ToInt32(editPeople.Text),
+                                });
 
+                            var shiftEdit = new ShiftEditRequest
+                            {
+                                Description = entryDescription.Text,
+                                BeginTime = new DateTime(
+                                beginDate.Date.Year,
+                                beginDate.Date.Month,
+                                beginDate.Date.Day,
+                                beginTime.Time.Hours,
+                                beginTime.Time.Minutes,
+                                beginTime.Time.Seconds
+                                ),
+                                EndTime = new DateTime(
+                                endDate.Date.Year,
+                                endDate.Date.Month,
+                                endDate.Date.Day,
+                                endTime.Time.Hours,
+                                endTime.Time.Minutes,
+                                endTime.Time.Seconds
+                                ),
+                                Places = placesEdit
+                            };
+                            ShiftEdit.Add(shiftEdit);
+                            listShifts.ItemsSource = ShiftEdit;
+                        }
                         await navigation.PopModalAsync();
-                        newShifts.Add(newShiftView);
-                        listShifts.ItemsSource = newShifts;
                         listShifts.IsVisible = true;
                         tcs.SetResult(null);
                     }
@@ -574,6 +633,10 @@ namespace Http_Post.Pages
         private void listShifts_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             // TODO: load one shift page; isChanging - true
+            if (isCreating)
+                Navigation.PushAsync(new OneShiftViewPage((ShiftCreateRequest)sender));
+            else
+                Navigation.PushAsync(new OneShiftViewPage((ShiftEditRequest)sender));
         }
     }
 }

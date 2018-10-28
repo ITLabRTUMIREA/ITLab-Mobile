@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ITLab.Models.PublicAPI" Version="1.0.2364" />
+    <PackageReference Include="ITLab.Models.PublicAPI" Version="1.0.2756" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Rg.Plugins.Popup" Version="1.1.4.168" />
     <PackageReference Include="Xamarin.Forms" Version="3.2.0.871581" />
