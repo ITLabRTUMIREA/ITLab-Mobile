@@ -1,9 +1,8 @@
-﻿using Models.PublicAPI.Responses.General;
+﻿using Models.PublicAPI.Responses.Equipment;
+using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
 using Http_Post.Res;
 using Http_Post.Services;
-using Http_Post.Extensions.Responses.Event;
-
 using System;
 using System.Net.Http;
 using Newtonsoft.Json;
@@ -13,10 +12,9 @@ namespace Http_Post.Pages
 {
 	public partial class OneEquipmentPage : ContentPage
 	{
-        private Guid EquipId { get; }
-        private Guid OwnerId;
+        private Guid EquipId;
         private HttpClient client = HttpClientFactory.HttpClient;
-        private EquipmentViewExtended equipment { get; set; }
+        private EquipmentView equipment;
 
         public OneEquipmentPage (Guid equipId)
 		{
@@ -33,17 +31,17 @@ namespace Http_Post.Pages
             try
             {
                 var response = await client.GetStringAsync($"Equipment/{EquipId}");
-                var equip = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentViewExtended>>(response);
+                var equip = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentView>>(response);
 
                 if (equip.Data.OwnerId != null)
                 {
                     response = await client.GetStringAsync($"user/{equip.Data.OwnerId}");
                     var user = JsonConvert.DeserializeObject<OneObjectResponse<UserView>>(response);
-                    equip.Data.OwnerName = user.Data.FirstName + " " + user.Data.LastName + ", " +
+                    lblOwner.Text = user.Data.FirstName + " " + user.Data.LastName + ", " +
                         user.Data.Email;
                 }
                 else
-                    equip.Data.OwnerName = Resource.ADMIN_Laboratory;
+                    lblOwner.Text = Resource.ADMIN_Laboratory;
 
                 equipment = equip.Data;
                 SetInfo();
@@ -59,7 +57,6 @@ namespace Http_Post.Pages
             lblType.Text = equipment.EquipmentType.Title;
             lblNumber.Text = equipment.SerialNumber;
             lblDescription.Text = equipment.Description;
-            lblOwner.Text = equipment.OwnerName;
         }
 
         private void UpdateLanguage()
@@ -73,9 +70,7 @@ namespace Http_Post.Pages
             btnChange.Text = Resource.Change;
         }
 
-        private void btnChange_Clicked(object sender, EventArgs e)
-        {
-            Navigation.PushAsync(new CreateEquipment(equipment));
-        }
+        private async void btnChange_Clicked(object sender, EventArgs e)
+            => await Navigation.PushAsync(new CreateEquipment(equipment));
     }
 }

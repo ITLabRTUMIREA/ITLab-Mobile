@@ -305,4 +305,8 @@
     <value>Profile</value>
     <comment>Title of pages and buttons</comment>
   </data>
+  <data name="Number" xml:space="preserve">
+    <value>Number</value>
+    <comment>Equipment number</comment>
+  </data>
 </root>

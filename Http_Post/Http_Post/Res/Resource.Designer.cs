@@ -304,6 +304,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number.
+        /// </summary>
+        public static string Number {
+            get {
+                return ResourceManager.GetString("Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to of.
         /// </summary>
         public static string Of {

@@ -22,6 +22,9 @@
                 <Setter Property="Padding" Value="5"/>
                 <Setter Property="Spacing" Value="5"/>
             </Style>
+            <Style TargetType="Button">
+                <Setter Property="BorderRadius" Value="10"/>
+            </Style>
 
             <!-- Themes -->
             <!-- Light theme -->

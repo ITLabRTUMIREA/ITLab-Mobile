@@ -15,7 +15,7 @@ namespace Http_Post.Pages
 {
 	public partial class CreateEquipment : ContentPage
 	{
-        // TODO: maksim - help
+        // TODO: Equipment type - w8 for Maksim bug fix
         private HttpClient client = HttpClientFactory.HttpClient;
         private Guid? ownerId; // if empty - laboratory, if not empty - has owner
         private UserView newUser;
@@ -24,18 +24,17 @@ namespace Http_Post.Pages
         private Guid? eqId; // if creating - null, if changing - use already existed
 
         // pass to this ctor if needed to change equipment
-        public CreateEquipment (EquipmentViewExtended equipment)
+        public CreateEquipment (EquipmentView equipment)
         {
-            //Init(); ----------------------------------------
-            isCreating = false;
+            Init(false);
             eqId = equipment.Id;
 
             editEquipType.Text = equipment.EquipmentType.Title;
-            //Hide(null, null); ----------------------------------------
+            Hide();
             editSerialNumber.Text = equipment.SerialNumber;
             editDescription.Text = equipment.Description;
-            lblOwner.Text = equipment.OwnerName;
-            //newETV = equipment.EquipmentType; ----------------------------------------
+            //lblOwner.Text = equipment.OwnerName;
+            //newETV = equipment.EquipmentType;
             ownerId = equipment.OwnerId;
 
             btnConfirm.BackgroundColor = btnChangeOwner.BackgroundColor;
@@ -43,31 +42,19 @@ namespace Http_Post.Pages
 
         public CreateEquipment ()
         {
-            //Init(); ----------------------------------------
-            isCreating = true;
+            Init(true);
         }
-        /*
-        private void Init()
+        
+        private void Init(bool creating)
         {
             InitializeComponent();
             UpdateLanguage();
-        }
-
-        // if user write smth 'Confirm' btn will glow green to show - you need to save it
-        private void DefaultTextChanged(object sender, TextChangedEventArgs e)
-        {
-            SetGreenColorToConfirm();
-        }
-
-        private void SetGreenColorToConfirm()
-        {
-            btnConfirm.BackgroundColor = Color.FromHex("#004d00");
+            isCreating = creating;
         }
 
         private async void editEquipType_TextChanged(object sender, TextChangedEventArgs e)
         {
             Show();
-            SetGreenColorToConfirm();
             stack.Children.Clear();
             try
             {
@@ -82,10 +69,10 @@ namespace Http_Post.Pages
                 {
                     var tapGestureRecognizer = new TapGestureRecognizer();
                     tapGestureRecognizer.Tapped += (s, args) => {
-                        Hide(null, null);
                         editEquipType.Text = eq.Title;
                         newETV = eq;
                         editSerialNumber.Focus();
+                        Hide();
                     };
                     var label = new Label
                     {
@@ -111,7 +98,6 @@ namespace Http_Post.Pages
 
         private async void btnConfirm_Clicked(object sender, EventArgs e)
         {
-            btnConfirm.Style = btnChangeOwner.Style;
             try
             {
                 if (newETV == null)
@@ -128,7 +114,7 @@ namespace Http_Post.Pages
                 {
                     Id = eqId ?? Guid.Empty, 
                     OwnerId = ownerGuid ?? null,
-                    EquipmentType = newETV,
+                    //EquipmentType = newETV, TODO: equip type
                     EquipmentTypeId = newETV.Id,
                     Description = editDescription.Text,
                     SerialNumber = editSerialNumber.Text
@@ -228,7 +214,6 @@ namespace Http_Post.Pages
                     editEquipType.Text = message.Data.Title;
                     newETV = message.Data;
                     editSerialNumber.Focus();
-                    SetGreenColorToConfirm();
                     // pass result
                     tcs.SetResult(null);
                 };
@@ -394,7 +379,6 @@ namespace Http_Post.Pages
                     lblOwner.Text = newUser.FirstName + " " + newUser.LastName + ", " + newUser.Email;
 
                     await navigation.PopModalAsync();
-                    SetGreenColorToConfirm();
                     // pass result
                     tcs.SetResult(null);
                 };
@@ -475,11 +459,10 @@ namespace Http_Post.Pages
             btnCreateEqType.IsVisible = true;
         }
 
-        private void Hide(object sender, FocusEventArgs e)
+        private void Hide()
         {
             stack.IsVisible = false;
             btnCreateEqType.IsVisible = false;
         }
-        */
     }
 }

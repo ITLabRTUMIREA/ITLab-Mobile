@@ -51,7 +51,7 @@ namespace Http_Post.Classes
                 if (App.Current.Properties.TryGetValue(KEY, out object name))
                     return name.ToString();
                 else
-                    return "Light";
+                    return "Dark";
             }
         }
     }
