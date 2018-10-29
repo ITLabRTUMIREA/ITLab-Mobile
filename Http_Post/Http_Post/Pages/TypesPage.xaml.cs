@@ -18,19 +18,28 @@ using Xamarin.Forms;
 
 namespace Http_Post.Pages
 {
-	public partial class TypesPage : ContentPage
-	{
+    public partial class TypesPage : ContentPage
+    {
         HttpClient client = HttpClientFactory.HttpClient;
-		public TypesPage ()
-		{
-			InitializeComponent ();
+
+        enum Types
+        {
+            Event,
+            Role,
+            Equipment
+        }
+        private Types types;
+
+        public TypesPage()
+        {
+            InitializeComponent();
             UpdateLanguage();
 
             InitTapGestures();
 
             GetEventTypes(); // by default
             lblEventTypes.FontAttributes = FontAttributes.Bold;
-		}
+        }
 
         private void InitTapGestures()
         {
@@ -44,6 +53,7 @@ namespace Http_Post.Pages
                     lblEventTypes.FontAttributes = FontAttributes.Bold;
                     lblRoles.FontAttributes = FontAttributes.None;
                     lblEquipmentTypes.FontAttributes = FontAttributes.None;
+                    types = Types.Event;
                     GetEventTypes();
                 }
                 // if tapped roles
@@ -52,6 +62,7 @@ namespace Http_Post.Pages
                     lblEventTypes.FontAttributes = FontAttributes.None;
                     lblRoles.FontAttributes = FontAttributes.Bold;
                     lblEquipmentTypes.FontAttributes = FontAttributes.None;
+                    types = Types.Role;
                     GetRoles();
                 }
                 // if tapped equipment types
@@ -60,6 +71,7 @@ namespace Http_Post.Pages
                     lblEventTypes.FontAttributes = FontAttributes.None;
                     lblRoles.FontAttributes = FontAttributes.None;
                     lblEquipmentTypes.FontAttributes = FontAttributes.Bold;
+                    types = Types.Equipment;
                     GetEquipmentTypes();
                 }
             };
@@ -70,27 +82,47 @@ namespace Http_Post.Pages
 
         private async void GetEventTypes()
         {
-            var response = await client.GetStringAsync("EventType?all=true");
-            var rowTypes = JsonConvert.DeserializeObject<ListResponse<EventTypeView>>(response);
+            try
+            {
+                var response = await client.GetStringAsync("EventType?all=true");
+                var rowTypes = JsonConvert.DeserializeObject<ListResponse<EventTypeView>>(response);
 
-            listView.ItemsSource = rowTypes.Data;
-
+                listView.ItemsSource = rowTypes.Data;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         private async void GetRoles()
         {
-            var response = await client.GetStringAsync("eventrole");
-            var rowTypes = JsonConvert.DeserializeObject<ListResponse<EventRoleView>>(response);
+            try
+            {
+                var response = await client.GetStringAsync("eventrole");
+                var rowTypes = JsonConvert.DeserializeObject<ListResponse<EventRoleView>>(response);
 
-            listView.ItemsSource = rowTypes.Data;
+                listView.ItemsSource = rowTypes.Data;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         private async void GetEquipmentTypes()
         {
-            var response = await client.GetStringAsync("EquipmentType?all=true");
-            var rowTypes = JsonConvert.DeserializeObject<ListResponse<CompactEquipmentTypeView>>(response);
+            try
+            {
+                var response = await client.GetStringAsync("EquipmentType?all=true");
+                var rowTypes = JsonConvert.DeserializeObject<ListResponse<CompactEquipmentTypeView>>(response);
 
-            listView.ItemsSource = rowTypes.Data;
+                listView.ItemsSource = rowTypes.Data;
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         void listView_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -100,16 +132,23 @@ namespace Http_Post.Pages
 
         void btnCreate_Clicked(object sender, EventArgs e)
         {
-            // TODO: detect on which page we are now and then send CreateRequest
+            string url;
+            if (types == Types.Event)
+                url = "EventType";
+            else if (types == Types.Role)
+                url = "eventrole";
+            else if (types == Types.Equipment)
+                url = "EquipmentType";
+            // TODO: pop up to create new type
         }
 
         private void UpdateLanguage()
         {
             Title = Resource.TitleTypes;
             lblEventTypes.Text = Resource.EventType;
-            lblRoles.Text = "Roles";
+            lblRoles.Text = Resource.Roles;
             lblEquipmentTypes.Text = Resource.EquipmentType;
             btnCreate.Text = Resource.Create;
         }
-	}
+    }
 }

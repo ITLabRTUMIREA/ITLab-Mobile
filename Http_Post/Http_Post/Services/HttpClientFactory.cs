@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using Xamarin.Forms;
 
 namespace Http_Post.Services
@@ -10,8 +8,7 @@ namespace Http_Post.Services
     class HttpClientFactory
     {
         //private const string url = "https://itlabdevelop.azurewebsites.net/api/";
-        //private const string url = "http://localhost:5000/api/";
-        private const string url = "https://rtuitlab.ru/api/";
+        private const string url = "http://localhost:5000/api/";
 
 
         public static HttpClient HttpClient { get; } = CreateHttpClient();

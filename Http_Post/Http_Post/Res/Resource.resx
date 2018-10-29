@@ -317,4 +317,8 @@
     <value>Users</value>
     <comment>Title of pages and buttons</comment>
   </data>
+  <data name="Roles" xml:space="preserve">
+    <value>Roles</value>
+    <comment>Roles title</comment>
+  </data>
 </root>
