@@ -10,7 +10,8 @@ namespace Http_Post.Services
     class HttpClientFactory
     {
         //private const string url = "https://itlabdevelop.azurewebsites.net/api/";
-        private const string url = "http://localhost:5000/api/";
+        //private const string url = "http://localhost:5000/api/";
+        private const string url = "https://rtuitlab.ru/api/";
 
 
         public static HttpClient HttpClient { get; } = CreateHttpClient();

@@ -474,14 +474,15 @@ namespace Http_Post.Pages
                                 beginTime.Time.Minutes,
                                 beginTime.Time.Seconds
                                 ),
-                                EndTime = new DateTime(
-                                endDate.Date.Year,
-                                endDate.Date.Month,
-                                endDate.Date.Day,
-                                endTime.Time.Hours,
-                                endTime.Time.Minutes,
-                                endTime.Time.Seconds
-                                ),
+                                //EndTime = new DateTime(
+                                //endDate.Date.Year,
+                                //endDate.Date.Month,
+                                //endDate.Date.Day,
+                                //endTime.Time.Hours,
+                                //endTime.Time.Minutes,
+                                //endTime.Time.Seconds
+                                //),
+                                EndTime = endDate.Date + endTime.Time,
                                 Places = placesCreate
                             };
                             ShiftCreates.Add(newShift);
