@@ -1,6 +1,7 @@
 ﻿using Http_Post.Res;
 using Http_Post.Services;
 using Models.PublicAPI.Requests.Equipment.EquipmentType;
+using Models.PublicAPI.Requests.Events.Event.Create.Roles;
 using Models.PublicAPI.Requests.Events.Event.Edit.Roles;
 using Models.PublicAPI.Requests.Events.EventType;
 using Models.PublicAPI.Responses.Equipment;
@@ -37,8 +38,8 @@ namespace Http_Post.Pages
 
             InitTapGestures();
 
-            GetEventTypes(); // by default
-            lblEventTypes.FontAttributes = FontAttributes.Bold;
+            types = Types.Event; // by default
+            ChooseList();
         }
 
         private void InitTapGestures()
@@ -49,35 +50,48 @@ namespace Http_Post.Pages
                 var lbl = (Label)sender;
                 // if tapped event types
                 if (lbl.Equals(lblEventTypes))
-                {
-                    lblEventTypes.FontAttributes = FontAttributes.Bold;
-                    lblRoles.FontAttributes = FontAttributes.None;
-                    lblEquipmentTypes.FontAttributes = FontAttributes.None;
                     types = Types.Event;
-                    GetEventTypes();
-                }
                 // if tapped roles
                 else if (lbl.Equals(lblRoles))
-                {
-                    lblEventTypes.FontAttributes = FontAttributes.None;
-                    lblRoles.FontAttributes = FontAttributes.Bold;
-                    lblEquipmentTypes.FontAttributes = FontAttributes.None;
                     types = Types.Role;
-                    GetRoles();
-                }
                 // if tapped equipment types
                 else if (lbl.Equals(lblEquipmentTypes))
-                {
-                    lblEventTypes.FontAttributes = FontAttributes.None;
-                    lblRoles.FontAttributes = FontAttributes.None;
-                    lblEquipmentTypes.FontAttributes = FontAttributes.Bold;
                     types = Types.Equipment;
-                    GetEquipmentTypes();
-                }
+
+                ChooseList();
             };
             lblEventTypes.GestureRecognizers.Add(tapGestureRecognizer);
             lblRoles.GestureRecognizers.Add(tapGestureRecognizer);
             lblEquipmentTypes.GestureRecognizers.Add(tapGestureRecognizer);
+        }
+
+        private void ChooseList()
+        {
+            lblEventTypes.FontAttributes = FontAttributes.None;
+            lblRoles.FontAttributes = FontAttributes.None;
+            lblEquipmentTypes.FontAttributes = FontAttributes.None;
+
+            switch (types)
+            {
+                case Types.Event:
+                    { 
+                        lblEventTypes.FontAttributes = FontAttributes.Bold;
+                        GetEventTypes();
+                    }
+                    break;
+                case Types.Role:
+                    {
+                        lblRoles.FontAttributes = FontAttributes.Bold;
+                        GetRoles();
+                    }
+                    break;
+                case Types.Equipment:
+                    {
+                        lblEquipmentTypes.FontAttributes = FontAttributes.Bold;
+                        GetEquipmentTypes();
+                    }
+                    break;
+            }
         }
 
         private async void GetEventTypes()
@@ -130,16 +144,74 @@ namespace Http_Post.Pages
             // TODO: make separate pop ups file
         }
 
-        void btnCreate_Clicked(object sender, EventArgs e)
+        async void btnCreate_Clicked(object sender, EventArgs e)
         {
-            string url;
-            if (types == Types.Event)
-                url = "EventType";
-            else if (types == Types.Role)
-                url = "eventrole";
-            else if (types == Types.Equipment)
-                url = "EquipmentType";
-            // TODO: pop up to create new type
+            try
+            { 
+                string url = "";
+                string jsonContent = "";
+                if (types == Types.Event)
+                {
+                    url = "EventType";
+                    EventTypeCreateRequest eventType = await new Popup.Types.CreateTypePage().eventTypeCreate(Navigation);
+                    if (eventType == null)
+                        return;
+                    jsonContent = JsonConvert.SerializeObject(eventType);
+                }
+                else if (types == Types.Role)
+                {
+                    url = "eventrole";
+                    EventRoleCreateRequest eventRole = await new Popup.Types.CreateTypePage().eventRoleCreate(Navigation);
+                    if (eventRole == null)
+                        return;
+                    jsonContent = JsonConvert.SerializeObject(eventRole);
+                }
+                else if (types == Types.Equipment)
+                {
+                    url = "EquipmentType";
+                    EquipmentTypeCreateRequest equipmentType = await new Popup.Types.CreateTypePage().equipmentTypeCreate(Navigation);
+                    if (equipmentType == null)
+                        return;
+                    jsonContent = JsonConvert.SerializeObject(equipmentType);
+                }
+                // TODO: pop up to create new type
+            
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var request = await client.PostAsync(url, content);
+
+                var requestContent = await request.Content.ReadAsStringAsync();
+
+                switch (types)
+                {
+                    case Types.Event:
+                        {
+                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EventTypeView>>(requestContent);
+                            if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                                throw new Exception($"Error: {message.StatusCode}");
+                        }
+                        break;
+                    case Types.Role:
+                        {
+                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EventRoleView>>(requestContent);
+                            if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                                throw new Exception($"Error: {message.StatusCode}");
+                        }
+                        break;
+                    case Types.Equipment:
+                        {
+                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentTypeView>>(requestContent);
+                            if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                                throw new Exception($"Error: {message.StatusCode}");
+                        }
+                        break;
+                }
+
+                ChooseList(); // update list after cerating
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         private void UpdateLanguage()
