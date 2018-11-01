@@ -37,6 +37,7 @@ namespace Http_Post
                 loc.ChangeCulture(result);
 
                 UpdateLanguage();
+                menuSet.UpdateLanguage();
             }
             catch (Exception ex)
             {
