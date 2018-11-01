@@ -8,6 +8,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}">
+                <Controls:Master_Btns x:Name="Btn_Profile" ImageSource="Noname_Avatar.png" Clicked="BtnProfile_Clicked"/>
+
                 <Controls:Master_Btns x:Name="Btn_Lang" ImageSource="Language.png" Btn_Text="Change Language" Clicked="Lang_Clicked"/>
                 <Controls:Master_Btns x:Name="Btn_Theme" ImageSource="ChangingPencil.png" Clicked="Theme_Change"/>
                 <Controls:Master_Btns x:Name="Btn_LogOut" ImageSource="LogOut.png" Clicked="LogOut_Clicked"/>

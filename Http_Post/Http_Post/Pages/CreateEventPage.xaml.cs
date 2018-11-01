@@ -466,22 +466,7 @@ namespace Http_Post.Pages
                             var newShift = new ShiftCreateRequest
                             {
                                 Description = entryDescription.Text,
-                                BeginTime = new DateTime(
-                                beginDate.Date.Year,
-                                beginDate.Date.Month,
-                                beginDate.Date.Day,
-                                beginTime.Time.Hours,
-                                beginTime.Time.Minutes,
-                                beginTime.Time.Seconds
-                                ),
-                                //EndTime = new DateTime(
-                                //endDate.Date.Year,
-                                //endDate.Date.Month,
-                                //endDate.Date.Day,
-                                //endTime.Time.Hours,
-                                //endTime.Time.Minutes,
-                                //endTime.Time.Seconds
-                                //),
+                                BeginTime = beginDate.Date + beginTime.Time,
                                 EndTime = endDate.Date + endTime.Time,
                                 Places = placesCreate
                             };
@@ -500,22 +485,8 @@ namespace Http_Post.Pages
                             var shiftEdit = new ShiftEditRequest
                             {
                                 Description = entryDescription.Text,
-                                BeginTime = new DateTime(
-                                beginDate.Date.Year,
-                                beginDate.Date.Month,
-                                beginDate.Date.Day,
-                                beginTime.Time.Hours,
-                                beginTime.Time.Minutes,
-                                beginTime.Time.Seconds
-                                ),
-                                EndTime = new DateTime(
-                                endDate.Date.Year,
-                                endDate.Date.Month,
-                                endDate.Date.Day,
-                                endTime.Time.Hours,
-                                endTime.Time.Minutes,
-                                endTime.Time.Seconds
-                                ),
+                                BeginTime = beginDate.Date + beginTime.Time,
+                                EndTime = endDate.Date + endTime.Time,
                                 Places = placesEdit
                             };
                             ShiftEdit.Add(shiftEdit);

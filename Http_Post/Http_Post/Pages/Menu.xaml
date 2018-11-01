@@ -1,69 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Menu"
-             Title="ITLab-Mobile"
-             xmlns:Controls="clr-namespace:Http_Post.Controls">
-
-    <MasterDetailPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="BoxView">
-                <Setter Property="BackgroundColor" Value="Silver"/>
-                <Setter Property="HeightRequest" Value="1"/>
-                <Setter Property="Margin" Value="0,10,0,10"/>
-                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            </Style>
-        </ResourceDictionary>
-    </MasterDetailPage.Resources>
-
-    <MasterDetailPage.Master>
-        <ContentPage Title="Master">
-            <ContentPage.Content>
-                <ScrollView>
-                    <StackLayout x:Name="stacklayout_Master" Padding="5" 
-                             VerticalOptions="FillAndExpand"
-                             HorizontalOptions="FillAndExpand"
-                             Style="{DynamicResource themeStack}">
-                        <StackLayout x:Name="stackUser" Orientation="Horizontal" Margin="0,0,0,20">
-                            <Image WidthRequest="35" HeightRequest="35" Aspect="AspectFit" Source="Noname_Avatar.png">
-                                <Image.GestureRecognizers>
-                                    <TapGestureRecognizer Tapped="ProfileImage_Tapped"
-                                                      NumberOfTapsRequired="1"/>
-                                </Image.GestureRecognizers>
-                            </Image>
-                            <StackLayout Orientation="Vertical">
-                                <Label x:Name="label_name" Text="..."
-                                   Style="{DynamicResource themeLabel}"/>
-                                <Label x:Name="label_surname" Text="..."
-                                   Style="{DynamicResource themeLabel}"/>
-                            </StackLayout>
-                        </StackLayout>
-
-                        <BoxView/>
-                        <Controls:Master_Btns x:Name="Btn_Events" ImageSource="News.png" Clicked="BtnEvents_Clicked"/>
-                        <Controls:Master_Btns x:Name="Btn_DateSearch" ImageSource="Calendar.png" Clicked="BtnDateSearch_Clicked"/>
-                        <Controls:Master_Btns x:Name="Btn_CreateEvent" ImageSource="Create.png" Clicked="BtnCreateEvent_Clicked"/>
-                        <BoxView/>
-                        <Controls:Master_Btns x:Name="Btn_Equip" ImageSource="Equipment.png" Clicked="BtnEquip_Clicked"/>
-                        <Controls:Master_Btns x:Name="Btn_CreateEquip" ImageSource="Create.png" Clicked="BtnCreateEquip_Clicked"/>
-                        <BoxView/>
-                        <Controls:Master_Btns x:Name="Btn_Types" ImageSource="Calendar_Dots.png" Clicked="BtnTypes_Clicked"/>
-                        <Controls:Master_Btns x:Name="Btn_Users" ImageSource="People.png" Clicked="BtnUsers_Clicked"/>
-                        <BoxView/>
-                        <Controls:Master_Btns x:Name="Btn_Settings" ImageSource="SettingsGear.png" Clicked="Settings_Clicked"/>
-                        <Controls:Master_Btns x:Name="Btn_About" ImageSource="info.png" Clicked="AboutUs"/>
-                    </StackLayout>
-                </ScrollView>
-            </ContentPage.Content>
-        </ContentPage>
-    </MasterDetailPage.Master>
-
-    <MasterDetailPage.Detail>
-        <ContentPage>
-            <StackLayout x:Name="stacklayout_Detail"
-                         Style="{DynamicResource themeStack}">
-            </StackLayout>
-        </ContentPage>
-    </MasterDetailPage.Detail>
-
-</MasterDetailPage>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="Http_Post.Menu"
+            xmlns:p="clr-namespace:Http_Post.Pages"
+            Title="ITLab-Mobile"
+            Style="{DynamicResource themeBar}">
+    <TabbedPage.Children>
+        <p:EventPage/>
+        <p:EquipmentPage/>
+        <p:TypesPage/>
+    </TabbedPage.Children>
+</TabbedPage>

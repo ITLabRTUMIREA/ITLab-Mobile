@@ -174,7 +174,6 @@ namespace Http_Post.Pages
                         return;
                     jsonContent = JsonConvert.SerializeObject(equipmentType);
                 }
-                // TODO: pop up to create new type
             
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var request = await client.PostAsync(url, content);

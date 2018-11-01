@@ -7,7 +7,8 @@
     <ScrollView>
         <StackLayout x:Name="stacklayout" Padding="5"
                      Style="{DynamicResource themeStack}">
-            <ListView x:Name="listView" ItemTapped="ListView_ItemTapped"
+            <ListView x:Name="listView" 
+                      ItemTapped="ListView_ItemTapped"
                       Style="{DynamicResource themeStack}">
 
                 <ListView.RowHeight>

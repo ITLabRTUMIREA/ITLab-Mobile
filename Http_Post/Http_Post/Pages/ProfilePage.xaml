@@ -16,11 +16,12 @@
             <StackLayout Style="{DynamicResource themeStack}"
                          Spacing="5"
                          Orientation="Vertical">
+                <!-- Email -->
                 <Label x:Name="Lbl_Email"
                        Margin="0,0,0,20"
                        Text="{Binding Email}"
                        Style="{DynamicResource themeLabel}"/>
-
+                <!-- Firstname -->
                 <Label x:Name="Lbl_Firstname"
                        Style="{DynamicResource themeLabel}"/>
                 <Entry x:Name="Entry_Firstname"
@@ -28,7 +29,7 @@
                        Margin="0,0,0,20"
                        HeightRequest="50"
                        Style="{DynamicResource themeLabel}"/>
-
+                <!-- Lastname -->
                 <Label x:Name="Lbl_Lastname"
                        Style="{DynamicResource themeLabel}"/>
                 <Entry x:Name="Entry_Lastname"
@@ -36,7 +37,7 @@
                        HeightRequest="50"
                        Text="{Binding LastName}"
                        Style="{DynamicResource themeLabel}"/>
-
+                <!-- Phone number -->
                 <Label x:Name="Lbl_PhoneNumber"
                        Style="{DynamicResource themeLabel}"/>
                 <Entry x:Name="Entry_PhoneNumber"
@@ -44,11 +45,10 @@
                        HeightRequest="50"
                        Text="{Binding PhoneNumber}"
                        Style="{DynamicResource themeLabel}"/>
-
+                <!-- Button to save changes -->
                 <Button x:Name="Btn_Save"
                         Clicked="Btn_Save_Clicked"
                         Style="{DynamicResource themeButton}"/>
-
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

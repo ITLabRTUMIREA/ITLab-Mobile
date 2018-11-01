@@ -23,7 +23,6 @@ namespace Http_Post
         }
 
         private string Login, Password;
-        private Localization localization = new Localization();
 
 		public MainPage()
 		{
@@ -95,9 +94,12 @@ namespace Http_Post
 
                 RememberToken(info);
 
-                Menu menu = new Menu(info);
+                CurrentUserIdFactory currentUserIdFactory = new CurrentUserIdFactory();
+                currentUserIdFactory.FirstSet(info.Data.User.Id);
+
+                Menu menu = new Menu();
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
-                NavigationPage.SetHasNavigationBar(menu, false); // Don't show "ITLab-Mobile" 'cause other titles seems confused
+                NavigationPage.SetHasNavigationBar(menu, false);
                 await Navigation.PushAsync(menu);
                 return;
             }

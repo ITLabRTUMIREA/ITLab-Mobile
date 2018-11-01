@@ -1,4 +1,5 @@
 ﻿using Http_Post.Classes;
+using Http_Post.Pages;
 using Http_Post.Res;
 using System;
 using Xamarin.Forms;
@@ -11,11 +12,6 @@ namespace Http_Post
         Menu menuSet;
 
         string cancel = Resource.ADMIN_Cancel;
-
-        public Settings()
-        {
-            InitializeComponent();
-        }
 
         public Settings(Menu menu)
         {
@@ -41,19 +37,11 @@ namespace Http_Post
                 loc.ChangeCulture(result);
 
                 UpdateLanguage();
-                menuSet.UpdateLanguage();
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
             }
-        }
-
-        private void UpdateLanguage()
-        {
-            Title = Resource.TitleSettings;
-            Btn_Theme.Btn_Text = Resource.ChangeTheme;
-            Btn_LogOut.Btn_Text = Resource.LogOut;
         }
 
         private async void Theme_Change (object sender, EventArgs e)
@@ -75,11 +63,16 @@ namespace Http_Post
             }
         }
 
+        private void UpdateLanguage()
+        {
+            Title = Resource.TitleSettings;
+            Btn_Theme.Btn_Text = Resource.ChangeTheme;
+            Btn_LogOut.Btn_Text = Resource.LogOut;
+            Btn_Profile.Btn_Text = Resource.TitleProfile;
+        }
+
         private void UpdateTheme()
         {
-            Application.Current.Resources["themeStack"] = Application.Current.Resources
-                [new ThemeChanger().Theme + "_Stack"];
-
             Btn_Lang.UpdateTheme();
             Btn_Theme.UpdateTheme();
             Btn_LogOut.UpdateTheme();
@@ -89,5 +82,8 @@ namespace Http_Post
 
         private void LogOut_Clicked(object sender, EventArgs e)
             => menuSet.Logout();
+
+        private async void BtnProfile_Clicked(object sender, EventArgs e)
+            => await Navigation.PushAsync(new ProfilePage());
     }
 }

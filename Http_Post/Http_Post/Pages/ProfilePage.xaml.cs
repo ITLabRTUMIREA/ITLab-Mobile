@@ -4,8 +4,6 @@ using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
@@ -18,11 +16,10 @@ namespace Http_Post.Pages
         private HttpClient client = HttpClientFactory.HttpClient;
         private Menu menu;
 
-        public ProfilePage (Guid id, Menu menu)
-		{
-            FindUser(id);
-            this.menu = menu;
-		}
+        public ProfilePage()
+        {
+            FindUser(CurrentUserIdFactory.UesrId);
+        }
 
         private void Init()
         {
@@ -84,8 +81,6 @@ namespace Http_Post.Pages
                         throw new Exception($"Error: {newUser.StatusCode}");
                     else
                         await DisplayAlert("Message", Resource.ADMIN_Updated, "Ok");
-
-                    menu.InitComponents();
                 }
             }
             catch (Exception ex)
