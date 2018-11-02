@@ -139,9 +139,77 @@ namespace Http_Post.Pages
             }
         }
 
-        void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            // TODO: make separate pop ups file
+            try
+            {
+                string url = "";
+                string jsonContent = "";
+                switch (types)
+                {
+                    case Types.Event:
+                        {
+                            var tapped = (EventTypeView)e.Item;
+                            EventTypeEditRequest eventTypeEdit = new EventTypeEditRequest
+                            {
+                                Id = tapped.Id,
+                                Title = tapped.Title,
+                                Description = tapped.Description
+                            };
+                            var newEventType = await new Popup.Types.EditTypePage().eventTypeEdit(Navigation, eventTypeEdit);
+                            if (newEventType == null)
+                                return;
+                            url = "EventType";
+                            jsonContent = JsonConvert.SerializeObject(newEventType);
+                        }
+                        break;
+                    case Types.Role:
+                        {
+                            var tapped = (EventRoleView)e.Item;
+                            EventRoleEditRequest eventRoleEdit = new EventRoleEditRequest
+                            {
+                                Id = tapped.Id,
+                                Title = tapped.Title,
+                                Description = tapped.Description
+                            };
+                            var newEventRole = await new Popup.Types.EditTypePage().eventRoleEdit(Navigation, eventRoleEdit);
+                            if (newEventRole == null)
+                                return;
+                            url = "eventrole";
+                            jsonContent = JsonConvert.SerializeObject(newEventRole);
+                        }
+                        break;
+                    case Types.Equipment:
+                        {
+                            var tapped = (CompactEquipmentTypeView)e.Item;
+                            EquipmentTypeEditRequest equipmentTypeEdit = new EquipmentTypeEditRequest
+                            {
+                                Id = tapped.Id,
+                                ShortTitle = tapped.ShortTitle,
+                                Title = tapped.Title,
+                                Description = tapped.Description,
+                            };
+                            var newEquipmentType = await new Popup.Types.EditTypePage().equipmentTypeEdit(Navigation, equipmentTypeEdit);
+                            if (newEquipmentType == null)
+                                return;
+                            url = "EquipmentType";
+                            jsonContent = JsonConvert.SerializeObject(newEquipmentType);
+                        }
+                        break;
+                }
+
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+                var request = await client.PutAsync(url, content);
+
+                var requestContent = await request.Content.ReadAsStringAsync();
+
+                Unconvert(requestContent);
+                ChooseList(); // update list
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         async void btnCreate_Clicked(object sender, EventArgs e)
@@ -152,26 +220,26 @@ namespace Http_Post.Pages
                 string jsonContent = "";
                 if (types == Types.Event)
                 {
-                    url = "EventType";
                     EventTypeCreateRequest eventType = await new Popup.Types.CreateTypePage().eventTypeCreate(Navigation);
                     if (eventType == null)
                         return;
+                    url = "EventType";
                     jsonContent = JsonConvert.SerializeObject(eventType);
                 }
                 else if (types == Types.Role)
                 {
-                    url = "eventrole";
                     EventRoleCreateRequest eventRole = await new Popup.Types.CreateTypePage().eventRoleCreate(Navigation);
                     if (eventRole == null)
                         return;
+                    url = "eventrole";
                     jsonContent = JsonConvert.SerializeObject(eventRole);
                 }
                 else if (types == Types.Equipment)
                 {
-                    url = "EquipmentType";
                     EquipmentTypeCreateRequest equipmentType = await new Popup.Types.CreateTypePage().equipmentTypeCreate(Navigation);
                     if (equipmentType == null)
                         return;
+                    url = "EquipmentType";
                     jsonContent = JsonConvert.SerializeObject(equipmentType);
                 }
             
@@ -180,32 +248,43 @@ namespace Http_Post.Pages
 
                 var requestContent = await request.Content.ReadAsStringAsync();
 
+                Unconvert(requestContent);
+                ChooseList(); // update list after cerating
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
+        }
+
+        async void Unconvert(string content)
+        {
+            try
+            {
                 switch (types)
                 {
                     case Types.Event:
                         {
-                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EventTypeView>>(requestContent);
+                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EventTypeView>>(content);
                             if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                                 throw new Exception($"Error: {message.StatusCode}");
                         }
                         break;
                     case Types.Role:
                         {
-                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EventRoleView>>(requestContent);
+                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EventRoleView>>(content);
                             if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                                 throw new Exception($"Error: {message.StatusCode}");
                         }
                         break;
                     case Types.Equipment:
                         {
-                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentTypeView>>(requestContent);
+                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentTypeView>>(content);
                             if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                                 throw new Exception($"Error: {message.StatusCode}");
                         }
                         break;
                 }
-
-                ChooseList(); // update list after cerating
             }
             catch (Exception ex)
             {
