@@ -92,14 +92,11 @@ namespace Http_Post
                 text_error.TextColor = Color.Green;
                 text_error.Text = "Authorizated!";
 
-                RememberToken(info);
-
-                CurrentUserIdFactory currentUserIdFactory = new CurrentUserIdFactory();
-                currentUserIdFactory.FirstSet(info.Data.User.Id);
+                RememberToken(info); // remember refresh token
+                new CurrentUserIdFactory().FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
 
                 Menu menu = new Menu();
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
-                NavigationPage.SetHasNavigationBar(menu, false);
                 await Navigation.PushAsync(menu);
                 return;
             }

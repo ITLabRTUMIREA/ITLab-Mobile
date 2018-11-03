@@ -9,15 +9,11 @@ namespace Http_Post.Popup.Types
 {
     class CreateTypePage : TypeClass
     {
-        public CreateTypePage()
-        {
-
-        }
-
         public Task <EventTypeCreateRequest> eventTypeCreate (INavigation navigation)
         {
             // wait in this proc, until user did his input 
             var tcs = new TaskCompletionSource<EventTypeCreateRequest>();
+            entryTitle.Placeholder = Res.Resource.EventType;
             try
             {
                 btnOk.Clicked += async (s, e) =>

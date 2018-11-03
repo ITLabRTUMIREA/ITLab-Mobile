@@ -19,11 +19,6 @@
                      BackgroundColor="Silver"
                      HorizontalOptions="FillAndExpand"
                      Margin="0,0,0,10"/>
-            <Button x:Name="btnCreate"
-                    WidthRequest="150"
-                    HorizontalOptions="Center"
-                    Clicked="btnCreate_Clicked"
-                    Style="{DynamicResource themeButton}"/>
             <ListView x:Name="listView"
                       RowHeight="100"
                       HeightRequest="100"

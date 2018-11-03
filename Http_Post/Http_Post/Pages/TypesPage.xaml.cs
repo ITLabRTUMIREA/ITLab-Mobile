@@ -9,11 +9,8 @@ using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -29,7 +26,7 @@ namespace Http_Post.Pages
             Role,
             Equipment
         }
-        private Types types;
+        Types types;
 
         public TypesPage()
         {
@@ -42,7 +39,7 @@ namespace Http_Post.Pages
             ChooseList();
         }
 
-        private void InitTapGestures()
+        void InitTapGestures()
         {
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (sender, e) =>
@@ -65,7 +62,7 @@ namespace Http_Post.Pages
             lblEquipmentTypes.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
-        private void ChooseList()
+        void ChooseList()
         {
             lblEventTypes.FontAttributes = FontAttributes.None;
             lblRoles.FontAttributes = FontAttributes.None;
@@ -92,9 +89,11 @@ namespace Http_Post.Pages
                     }
                     break;
             }
+
+            ChangeToolBar();
         }
 
-        private async void GetEventTypes()
+        async void GetEventTypes()
         {
             try
             {
@@ -109,7 +108,7 @@ namespace Http_Post.Pages
             }
         }
 
-        private async void GetRoles()
+        async void GetRoles()
         {
             try
             {
@@ -124,7 +123,7 @@ namespace Http_Post.Pages
             }
         }
 
-        private async void GetEquipmentTypes()
+        async void GetEquipmentTypes()
         {
             try
             {
@@ -141,6 +140,8 @@ namespace Http_Post.Pages
 
         async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
+            if (!GetRight())
+                return;
             try
             {
                 string url = "";
@@ -292,13 +293,44 @@ namespace Http_Post.Pages
             }
         }
 
-        private void UpdateLanguage()
+        void UpdateLanguage()
         {
             Title = Resource.TitleTypes;
             lblEventTypes.Text = Resource.EventType;
             lblRoles.Text = Resource.Roles;
             lblEquipmentTypes.Text = Resource.EquipmentType;
-            btnCreate.Text = Resource.Create;
+        }
+
+        void ChangeToolBar()
+        {
+            ToolbarItems.Clear();
+            if (!GetRight())
+                return;
+
+            var itemCreate = new ToolBar.ToolBarItems().createItem(null, 0, ToolbarItemOrder.Primary, "Create.png");
+            itemCreate.Clicked += btnCreate_Clicked;
+            ToolbarItems.Add(itemCreate);
+        }
+
+        bool GetRight()
+        {
+            string whatToCheck = "";
+            switch (types)
+            {
+                case Types.Event:
+                    whatToCheck = "CanEditEventType";
+                    break;
+                case Types.Role:
+                    whatToCheck = "CanEditRoles";
+                    break;
+                case Types.Equipment:
+                    whatToCheck = "CanEditEquipmentType";
+                    break;
+            }
+            foreach (var item in CurrentUserIdFactory.UserRoles)
+                if (item.Equals(whatToCheck))
+                    return true;
+            return false;
         }
     }
 }
