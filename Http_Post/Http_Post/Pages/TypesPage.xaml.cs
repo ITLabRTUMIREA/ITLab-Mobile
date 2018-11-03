@@ -45,14 +45,11 @@ namespace Http_Post.Pages
             tapGestureRecognizer.Tapped += (sender, e) =>
             {
                 var lbl = (Label)sender;
-                // if tapped event types
-                if (lbl.Equals(lblEventTypes))
+                if (lbl.Equals(lblEventTypes)) // if tapped event types
                     types = Types.Event;
-                // if tapped roles
-                else if (lbl.Equals(lblRoles))
+                else if (lbl.Equals(lblRoles)) // if tapped roles
                     types = Types.Role;
-                // if tapped equipment types
-                else if (lbl.Equals(lblEquipmentTypes))
+                else if (lbl.Equals(lblEquipmentTypes)) // if tapped equipment types
                     types = Types.Equipment;
 
                 ChooseList();
@@ -307,7 +304,7 @@ namespace Http_Post.Pages
             if (!GetRight())
                 return;
 
-            var itemCreate = new ToolBar.ToolBarItems().createItem(null, 0, ToolbarItemOrder.Primary, "Create.png");
+            var itemCreate = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Create.png");
             itemCreate.Clicked += btnCreate_Clicked;
             ToolbarItems.Add(itemCreate);
         }

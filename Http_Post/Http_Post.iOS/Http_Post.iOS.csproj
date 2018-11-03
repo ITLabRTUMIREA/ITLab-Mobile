@@ -177,4 +177,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\People.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Light_Refresh_2x.png" />
+  </ItemGroup>
 </Project>

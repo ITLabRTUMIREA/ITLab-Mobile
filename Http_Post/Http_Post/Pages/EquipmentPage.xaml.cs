@@ -21,9 +21,11 @@ namespace Http_Post.Pages
 		{
             Init();
             GetEquipment();
+
+            ChangeToolBar();
         }
 
-        private void Init()
+        void Init()
         {
             InitializeComponent();
             UpdateLanguage();
@@ -31,20 +33,32 @@ namespace Http_Post.Pages
             var tapGestureRecognizer = new TapGestureRecognizer();
             tapGestureRecognizer.Tapped += (s, e) =>
             {
+                Label_Type.FontAttributes = FontAttributes.None;
+                Label_Owner.FontAttributes = FontAttributes.None;
+                Label_Number.FontAttributes = FontAttributes.None;
                 var lbl = (Label)s;
                 if (lbl.Equals(Label_Type))
+                {
                     listView.ItemsSource = listEquip.OrderBy(se => se.EquipmentType.Title);
+                    Label_Type.FontAttributes = FontAttributes.Bold;
+                }
                 else if (lbl.Equals(Label_Owner))
+                {
                     listView.ItemsSource = listEquip.OrderBy(se => se.OwnerName);
+                    Label_Owner.FontAttributes = FontAttributes.Bold;
+                }
                 else if (lbl.Equals(Label_Number))
+                {
                     listView.ItemsSource = listEquip.OrderBy(se => se.Number);
+                    Label_Number.FontAttributes = FontAttributes.Bold;
+                }
             };
             Label_Type.GestureRecognizers.Add(tapGestureRecognizer);
             Label_Owner.GestureRecognizers.Add(tapGestureRecognizer);
             Label_Number.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
-        public async void GetEquipment()
+        async void GetEquipment()
         {
             try
             {
@@ -68,6 +82,7 @@ namespace Http_Post.Pages
 
                 listEquip = equip.Data;
                 listView.ItemsSource = listEquip.OrderBy(s=>s.Number);
+                Label_Number.FontAttributes = FontAttributes.Bold;
             }
             catch (Exception ex)
             {
@@ -75,18 +90,45 @@ namespace Http_Post.Pages
             }
         }
         
-        private async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        async void listView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             var equip = (CompactEquipmentViewExtended)e.Item;
-            await Navigation.PushAsync(new OneEquipmentPage(equip.Id));
+            await Navigation.PushAsync(new OneEquipmentPage(equip.Id, GetRight()));
         }
 
-        private void UpdateLanguage()
+        void UpdateLanguage()
         {
             Title = Resource.TitleEquipment;
             Label_Type.Text = Resource.EquipmentType;
             Label_Owner.Text = Resource.Owner;
             Label_Number.Text = Resource.Number;
+        }
+
+        void ChangeToolBar()
+        {
+            ToolbarItems.Clear();
+            var itemResfresh = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Light_Refresh_2x.png");
+            itemResfresh.Clicked += (s, e) => GetEquipment();
+            ToolbarItems.Add(itemResfresh);
+            if (!GetRight())
+
+                return;
+
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "Create.png");
+            itemChange.Clicked += async(s,e) =>
+            {
+                await Navigation.PushAsync(new CreateEquipment());
+            };
+            ToolbarItems.Add(itemChange);
+        }
+
+        bool GetRight()
+        {
+            string whatToCheck = "CanEditEquipment";
+            foreach (var item in CurrentUserIdFactory.UserRoles)
+                if (item.Equals(whatToCheck))
+                    return true;
+            return false;
         }
     }
 }

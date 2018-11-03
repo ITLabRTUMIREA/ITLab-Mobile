@@ -4,7 +4,7 @@ namespace Http_Post.ToolBar
 {
     class ToolBarItems
     {
-        public ToolbarItem createItem(string text, int priopity, ToolbarItemOrder itemOrder, string iconPath)
+        public ToolbarItem Item(string text, int priopity, ToolbarItemOrder itemOrder, string iconPath)
         {
             return new ToolbarItem
             {

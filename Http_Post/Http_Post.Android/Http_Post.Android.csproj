@@ -133,5 +133,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\People.png" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\Light_Refresh_2x.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

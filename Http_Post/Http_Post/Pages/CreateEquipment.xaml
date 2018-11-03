@@ -12,10 +12,6 @@
                 <Editor x:Name="editEquipType"
                        TextChanged="editEquipType_TextChanged"
                        Style="{DynamicResource themeLabel}"/>
-                <Button x:Name="btnCreateEqType"
-                        Clicked="btnCreateEqType_Clicked"
-                        IsVisible="False"
-                        Style="{DynamicResource themeButton}"/>
                 <StackLayout x:Name="stack"
                              IsVisible="False"
                              Orientation="Vertical"

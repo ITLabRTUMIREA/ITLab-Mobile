@@ -7,13 +7,13 @@
             <StackLayout Style="{DynamicResource themeStack}">
                 <StackLayout Orientation="Horizontal"
                              Style="{DynamicResource themeStack}">
-                    <Label x:Name="Label_Type" FontAttributes="Bold"
+                    <Label x:Name="Label_Type"
                            WidthRequest="200"
                            Style="{DynamicResource themeLabel}"/>
-                    <Label x:Name="Label_Owner" FontAttributes="Bold"
+                    <Label x:Name="Label_Owner"
                            WidthRequest="280"
                            Style="{DynamicResource themeLabel}"/>
-                    <Label x:Name="Label_Number" FontAttributes="Bold"
+                    <Label x:Name="Label_Number"
                            Style="{DynamicResource themeLabel}"/>
                 </StackLayout>
                 <BoxView HeightRequest="1"

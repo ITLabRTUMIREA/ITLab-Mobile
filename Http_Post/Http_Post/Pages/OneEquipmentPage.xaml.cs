@@ -16,17 +16,18 @@ namespace Http_Post.Pages
         private HttpClient client = HttpClientFactory.HttpClient;
         private EquipmentView equipment;
 
-        public OneEquipmentPage (Guid equipId)
+        public OneEquipmentPage (Guid equipId, bool canEdit)
 		{
 			InitializeComponent ();
 
             EquipId = equipId;
             UpdateLanguage();
             GetEquip();
+
+            ChangeToolBar(canEdit);
 		}
 
-
-        private async void GetEquip()
+        async void GetEquip()
         {
             try
             {
@@ -52,25 +53,34 @@ namespace Http_Post.Pages
             }
         }
 
-        private void SetInfo()
+        void SetInfo()
         {
             lblType.Text = equipment.EquipmentType.Title;
             lblNumber.Text = equipment.SerialNumber;
             lblDescription.Text = equipment.Description;
         }
 
-        private void UpdateLanguage()
+        void UpdateLanguage()
         {
             Title = Resource.TitleEquipment;
             lblTypeTitle.Text = Resource.EquipmentType;
             lblNumberTitle.Text = Resource.SerialNumber;
             lblDescriptionTitle.Text = Resource.Description;
             lblOwnerTitle.Text = Resource.Owner;
-            /////////////////////////////////////////////////////
-            btnChange.Text = Resource.Change;
         }
 
-        private async void btnChange_Clicked(object sender, EventArgs e)
+        async void btnChange_Clicked(object sender, EventArgs e)
             => await Navigation.PushAsync(new CreateEquipment(equipment));
+
+        void ChangeToolBar(bool can)
+        {
+            ToolbarItems.Clear();
+            if (!can)
+                return;
+
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "ChangingPencil.png");
+            itemChange.Clicked += btnChange_Clicked;
+            ToolbarItems.Add(itemChange);
+        }
     }
 }
