@@ -37,7 +37,7 @@ namespace Http_Post
                 loc.ChangeCulture(result);
 
                 UpdateLanguage();
-                menuSet.UpdateLanguage();
+                menuSet.UpdatePages();
             }
             catch (Exception ex)
             {
@@ -57,6 +57,8 @@ namespace Http_Post
 
                 themeChanger.ChangeTheme(result);
                 UpdateTheme();
+                menuSet.UpdateTheme();
+                menuSet.UpdatePages();
             }
             catch (Exception ex)
             {
@@ -77,8 +79,6 @@ namespace Http_Post
             Btn_Lang.UpdateTheme();
             Btn_Theme.UpdateTheme();
             Btn_LogOut.UpdateTheme();
-
-            menuSet.UpdateTheme();
         }
 
         private void LogOut_Clicked(object sender, EventArgs e)

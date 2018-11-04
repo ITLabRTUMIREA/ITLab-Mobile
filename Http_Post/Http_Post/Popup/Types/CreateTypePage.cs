@@ -130,7 +130,7 @@ namespace Http_Post.Popup.Types
             {
                 var entryShortTitle = new Editor {
                     Text = "",
-                    Placeholder = "Short title", // TODO: localize; EditTypePage.cs too
+                    Placeholder = Res.Resource.TitleShort,
                     Style = styleLbl
                 };
 

@@ -39,13 +39,18 @@
                 <StackLayout Orientation="Horizontal"
                              Style="{DynamicResource themeStack}">
                     <Button x:Name="btnConfirm"
-                        Clicked="btnConfirm_Clicked"
-                        WidthRequest="170"
-                        Style="{DynamicResource themeButton}"/>
+                            Clicked="btnConfirm_Clicked"
+                            WidthRequest="170"
+                            Style="{DynamicResource themeButton}"/>
                     <Button x:Name="btnChangeOwner"
-                        Clicked="btnChangeOwner_Clicked"
-                        WidthRequest="170"
-                        Style="{DynamicResource themeButton}"/>
+                            IsVisible="False"
+                            Clicked="btnChangeOwner_Clicked"
+                            WidthRequest="170"
+                            Style="{DynamicResource themeButton}"/>
+                    <Button x:Name="btnDelete"
+                            Clicked="btnDelete_Clicked"
+                            WidthRequest="170"
+                            Style="{DynamicResource themeButton}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

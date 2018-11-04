@@ -1,26 +1,24 @@
 ﻿using Http_Post.Res;
-using Http_Post.Services;
+using Models.PublicAPI.Requests.Equipment.Equipment;
 using Models.PublicAPI.Responses.Equipment;
+using Models.PublicAPI.Responses.Exceptions;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace Http_Post.Pages
 {
 	public partial class CreateEquipment : ContentPage
 	{
-        // TODO: Equipment type - w8 for Maksim bug fix
-        private HttpClient client = HttpClientFactory.HttpClient;
+        private HttpClient client = Services.HttpClientFactory.HttpClient;
         private Guid? ownerId; // if empty - laboratory, if not empty - has owner
-        private UserView newUser;
-        private EquipmentTypeView newETV;
+        private Guid typeId;
         private bool isCreating; // if creating - true, if changing - false
-        private Guid? eqId; // if creating - null, if changing - use already existed
+        private Guid eqId; // if creating - null, if changing - use already existed
 
         // pass to this ctor if needed to change equipment
         public CreateEquipment (EquipmentView equipment)
@@ -30,28 +28,30 @@ namespace Http_Post.Pages
 
             editEquipType.Text = equipment.EquipmentType.Title;
             Hide();
-            editSerialNumber.Text = equipment.SerialNumber;
-            editDescription.Text = equipment.Description;
-            //lblOwner.Text = equipment.OwnerName;
-            //newETV = equipment.EquipmentType;
-            ownerId = equipment.OwnerId;
-
-            btnConfirm.BackgroundColor = btnChangeOwner.BackgroundColor;
+            editSerialNumber.Text = equipment.SerialNumber; // serial number
+            editDescription.Text = equipment.Description; // description
+            SetOwner(equipment.OwnerId); // set owner name
+            typeId = equipment.EquipmentType.Id; // equipment type
         }
 
         public CreateEquipment ()
         {
             Init(true);
+            SetOwner(null);
         }
         
-        private void Init(bool creating)
+        void Init(bool creating)
         {
             InitializeComponent();
             UpdateLanguage();
             isCreating = creating;
+            if (isCreating)
+                btnChangeOwner.IsVisible = false;
+            else
+                btnChangeOwner.IsVisible = GetRight();
         }
 
-        private async void editEquipType_TextChanged(object sender, TextChangedEventArgs e)
+        async void editEquipType_TextChanged(object sender, TextChangedEventArgs e)
         {
             Show();
             stack.Children.Clear();
@@ -69,7 +69,7 @@ namespace Http_Post.Pages
                     var tapGestureRecognizer = new TapGestureRecognizer();
                     tapGestureRecognizer.Tapped += (s, args) => {
                         editEquipType.Text = eq.Title;
-                        newETV = eq;
+                        typeId = eq.Id;
                         editSerialNumber.Focus();
                         Hide();
                     };
@@ -95,31 +95,44 @@ namespace Http_Post.Pages
             }
         }
 
-        private async void btnConfirm_Clicked(object sender, EventArgs e)
+        async void btnConfirm_Clicked(object sender, EventArgs e)
         {
             try
             {
-                if (newETV == null)
+                if (typeId == null)
                     throw new Exception($"Error: {Resource.EquipmentType} is null");
-
-                if (string.IsNullOrEmpty(editDescription.Text) || string.IsNullOrWhiteSpace(editDescription.Text))
-                    throw new Exception($"Error: {Resource.Description} is null");
 
                 if (string.IsNullOrEmpty(editSerialNumber.Text) || string.IsNullOrWhiteSpace(editSerialNumber.Text))
                     throw new Exception($"Error: {Resource.SerialNumber} is null");
 
-                Guid? ownerGuid = newUser == null ? ownerId : newUser.Id;
-                EquipmentView equipmentView = new EquipmentView
+                Guid? ownerGuid = ownerId == null ? ownerId : ownerId;
+                EquipmentCreateRequest equipmentCreate;
+                EquipmentEditRequest equipmentEdit;
+                string jsonContent = "";
+                if (isCreating)
                 {
-                    Id = eqId ?? Guid.Empty, 
-                    OwnerId = ownerGuid ?? null,
-                    //EquipmentType = newETV, TODO: equip type
-                    EquipmentTypeId = newETV.Id,
-                    Description = editDescription.Text,
-                    SerialNumber = editSerialNumber.Text
-                };
-
-                var jsonContent = JsonConvert.SerializeObject(equipmentView);
+                    equipmentCreate = new EquipmentCreateRequest
+                    {
+                        EquipmentTypeId = typeId,
+                        SerialNumber = editSerialNumber.Text,
+                        Description = editDescription.Text,
+                        
+                        // sorry, children on site
+                    };
+                    jsonContent = JsonConvert.SerializeObject(equipmentCreate);
+                }
+                else
+                {
+                    equipmentEdit = new EquipmentEditRequest
+                    {
+                        Id = eqId,
+                        EquipmentTypeId = typeId,
+                        SerialNumber = editSerialNumber.Text,
+                        Description = editDescription.Text
+                        // sorry, parents on site
+                    };
+                    jsonContent = JsonConvert.SerializeObject(equipmentEdit);
+                }
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var result = isCreating ?
                     await client.PostAsync("Equipment/", content) : await client.PutAsync("Equipment/", content);
@@ -138,195 +151,97 @@ namespace Http_Post.Pages
             }
         }
 
-        
-
-        private async void btnChangeOwner_Clicked(object sender, EventArgs e)
-            => await ChangeOwner(Navigation);
-
-        public Task<string> ChangeOwner(INavigation navigation)
+        async void btnChangeOwner_Clicked(object sender, EventArgs e)
         {
-            // wait in this proc, until user did his input 
-            var tcs = new TaskCompletionSource<string>();
-            var layout = new StackLayout
-            {
-                Padding = new Thickness(0, 40, 0, 0),
-                VerticalOptions = LayoutOptions.StartAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Orientation = StackOrientation.Vertical,
-                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
-            };
+            // TODO: postman, another request url!!!
+
+            var user = await new Popup.Equipment.Owner().Change(Navigation);
+            if (user != null)
+                SetOwner(user.Id);
+        }
+
+        async void SetOwner(Guid? id)
+        {
+            if (id == null) {
+                lblOwner.Text = Resource.ADMIN_Laboratory;
+                ownerId = null;
+                return;
+            }
             try
             {
-                var th = new Classes.ThemeChanger().Theme;
-                Style styleLbl = Application.Current.Resources[th + "_Lbl"] as Style;
-                Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
-                Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
+                var response = await client.GetStringAsync($"user/{id}");
+                var u = JsonConvert.DeserializeObject<OneObjectResponse<UserView>>(response);
+                if (u.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {u.StatusCode}");
 
-                var lbl = new Label
-                {
-                    Text = lblOwnerTitle.Text,
-                    HorizontalOptions = LayoutOptions.Center,
-                    FontAttributes = FontAttributes.Bold,
-                    Style = styleLbl
-                };
-                var edit = new Editor
-                {
-                    Text = "",
-                    Placeholder = "Start typing", // TODO: think what to do with this
-                    Style = styleLbl,
-                };
-                var stackOwner = new StackLayout
-                {
-                    IsVisible = false,
-                    VerticalOptions = LayoutOptions.StartAndExpand,
-                    HorizontalOptions = LayoutOptions.CenterAndExpand,
-                    Orientation = StackOrientation.Vertical,
-                    Style = styleStack,
-                };
-                // while user types - find owners
-                edit.TextChanged += async (sender, e) =>
-                {
-                    try
-                    {
-                        stackOwner.IsVisible = true;
-                        stackOwner.Children.Clear();
-                        var txt = (Editor)sender;
-                        var response = await client.GetStringAsync($"user/count/?email={txt.Text}&count=10&firstname={txt.Text}&lastname={txt.Text}");
-                        var users = JsonConvert.DeserializeObject<ListResponse<UserView>>(response);
-                        if (users.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
-                            throw new Exception($"Error: {users.StatusCode}");
-
-                        foreach (var u in users.Data)
-                        {
-                            var tapGestureRecognizer = new TapGestureRecognizer();
-                            tapGestureRecognizer.Tapped += (s, args) =>
-                            {
-                                stackOwner.IsVisible = false;
-                                newUser = u;
-                            };
-                            var label = new Label
-                            {
-                                Style = styleLbl,
-                                Text = u.FirstName + " " + u.LastName + ", " + u.Email
-                            };
-                            label.GestureRecognizers.Add(tapGestureRecognizer);
-                            stackOwner.Children.Add(label);
-                            if (stackOwner.Children.Count >= 5)
-                                break;
-                        };
-                    }
-                    catch (Exception ex)
-                    {
-                        stackOwner.Children.Add(new Label
-                        {
-                            Text = ex.Message,
-                            Style = styleLbl,
-                        });
-                    }
-                };
-
-                var btnOk = new Button
-                {
-                    Text = "Ok",
-                    WidthRequest = 100,
-                    Style = styleBtn
-                };
-                btnOk.Clicked += async (s, e) =>
-                {
-                    if (string.IsNullOrEmpty(edit.Text) || string.IsNullOrWhiteSpace(edit.Text) 
-                        || newUser == null)
-                    {
-                        edit.Focus();
-                        return;
-                    }
-
-                    lblOwner.Text = newUser.FirstName + " " + newUser.LastName + ", " + newUser.Email;
-
-                    await navigation.PopModalAsync();
-                    // pass result
-                    tcs.SetResult(null);
-                };
-
-                var btnCancel = new Button
-                {
-                    Text = Resource.ADMIN_Cancel,
-                    WidthRequest = 100,
-                    Style = styleBtn
-                };
-                btnCancel.Clicked += async (s, e) =>
-                {
-                    // close page
-                    await navigation.PopModalAsync();
-                    // pass empty result
-                    tcs.SetResult(null);
-                };
-
-                var slButtons = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.Center,
-                    Children = { btnOk, btnCancel },
-                    Style = styleStack
-                };
-
-                layout.Children.Add(lbl);
-                layout.Children.Add(edit);
-                layout.Children.Add(stackOwner);
-                layout.Children.Add(slButtons);
-
-                // create and show page
-                var page = new ContentPage()
-                {
-                    Style = styleStack
-                };
-                page.Content = layout;
-                navigation.PushModalAsync(page);
-                // open keyboard
-                edit.Focus();
-                return tcs.Task;
+                ownerId = u.Data.Id;
+                lblOwner.Text = u.Data.FirstName + " " + u.Data.LastName + ", " + u.Data.Email;
             }
             catch (Exception ex)
             {
-                var itisLabel = layout.Children[layout.Children.Count - 1];
-                if (itisLabel.Equals(new Label()))
-                {
-                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
-                }
-                else
-                {
-                    layout.Children.Add(new Label
-                    {
-                        Text = ex.Message,
-                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
-                        HorizontalOptions = LayoutOptions.Center
-                    });
-                }
-                return tcs.Task; // while Task != "good" -> invoke Task
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
         }
 
-        private void UpdateLanguage()
+        void UpdateLanguage()
         {
             Title = Resource.TitleCreateEquipment;
-            btnCreateEqType.Text = Resource.Create + " " + Resource.EquipmentType;
             btnConfirm.Text = Resource.Save;
             btnChangeOwner.Text = Resource.ChangeOwner;
+            btnDelete.Text = Resource.Delete;
             lblEquipType.Text = editEquipType.Placeholder = Resource.EquipmentType;
             lblSerialNumber.Text = editSerialNumber.Placeholder = Resource.SerialNumber;
             lblDescription.Text = editDescription.Placeholder = Resource.Description;
             lblOwnerTitle.Text = Resource.Owner;
         }
 
-        private void Show()
+        void Show()
+            => stack.IsVisible = true;
+
+        void Hide()
+            => stack.IsVisible = false;
+
+        bool GetRight()
         {
-            stack.IsVisible = true;
-            btnCreateEqType.IsVisible = true;
+            string whatToCheck = "CanEditEquipmentOwner";
+            foreach (var item in Services.CurrentUserIdFactory.UserRoles)
+                if (item.Equals(whatToCheck))
+                    return true;
+            return false;
         }
 
-        private void Hide()
+        async void btnDelete_Clicked(object sender, EventArgs e)
         {
-            stack.IsVisible = false;
-            btnCreateEqType.IsVisible = false;
+            try
+            {
+                var equipmentDelete = new EquipmentEditRequest
+                {
+                    Id = eqId,
+                    Delete = true,
+                };
+                var jsonContent = JsonConvert.SerializeObject(equipmentDelete);
+                var request = new HttpRequestMessage(HttpMethod.Delete, "Equipment")
+                {
+                    Content = new StringContent(jsonContent, Encoding.UTF8, "application/json")
+                };
+                var result = await client.SendAsync(request);
+                var resultContent = await result.Content.ReadAsStringAsync();
+
+                var message = JsonConvert.DeserializeObject<ExceptionResponse>(resultContent);
+                if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {message.StatusCode}");
+
+                await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
+                for (var counter = 1; counter < 2; counter++)
+                {
+                    Navigation.RemovePage(Navigation.NavigationStack[Navigation.NavigationStack.Count - 2]);
+                }
+                await Navigation.PopAsync(); // pop twice
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
     }
 }

@@ -321,4 +321,12 @@
     <value>Roles</value>
     <comment>Roles title</comment>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Delete text</comment>
+  </data>
+  <data name="TitleShort" xml:space="preserve">
+    <value>Short title</value>
+    <comment>Equipment short title</comment>
+  </data>
 </root>

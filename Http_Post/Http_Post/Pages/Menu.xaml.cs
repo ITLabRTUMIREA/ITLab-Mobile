@@ -27,7 +27,7 @@ namespace Http_Post
                 CurrentPage = Children[Children.Count - 1];
         }
 
-        public void UpdateLanguage()
+        public void UpdatePages()
         {
             Children.Clear();
             AddPages(true);

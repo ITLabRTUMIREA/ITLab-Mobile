@@ -169,6 +169,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Description.
         /// </summary>
         public static string Description {
@@ -498,6 +507,15 @@ namespace Http_Post.Res {
         public static string TitleSettings {
             get {
                 return ResourceManager.GetString("TitleSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Short title.
+        /// </summary>
+        public static string TitleShort {
+            get {
+                return ResourceManager.GetString("TitleShort", resourceCulture);
             }
         }
         

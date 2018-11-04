@@ -321,4 +321,12 @@
     <value>Роли</value>
     <comment>Roles title</comment>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+    <comment>Delete text</comment>
+  </data>
+  <data name="TitleShort" xml:space="preserve">
+    <value>Короткое название</value>
+    <comment>Equipment short title</comment>
+  </data>
 </root>

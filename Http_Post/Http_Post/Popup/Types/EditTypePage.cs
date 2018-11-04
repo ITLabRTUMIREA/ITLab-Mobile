@@ -2,8 +2,6 @@
 using Models.PublicAPI.Requests.Events.Event.Edit.Roles;
 using Models.PublicAPI.Requests.Events.EventType;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -11,10 +9,6 @@ namespace Http_Post.Popup.Types
 {
     class EditTypePage : TypeClass
     {
-        public EditTypePage()
-        {
-
-        }
 
         public Task<EventTypeEditRequest> eventTypeEdit(INavigation navigation, EventTypeEditRequest eventTypeEdit)
         {
@@ -141,7 +135,7 @@ namespace Http_Post.Popup.Types
             Editor entryShortTitle = new Editor
             {
                 Text = "",
-                Placeholder = "Short title",
+                Placeholder = Res.Resource.TitleShort,
                 Style = styleLbl
             };
             layout.Children.Clear();
