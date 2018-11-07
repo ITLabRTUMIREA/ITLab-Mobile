@@ -13,10 +13,6 @@
                 <Editor x:Name="editEventType"
                         TextChanged="editEventType_TextChanged"
                         Style="{DynamicResource themeLabel}"/>
-                <Button x:Name="btnCreateEventType"
-                        IsVisible="False"
-                        Clicked="btnCreateEventType_Clicked"
-                        Style="{DynamicResource themeButton}"/>
                 <StackLayout x:Name="stackEventType"
                              IsVisible="False"
                              Style="{DynamicResource themeStack}"/>

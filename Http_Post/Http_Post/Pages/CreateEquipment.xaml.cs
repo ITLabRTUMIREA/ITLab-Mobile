@@ -154,10 +154,29 @@ namespace Http_Post.Pages
         async void btnChangeOwner_Clicked(object sender, EventArgs e)
         {
             // TODO: postman, another request url!!!
+            try
+            {
+                var user = await new Popup.Equipment.Owner().Change(Navigation);
+                var eqEdit = new EquipmentEditRequest
+                {
+                    Id = eqId
+                };
+                var content = new StringContent(JsonConvert.SerializeObject(eqEdit), Encoding.UTF8, "application/json");
+                var request = await client.PostAsync($"Equipment/user/{user.Id}", content);
+                var requestContent = await request.Content.ReadAsStringAsync();
+                var message = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentView>>(requestContent);
+                if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {message.StatusCode}");
 
-            var user = await new Popup.Equipment.Owner().Change(Navigation);
-            if (user != null)
-                SetOwner(user.Id);
+                await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
+
+                if (user != null)
+                    SetOwner(user.Id);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlert("Error", ex.Message, "Ok");
+            }
         }
 
         async void SetOwner(Guid? id)

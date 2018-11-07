@@ -31,21 +31,17 @@
                        Margin="0, 10"
                        FontAttributes="Italic, Bold"
                        Style="{DynamicResource themeLabel}"/>
-                <ListView x:Name="listView"
+                <!-- TODO: replace with StackLayout!!! new class, new functions etc. -->
+                    <ListView x:Name="listView"
                           Style="{DynamicResource themeStack}"
                           RowHeight="70"
                           ItemTapped="listView_ItemTapped">
-                    <ListView.ItemTemplate>
+                    <!--ListView.ItemTemplate>
                         <DataTemplate>
                             <Controls:ShiftsView/>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
+                    </-->
                 </ListView>
-                <Button x:Name="btnChange"
-                        WidthRequest="170"
-                        HorizontalOptions="Center"
-                        Clicked="btnChange_Clicked"
-                        Style="{DynamicResource themeButton}"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

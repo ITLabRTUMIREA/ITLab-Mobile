@@ -217,138 +217,6 @@ namespace Http_Post.Pages
             return true;
         }
 
-        private async void btnCreateEventType_Clicked(object sender, EventArgs e)
-        {
-            await AddEventType(Navigation);
-        }
-
-        public Task<string> AddEventType(INavigation navigation)
-        { 
-            var tcs = new TaskCompletionSource<string>();
-            var layout = new StackLayout
-            {
-                Padding = new Thickness(0, 40, 0, 0),
-                VerticalOptions = LayoutOptions.StartAndExpand,
-                HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Orientation = StackOrientation.Vertical,
-                Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style,
-            };
-            try
-            {
-                var th = new Classes.ThemeChanger().Theme;
-                Style styleLbl = Application.Current.Resources[th + "_Lbl"] as Style;
-                Style styleBtn = Application.Current.Resources[th + "_Btn"] as Style;
-                Style styleStack = Application.Current.Resources[th + "_Stack"] as Style;
-
-                var lbl = new Label { Text = Resource.Create,
-                    HorizontalOptions = LayoutOptions.Center,
-                    FontAttributes = FontAttributes.Bold,
-                    Style = styleLbl };
-                var entryTitle = new Editor { Text = editEventType.Text, // if no such title - add it to new event type
-                    Placeholder = Resource.EventType,
-                    Style = styleLbl, };
-                var entryDescription = new Editor { Text = "",
-                    Placeholder = Resource.Description,
-                    Style = styleLbl, };
-
-                entryTitle.Completed += (s, e) 
-                    => entryDescription.Focus();
-
-                var btnOk = new Button
-                {
-                    Text = "Ok",
-                    WidthRequest = 100,
-                    Style = styleBtn
-                };
-                btnOk.Clicked += async (s, e) =>
-                {
-                    if (string.IsNullOrEmpty(entryTitle.Text) || string.IsNullOrWhiteSpace(entryTitle.Text))
-                    {
-                        entryTitle.Focus();
-                        return;
-                    }
-
-                    if (string.IsNullOrEmpty(entryDescription.Text) || string.IsNullOrWhiteSpace(entryDescription.Text))
-                    {
-                        entryDescription.Focus();
-                        return;
-                    }
-
-                    var newEventType = new EventTypeView
-                    {
-                        Title = entryTitle.Text,
-                        Description = entryDescription.Text,
-                    };
-                    var jsonContent = JsonConvert.SerializeObject(newEventType);
-                    var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                    var result = await client.PostAsync("EventType", content);
-
-                    var resultContent = await result.Content.ReadAsStringAsync();
-                    var message = JsonConvert.DeserializeObject<OneObjectResponse<EventTypeView>>(resultContent);
-                    if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
-                        throw new Exception($"Error: {message.StatusCode}");
-
-                    await navigation.PopModalAsync();
-                    editEventType.Text = message.Data.Title;
-                    newETV = message.Data;
-                    editName.Focus();
-                    tcs.SetResult(null);
-                };
-
-                var btnCancel = new Button
-                {
-                    Text = Resource.ADMIN_Cancel,
-                    WidthRequest = 100,
-                    Style = styleBtn
-                };
-                btnCancel.Clicked += async (s, e) =>
-                {
-                    await navigation.PopModalAsync();
-                    tcs.SetResult(null);
-                };
-
-                var slButtons = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.Center,
-                    Children = { btnOk, btnCancel },
-                    Style = styleStack
-                };
-
-                layout.Children.Add(lbl);
-                layout.Children.Add(entryTitle);
-                layout.Children.Add(entryDescription);
-                layout.Children.Add(slButtons);
-
-                var page = new ContentPage()
-                {
-                    Style = styleStack
-                };
-                page.Content = layout;
-                navigation.PushModalAsync(page);
-                entryTitle.Focus();
-                return tcs.Task;
-            }
-            catch (Exception ex)
-            {
-                var itisLabel = layout.Children[layout.Children.Count - 1];
-                if (itisLabel.Equals(new Label()))
-                {
-                    ((Label)layout.Children[layout.Children.Count - 1]).Text = ex.Message;
-                }
-                else
-                {
-                    layout.Children.Add(new Label
-                    {
-                        Text = ex.Message,
-                        Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style,
-                        HorizontalOptions = LayoutOptions.Center
-                    });
-                }
-                return tcs.Task; // while Task != "good" -> invoke Task
-            }
-        }
-
         private async void btnAddShift_Clicked(object sender, EventArgs e)
         {
             Hide();
@@ -565,21 +433,13 @@ namespace Http_Post.Pages
         }
 
         private void Show()
-        {
-            stackEventType.IsVisible = true;
-            btnCreateEventType.IsVisible = true;
-        }
+            => stackEventType.IsVisible = true;
 
         private void Hide()
-        {
-            stackEventType.IsVisible = false;
-            btnCreateEventType.IsVisible = false;
-        }
+            => stackEventType.IsVisible = false;
 
         private void editName_Focused(object sender, FocusEventArgs e)
-        {
-            Hide();
-        }
+            => Hide();
 
         private void UpdateLanguage()
         {
@@ -591,7 +451,6 @@ namespace Http_Post.Pages
             ///////////////////////////////////////
             btnAddShift.Text = Resource.Shifts;
             btnSave.Text = Resource.Save;
-            btnCreateEventType.Text = Resource.Create + " " + Resource.EventType;
             ///////////////////////////////////////
             editEventType.Placeholder = lblEventType.Text;
             editName.Placeholder = lblName.Text;

@@ -1,18 +1,19 @@
 ﻿using Http_Post.Extensions.Responses.Event;
 using Http_Post.Services;
-using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses;
 using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using Http_Post.Controls;
+using Models.PublicAPI.Responses.Event;
 
 namespace Http_Post.Pages
 {
     public partial class OneEventPage : ContentPage
     {
-        //TODO: btnChange -> push to CreateEvent like CreateEquipment
         private readonly HttpClient client = HttpClientFactory.HttpClient;
         private readonly Guid eventId;
         private EventViewExtended OneEvent { get; set; }
@@ -21,6 +22,7 @@ namespace Http_Post.Pages
         {
             eventId = id;
             Show();
+            ChangeToolBar();
         }
 
         private void Init()
@@ -28,8 +30,8 @@ namespace Http_Post.Pages
             BindingContext = OneEvent; // necessarilly before 'InitializeComponent'
             InitializeComponent();
 
-            listView.ItemsSource = OneEvent.Shifts;
             UpdateLanguage();
+            AddPlaces();
         }
 
         private async void Show()
@@ -57,17 +59,48 @@ namespace Http_Post.Pages
             Navigation.PushAsync(new OneShiftViewPage(e.Item as ShiftView));
         }
 
-        private void UpdateLanguage()
+        void AddPlaces()
         {
+            List<ShiftsView> shiftsViews = new List<ShiftsView>();
+            for(int i = 0; i < OneEvent.Shifts.Count; i++)
+            {
+                for (int counter = 0; counter < OneEvent.Shifts[i].Places.Count; counter++)
+                {
+                    StackLayout stack = new Place(OneEvent.Shifts[i].Places[counter], counter + 1).stackLayout;
+                    shiftsViews.Add(new ShiftsView(stack));
+                }
+            }
+            listView.ItemsSource = shiftsViews;
+        }
+
+        void UpdateLanguage()
+        {
+            Title = OneEvent.Title;
             lblShifts.Text = Res.Resource.Shifts;
             lblBeginTime.Text = OneEvent.Shifts[0].BeginTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
             lblEndTime.Text = OneEvent.Shifts[OneEvent.Shifts.Count - 1].EndTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
-            btnChange.Text = Res.Resource.Change;
         }
 
-        private void btnChange_Clicked(object sender, EventArgs e)
+        void ChangeToolBar()
         {
-            Navigation.PushAsync(new CreateEventPage(OneEvent));
+            if (!GetRight())
+                return;
+
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "ChangingPencil.png");
+            itemChange.Clicked += async (s, e) =>
+            {
+                await Navigation.PushAsync(new CreateEventPage(OneEvent));
+            };
+            ToolbarItems.Add(itemChange);
+        }
+
+        bool GetRight()
+        {
+            string whatToCheck = "CanEditEvent";
+            foreach (var item in CurrentUserIdFactory.UserRoles)
+                if (item.Equals(whatToCheck))
+                    return true;
+            return false;
         }
     }
 }

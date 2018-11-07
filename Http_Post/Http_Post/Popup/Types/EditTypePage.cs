@@ -134,7 +134,7 @@ namespace Http_Post.Popup.Types
 
             Editor entryShortTitle = new Editor
             {
-                Text = "",
+                Text = equipmentTypeEdit.ShortTitle,
                 Placeholder = Res.Resource.TitleShort,
                 Style = styleLbl
             };
