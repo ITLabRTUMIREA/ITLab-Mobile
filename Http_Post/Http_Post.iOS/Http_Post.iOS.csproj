@@ -180,4 +180,10 @@
   <ItemGroup>
     <BundleResource Include="Resources\Light_Refresh_2x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Keyboard_arrow_down_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Keyboard_arrow_right_black.png" />
+  </ItemGroup>
 </Project>

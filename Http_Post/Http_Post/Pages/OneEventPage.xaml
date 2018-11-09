@@ -5,7 +5,8 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}">
+            <StackLayout x:Name="stackLayout"
+                         Style="{DynamicResource themeStack}">
                 <!-- Event title -->
                 <Label Text="{Binding EventTitle}"
                        FontAttributes="Bold"
@@ -31,17 +32,6 @@
                        Margin="0, 10"
                        FontAttributes="Italic, Bold"
                        Style="{DynamicResource themeLabel}"/>
-                <!-- TODO: replace with StackLayout!!! new class, new functions etc. -->
-                    <ListView x:Name="listView"
-                          Style="{DynamicResource themeStack}"
-                          RowHeight="70"
-                          ItemTapped="listView_ItemTapped">
-                    <!--ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Controls:ShiftsView/>
-                        </DataTemplate>
-                    </-->
-                </ListView>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

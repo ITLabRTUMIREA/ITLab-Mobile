@@ -31,7 +31,7 @@ namespace Http_Post.Pages
             InitializeComponent();
 
             UpdateLanguage();
-            AddPlaces();
+            AddShifts();
         }
 
         private async void Show()
@@ -53,30 +53,15 @@ namespace Http_Post.Pages
             }
         }
 
-        private void listView_ItemTapped(object sender, ItemTappedEventArgs e)
+        void AddShifts()
         {
-            // push to shift page
-            Navigation.PushAsync(new OneShiftViewPage(e.Item as ShiftView));
-        }
-
-        void AddPlaces()
-        {
-            List<ShiftsView> shiftsViews = new List<ShiftsView>();
-            for(int i = 0; i < OneEvent.Shifts.Count; i++)
-            {
-                for (int counter = 0; counter < OneEvent.Shifts[i].Places.Count; counter++)
-                {
-                    StackLayout stack = new Place(OneEvent.Shifts[i].Places[counter], counter + 1).stackLayout;
-                    shiftsViews.Add(new ShiftsView(stack));
-                }
-            }
-            listView.ItemsSource = shiftsViews;
+            stackLayout.Children.Add(new StackShiftView(OneEvent.Shifts).stackLayout);
         }
 
         void UpdateLanguage()
         {
             Title = OneEvent.Title;
-            lblShifts.Text = Res.Resource.Shifts;
+            lblShifts.Text = Res.Resource.Shifts + ":";
             lblBeginTime.Text = OneEvent.Shifts[0].BeginTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
             lblEndTime.Text = OneEvent.Shifts[OneEvent.Shifts.Count - 1].EndTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
         }

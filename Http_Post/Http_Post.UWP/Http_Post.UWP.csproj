@@ -111,6 +111,8 @@
     <Content Include="Equipment.png" />
     <Content Include="Hamburger.png" />
     <Content Include="info.png" />
+    <Content Include="Keyboard_arrow_down_black.png" />
+    <Content Include="Keyboard_arrow_right_black.png" />
     <Content Include="Language.png" />
     <Content Include="Light_Refresh_2x.png" />
     <Content Include="LogOut.png" />
