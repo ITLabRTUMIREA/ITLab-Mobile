@@ -18,6 +18,7 @@ namespace Http_Post
             {
                 BarBackgroundColor = Color.FromHex("009688")
             };
+            //MainPage = new MainPage();
 		}
 
 		protected override void OnStart ()

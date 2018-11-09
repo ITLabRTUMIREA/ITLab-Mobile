@@ -1,5 +1,4 @@
-﻿using Http_Post.Classes;
-using Http_Post.Services;
+﻿using Http_Post.Services;
 using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
@@ -97,6 +96,10 @@ namespace Http_Post
 
                 Menu menu = new Menu();
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
+                //Application.Current.MainPage = new NavigationPage(new Menu {
+                //    BarBackgroundColor = Color.FromHex("009688"),
+                //    BarTextColor = Color.White
+                //});
                 await Navigation.PushAsync(menu);
                 return;
             }

@@ -461,10 +461,10 @@ namespace Http_Post.Pages
         private void listShifts_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             // TODO: load one shift page; isChanging - true
-            if (isCreating)
-                Navigation.PushAsync(new OneShiftViewPage((ShiftCreateRequest)sender));
-            else
-                Navigation.PushAsync(new OneShiftViewPage((ShiftEditRequest)sender));
+            //if (isCreating)
+            //    Navigation.PushAsync(new OneShiftViewPage((ShiftCreateRequest)sender));
+           // else
+          //      Navigation.PushAsync(new OneShiftViewPage((ShiftEditRequest)sender));
         }
     }
 }

@@ -153,7 +153,6 @@ namespace Http_Post.Pages
 
         async void btnChangeOwner_Clicked(object sender, EventArgs e)
         {
-            // TODO: postman, another request url!!!
             try
             {
                 var user = await new Popup.Equipment.Owner().Change(Navigation);
