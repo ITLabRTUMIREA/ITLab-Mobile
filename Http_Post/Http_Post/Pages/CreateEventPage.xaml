@@ -39,9 +39,9 @@
                         Clicked="btnAddShift_Clicked"
                         Style="{DynamicResource themeButton}"/>
 
-                <StackLayout x:Name="stackShift"
-                             IsVisible="False"
-                             Style="{DynamicResource themeStack}"/>
+                <ListView x:Name="listShift"
+                          IsVisible="False"
+                          Style="{DynamicResource themeStack}"/>
 
                 <BoxView BackgroundColor="Silver"
                          HorizontalOptions="FillAndExpand"

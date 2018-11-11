@@ -61,8 +61,16 @@ namespace Http_Post.Pages
             }
 
             //stackShift.Children = new Controls.StackShiftView(Event.Shifts, true).stackLayout.Children;
-            stackShift.IsVisible = true;
-            stackShift.Children.Add(new Controls.StackShiftView(Event.Shifts, true).stackLayout);
+            listShift.IsVisible = true;
+            var tempList = new List<Controls.ShiftsView>();
+            int ShiftNumber = 1;
+            foreach (var shift in Event.Shifts)
+            {
+                tempList.Add(new Controls.ShiftsView(shift, ShiftNumber, true));
+                ShiftNumber++;
+            }
+            listShift.ItemsSource = tempList;
+            //stackShift.Children.Add(new Controls.StackShiftView(Event.Shifts, true).stackLayout);
         }
 
         public CreateEventPage ()

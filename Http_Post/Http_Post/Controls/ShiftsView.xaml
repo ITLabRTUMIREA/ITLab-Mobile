@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Controls.ShiftsView">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style TargetType="StackLayout">
+                <Setter Property="Style" Value="themeStack"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="Style" Value="themeLabel"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="Style" Value="themeLabel"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+  <ContentView.Content>
+      <StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="shiftTitle">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tap_ShowHide"/>
+                    </Label.GestureRecognizers>
+                </Label>
+                <Image x:Name="ImageShowHide"
+                       Source="Keyboard_arrow_right_black.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tap_ShowHide"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="ImageDelete"
+                       Source="LogOut.png"
+                       IsVisible="False">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tap_Delete"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image x:Name="ImageEdit"
+                       Source="ChangingPencil.png"
+                       IsVisible="False">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="Tap_Edit"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="beginTitle"/>
+                <DatePicker x:Name="dateBegin"
+                            IsVisible="False"/>
+                <TimePicker x:Name="timeBegin"
+                            IsVisible="False"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <Label x:Name="endTitle"/>
+                <DatePicker x:Name="dateEnd"
+                            IsVisible="False"/>
+                <TimePicker x:Name="timeEnd"
+                            IsVisible="False"/>
+            </StackLayout>
+            <ListView x:Name="placesList"/>
+        </StackLayout>
+  </ContentView.Content>
+</ContentView>
