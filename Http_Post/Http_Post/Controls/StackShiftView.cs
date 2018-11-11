@@ -1,5 +1,7 @@
-﻿using Http_Post.Res;
+using Http_Post.Res;
+using Models.PublicAPI.Requests.Events.Event.Edit;
 using Models.PublicAPI.Responses.Event;
+using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
 
@@ -11,15 +13,18 @@ namespace Http_Post.Controls
         Style styleStack = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style;
 
         public StackLayout stackLayout;
-        List<ShiftView> shifts;
-
-        public StackShiftView (List<ShiftView> views)
+        List<ShiftView> shifts = new List<ShiftView>();
+        bool isCreating;
+        
+        public StackShiftView (List<ShiftView> views, bool isCreating = false)
         {
             shifts = views;
-            CreateStack();
+            this.isCreating = isCreating;
+
+            GenerateStackForViewing();
         }
 
-        void CreateStack()
+        void GenerateStackForViewing()
         {
             stackLayout = layout();
 
@@ -45,6 +50,7 @@ namespace Http_Post.Controls
                 };
                 icon.GestureRecognizers.Add(tap);
                 title.GestureRecognizers.Add(tap);
+                // TODO: add delete option
                 horizontal.Children.Add(title);
                 horizontal.Children.Add(icon);
 
@@ -64,12 +70,51 @@ namespace Http_Post.Controls
         StackLayout OneShift(ShiftView shift)
         {
             StackLayout oneShift = layout();
+            
+            if (isCreating)
+            {
+                DatePicker datePicker = new DatePicker
+                {
+                    Date = shift.BeginTime.Date
+                };
+                TimePicker timePicker = new TimePicker
+                {
+                    Time = shift.BeginTime.ToLocalTime().TimeOfDay
+                };
+                var hor = layout();
+                hor.Orientation = StackOrientation.Horizontal;
+                hor.Children.Add(lab("Begin:"));
+                hor.Children.Add(datePicker);
+                hor.Children.Add(timePicker);
+                oneShift.Children.Add(hor);
+            }
+            else
+                oneShift.Children.Add(lab(shift.BeginTime.ToLocalTime().ToString()));
 
-            oneShift.Children.Add(lab(shift.BeginTime.ToLocalTime().ToString()));
+            if (isCreating)
+            {
+                DatePicker datePicker = new DatePicker
+                {
+                    Date = shift.EndTime.Date
+                };
+                TimePicker timePicker = new TimePicker
+                {
+                    Time = shift.EndTime.ToLocalTime().TimeOfDay
+                };
+                var hor = layout();
+                hor.Orientation = StackOrientation.Horizontal;
+                hor.Children.Add(lab("End:"));
+                hor.Children.Add(datePicker);
+                hor.Children.Add(timePicker);
+                oneShift.Children.Add(hor);
+            }
+            else
+                oneShift.Children.Add(lab(shift.EndTime.ToLocalTime().ToString()));
 
-            oneShift.Children.Add(lab(shift.EndTime.ToLocalTime().ToString()));
-
-            oneShift.Children.Add(lab(string.IsNullOrEmpty(shift.Description) ? Resource.ErrorNoDescription : shift.Description));
+            if(isCreating)
+                oneShift.Children.Add(edit(string.IsNullOrEmpty(shift.Description) ? "" : shift.Description, Resource.Description));
+            else
+                oneShift.Children.Add(lab(string.IsNullOrEmpty(shift.Description) ? Resource.ErrorNoDescription : shift.Description));
 
             int number = 1;
             foreach(var place in shift.Places)
@@ -93,6 +138,7 @@ namespace Http_Post.Controls
                 };
                 icon.GestureRecognizers.Add(tap);
                 title.GestureRecognizers.Add(tap);
+                // TODO: add delete option
                 horizontal.Children.Add(title);
                 horizontal.Children.Add(icon);
 
@@ -111,7 +157,10 @@ namespace Http_Post.Controls
 
             onePlace.Children.Add(lab($"{Resource.Participants}: " + place.Participants.Count.ToString() + $" {Resource.Of} " + place.TargetParticipantsCount.ToString()));
 
-            onePlace.Children.Add(lab(string.IsNullOrEmpty(place.Description) ? Resource.ErrorNoDescription : place.Description));
+            if(isCreating)
+                onePlace.Children.Add(edit(string.IsNullOrEmpty(place.Description) ? "" : place.Description, Resource.Description));
+            else
+                onePlace.Children.Add(lab(string.IsNullOrEmpty(place.Description) ? Resource.ErrorNoDescription : place.Description));
 
             Label participantsTitle = lab(Resource.Participants + ":");
             participantsTitle.FontAttributes = FontAttributes.Bold;
@@ -197,6 +246,16 @@ namespace Http_Post.Controls
             {
                 Style = styleLbl,
                 Text = txt
+            };
+        }
+
+        Editor edit(string txt = "", string holder = "")
+        {
+            return new Editor
+            {
+                Text = txt,
+                Placeholder = holder,
+                Style = styleLbl
             };
         }
     }

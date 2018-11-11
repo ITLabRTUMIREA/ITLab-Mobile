@@ -6,9 +6,7 @@ using Newtonsoft.Json;
 using System;
 using System.Net.Http;
 using Xamarin.Forms;
-using System.Collections.Generic;
 using Http_Post.Controls;
-using Models.PublicAPI.Responses.Event;
 
 namespace Http_Post.Pages
 {

@@ -24,16 +24,17 @@ namespace Http_Post.Pages
             UpdateTheme();
 
             GetEvents();
+            ChangeToolBar();
         }
 
-        private void UpdateTheme()
+        void UpdateTheme()
         {
             var th = new ThemeChanger().Theme;
             var col = Application.Current.Resources;
             col["themeStack"] = col[th + "_Stack"];
         }
 
-        private async void GetEvents()
+        async void GetEvents()
         {
             try
             {
@@ -49,7 +50,7 @@ namespace Http_Post.Pages
             }
         }
 
-        private async void ShowEvents()
+        async void ShowEvents()
         {
             try
             {
@@ -73,6 +74,28 @@ namespace Http_Post.Pages
             {
                 stacklayout.Children.Add(new Label { Text = ex.Message });
             }
+        }
+
+        void ChangeToolBar()
+        {
+            if (!GetRight())
+                return;
+
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "Create.png");
+            itemChange.Clicked += async (s, e) =>
+            {
+                await Navigation.PushAsync(new CreateEventPage());
+            };
+            ToolbarItems.Add(itemChange);
+        }
+
+        bool GetRight()
+        {
+            string whatToCheck = "CanEditEvent";
+            foreach (var item in CurrentUserIdFactory.UserRoles)
+                if (item.Equals(whatToCheck))
+                    return true;
+            return false;
         }
     }
 }

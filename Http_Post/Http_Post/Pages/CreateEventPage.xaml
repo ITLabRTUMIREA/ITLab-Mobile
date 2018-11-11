@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Pages.CreateEventPage"
-             xmlns:Controls="clr-namespace:Http_Post.Controls">
+             x:Class="Http_Post.Pages.CreateEventPage">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}">
@@ -39,16 +38,10 @@
                         Margin="20"
                         Clicked="btnAddShift_Clicked"
                         Style="{DynamicResource themeButton}"/>
-                <ListView x:Name="listShifts"
-                          ItemTapped="listShifts_ItemTapped"
-                          IsVisible="False"
-                          Style="{DynamicResource themeStack}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Controls:ShiftsView/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+
+                <StackLayout x:Name="stackShift"
+                             IsVisible="False"
+                             Style="{DynamicResource themeStack}"/>
 
                 <BoxView BackgroundColor="Silver"
                          HorizontalOptions="FillAndExpand"
