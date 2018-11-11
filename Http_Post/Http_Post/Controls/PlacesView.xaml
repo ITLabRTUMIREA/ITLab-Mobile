@@ -53,10 +53,10 @@
                         IsVisible="False"/>
                 <Label x:Name="participants"
                        FontAttributes="Bold"/>
-                <ListView x:Name="Participants"/>
+                <StackLayout x:Name="Participants"/>
                 <Label x:Name="equipment"
                        FontAttributes="Bold"/>
-                <ListView x:Name="Equipment"/>
+                <StackLayout x:Name="Equipment"/>
             </StackLayout>
         </StackLayout>
   </ContentView.Content>

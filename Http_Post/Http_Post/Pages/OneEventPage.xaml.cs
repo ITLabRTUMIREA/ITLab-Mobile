@@ -53,17 +53,12 @@ namespace Http_Post.Pages
 
         void AddShifts()
         {
-            //stackLayout.Children.Add(new StackShiftView(OneEvent.Shifts).stackLayout);
-            ListView listShifts = new ListView();
-            var tempList = new System.Collections.Generic.List<ShiftsView>();
             int ShiftNumber = 1;
             foreach (var shift in OneEvent.Shifts)
             {
-                tempList.Add(new ShiftsView(shift, ShiftNumber));
+                stackLayout.Children.Add(new ShiftsView(shift, ShiftNumber));
                 ShiftNumber++;
             }
-            listShifts.ItemsSource = tempList;
-            stackLayout.Children.Add(listShifts);
         }
 
         void UpdateLanguage()

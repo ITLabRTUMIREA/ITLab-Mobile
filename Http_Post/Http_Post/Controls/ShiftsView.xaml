@@ -44,21 +44,26 @@
                     </Image.GestureRecognizers>
                 </Image>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout x:Name="beginStack"
+                         Orientation="Horizontal"
+                         IsVisible="False">
                 <Label x:Name="beginTitle"/>
                 <DatePicker x:Name="dateBegin"
                             IsVisible="False"/>
                 <TimePicker x:Name="timeBegin"
                             IsVisible="False"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
+            <StackLayout x:Name="endStack"
+                         Orientation="Horizontal"
+                         IsVisible="False">
                 <Label x:Name="endTitle"/>
                 <DatePicker x:Name="dateEnd"
                             IsVisible="False"/>
                 <TimePicker x:Name="timeEnd"
                             IsVisible="False"/>
             </StackLayout>
-            <ListView x:Name="placesList"/>
+            <StackLayout x:Name="placesStack"
+                         IsVisible="False"/>
         </StackLayout>
   </ContentView.Content>
 </ContentView>

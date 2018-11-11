@@ -22,14 +22,12 @@ namespace Http_Post.Controls
             shiftTitle.Text = Resource.Shifts + $" #{ShiftNumber}:";
             Language();
 
-            List<PlacesView> places = new List<PlacesView>();
             int PlaceNumber = 1;
             foreach(var place in shift.Places)
             {
-                places.Add(new PlacesView(PlaceNumber, place, isEdit));
                 PlaceNumber++;
+                placesStack.Children.Add(new PlacesView(PlaceNumber, place, isEdit));
             }
-            placesList.ItemsSource = places;
         }
 
         void Language()
@@ -52,14 +50,15 @@ namespace Http_Post.Controls
                 timeEnd.IsVisible = true;
                 timeEnd.Time = shift.EndTime.ToLocalTime().TimeOfDay;
             }
-
         }
 
         void Tap_ShowHide(object sender, EventArgs e)
         {
-            placesList.IsVisible = !placesList.IsVisible; // change visibility
-            shiftTitle.FontAttributes = placesList.IsVisible ? FontAttributes.Bold : FontAttributes.None;
-            ImageShowHide.Source = placesList.IsVisible ? Expand.Source : Collapse.Source; // change icon
+            placesStack.IsVisible = !placesStack.IsVisible; // change visibility
+            beginStack.IsVisible = !beginStack.IsVisible;
+            endStack.IsVisible = !endStack.IsVisible;
+            shiftTitle.FontAttributes = placesStack.IsVisible ? FontAttributes.Bold : FontAttributes.None;
+            ImageShowHide.Source = placesStack.IsVisible ? Expand.Source : Collapse.Source; // change icon
         }
 
         void Tap_Delete(object sender, EventArgs e)

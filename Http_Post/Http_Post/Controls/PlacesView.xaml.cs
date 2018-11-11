@@ -47,8 +47,6 @@ namespace Http_Post.Controls
 
         void SetEquipmentAndUsers()
         {
-            // equipments
-            var EquipmentCells = new List<ViewCell>();
             foreach (var equipment in place.Equipment)
             {
                 Label type = lab(equipment.EquipmentType.Title);
@@ -58,40 +56,16 @@ namespace Http_Post.Controls
                 serial.FontSize = type.FontSize - 4;
                 serial.FontAttributes = FontAttributes.Italic;
 
-                var layout = new StackLayout
-                {
-                    Style = styleStack,
-                    Children = { type, serial },
-                };
-                EquipmentCells.Add(new ViewCell
-                {
-                    View = layout
-                });
+                Equipment.Children.Add(type);
+                Equipment.Children.Add(serial);
             }
-            Equipment.ItemsSource = EquipmentCells;
-
-            // participants
-            var ParticipantsCells = new List<ViewCell>();
-            ParticipantsCells.Add(new ViewCell
-            {
-                View = AddUsers(place.Participants)
-            });
-            ParticipantsCells.Add(new ViewCell
-            {
-                View = AddUsers(place.Invited)
-            });
-            ParticipantsCells.Add(new ViewCell
-            {
-                View = AddUsers(place.Wishers)
-            });
-            ParticipantsCells.Add(new ViewCell
-            {
-                View = AddUsers(place.Unknowns)
-            });
-            Participants.ItemsSource = ParticipantsCells;
+            AddUsers(place.Participants);
+            AddUsers(place.Invited);
+            AddUsers(place.Wishers);
+            AddUsers(place.Unknowns);
         }
 
-        StackLayout AddUsers(List<UserAndEventRole> users)
+        void AddUsers(List<UserAndEventRole> users)
         {
             var layout = new StackLayout
             {
@@ -107,10 +81,10 @@ namespace Http_Post.Controls
                 role.FontSize = name.FontSize - 4;
                 role.FontAttributes = FontAttributes.Italic;
 
-                layout.Children.Add(name);
-                layout.Children.Add(role);
+                Participants.Children.Add(name);
+                Participants.Children.Add(role);
+
             }
-            return layout;
         }
 
         void Tap_ShowHide(object sender, EventArgs e)
