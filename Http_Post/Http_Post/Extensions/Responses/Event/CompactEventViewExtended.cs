@@ -22,7 +22,7 @@ namespace Http_Post.Extensions.Responses.Event
             => string.IsNullOrEmpty(EventType.Title) ? Res.Resource.ErrorNoTitle : EventType.Title;
         // progress bar
         public double ProgressToBar
-            => Convert.ToDouble(CurrentParticipantsCount) / TargetParticipantsCount;
+        => TargetParticipantsCount <= 0 ? 1 : Convert.ToDouble(CurrentParticipantsCount) / TargetParticipantsCount;
         // percents
         public string СompletenessPercent 
             => Convert.ToString((ProgressToBar*100).ToString("F0") + " %");
