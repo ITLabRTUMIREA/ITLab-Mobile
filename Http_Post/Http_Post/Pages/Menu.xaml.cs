@@ -22,11 +22,11 @@ namespace Http_Post
             Children.Add(new EventPage());
             Children[0].Icon = "News.png";
             Children.Add(new EquipmentPage());
-            Children[0].Icon = "Repair.png";
+            Children[1].Icon = "Repair.png";
             Children.Add(new TypesPage());
-            Children[0].Icon = "TwoLinesHorizontal.png";
+            Children[2].Icon = "TwoLinesHorizontal.png";
             Children.Add(new Settings(this));
-            Children[0].Icon = "SettingsGear.png";
+            Children[3].Icon = "SettingGear.png";
             if (isUpdating)
                 CurrentPage = Children[Children.Count - 1];
         }
