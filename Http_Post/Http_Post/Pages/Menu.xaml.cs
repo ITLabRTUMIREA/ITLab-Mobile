@@ -20,9 +20,13 @@ namespace Http_Post
         void AddPages(bool isUpdating)
         {
             Children.Add(new EventPage());
+            Children[0].Icon = "News.png";
             Children.Add(new EquipmentPage());
+            Children[0].Icon = "Repair.png";
             Children.Add(new TypesPage());
+            Children[0].Icon = "TwoLinesHorizontal.png";
             Children.Add(new Settings(this));
+            Children[0].Icon = "SettingsGear.png";
             if (isUpdating)
                 CurrentPage = Children[Children.Count - 1];
         }

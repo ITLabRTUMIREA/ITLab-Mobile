@@ -107,14 +107,14 @@ namespace Http_Post.Pages
         void ChangeToolBar()
         {
             ToolbarItems.Clear();
-            var itemResfresh = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Light_Refresh_2x.png");
+            var itemResfresh = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Refresh.png");
             itemResfresh.Clicked += (s, e) => GetEquipment();
             ToolbarItems.Add(itemResfresh);
             if (!GetRight())
 
                 return;
 
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "Create.png");
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "CreateCircle.png");
             itemChange.Clicked += async(s,e) =>
             {
                 await Navigation.PushAsync(new CreateEquipment());

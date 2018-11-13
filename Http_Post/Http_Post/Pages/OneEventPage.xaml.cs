@@ -74,7 +74,7 @@ namespace Http_Post.Pages
             if (!GetRight())
                 return;
 
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "ChangingPencil.png");
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "EditPencil.png");
             itemChange.Clicked += async (s, e) =>
             {
                 await Navigation.PushAsync(new CreateEventPage(OneEvent));

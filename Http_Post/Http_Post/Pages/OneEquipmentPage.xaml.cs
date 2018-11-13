@@ -78,7 +78,7 @@ namespace Http_Post.Pages
             if (!can)
                 return;
 
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "ChangingPencil.png");
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "EditPencil.png");
             itemChange.Clicked += btnChange_Clicked;
             ToolbarItems.Add(itemChange);
         }

@@ -104,21 +104,15 @@
     <None Include="Http_Post.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Calendar.png" />
-    <Content Include="Calendar_Dots.png" />
-    <Content Include="ChangingPencil.png" />
-    <Content Include="Create.png" />
-    <Content Include="Equipment.png" />
-    <Content Include="Hamburger.png" />
-    <Content Include="info.png" />
-    <Content Include="Keyboard_arrow_down_black.png" />
-    <Content Include="Keyboard_arrow_right_black.png" />
+    <Content Include="ArrowDown.png" />
+    <Content Include="ArrowRight.png" />
+    <Content Include="CreateCircle.png" />
+    <Content Include="DeleteCross.png" />
+    <Content Include="EditPencil.png" />
+    <Content Include="Exit.png" />
     <Content Include="Language.png" />
-    <Content Include="Light_Refresh_2x.png" />
-    <Content Include="LogOut.png" />
     <Content Include="News.png" />
-    <Content Include="Noname_Avatar.png" />
-    <Content Include="People.png" />
+    <Content Include="Person.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />
@@ -151,8 +145,10 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Settings.png" />
-    <Content Include="SettingsGear.png" />
+    <Content Include="Refresh.png" />
+    <Content Include="Repair.png" />
+    <Content Include="SettingGear.png" />
+    <Content Include="TwoLinesHorizontal.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

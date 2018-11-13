@@ -136,54 +136,42 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Noname_Avatar.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\LogOut.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Settings.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Hamburger.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\info.png" />
-  </ItemGroup>
-  <ItemGroup>
     <BundleResource Include="Resources\Language.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Calendar.png" />
+    <BundleResource Include="Resources\Exit.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ChangingPencil.png" />
+    <BundleResource Include="Resources\EditPencil.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\DeleteCross.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\CreateCircle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ArrowRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ArrowDown.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\TwoLinesHorizontal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SettingGear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Repair.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Refresh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Person.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\News.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Create.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Equipment.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\SettingsGear.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Calendar_Dots.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\People.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Light_Refresh_2x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Keyboard_arrow_down_black.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Keyboard_arrow_right_black.png" />
   </ItemGroup>
 </Project>

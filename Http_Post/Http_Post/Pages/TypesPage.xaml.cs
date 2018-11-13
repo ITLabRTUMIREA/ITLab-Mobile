@@ -304,7 +304,7 @@ namespace Http_Post.Pages
             if (!GetRight())
                 return;
 
-            var itemCreate = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Create.png");
+            var itemCreate = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "CreateCircle.png");
             itemCreate.Clicked += btnCreate_Clicked;
             ToolbarItems.Add(itemCreate);
         }

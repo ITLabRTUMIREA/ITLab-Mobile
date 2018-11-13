@@ -81,7 +81,7 @@ namespace Http_Post.Pages
             if (!GetRight())
                 return;
 
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "Create.png");
+            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "CreateCircle.png");
             itemChange.Clicked += async (s, e) =>
             {
                 await Navigation.PushAsync(new CreateEventPage());
