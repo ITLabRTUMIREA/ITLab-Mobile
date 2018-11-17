@@ -24,20 +24,20 @@
                     </Label.GestureRecognizers>
                 </Label>
                 <Image x:Name="ImageShowHide"
-                       Source="Keyboard_arrow_right_black.png">
+                       Source="ArrowRight.png">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Tap_ShowHide"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Image x:Name="ImageDelete"
-                       Source="LogOut.png"
+                       Source="DeleteCross.png"
                        IsVisible="False">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Tap_Delete"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Image x:Name="ImageEdit"
-                       Source="ChangingPencil.png"
+                       Source="EditPencil.png"
                        IsVisible="False">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Tap_Edit"/>
@@ -47,6 +47,9 @@
             <StackLayout x:Name="stackShowHide"
                          IsVisible="False">
                 <Label x:Name="target"/>
+                <Editor x:Name="editTarget"
+                        IsVisible="False"
+                        TextChanged="editTarget_TextChanged"/>
                 <Label x:Name="LblDescription"
                        IsVisible="True"/>
                 <Editor x:Name="EditDescription"

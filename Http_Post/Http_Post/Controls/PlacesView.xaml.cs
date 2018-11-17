@@ -10,23 +10,24 @@ using Xamarin.Forms;
 
 namespace Http_Post.Controls
 {
-	public partial class PlacesView : ContentView
-	{
+    public partial class PlacesView : ContentView
+    {
         bool isEdit = false;
         PlaceView place;
+        bool Delete = false;
 
         Style styleStack = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style;
-        Style styleLbl= Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
+        Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
 
-        public PlacesView (int placeNumber, PlaceView place, bool isEdit = false)
-		{
-			InitializeComponent ();
+        public PlacesView(int placeNumber, PlaceView place, bool isEdit = false)
+        {
+            InitializeComponent();
             this.isEdit = isEdit;
             this.place = place;
             placeTitle.Text = Resource.Place + $" #{placeNumber}:";
             Language();
             SetEquipmentAndUsers();
-		}
+        }
 
         void Language()
         {
@@ -34,14 +35,18 @@ namespace Http_Post.Controls
             LblDescription.Text = string.IsNullOrEmpty(place.Description) ? Resource.ErrorNoDescription : place.Description;
             participants.Text = Resource.Participants + ":";
             equipment.Text = Resource.TitleEquipment + ":";
-            if(isEdit)
+            if (isEdit)
             {
+                LblDescription.IsVisible = false;
                 EditDescription.IsVisible = true;
                 EditDescription.Placeholder = Resource.Description;
                 EditDescription.Text = place.Description;
                 // images
                 ImageDelete.IsVisible = true;
                 ImageEdit.IsVisible = true;
+                // target
+                editTarget.Text = place.TargetParticipantsCount.ToString();
+                editTarget.IsVisible = true;
             }
         }
 
@@ -96,12 +101,39 @@ namespace Http_Post.Controls
 
         void Tap_Delete(object sender, EventArgs e)
         {
-
+            placeTitle.BackgroundColor = Color.FromHex("#ff8080");
+            Delete = true;
         }
 
         void Tap_Edit(object sender, EventArgs e)
         {
 
+        }
+
+        void editTarget_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            target.Text = $"{Resource.Participants}: " + place.Participants.Count.ToString() + $" {Resource.Of} " + Convert.ToInt32(editTarget.Text);
+        }
+
+        public Models.PublicAPI.Requests.Events.Event.Edit.PlaceEditRequest placeEdit
+        {
+            get
+            {
+                if (Delete)
+                    return new Models.PublicAPI.Requests.Events.Event.Edit.PlaceEditRequest
+                    {
+                        Id = place.Id,
+                        Delete = this.Delete
+                    };
+                else
+                    return new Models.PublicAPI.Requests.Events.Event.Edit.PlaceEditRequest
+                    {
+                        Id = place.Id,
+                        Description = EditDescription.Text,
+                        TargetParticipantsCount = Convert.ToInt32(editTarget.Text),
+                        // TODO: make it done -- equipment, participants
+                    };
+            }
         }
 
         Label lab(string txt)
@@ -119,9 +151,9 @@ namespace Http_Post.Controls
             {
                 return new Image
                 {
-                    Source = "Keyboard_arrow_right_black.png",
-                    WidthRequest = 24,
-                    HeightRequest = 24,
+                    Source = "ArrowRight.png",
+                    WidthRequest = 18,
+                    HeightRequest = 18,
                     Aspect = Aspect.AspectFit
                 };
             }
@@ -133,9 +165,9 @@ namespace Http_Post.Controls
             {
                 return new Image
                 {
-                    Source = "Keyboard_arrow_down_black.png",
-                    WidthRequest = 24,
-                    HeightRequest = 24,
+                    Source = "ArrowDown.png",
+                    WidthRequest = 18,
+                    HeightRequest = 18,
                     Aspect = Aspect.AspectFit
                 };
             }

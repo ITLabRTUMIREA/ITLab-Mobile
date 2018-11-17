@@ -93,8 +93,4 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="ToolBarFunctions\" />
-  </ItemGroup>
 </Project>

@@ -28,9 +28,14 @@ namespace Http_Post.Pages
         {
             Init(false);
             eventId = Event.Id; // set id
-            eventTypeId = Event.EventType.Id;
+            eventTypeId = Event.EventType.Id; // set event type id
+            ////////////////////////////////////////////////
+            editName.Text = Event.Title;
+            editEventType.Text = Event.EventType.Title;
+            editDescription.Text = Event.Description;
+            editAddress.Text = Event.Address;
 
-            foreach (var shift in Event.Shifts)
+            /*foreach (var shift in Event.Shifts)
             {
                 var places = new List<PlaceEditRequest>();
                 foreach (var place in shift.Places)
@@ -39,6 +44,7 @@ namespace Http_Post.Pages
                     foreach (var user in place.Participants)
                         users.Add(new PersonWorkRequest
                         {
+                            Id = user.User.Id,
                             EventRoleId = user.EventRole.Id
                         });
 
@@ -58,19 +64,14 @@ namespace Http_Post.Pages
                     Description = shift.Description,
                     Places = places
                 });
-            }
-
-            //stackShift.Children = new Controls.StackShiftView(Event.Shifts, true).stackLayout.Children;
-            listShift.IsVisible = true;
-            var tempList = new List<Controls.ShiftsView>();
+            }*/
+            
             int ShiftNumber = 1;
             foreach (var shift in Event.Shifts)
             {
-                tempList.Add(new Controls.ShiftsView(shift, ShiftNumber, true));
+                stackShift.Children.Add(new Controls.ShiftsView(shift, ShiftNumber, true));
                 ShiftNumber++;
             }
-            listShift.ItemsSource = tempList;
-            //stackShift.Children.Add(new Controls.StackShiftView(Event.Shifts, true).stackLayout);
         }
 
         public CreateEventPage ()
@@ -151,12 +152,16 @@ namespace Http_Post.Pages
                         Address = editAddress.Text,
                         Description = editDescription.Text,
                         Title = editName.Text,
-                        Shifts = ShiftCreate
+                        Shifts = null
                     };
                     jsonContent = JsonConvert.SerializeObject(eventView);
                 }
                 else
                 {
+                    foreach(Controls.ShiftsView shift in stackShift.Children)
+                    {
+                        ShiftEdit.Add(shift.shiftEdit);
+                    }
                     var eventView = new EventEditRequest
                     {
                         Id = eventId,
@@ -224,8 +229,7 @@ namespace Http_Post.Pages
             }
 
             // Event's shifts
-            if (ShiftCreate.Count == 0 || ShiftEdit.Count == 0)
-            //if (stackShifts.Children.Count <= 0)
+            if (stackShift.Children.Count <= 0)
             {
                 await DisplayAlert("Error", $"Please add '{Resource.Shifts}'", "Ok");
                 return false;

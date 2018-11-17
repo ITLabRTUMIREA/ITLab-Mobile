@@ -86,6 +86,7 @@ namespace Http_Post.Pages
             {
                 await Navigation.PushAsync(new CreateEventPage());
             };
+            
             ToolbarItems.Add(itemChange);
         }
 

@@ -49,6 +49,12 @@ namespace Http_Post
 
         public async void Logout()
             => await Navigation.PopToRootAsync();
+
+        protected override bool OnBackButtonPressed()
+        {
+            //return base.OnBackButtonPressed();
+            return true; // Android bug fix - exit to login page
+        }
     }
     
 }

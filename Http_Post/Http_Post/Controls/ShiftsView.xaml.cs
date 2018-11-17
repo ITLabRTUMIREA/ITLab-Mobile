@@ -14,6 +14,7 @@ namespace Http_Post.Controls
 	{
         bool isEdit = false;
         ShiftView shift;
+        bool Delete = false;
 		public ShiftsView (ShiftView shift, int ShiftNumber, bool isEdit = false)
 		{
 			InitializeComponent ();
@@ -25,8 +26,8 @@ namespace Http_Post.Controls
             int PlaceNumber = 1;
             foreach(var place in shift.Places)
             {
-                PlaceNumber++;
                 placesStack.Children.Add(new PlacesView(PlaceNumber, place, isEdit));
+                PlaceNumber++;
             }
         }
 
@@ -34,9 +35,15 @@ namespace Http_Post.Controls
         {
             beginTitle.Text = isEdit ? "Begin:" : shift.BeginTime.ToLocalTime().ToString();
             endTitle.Text = isEdit ? "End:" : shift.EndTime.ToLocalTime().ToString();
+            lblDescription.Text = string.IsNullOrEmpty(shift.Description) ? Resource.ErrorNoDescription : shift.Description;
 
             if(isEdit)
             {
+                lblDescription.IsVisible = false;
+                editDescription.IsVisible = true;
+                editDescription.Text = shift.Description;
+                editDescription.Placeholder = Resource.Description;
+                //
                 ImageDelete.IsVisible = true;
                 ImageEdit.IsVisible = true;
                 //
@@ -57,18 +64,44 @@ namespace Http_Post.Controls
             placesStack.IsVisible = !placesStack.IsVisible; // change visibility
             beginStack.IsVisible = !beginStack.IsVisible;
             endStack.IsVisible = !endStack.IsVisible;
+            stackDescription.IsVisible = !stackDescription.IsVisible;
             shiftTitle.FontAttributes = placesStack.IsVisible ? FontAttributes.Bold : FontAttributes.None;
             ImageShowHide.Source = placesStack.IsVisible ? Expand.Source : Collapse.Source; // change icon
         }
 
         void Tap_Delete(object sender, EventArgs e)
         {
-
+            shiftTitle.BackgroundColor = Color.FromHex("#ff8080");
+            Delete = true;
         }
 
         void Tap_Edit(object sender, EventArgs e)
         {
 
+        }
+
+        public Models.PublicAPI.Requests.Events.Event.Edit.ShiftEditRequest shiftEdit { get
+            {
+                var places = new List<Models.PublicAPI.Requests.Events.Event.Edit.PlaceEditRequest>();
+                foreach (PlacesView place in placesStack.Children)
+                {
+                    places.Add(place.placeEdit);
+                }
+                if (Delete)
+                    return new Models.PublicAPI.Requests.Events.Event.Edit.ShiftEditRequest {
+                        Id = shift.Id,
+                        Delete = this.Delete
+                    };
+                else
+                    return new Models.PublicAPI.Requests.Events.Event.Edit.ShiftEditRequest
+                    {
+                        Id = shift.Id,
+                        Description = editDescription.Text,
+                        BeginTime = dateBegin.Date + timeBegin.Time,
+                        EndTime = dateEnd.Date + timeEnd.Time,
+                        Places = places
+                    };
+            }
         }
 
         Image Collapse
@@ -77,9 +110,9 @@ namespace Http_Post.Controls
             {
                 return new Image
                 {
-                    Source = "Keyboard_arrow_right_black.png",
-                    WidthRequest = 24,
-                    HeightRequest = 24,
+                    Source = "ArrowRight.png",
+                    WidthRequest = 18,
+                    HeightRequest = 18,
                     Aspect = Aspect.AspectFit
                 };
             }
@@ -91,9 +124,9 @@ namespace Http_Post.Controls
             {
                 return new Image
                 {
-                    Source = "Keyboard_arrow_down_black.png",
-                    WidthRequest = 24,
-                    HeightRequest = 24,
+                    Source = "ArrowDown.png",
+                    WidthRequest = 18,
+                    HeightRequest = 18,
                     Aspect = Aspect.AspectFit
                 };
             }

@@ -6,6 +6,8 @@
         <ResourceDictionary>
             <Style TargetType="StackLayout">
                 <Setter Property="Style" Value="themeStack"/>
+                <Setter Property="Padding" Value="3"/>
+                <Setter Property="Spacing" Value="2"/>
             </Style>
             <Style TargetType="Label">
                 <Setter Property="Style" Value="themeLabel"/>
@@ -15,8 +17,8 @@
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
-  <ContentView.Content>
-      <StackLayout>
+    <ContentView.Content>
+        <StackLayout>
             <StackLayout Orientation="Horizontal">
                 <Label x:Name="shiftTitle">
                     <Label.GestureRecognizers>
@@ -24,20 +26,20 @@
                     </Label.GestureRecognizers>
                 </Label>
                 <Image x:Name="ImageShowHide"
-                       Source="Keyboard_arrow_right_black.png">
+                       Source="ArrowRight.png">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Tap_ShowHide"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Image x:Name="ImageDelete"
-                       Source="LogOut.png"
+                       Source="DeleteCross.png"
                        IsVisible="False">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Tap_Delete"/>
                     </Image.GestureRecognizers>
                 </Image>
                 <Image x:Name="ImageEdit"
-                       Source="ChangingPencil.png"
+                       Source="EditPencil.png"
                        IsVisible="False">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="Tap_Edit"/>
@@ -62,8 +64,14 @@
                 <TimePicker x:Name="timeEnd"
                             IsVisible="False"/>
             </StackLayout>
+            <StackLayout x:Name="stackDescription"
+                         IsVisible="False">
+                <Label x:Name="lblDescription"/>
+                <Editor x:Name="editDescription"
+                    IsVisible="False"/>
+            </StackLayout>
             <StackLayout x:Name="placesStack"
                          IsVisible="False"/>
         </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>
