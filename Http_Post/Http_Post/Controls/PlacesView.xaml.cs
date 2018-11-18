@@ -107,12 +107,21 @@ namespace Http_Post.Controls
 
         void Tap_Edit(object sender, EventArgs e)
         {
-
+            //TODO: popup to add users and equipment
+            // or delete them
         }
 
         void editTarget_TextChanged(object sender, TextChangedEventArgs e)
         {
-            target.Text = $"{Resource.Participants}: " + place.Participants.Count.ToString() + $" {Resource.Of} " + Convert.ToInt32(editTarget.Text);
+            target.Text = $"{Resource.Participants}: " + place.Participants.Count.ToString() + $" {Resource.Of} ";
+            try
+            {
+                target.Text += Convert.ToInt32(editTarget.Text);
+            }
+            catch(Exception ex)
+            {
+                target.Text += '0';
+            }
         }
 
         public Models.PublicAPI.Requests.Events.Event.Edit.PlaceEditRequest placeEdit

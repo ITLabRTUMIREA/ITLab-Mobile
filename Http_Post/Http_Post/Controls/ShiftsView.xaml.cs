@@ -77,7 +77,7 @@ namespace Http_Post.Controls
 
         void Tap_Edit(object sender, EventArgs e)
         {
-
+            // TODO: popup to add or delete places
         }
 
         public Models.PublicAPI.Requests.Events.Event.Edit.ShiftEditRequest shiftEdit { get
