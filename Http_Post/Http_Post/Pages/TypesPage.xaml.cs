@@ -301,6 +301,10 @@ namespace Http_Post.Pages
         void ChangeToolBar()
         {
             ToolbarItems.Clear();
+            var itemResfresh = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Refresh.png");
+            itemResfresh.Clicked += (s, e) => ChooseList();
+            ToolbarItems.Add(itemResfresh);
+
             if (!GetRight())
                 return;
 
