@@ -45,6 +45,7 @@ namespace Http_Post
             col["themeLabel"] = col[th + "_Lbl"];
             col["themeButton"] = col[th + "_Btn"];
             col["themeBar"] = col[th + "_Bar"];
+            Style = col[th+"_Tab"] as Style;
         }
 
         public async void Logout()

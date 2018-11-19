@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.EventPage"
@@ -7,19 +7,20 @@
     <ScrollView>
         <StackLayout x:Name="stacklayout" Padding="5"
                      Style="{DynamicResource themeStack}">
-            <ListView x:Name="listView" 
+            <ListView x:Name="listView"
+                      RowHeight="180"
                       ItemTapped="ListView_ItemTapped"
                       Style="{DynamicResource themeStack}">
-
-                <ListView.RowHeight>
+                      
+                <!--ListView.RowHeight>
                     <OnPlatform x:TypeArguments="x:Int32">
                         <On Platform="IOS, Android" Value="180"/>
                     </OnPlatform>
-                </ListView.RowHeight>
+                </ListView.RowHeight-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Controls:EventView></Controls:EventView>
-                    </DataTemplate>
+                        <Controls:EventView/>
+                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>

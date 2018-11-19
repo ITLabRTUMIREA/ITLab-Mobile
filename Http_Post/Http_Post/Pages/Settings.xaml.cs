@@ -52,13 +52,19 @@ namespace Http_Post
                 var themeChanger = new ThemeChanger();
 
                 string result = await DisplayActionSheet(Resource.ChangeTheme, cancel, null, themeChanger.ThemesForUser.ToArray());
-                if (result.Equals(cancel) || string.IsNullOrEmpty(result))
+                if (string.IsNullOrEmpty(result) || result.Equals(cancel))
                     return;
 
                 themeChanger.ChangeTheme(result);
                 UpdateTheme();
-                menuSet.UpdateTheme();
-                menuSet.UpdatePages();
+                var col = Application.Current.Resources;
+                var th = themeChanger.Theme;
+                col["themeStack"] = col[th + "_Stack"];
+                col["themeLabel"] = col[th + "_Lbl"];
+                col["themeButton"] = col[th + "_Btn"];
+                col["themeBar"] = col[th + "_Bar"];
+                //menuSet.UpdateTheme();
+                //menuSet.UpdatePages();
             }
             catch (Exception ex)
             {
