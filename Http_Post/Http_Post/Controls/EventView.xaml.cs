@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System.Linq;
+using Xamarin.Forms;
 
 namespace Http_Post.Controls
 {
@@ -9,9 +10,35 @@ namespace Http_Post.Controls
             InitializeComponent();
 
             UpdateTheme();
+            test();
         }
 
-        private void UpdateTheme()
+        void test()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    {
+                        grid
+                            .Children
+                            .Select((item, index) => {
+                                item.IsVisible = index < 2;
+                                return item;
+                        }).ToList();
+                        /*int counter = 0;
+                        foreach(View view in grid.Children)
+                        {
+                            if (counter < 2)
+                                continue;
+
+                            view.IsVisible = false;
+                        }*/
+                    }
+                    break;
+            }
+        }
+
+        void UpdateTheme()
         {
             var th = new Classes.ThemeChanger().Theme;
             var col = Application.Current.Resources;
