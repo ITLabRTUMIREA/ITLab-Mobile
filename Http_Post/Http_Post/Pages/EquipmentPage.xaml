@@ -21,6 +21,7 @@
                          HorizontalOptions="FillAndExpand"
                          Margin="0,0,0,10"/>
                 <ListView x:Name="listView"
+                          IsPullToRefreshEnabled="True"
                           Style="{DynamicResource themeStack}"
                           ItemTapped="listView_ItemTapped">
                     <ListView.ItemTemplate>

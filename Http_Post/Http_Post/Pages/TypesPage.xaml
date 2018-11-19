@@ -33,9 +33,6 @@
                                        Style="{DynamicResource themeLabel}"/>
                                 <Label Text="{Binding Description}"
                                        Style="{DynamicResource themeLabel}"/>
-                                <BoxView HeightRequest="1"
-                                         BackgroundColor="Silver"
-                                         HorizontalOptions="FillAndExpand"/>
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

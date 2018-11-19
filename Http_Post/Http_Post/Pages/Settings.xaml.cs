@@ -63,6 +63,7 @@ namespace Http_Post
                 col["themeLabel"] = col[th + "_Lbl"];
                 col["themeButton"] = col[th + "_Btn"];
                 col["themeBar"] = col[th + "_Bar"];
+                col["themeTab"] = col[th + "_Tab"];
                 //menuSet.UpdateTheme();
                 //menuSet.UpdatePages();
             }

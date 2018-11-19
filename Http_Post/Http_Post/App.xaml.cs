@@ -20,7 +20,8 @@ namespace Http_Post
             //MainPage = new Http_Post.MainPage();
             MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = Color.FromHex("#ffe6ff")
+                BarBackgroundColor = Color.FromHex("#ffe6ff"),
+                BarTextColor = Color.FromHex("#4d4d4d")
             };
             //MainPage = new MainPage();
 		}

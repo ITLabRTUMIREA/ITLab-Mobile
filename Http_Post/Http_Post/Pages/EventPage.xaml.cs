@@ -21,17 +21,12 @@ namespace Http_Post.Pages
             InitializeComponent();
             Title = Res.Resource.TitleEvents;
 
-            UpdateTheme();
-
+            listView.Refreshing += (s, e) => {
+                GetEvents();
+                listView.IsRefreshing = false;
+            };
             GetEvents();
             ChangeToolBar();
-        }
-
-        void UpdateTheme()
-        {
-            var th = new ThemeChanger().Theme;
-            var col = Application.Current.Resources;
-            col["themeStack"] = col[th + "_Stack"];
         }
 
         async void GetEvents()
@@ -78,11 +73,6 @@ namespace Http_Post.Pages
 
         void ChangeToolBar()
         {
-            ToolbarItems.Clear();
-            var itemResfresh = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Refresh.png");
-            itemResfresh.Clicked += (s, e) => GetEvents();
-            ToolbarItems.Add(itemResfresh);
-
             if (!GetRight())
                 return;
 

@@ -22,6 +22,10 @@ namespace Http_Post.Pages
             Init();
             GetEquipment();
 
+            listView.Refreshing += (s, e) => {
+                GetEquipment();
+                listView.IsRefreshing = false;
+            };
             ChangeToolBar();
         }
 
@@ -106,10 +110,6 @@ namespace Http_Post.Pages
 
         void ChangeToolBar()
         {
-            ToolbarItems.Clear();
-            var itemResfresh = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "Refresh.png");
-            itemResfresh.Clicked += (s, e) => GetEquipment();
-            ToolbarItems.Add(itemResfresh);
             if (!GetRight())
 
                 return;

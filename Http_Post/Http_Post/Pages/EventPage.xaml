@@ -8,15 +8,9 @@
         <StackLayout x:Name="stacklayout" Padding="5"
                      Style="{DynamicResource themeStack}">
             <ListView x:Name="listView"
-                      RowHeight="180"
+                      IsPullToRefreshEnabled="True"
                       ItemTapped="ListView_ItemTapped"
                       Style="{DynamicResource themeStack}">
-                      
-                <!--ListView.RowHeight>
-                    <OnPlatform x:TypeArguments="x:Int32">
-                        <On Platform="IOS, Android" Value="180"/>
-                    </OnPlatform>
-                </ListView.RowHeight-->
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:EventView/>

@@ -5,15 +5,15 @@
     <ContentView.Resources>
         <ResourceDictionary>
             <Style TargetType="StackLayout">
-                <Setter Property="Style" Value="themeStack"/>
-                <Setter Property="Padding" Value="3"/>
+                <Setter Property="Style" Value="{DynamicResource themeStack}"/>
+                <Setter Property="Margin" Value="3"/>
                 <Setter Property="Spacing" Value="2"/>
             </Style>
             <Style TargetType="Label">
-                <Setter Property="Style" Value="themeLabel"/>
+                <Setter Property="Style" Value="{DynamicResource themeLabel}"/>
             </Style>
             <Style TargetType="Editor">
-                <Setter Property="Style" Value="themeLabel"/>
+                <Setter Property="Style" Value="{DynamicResource themeLabel}"/>
             </Style>
         </ResourceDictionary>
     </ContentView.Resources>
