@@ -23,6 +23,7 @@
                       RowHeight="100"
                       HeightRequest="100"
                       MinimumHeightRequest="10"
+                      IsPullToRefreshEnabled="True"
                       ItemTapped="listView_ItemTapped"
                       Style="{DynamicResource themeStack}">
                 <ListView.ItemTemplate>
