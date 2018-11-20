@@ -57,15 +57,8 @@ namespace Http_Post
 
                 themeChanger.ChangeTheme(result);
                 UpdateTheme();
-                var col = Application.Current.Resources;
-                var th = themeChanger.Theme;
-                col["themeStack"] = col[th + "_Stack"];
-                col["themeLabel"] = col[th + "_Lbl"];
-                col["themeButton"] = col[th + "_Btn"];
-                col["themeBar"] = col[th + "_Bar"];
-                col["themeTab"] = col[th + "_Tab"];
-                //menuSet.UpdateTheme();
-                //menuSet.UpdatePages();
+                menuSet.UpdateTheme();
+                menuSet.UpdatePages();
             }
             catch (Exception ex)
             {
