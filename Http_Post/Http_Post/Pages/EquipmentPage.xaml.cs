@@ -22,6 +22,8 @@ namespace Http_Post.Pages
             Init();
             GetEquipment();
 
+
+            // TODO: fix bug - not enough space
             listView.Refreshing += (s, e) => {
                 GetEquipment();
                 listView.IsRefreshing = false;
