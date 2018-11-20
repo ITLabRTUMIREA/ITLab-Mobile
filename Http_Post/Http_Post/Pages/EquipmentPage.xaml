@@ -8,12 +8,12 @@
                 <StackLayout Orientation="Horizontal"
                              Style="{DynamicResource themeStack}">
                     <Label x:Name="Label_Type"
-                           WidthRequest="200"
                            Style="{DynamicResource themeLabel}"/>
                     <Label x:Name="Label_Owner"
-                           WidthRequest="280"
+                           Margin="15,0,0,0"
                            Style="{DynamicResource themeLabel}"/>
                     <Label x:Name="Label_Number"
+                           Margin="15,0,0,0"
                            Style="{DynamicResource themeLabel}"/>
                 </StackLayout>
                 <BoxView HeightRequest="1"

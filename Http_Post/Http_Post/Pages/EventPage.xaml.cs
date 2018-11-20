@@ -19,7 +19,7 @@ namespace Http_Post.Pages
         public EventPage()
         {
             InitializeComponent();
-            Title = Res.Resource.TitleEvents;
+            Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
 
             listView.Refreshing += (s, e) => {
                 GetEvents();

@@ -102,7 +102,7 @@ namespace Http_Post.Pages
 
         void UpdateLanguage()
         {
-            Title = Resource.TitleEquipment;
+            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleEquipment : "";
             Label_Type.Text = Resource.EquipmentType;
             Label_Owner.Text = Resource.Owner;
             Label_Number.Text = Resource.Number;

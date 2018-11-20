@@ -296,7 +296,7 @@ namespace Http_Post.Pages
 
         void UpdateLanguage()
         {
-            Title = Resource.TitleTypes;
+            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleTypes : "";
             lblEventTypes.Text = Resource.EventType;
             lblRoles.Text = Resource.Roles;
             lblEquipmentTypes.Text = Resource.EquipmentType;
