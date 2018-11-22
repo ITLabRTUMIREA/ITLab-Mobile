@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
+          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+          x:Class="Http_Post.Controls.TypeView">
+    <Grid Style="{DynamicResource themeStack}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Text="{Binding Title}"
+               Grid.Row="0"
+               Style="{DynamicResource themeLabel}"/>
+        <Label Text="{Binding ShortTitle}"
+               x:Name="lbl"
+               Grid.Row="1"
+               Style="{DynamicResource themeLabel}"/>
+        <Label Text="{Binding Description}"
+               Grid.Row="2"
+               Style="{DynamicResource themeLabel}"/>
+    </Grid>
+</ViewCell>

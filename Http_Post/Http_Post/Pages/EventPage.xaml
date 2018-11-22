@@ -5,7 +5,6 @@
              Title="Events"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Style="{DynamicResource themeStack}">
-    <ScrollView>
         <StackLayout x:Name="stacklayout" Padding="5"
                      Style="{DynamicResource themeStack}">
             <ListView x:Name="listView"
@@ -19,5 +18,4 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-    </ScrollView>
 </ContentPage>

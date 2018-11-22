@@ -2,21 +2,27 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.EquipmentPage"
+             xmlns:Controls="clr-namespace:Http_Post.Controls"
              Style="{DynamicResource themeStack}">
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}">
-                <StackLayout Orientation="Horizontal"
-                             Style="{DynamicResource themeStack}">
-                    <Label x:Name="Label_Type"
-                           Style="{DynamicResource themeLabel}"/>
-                    <Label x:Name="Label_Owner"
-                           Margin="15,0,0,0"
-                           Style="{DynamicResource themeLabel}"/>
-                    <Label x:Name="Label_Number"
-                           Margin="15,0,0,0"
-                           Style="{DynamicResource themeLabel}"/>
-                </StackLayout>
+        <StackLayout Style="{DynamicResource themeStack}">
+        <Grid Style="{DynamicResource themeStack}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="Label_Type"
+                   Text="Equipment type"
+                   Grid.Row="0" Grid.Column="0"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="Label_Owner"
+                   Grid.Row="0" Grid.Column="1"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label x:Name="Label_Number"
+                   Grid.Row="0" Grid.Column="2"
+                   Style="{DynamicResource themeLabel}"/>
+        </Grid>
                 <BoxView HeightRequest="1"
                          BackgroundColor="Silver"
                          HorizontalOptions="FillAndExpand"
@@ -27,31 +33,10 @@
                           ItemTapped="listView_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
-                                <Grid Style="{DynamicResource themeStack}">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="200"/>
-                                        <ColumnDefinition Width="280"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding EquipmentType.Title}"
-                                           Grid.Row="0" Grid.Column="0"
-                                           Style="{DynamicResource themeLabel}"/>
-                                    <Label Text="{Binding OwnerName}"
-                                           Grid.Row="0" Grid.Column="1"
-                                           Style="{DynamicResource themeLabel}"/>
-                                    <Label Text="{Binding Number}"
-                                           Grid.Row="0" Grid.Column="2"
-                                           Style="{DynamicResource themeLabel}"/>
-                                </Grid>
-                            </ViewCell>
+                            <Controls:EquipmentView/>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

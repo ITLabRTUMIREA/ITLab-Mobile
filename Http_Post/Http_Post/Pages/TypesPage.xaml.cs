@@ -195,7 +195,8 @@ namespace Http_Post.Pages
                             if (newEquipmentType == null)
                                 return;
                             url = "EquipmentType";
-                            jsonContent = JsonConvert.SerializeObject(newEquipmentType);
+
+                            jsonContent = JsonConvert.SerializeObject(new[] { newEquipmentType });
                         }
                         break;
                 }
@@ -281,7 +282,7 @@ namespace Http_Post.Pages
                         break;
                     case Types.Equipment:
                         {
-                            var message = JsonConvert.DeserializeObject<OneObjectResponse<EquipmentTypeView>>(content);
+                            var message = JsonConvert.DeserializeObject<ListResponse<EquipmentTypeView>>(content);
                             if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                                 throw new Exception($"Error: {message.StatusCode}");
                         }

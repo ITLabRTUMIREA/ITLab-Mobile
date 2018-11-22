@@ -31,7 +31,8 @@ namespace Http_Post
 
             UpdateLanguage();
             SetProgress(0.0);
-            
+            stackLayout.IsVisible = true;
+
             SPECIAL_DEBUG_FUNCTION();
         }
 
