@@ -5,6 +5,7 @@ using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net.Http;
 using Xamarin.Forms;
 
@@ -49,7 +50,7 @@ namespace Http_Post.Pages
         {
             try
             {
-                listView.ItemsSource = events.Data;
+                listView.ItemsSource = events.Data.Reverse();
             }
             catch (Exception ex)
             {

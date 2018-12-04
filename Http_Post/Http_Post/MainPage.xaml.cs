@@ -33,7 +33,7 @@ namespace Http_Post
             SetProgress(0.0);
             stackLayout.IsVisible = true;
 
-            SPECIAL_DEBUG_FUNCTION();
+            //SPECIAL_DEBUG_FUNCTION();
         }
 
         private async void Button_login(object sender, EventArgs e)
