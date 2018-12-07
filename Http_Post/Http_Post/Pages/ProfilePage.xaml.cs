@@ -14,7 +14,6 @@ namespace Http_Post.Pages
 	{
         private UserView User;
         private HttpClient client = HttpClientFactory.HttpClient;
-        private Menu menu;
 
         public ProfilePage()
         {

@@ -31,7 +31,6 @@ namespace Http_Post
 
             UpdateLanguage();
             SetProgress(0.0);
-            stackLayout.IsVisible = true;
 
             //SPECIAL_DEBUG_FUNCTION();
         }
@@ -90,7 +89,7 @@ namespace Http_Post
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", info.Data.AccessToken);
 
                 text_error.TextColor = Color.Green;
-                text_error.Text = "Authorizated!";
+                text_error.Text = "Login successful!";
 
                 RememberToken(info); // remember refresh token
                 new CurrentUserIdFactory().FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
@@ -197,6 +196,7 @@ namespace Http_Post
                     if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     {
                         ShowError(infoAboutStudent.StatusCode.ToString());
+                        stackLayout.IsVisible = true;
                         return;
                     }
 

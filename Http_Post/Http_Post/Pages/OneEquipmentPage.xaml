@@ -6,7 +6,8 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Style="{DynamicResource themeStack}"
-                     Spacing="5">
+                         Spacing="5"
+                         Margin="20,20,0,20">
                 <Label x:Name="lblTypeTitle"
                    Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="lblType"

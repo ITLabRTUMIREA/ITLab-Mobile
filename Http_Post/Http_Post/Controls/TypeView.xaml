@@ -2,21 +2,32 @@
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           x:Class="Http_Post.Controls.TypeView">
-    <Grid Style="{DynamicResource themeStack}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Label Text="{Binding Title}"
-               Grid.Row="0"
-               Style="{DynamicResource themeLabel}"/>
-        <Label Text="{Binding ShortTitle}"
-               x:Name="lbl"
-               Grid.Row="1"
-               Style="{DynamicResource themeLabel}"/>
-        <Label Text="{Binding Description}"
-               Grid.Row="2"
-               Style="{DynamicResource themeLabel}"/>
-    </Grid>
+    <ContentView Padding="5">
+        <Frame Padding="10">
+            <Frame.OutlineColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="UWP" Value="#4d79ff" />
+                </OnPlatform>
+            </Frame.OutlineColor>
+            <Grid Style="{DynamicResource themeStack}"
+                  Margin="0"
+                  Padding="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="{Binding Title}"
+                   Grid.Row="0"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label Text="{Binding ShortTitle}"
+                   x:Name="lbl"
+                   Grid.Row="1"
+                   Style="{DynamicResource themeLabel}"/>
+            <Label Text="{Binding Description}"
+                   Grid.Row="2"
+                   Style="{DynamicResource themeLabel}"/>
+            </Grid>
+        </Frame>
+    </ContentView>
 </ViewCell>

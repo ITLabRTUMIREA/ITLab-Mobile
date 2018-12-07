@@ -10,7 +10,18 @@
             <ListView x:Name="listView"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="ListView_ItemTapped"
+                      SeparatorVisibility="None"
                       Style="{DynamicResource themeStack}">
+            <ListView.Header>
+                <StackLayout Style="{DynamicResource themeStack}">
+                    <Label Text="Header Testing!"
+                               FontSize="Large"
+                               Style="{DynamicResource themeLabel}"/>
+                    <Label Text="Header Testing!"
+                               FontSize="Small"
+                               Style="{DynamicResource themeLabel}"/>
+                </StackLayout>
+            </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:EventView/>

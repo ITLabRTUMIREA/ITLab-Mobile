@@ -12,44 +12,57 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}"
-                         Spacing="5"
-                         Orientation="Vertical">
-                <!-- Email -->
-                <Label x:Name="Lbl_Email"
-                       Margin="0,0,0,20"
-                       Text="{Binding Email}"
+        <StackLayout Style="{DynamicResource themeStack}"
+                     Spacing="5"
+                     Margin="20,20,0,0">
+            <!-- Email -->
+            <Label x:Name="Lbl_Email"
+                   HorizontalOptions="Center"
+                    Margin="0,0,0,20"
+                    Text="{Binding Email}"
+                    Style="{DynamicResource themeLabel}"/>
+            <!-- Firstname -->
+            <Label x:Name="Lbl_Firstname"
+                   HorizontalOptions="Center"
+                   Style="{DynamicResource themeLabel}"/>
+            <Entry x:Name="Entry_Firstname"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   WidthRequest="300"
+                    Text="{Binding FirstName}"
+                    Margin="0,0,0,20"
+                    HeightRequest="50"
+                    Style="{DynamicResource themeLabel}"/>
+            <!-- Lastname -->
+            <Label x:Name="Lbl_Lastname"
+                   HorizontalOptions="Center"
                        Style="{DynamicResource themeLabel}"/>
-                <!-- Firstname -->
-                <Label x:Name="Lbl_Firstname"
-                       Style="{DynamicResource themeLabel}"/>
-                <Entry x:Name="Entry_Firstname"
-                       Text="{Binding FirstName}"
-                       Margin="0,0,0,20"
-                       HeightRequest="50"
-                       Style="{DynamicResource themeLabel}"/>
-                <!-- Lastname -->
-                <Label x:Name="Lbl_Lastname"
-                       Style="{DynamicResource themeLabel}"/>
-                <Entry x:Name="Entry_Lastname"
-                       Margin="0,0,0,20"
-                       HeightRequest="50"
-                       Text="{Binding LastName}"
-                       Style="{DynamicResource themeLabel}"/>
-                <!-- Phone number -->
-                <Label x:Name="Lbl_PhoneNumber"
-                       Style="{DynamicResource themeLabel}"/>
-                <Entry x:Name="Entry_PhoneNumber"
-                       Margin="0,0,0,20"
-                       HeightRequest="50"
-                       Text="{Binding PhoneNumber}"
-                       Style="{DynamicResource themeLabel}"/>
-                <!-- Button to save changes -->
-                <Button x:Name="Btn_Save"
-                        Clicked="Btn_Save_Clicked"
-                        Style="{DynamicResource themeButton}"/>
-            </StackLayout>
-        </ScrollView>
+            <Entry x:Name="Entry_Lastname"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   WidthRequest="300"
+                    Margin="0,0,0,20"
+                    HeightRequest="50"
+                    Text="{Binding LastName}"
+                    Style="{DynamicResource themeLabel}"/>
+            <!-- Phone number -->
+            <Label x:Name="Lbl_PhoneNumber"
+                   HorizontalOptions="Center"
+                    Style="{DynamicResource themeLabel}"/>
+            <Entry x:Name="Entry_PhoneNumber"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   WidthRequest="300"
+                    Margin="0,0,0,20"
+                    HeightRequest="50"
+                    Text="{Binding PhoneNumber}"
+                    Style="{DynamicResource themeLabel}"/>
+            <!-- Button to save changes -->
+            <Button x:Name="Btn_Save"
+                    HorizontalOptions="Center"
+                    WidthRequest="150"
+                    Clicked="Btn_Save_Clicked"
+                    Style="{DynamicResource themeButton}"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

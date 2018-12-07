@@ -2,20 +2,31 @@
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Controls.EquipmentView">
-    <Grid Style="{DynamicResource themeStack}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Label Text="{Binding EquipmentType.Title}"
-               Grid.Column="0"
-               Style="{DynamicResource themeLabel}"/>
-        <Label Text="{Binding OwnerName}"
-               Grid.Column="1"
-               Style="{DynamicResource themeLabel}"/>
-        <Label Text="{Binding Number}"
-               Grid.Column="2"
-               Style="{DynamicResource themeLabel}"/>
-    </Grid>
+    <ContentView Padding="5">
+        <Frame Padding="10">
+            <Frame.OutlineColor>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="UWP" Value="#4d79ff" />
+                </OnPlatform>
+            </Frame.OutlineColor>
+            <Grid Style="{DynamicResource themeStack}"
+                  Padding="2"
+                  Margin="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Text="{Binding EquipmentType.Title}"
+                       Grid.Column="0"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label Text="{Binding OwnerName}"
+                       Grid.Column="1"
+                       Style="{DynamicResource themeLabel}"/>
+                <Label Text="{Binding Number}"
+                       Grid.Column="2"
+                       Style="{DynamicResource themeLabel}"/>
+            </Grid>
+        </Frame>
+    </ContentView>
 </ViewCell>
