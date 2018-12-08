@@ -195,6 +195,7 @@ namespace Http_Post
                         return;
                     }
 
+                    Init();
                     Authorization(infoAboutStudent);
                 }
                 else
