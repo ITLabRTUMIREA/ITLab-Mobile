@@ -13,9 +13,11 @@ using System.Net.Http;
 using System.Text;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class TypesPage : ContentPage
     {
         HttpClient client = HttpClientFactory.HttpClient;

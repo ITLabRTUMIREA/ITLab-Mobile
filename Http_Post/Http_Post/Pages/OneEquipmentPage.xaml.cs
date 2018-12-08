@@ -7,10 +7,12 @@ using System;
 using System.Net.Http;
 using Newtonsoft.Json;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
-	public partial class OneEquipmentPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class OneEquipmentPage : ContentPage
 	{
         private Guid EquipId;
         private HttpClient client = HttpClientFactory.HttpClient;

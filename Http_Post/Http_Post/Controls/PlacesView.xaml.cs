@@ -7,9 +7,10 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
-
+using Xamarin.Forms.Xaml;
 namespace Http_Post.Controls
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class PlacesView : ContentView
     {
         bool isEdit = false;

@@ -9,10 +9,12 @@ using System;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
-	public partial class CreateEquipment : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CreateEquipment : ContentPage
 	{
         private HttpClient client = Services.HttpClientFactory.HttpClient;
         private Guid? ownerId; // if empty - laboratory, if not empty - has owner

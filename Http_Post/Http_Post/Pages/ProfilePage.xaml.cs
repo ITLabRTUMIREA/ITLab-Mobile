@@ -7,10 +7,12 @@ using System;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
-	public partial class ProfilePage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ProfilePage : ContentPage
 	{
         private UserView User;
         private HttpClient client = HttpClientFactory.HttpClient;

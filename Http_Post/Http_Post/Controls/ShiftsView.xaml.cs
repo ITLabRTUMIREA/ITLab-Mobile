@@ -7,10 +7,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Controls
 {
-	public partial class ShiftsView : ContentView
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class ShiftsView : ContentView
 	{
         bool isEdit = false;
         ShiftView shift;

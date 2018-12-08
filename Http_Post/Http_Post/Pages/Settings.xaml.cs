@@ -3,9 +3,11 @@ using Http_Post.Pages;
 using Http_Post.Res;
 using System;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
     {
         Localization localization = new Localization();

@@ -1,10 +1,12 @@
 ﻿using Http_Post.Classes;
 using Http_Post.Pages;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post
 {
-	public partial class Menu : TabbedPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Menu : TabbedPage
     {
         Localization localization = new Localization();
 

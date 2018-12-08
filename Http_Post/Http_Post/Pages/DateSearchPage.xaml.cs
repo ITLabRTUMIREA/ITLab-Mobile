@@ -12,10 +12,12 @@ using Http_Post.Extensions.Responses.Event;
 using Models.PublicAPI.Responses;
 using Models.PublicAPI.Responses.Event;
 using Http_Post.Services;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
-	public partial class DateSearchPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class DateSearchPage : ContentPage
 	{
         private readonly HttpClient client = HttpClientFactory.HttpClient;
 

@@ -7,32 +7,27 @@ using System;
 using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post
 {
-	public partial class MainPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MainPage : ContentPage
 	{
         private readonly HttpClient client = HttpClientFactory.HttpClient;
-
-        private void SPECIAL_DEBUG_FUNCTION()
-        {
-            text_login.Text = "test@gmail.com"; // --------- Debug
-            text_password.Text = "123456"; // --------------- Debug
-            button_login.Focus(); // ------------------------ Debug
-        }
-
         private string Login, Password;
 
 		public MainPage()
 		{
             TryLogin();
+        }
 
-			InitializeComponent();
-
+        void Init()
+        {
+            InitializeComponent();
+            stackLayout.IsVisible = true;
             UpdateLanguage();
             SetProgress(0.0);
-
-            //SPECIAL_DEBUG_FUNCTION();
         }
 
         private async void Button_login(object sender, EventArgs e)
@@ -195,13 +190,15 @@ namespace Http_Post
                     OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
                     if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     {
+                        Init();
                         ShowError(infoAboutStudent.StatusCode.ToString());
-                        stackLayout.IsVisible = true;
                         return;
                     }
 
                     Authorization(infoAboutStudent);
                 }
+                else
+                    Init();
             }
             catch (Exception ex)
             {

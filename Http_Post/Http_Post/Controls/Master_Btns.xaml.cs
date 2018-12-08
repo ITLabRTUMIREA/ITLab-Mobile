@@ -1,9 +1,11 @@
 ﻿using System;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Controls
 {
-	public partial class Master_Btns : ContentView
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class Master_Btns : ContentView
 	{
         public static readonly BindableProperty ImageSourceProperty = BindableProperty.Create("ImageSource",
             typeof(string),

@@ -9,10 +9,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
-	public partial class EquipmentPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class EquipmentPage : ContentPage
 	{
         HttpClient client = HttpClientFactory.HttpClient;
         IEnumerable<CompactEquipmentViewExtended> listEquip = new List<CompactEquipmentViewExtended>();

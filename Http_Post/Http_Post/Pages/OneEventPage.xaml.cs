@@ -7,9 +7,11 @@ using System;
 using System.Net.Http;
 using Xamarin.Forms;
 using Http_Post.Controls;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
+    [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class OneEventPage : ContentPage
     {
         private readonly HttpClient client = HttpClientFactory.HttpClient;

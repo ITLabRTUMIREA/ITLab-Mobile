@@ -12,10 +12,12 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Pages
 {
-	public partial class CreateEventPage : ContentPage
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class CreateEventPage : ContentPage
 	{
         HttpClient client = Services.HttpClientFactory.HttpClient;
         Guid eventTypeId;
