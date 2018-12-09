@@ -1,4 +1,4 @@
-﻿using Http_Post.Services;
+using Http_Post.Services;
 using Http_Post.Res;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;

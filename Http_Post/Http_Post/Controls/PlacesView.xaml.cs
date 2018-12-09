@@ -1,4 +1,4 @@
-﻿using Http_Post.Res;
+using Http_Post.Res;
 using Models.PublicAPI.Responses.Event;
 using System;
 using System.Collections.Generic;

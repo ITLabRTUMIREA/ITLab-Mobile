@@ -2,6 +2,5 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="Http_Post.Menu"
-            xmlns:p="clr-namespace:Http_Post.Pages"
             Title="ITLab-Mobile"
-            />
+            Style="{DynamicResource themeTab}"/>

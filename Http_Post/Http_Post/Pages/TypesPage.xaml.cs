@@ -1,4 +1,4 @@
-﻿using Http_Post.Res;
+using Http_Post.Res;
 using Http_Post.Services;
 using Models.PublicAPI.Requests.Equipment.EquipmentType;
 using Models.PublicAPI.Requests.Events.Event.Create.Roles;

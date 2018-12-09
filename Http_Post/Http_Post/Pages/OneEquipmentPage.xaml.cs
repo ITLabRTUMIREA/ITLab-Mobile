@@ -1,4 +1,4 @@
-﻿using Models.PublicAPI.Responses.Equipment;
+using Models.PublicAPI.Responses.Equipment;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
 using Http_Post.Res;

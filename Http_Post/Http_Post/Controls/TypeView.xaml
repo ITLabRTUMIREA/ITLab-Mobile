@@ -3,12 +3,8 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           x:Class="Http_Post.Controls.TypeView">
     <ContentView Padding="5">
-        <Frame Padding="10">
-            <Frame.OutlineColor>
-                <OnPlatform x:TypeArguments="Color">
-                    <On Platform="UWP" Value="#4d79ff" />
-                </OnPlatform>
-            </Frame.OutlineColor>
+        <Frame Padding="10"
+               Style="{DynamicResource themeFrame}">
             <Grid Style="{DynamicResource themeStack}"
                   Margin="0"
                   Padding="2">

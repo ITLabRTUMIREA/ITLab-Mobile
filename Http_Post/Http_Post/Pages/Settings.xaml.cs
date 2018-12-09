@@ -1,4 +1,4 @@
-﻿using Http_Post.Classes;
+using Http_Post.Classes;
 using Http_Post.Pages;
 using Http_Post.Res;
 using System;
@@ -32,7 +32,7 @@ namespace Http_Post
             {
                 string result = await DisplayActionSheet("Choose language", cancel, null, loc.languages);
 
-                if (result.Equals(cancel) || string.IsNullOrEmpty(result))
+                if (string.IsNullOrEmpty(result) || result.Equals(cancel))
                     return;
 
                 result = result.ToUpper();

@@ -1,4 +1,4 @@
-﻿using Http_Post.Classes;
+using Http_Post.Classes;
 using Http_Post.Extensions.Responses.Event;
 using Http_Post.Services;
 using Models.PublicAPI.Responses.Event;
@@ -21,6 +21,7 @@ namespace Http_Post.Pages
 
         public EventPage()
         {
+            BindingContext = ThemeChanger.Theme;
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
 
@@ -40,18 +41,6 @@ namespace Http_Post.Pages
 
                 events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
-                ShowEvents();
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
-        }
-
-        async void ShowEvents()
-        {
-            try
-            {
                 listView.ItemsSource = events.Data.Reverse();
             }
             catch (Exception ex)

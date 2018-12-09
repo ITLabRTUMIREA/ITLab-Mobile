@@ -1,4 +1,4 @@
-﻿using Http_Post.Res;
+using Http_Post.Res;
 using Models.PublicAPI.Requests.Equipment.Equipment;
 using Models.PublicAPI.Responses.Equipment;
 using Models.PublicAPI.Responses.Exceptions;

@@ -3,16 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Controls.EventView">
     <ContentView Padding="5">
-        <Frame Padding="10">
-            <Frame.OutlineColor>
-                <OnPlatform x:TypeArguments="Color">
-                    <On Platform="UWP" Value="#4d79ff" />
-                </OnPlatform>
-            </Frame.OutlineColor>
+        <Frame x:Name="frame"
+               Padding="10">
             <Grid x:Name="grid"
                   Margin="0"
-                  Padding="2"
-                  Style="{DynamicResource themeStack}">
+                  Padding="2">
                 <Grid.RowDefinitions>
                     <!-- Day of week, begin time -->
                     <RowDefinition Height="*"/>
@@ -26,33 +21,26 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="{Binding DayOfWeek}" 
-                       Grid.Row="0" Grid.Column="0"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Row="0" Grid.Column="0"/>
                 <Label Text="{Binding BeginHour}" 
-                       Grid.Row="0" Grid.Column="1"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Row="0" Grid.Column="1"/>
                 <Label Text="{Binding EventTitle}" 
-                       Grid.Row="1" Grid.Column="0"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Row="1" Grid.Column="0"/>
                 <Label Text="{Binding Duration}"
-                       Grid.Row="1" Grid.Column="1"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Row="1" Grid.Column="1"/>
                 <Label Text="{Binding EventTypeTitle}" 
                        Grid.Row="2" Grid.Column="0"
-                       VerticalOptions="Center"
-                       Style="{DynamicResource themeLabel}"/>
-                <ProgressBar Progress="{Binding ProgressToBar}"
+                       VerticalOptions="Center"/>
+                <ProgressBar x:Name="progBar"
+                             Progress="{Binding ProgressToBar}"
                              Grid.Row="2" Grid.Column="1"
                              HeightRequest="5"
                              VerticalOptions="Center"
-                             x:Name="progBar"
-                             ProgressColor="#4d79ff"
-                             Style="{DynamicResource themeStack}"/>
-                <Label Text="{Binding СompletenessPercent}"
+                             ProgressColor="#4d79ff"/>
+                <Label x:Name="lblPercent"
+                       Text="{Binding СompletenessPercent}"
                        Grid.Row="2" Grid.Column="1"
-                       Margin="10"
-                       x:Name="lblPercent"
-                       Style="{DynamicResource themeLabel}">
+                       Margin="10">
                     <Label.IsVisible>
                         <OnPlatform x:TypeArguments="x:Boolean">
                             <On Platform="Android, IOS" Value="False"/>

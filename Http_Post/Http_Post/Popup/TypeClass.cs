@@ -1,4 +1,4 @@
-﻿using Http_Post.Res;
+using Http_Post.Res;
 using System.Net.Http;
 using Xamarin.Forms;
 

@@ -52,11 +52,20 @@
                 <Setter Property="BarTextColor" Value="Default"/>
                 <Setter Property="BackgroundColor" Value="Default"/>
             </Style>
-            
             <Style x:Key="Light_Tab" TargetType="TabbedPage">
                 <Setter Property="BarBackgroundColor" Value="Default"/>
                 <Setter Property="BarTextColor" Value="Default"/>
                 <Setter Property="BackgroundColor" Value="Default"/>
+            </Style>
+            <Style x:Key="Light_Frame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="Default"/>
+                <Setter Property="OutlineColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="UWP" Value="#4d79ff" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
             </Style>
 
             <!-- Dark theme -->
@@ -80,6 +89,10 @@
                 <Setter Property="BarBackgroundColor" Value="#262626"/>
                 <Setter Property="BarTextColor" Value="#f2f2f2"/>
                 <Setter Property="BackgroundColor" Value="#171717"/>
+            </Style>
+            <Style x:Key="Dark_Frame" TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="#1a1a1a"/>
+                <Setter Property="OutlineColor" Value="#4d79ff"/>
             </Style>
         </ResourceDictionary>
 

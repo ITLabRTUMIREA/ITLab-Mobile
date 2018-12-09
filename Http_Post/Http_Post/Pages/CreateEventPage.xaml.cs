@@ -1,4 +1,4 @@
-﻿using Http_Post.Extensions.Responses.Event;
+using Http_Post.Extensions.Responses.Event;
 using Http_Post.Res;
 using Models.PublicAPI.Requests.Events.Event.Create;
 using Models.PublicAPI.Requests.Events.Event.Edit;

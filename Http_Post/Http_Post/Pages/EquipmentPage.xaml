@@ -14,14 +14,17 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <Label x:Name="Label_Type"
-                       Grid.Column="0"
+                       Grid.Column="0" Grid.Row="0"
                        Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="Label_Owner"
-                       Grid.Column="1"
+                       Grid.Column="1" Grid.Row="0"
                        Style="{DynamicResource themeLabel}"/>
                 <Label x:Name="Label_Number"
-                       Grid.Column="2"
+                       Grid.Column="2" Grid.Row="0"
                        Style="{DynamicResource themeLabel}"/>
             </Grid>
             <BoxView HeightRequest="1"
