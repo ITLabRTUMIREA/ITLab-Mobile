@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Styles.LightStyle">
+    <Style TargetType="Label">
+        <Setter Property="BackgroundColor" Value="Default"/>
+        <Setter Property="TextColor" Value="Default"/>
+    </Style>
+    <Style TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#f2f2f2"/>
+        <Setter Property="TextColor" Value="#1a1a1a"/>
+    </Style>
+    <Style TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="#f2f2f2"/>
+    </Style>
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="#f2f2f2"/>
+        <Setter Property="BarTextColor" Value="#1a1a1a"/>
+        <Setter Property="BackgroundColor" Value="#f2f2f2"/>
+    </Style>
+    <Style TargetType="TabbedPage">
+        <Setter Property="BarBackgroundColor" Value="#f2f2f2"/>
+        <Setter Property="BarTextColor" Value="#1a1a1a"/>
+        <Setter Property="BackgroundColor" Value="#f2f2f2"/>
+    </Style>
+    <Style TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="#f2f2f2"/>
+        <Setter Property="OutlineColor">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="Color">
+                    <On Platform="UWP" Value="#4d79ff" />
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

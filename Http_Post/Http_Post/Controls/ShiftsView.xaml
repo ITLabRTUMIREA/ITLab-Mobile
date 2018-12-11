@@ -2,21 +2,6 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Controls.ShiftsView">
-    <ContentView.Resources>
-        <ResourceDictionary>
-            <Style TargetType="StackLayout">
-                <Setter Property="Style" Value="{DynamicResource themeStack}"/>
-                <Setter Property="Margin" Value="3"/>
-                <Setter Property="Spacing" Value="2"/>
-            </Style>
-            <Style TargetType="Label">
-                <Setter Property="Style" Value="{DynamicResource themeLabel}"/>
-            </Style>
-            <Style TargetType="Editor">
-                <Setter Property="Style" Value="{DynamicResource themeLabel}"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentView.Resources>
     <ContentView.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal">

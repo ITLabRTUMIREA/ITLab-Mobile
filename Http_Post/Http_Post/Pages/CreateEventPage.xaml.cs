@@ -100,7 +100,6 @@ namespace Http_Post.Pages
                 if (equipType.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {equipType.StatusCode}");
 
-                Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
                 foreach (var eq in equipType.Data)
                 {
                     var tapGestureRecognizer = new TapGestureRecognizer();
@@ -110,8 +109,7 @@ namespace Http_Post.Pages
                         editName.Focus();
                     };
                     var label = new Label
-                    {
-                        Style = styleLbl,
+                    { 
                         Text = eq.Title
                     };
                     label.GestureRecognizers.Add(tapGestureRecognizer);
@@ -126,7 +124,6 @@ namespace Http_Post.Pages
                 stackEventType.Children.Add(new Label
                 {
                     Text = ex.Message,
-                    Style = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style
                 });
             }
         }

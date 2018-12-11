@@ -3,10 +3,8 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
           x:Class="Http_Post.Controls.TypeView">
     <ContentView Padding="5">
-        <Frame Padding="10"
-               Style="{DynamicResource themeFrame}">
-            <Grid Style="{DynamicResource themeStack}"
-                  Margin="0"
+        <Frame Padding="10">
+            <Grid Margin="0"
                   Padding="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -14,15 +12,12 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Label Text="{Binding Title}"
-                   Grid.Row="0"
-                   Style="{DynamicResource themeLabel}"/>
+                   Grid.Row="0"/>
             <Label Text="{Binding ShortTitle}"
                    x:Name="lbl"
-                   Grid.Row="1"
-                   Style="{DynamicResource themeLabel}"/>
+                   Grid.Row="1"/>
             <Label Text="{Binding Description}"
-                   Grid.Row="2"
-                   Style="{DynamicResource themeLabel}"/>
+                   Grid.Row="2"/>
             </Grid>
         </Frame>
     </ContentView>

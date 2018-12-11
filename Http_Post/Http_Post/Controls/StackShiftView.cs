@@ -9,9 +9,6 @@ namespace Http_Post.Controls
 {
     class StackShiftView
     {
-        Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
-        Style styleStack = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style;
-
         public StackLayout stackLayout;
         List<ShiftView> shifts = new List<ShiftView>();
         bool isCreating;
@@ -37,7 +34,6 @@ namespace Http_Post.Controls
                 StackLayout horizontal = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
-                    Style = styleStack
                 };
                 Image icon = Collapse;
                 Label title = lab($"{Resource.Shifts} #{number}");
@@ -125,7 +121,6 @@ namespace Http_Post.Controls
                 StackLayout horizontal = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
-                    Style = styleStack
                 };
                 Image icon = Collapse;
                 Label title = lab($"{Resource.Place} #{number}");
@@ -235,16 +230,13 @@ namespace Http_Post.Controls
 
         StackLayout layout()
         {
-            return new StackLayout {
-                Style = styleStack
-            };
+            return new StackLayout();
         }
 
         Label lab(string txt)
         {
             return new Label
             {
-                Style = styleLbl,
                 Text = txt
             };
         }
@@ -255,7 +247,6 @@ namespace Http_Post.Controls
             {
                 Text = txt,
                 Placeholder = holder,
-                Style = styleLbl
             };
         }
     }

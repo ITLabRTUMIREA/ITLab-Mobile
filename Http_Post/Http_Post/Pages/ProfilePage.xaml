@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Pages.ProfilePage"
-             Style="{DynamicResource themeStack}">
+             x:Class="Http_Post.Pages.ProfilePage">
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style TargetType="Entry">
@@ -12,57 +11,47 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Style="{DynamicResource themeStack}"
-                     Spacing="5"
+        <StackLayout Spacing="5"
                      Margin="20,20,0,0">
             <!-- Email -->
             <Label x:Name="Lbl_Email"
                    HorizontalOptions="Center"
                     Margin="0,0,0,20"
-                    Text="{Binding Email}"
-                    Style="{DynamicResource themeLabel}"/>
+                    Text="{Binding Email}"/>
             <!-- Firstname -->
             <Label x:Name="Lbl_Firstname"
-                   HorizontalOptions="Center"
-                   Style="{DynamicResource themeLabel}"/>
+                   HorizontalOptions="Center"/>
             <Entry x:Name="Entry_Firstname"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
                    WidthRequest="300"
-                    Text="{Binding FirstName}"
                     Margin="0,0,0,20"
-                    HeightRequest="50"
-                    Style="{DynamicResource themeLabel}"/>
+                    HeightRequest="50"/>
             <!-- Lastname -->
             <Label x:Name="Lbl_Lastname"
-                   HorizontalOptions="Center"
-                       Style="{DynamicResource themeLabel}"/>
+                   HorizontalOptions="Center"/>
             <Entry x:Name="Entry_Lastname"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
                    WidthRequest="300"
                     Margin="0,0,0,20"
                     HeightRequest="50"
-                    Text="{Binding LastName}"
-                    Style="{DynamicResource themeLabel}"/>
+                    Text="{Binding LastName}"/>
             <!-- Phone number -->
             <Label x:Name="Lbl_PhoneNumber"
-                   HorizontalOptions="Center"
-                    Style="{DynamicResource themeLabel}"/>
+                   HorizontalOptions="Center"/>
             <Entry x:Name="Entry_PhoneNumber"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
                    WidthRequest="300"
                     Margin="0,0,0,20"
                     HeightRequest="50"
-                    Text="{Binding PhoneNumber}"
-                    Style="{DynamicResource themeLabel}"/>
+                    Text="{Binding PhoneNumber}"/>
             <!-- Button to save changes -->
             <Button x:Name="Btn_Save"
                     HorizontalOptions="Center"
                     WidthRequest="150"
-                    Clicked="Btn_Save_Clicked"
-                    Style="{DynamicResource themeButton}"/>
+                    Clicked="Btn_Save_Clicked"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

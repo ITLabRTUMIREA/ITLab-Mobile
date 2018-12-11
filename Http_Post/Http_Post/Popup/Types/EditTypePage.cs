@@ -60,7 +60,6 @@ namespace Http_Post.Popup.Types
                     layout.Children.Add(new Label
                     {
                         Text = ex.Message,
-                        Style = styleLbl,
                         HorizontalOptions = LayoutOptions.Center
                     });
                 }
@@ -118,7 +117,6 @@ namespace Http_Post.Popup.Types
                     layout.Children.Add(new Label
                     {
                         Text = ex.Message,
-                        Style = styleLbl,
                         HorizontalOptions = LayoutOptions.Center
                     });
                 }
@@ -136,7 +134,6 @@ namespace Http_Post.Popup.Types
             {
                 Text = equipmentTypeEdit.ShortTitle,
                 Placeholder = Res.Resource.TitleShort,
-                Style = styleLbl
             };
             layout.Children.Clear();
             layout.Children.Add(lbl);
@@ -191,7 +188,6 @@ namespace Http_Post.Popup.Types
                     layout.Children.Add(new Label
                     {
                         Text = ex.Message,
-                        Style = styleLbl,
                         HorizontalOptions = LayoutOptions.Center
                     });
                 }

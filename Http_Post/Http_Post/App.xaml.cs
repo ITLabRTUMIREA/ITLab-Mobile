@@ -6,6 +6,7 @@ using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
+using Http_Post.Styles;
 
 namespace Http_Post
 {
@@ -32,6 +33,8 @@ namespace Http_Post
                             "android={Your Android App secret here}",
                             typeof(Analytics), typeof(Crashes));
 
+            Current.Resources.Add(new GeneralStyle()); // Apply general theme
+            Current.LoadTheme(); // get and load current theme
         }
 
 		protected override void OnSleep ()

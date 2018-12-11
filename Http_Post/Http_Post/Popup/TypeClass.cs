@@ -8,10 +8,6 @@ namespace Http_Post.Popup
     {
         public HttpClient client = Services.HttpClientFactory.HttpClient;
 
-        public Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
-        public Style styleBtn = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Btn"] as Style;
-        public Style styleStack = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style;
-
         public StackLayout layout = new StackLayout
         {
             Padding = new Thickness(0, 40, 0, 0),
@@ -53,14 +49,6 @@ namespace Http_Post.Popup
 
         public TypeClass()
         {
-            lbl.Style = styleLbl;
-            entryTitle.Style = styleLbl;
-            entryDescription.Style = styleLbl;
-            btnOk.Style = styleBtn;
-            btnCancel.Style = styleBtn;
-            layout.Style = styleStack;
-
-            slButtons.Style = styleStack;
             slButtons.Children.Add(btnOk);
             slButtons.Children.Add(btnCancel);
 
@@ -69,7 +57,6 @@ namespace Http_Post.Popup
             layout.Children.Add(entryDescription);
             layout.Children.Add(slButtons);
 
-            page.Style = styleStack;
             page.Content = layout;
         }
     }

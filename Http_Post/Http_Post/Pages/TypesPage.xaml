@@ -2,46 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.TypesPage"
-             xmlns:Controls="clr-namespace:Http_Post.Controls"
-             Style="{DynamicResource themeStack}">
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
-        <StackLayout Style="{DynamicResource themeStack}">
-            <Grid Style="{DynamicResource themeStack}"
-                  Margin="0"
+        <Grid Margin="0"
                   Padding="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Label x:Name="lblEventTypes"
-                       Grid.Column="0" Grid.Row="0"
-                       Style="{DynamicResource themeLabel}"/>
-                <Label x:Name="lblRoles"
-                       Grid.Column="1" Grid.Row="0"
-                       Style="{DynamicResource themeLabel}"/>
-                <Label x:Name="lblEquipmentTypes"
-                       Grid.Column="2" Grid.Row="0"
-                       Style="{DynamicResource themeLabel}"/>
-            </Grid>
-            <BoxView HeightRequest="1"
-                     BackgroundColor="Silver"
-                     HorizontalOptions="FillAndExpand"
-                     Margin="0,0,0,10"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="lblEventTypes"
+                       Grid.Column="0" Grid.Row="0"/>
+            <Label x:Name="lblRoles"
+                       Grid.Column="1" Grid.Row="0"/>
+            <Label x:Name="lblEquipmentTypes"
+                       Grid.Column="2" Grid.Row="0"/>
             <ListView x:Name="listView"
                       SeparatorVisibility="None"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="listView_ItemTapped"
-                      Style="{DynamicResource themeStack}">
+                      Grid.ColumnSpan="3" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:TypeView/>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-        </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

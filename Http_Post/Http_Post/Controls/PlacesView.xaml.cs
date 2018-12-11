@@ -17,9 +17,6 @@ namespace Http_Post.Controls
         PlaceView place;
         bool Delete = false;
 
-        Style styleStack = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Stack"] as Style;
-        Style styleLbl = Application.Current.Resources[new Classes.ThemeChanger().Theme + "_Lbl"] as Style;
-
         public PlacesView(int placeNumber, PlaceView place, bool isEdit = false)
         {
             InitializeComponent();
@@ -73,10 +70,7 @@ namespace Http_Post.Controls
 
         void AddUsers(List<UserAndEventRole> users)
         {
-            var layout = new StackLayout
-            {
-                Style = styleStack
-            };
+            var layout = new StackLayout();
 
             foreach (var user in users)
             {
@@ -150,7 +144,6 @@ namespace Http_Post.Controls
         {
             return new Label
             {
-                Style = styleLbl,
                 Text = txt
             };
         }

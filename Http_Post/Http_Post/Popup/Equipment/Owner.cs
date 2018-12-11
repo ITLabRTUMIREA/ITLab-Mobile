@@ -20,7 +20,6 @@ namespace Http_Post.Popup.Equipment
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
                 Orientation = StackOrientation.Vertical,
-                Style = styleStack,
                 IsVisible = false,
             };
             layout.Children.Clear();
@@ -55,7 +54,6 @@ namespace Http_Post.Popup.Equipment
                             };
                             var label = new Label
                             {
-                                Style = styleLbl,
                                 Text = u.FirstName + " " + u.LastName + ", " + u.Email
                             };
                             label.GestureRecognizers.Add(tapGestureRecognizer);
@@ -69,7 +67,6 @@ namespace Http_Post.Popup.Equipment
                         stack.Children.Add(new Label
                         {
                             Text = ex.Message,
-                            Style = styleLbl,
                         });
                     }
                 };
@@ -108,7 +105,6 @@ namespace Http_Post.Popup.Equipment
                     layout.Children.Add(new Label
                     {
                         Text = ex.Message,
-                        Style = styleLbl,
                         HorizontalOptions = LayoutOptions.Center
                     });
                 }

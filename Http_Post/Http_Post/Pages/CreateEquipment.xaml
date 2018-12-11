@@ -1,57 +1,42 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Pages.CreateEquipment"
-             Style="{DynamicResource themeStack}">
+             x:Class="Http_Post.Pages.CreateEquipment">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}"
-                         Spacing="5">
+            <StackLayout Spacing="5">
                 <!-- Equipment type and stack + btn to change or create type -->
-                <Label x:Name="lblEquipType"
-                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblEquipType"/>
                 <Editor x:Name="editEquipType"
-                       TextChanged="editEquipType_TextChanged"
-                       Style="{DynamicResource themeLabel}"/>
+                       TextChanged="editEquipType_TextChanged"/>
                 <StackLayout x:Name="stack"
                              IsVisible="False"
                              Orientation="Vertical"
-                             Margin="0,0,0,20"
-                             Style="{DynamicResource themeStack}"/>
+                             Margin="0,0,0,20"/>
                 <!-- Serial number -->
-                <Label x:Name="lblSerialNumber"
-                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblSerialNumber"/>
                 <Editor x:Name="editSerialNumber"
-                       Margin="0,0,0,20"
-                       Style="{DynamicResource themeLabel}"/>
+                       Margin="0,0,0,20"/>
                 <!-- Description -->
-                <Label x:Name="lblDescription"
-                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblDescription"/>
                 <Editor x:Name="editDescription"
-                       Margin="0,0,0,20"
-                       Style="{DynamicResource themeLabel}"/>
+                       Margin="0,0,0,20"/>
                 <!-- Owner -->
-                <Label x:Name="lblOwnerTitle"
-                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblOwnerTitle"/>
                 <Label x:Name="lblOwner"
-                       Margin="0,0,0,20"
-                       Style="{DynamicResource themeLabel}"/>
+                       Margin="0,0,0,20"/>
                 <!-- Confirm and change owner -->
-                <StackLayout Orientation="Horizontal"
-                             Style="{DynamicResource themeStack}">
+                <StackLayout Orientation="Horizontal">
                     <Button x:Name="btnConfirm"
                             Clicked="btnConfirm_Clicked"
-                            WidthRequest="170"
-                            Style="{DynamicResource themeButton}"/>
+                            WidthRequest="170"/>
                     <Button x:Name="btnChangeOwner"
                             IsVisible="False"
                             Clicked="btnChangeOwner_Clicked"
-                            WidthRequest="170"
-                            Style="{DynamicResource themeButton}"/>
+                            WidthRequest="170"/>
                     <Button x:Name="btnDelete"
                             Clicked="btnDelete_Clicked"
-                            WidthRequest="170"
-                            Style="{DynamicResource themeButton}"/>
+                            WidthRequest="170"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

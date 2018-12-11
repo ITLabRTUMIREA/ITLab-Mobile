@@ -4,47 +4,36 @@
              x:Class="Http_Post.Pages.CreateEventPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}">
+            <StackLayout>
                 <!-- Label, Editor for finding Event Type
                 Stacklayout will show available Event Types-->
-                <Label x:Name="lblEventType"
-                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblEventType"/>
                 <Editor x:Name="editEventType"
-                        TextChanged="editEventType_TextChanged"
-                        Style="{DynamicResource themeLabel}"/>
+                        TextChanged="editEventType_TextChanged"/>
                 <StackLayout x:Name="stackEventType"
-                             IsVisible="False"
-                             Style="{DynamicResource themeStack}"/>
+                             IsVisible="False"/>
                 <!-- Name of event -->
-                <Label x:Name="lblName"
-                       Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblName"/>
                 <Editor x:Name="editName"
-                        Focused="editName_Focused"
-                        Style="{DynamicResource themeLabel}"/>
+                        Focused="editName_Focused"/>
                 <!-- Description of event -->
-                <Label x:Name="lblDescription"
-                       Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="editDescription"
-                        Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblDescription"/>
+                <Editor x:Name="editDescription"/>
                 <!-- Address of event -->
-                <Label x:Name="lblAddress"
-                       Style="{DynamicResource themeLabel}"/>
-                <Editor x:Name="editAddress"
-                        Style="{DynamicResource themeLabel}"/>
+                <Label x:Name="lblAddress"/>
+                <Editor x:Name="editAddress"/>
                 <!-- Button to add shifts in event -->
                 <Button x:Name="btnAddShift"
                         WidthRequest="200"
                         HorizontalOptions="Center"
                         Margin="20"
-                        Clicked="btnAddShift_Clicked"
-                        Style="{DynamicResource themeButton}"/>
+                        Clicked="btnAddShift_Clicked"/>
 
                 <!--ListView x:Name="listShift"
                           IsVisible="False"
                           Style="{DynamicResource themeStack}"/-->
                 <StackLayout x:Name="stackShift"
-                             IsVisible="True"
-                             Style="{DynamicResource themeStack}"/>
+                             IsVisible="True"/>
 
 
                 <BoxView BackgroundColor="Silver"
@@ -56,8 +45,7 @@
                         WidthRequest="150"
                         Margin="0, 25"
                         HorizontalOptions="Center"
-                        Clicked="btnSave_Clicked"
-                        Style="{DynamicResource themeButton}"/>
+                        Clicked="btnSave_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

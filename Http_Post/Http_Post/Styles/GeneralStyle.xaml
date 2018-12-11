@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Styles.GeneralStyle">
+
+    <!--Style TargetType="Label">
+        <Setter Property="FontSize" Value="Medium"/>
+    </Style-->
+    <Style TargetType="Entry">
+        <Setter Property="FontSize" Value="Medium"/>
+    </Style>
+    <Style TargetType="Editor">
+        <Setter Property="AutoSize" Value="TextChanges"/>
+        <Setter Property="FontSize" Value="Medium"/>
+        <Setter Property="IsSpellCheckEnabled" Value="True"/>
+    </Style>
+    <Style TargetType="Grid">
+        <Setter Property="Margin" Value="10"/>
+    </Style>
+    <Style TargetType="StackLayout">
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Spacing" Value="5"/>
+    </Style>
+    <Style TargetType="Button">
+        <!--Setter Property="BorderRadius" Value="7"/-->
+    </Style>
+    <Style TargetType="ListView">
+        <Setter Property="HasUnevenRows" Value="True"/>
+        <Setter Property="SeparatorColor" Value="Silver"/>
+        <Setter Property="SelectionMode" Value="None"/>
+    </Style>
+    
+</ResourceDictionary>

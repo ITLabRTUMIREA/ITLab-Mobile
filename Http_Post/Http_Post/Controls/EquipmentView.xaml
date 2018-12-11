@@ -3,10 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Controls.EquipmentView">
     <ContentView Padding="5">
-        <Frame Padding="10"
-               Style="{DynamicResource themeFrame}">
-            <Grid Style="{DynamicResource themeStack}"
-                  Padding="2"
+        <Frame Padding="10">
+            <Grid Padding="2"
                   Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -14,14 +12,11 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="{Binding EquipmentType.Title}"
-                       Grid.Column="0"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Column="0"/>
                 <Label Text="{Binding OwnerName}"
-                       Grid.Column="1"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Column="1"/>
                 <Label Text="{Binding Number}"
-                       Grid.Column="2"
-                       Style="{DynamicResource themeLabel}"/>
+                       Grid.Column="2"/>
             </Grid>
         </Frame>
     </ContentView>

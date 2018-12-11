@@ -5,11 +5,9 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Orientation="Vertical"
-                         Style="{DynamicResource themeStack}">
+            <StackLayout Orientation="Vertical">
 
                 <StackLayout Orientation="Horizontal"
-                             Style="{DynamicResource themeStack}"
                              VerticalOptions="Center"
                              HorizontalOptions="Center">
                     <DatePicker x:Name="DateBegin" />
@@ -18,18 +16,15 @@
                 
                 <Label x:Name="lblHint"
                        Text="Choose date and time"
-                       HorizontalOptions="Center"
-                       Style="{DynamicResource themeLabel}"/>
+                       HorizontalOptions="Center"/>
 
                 <Button x:Name="BtnSearch" 
                     Text="Search"
                     WidthRequest="150"
                     HorizontalOptions="Center"
-                    Clicked="BtnSearch_Clicked"
-                    Style="{DynamicResource themeButton}"/>
+                    Clicked="BtnSearch_Clicked"/>
 
-                <ListView x:Name="listView" ItemTapped="ListView_ItemTapped"
-                      Style="{DynamicResource themeStack}">
+                <ListView x:Name="listView" ItemTapped="ListView_ItemTapped">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Controls:EventView></Controls:EventView>

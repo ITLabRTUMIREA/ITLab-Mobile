@@ -15,8 +15,6 @@ namespace Http_Post
             InitializeComponent();
 
             AddPages(false);
-
-            UpdateTheme();
         }
 
         void AddPages(bool isUpdating)
@@ -37,19 +35,6 @@ namespace Http_Post
         {
             Children.Clear();
             AddPages(true);
-        }
-
-        public void UpdateTheme()
-        {
-            var col = Application.Current.Resources;
-            var th = new ThemeChanger().Theme;
-            col["themeStack"] = col[th + "_Stack"];
-            col["themeLabel"] = col[th + "_Lbl"];
-            col["themeButton"] = col[th + "_Btn"];
-            col["themeBar"] = col[th + "_Bar"];
-            col["themeFrame"] = col[th + "_Frame"];
-            col["themeTab"] = col[th + "_Tab"];
-            //Style = col[th + "_Tab"] as Style;
         }
 
         public async void Logout()

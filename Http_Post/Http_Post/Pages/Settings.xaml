@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Settings"
              Title="Settings"
-             xmlns:Controls="clr-namespace:Http_Post.Controls"
-             Style="{DynamicResource themeStack}">
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
     
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Style="{DynamicResource themeStack}">
+            <StackLayout>
                 <Controls:Master_Btns x:Name="Btn_Profile" ImageSource="Person.png" Clicked="BtnProfile_Clicked"/>
 
                 <Controls:Master_Btns x:Name="Btn_Lang" ImageSource="Language.png" Btn_Text="Change Language" Clicked="Lang_Clicked"/>

@@ -1,6 +1,7 @@
 using Http_Post.Classes;
 using Http_Post.Pages;
 using Http_Post.Res;
+using Http_Post.Styles;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -20,7 +21,6 @@ namespace Http_Post
             InitializeComponent();
             menuSet = menu;
             UpdateLanguage();
-            UpdateTheme();
         }
 
         private void Lang_Clicked(object sender, EventArgs e)
@@ -51,16 +51,7 @@ namespace Http_Post
         {
             try
             {
-                var themeChanger = new ThemeChanger();
-
-                string result = await DisplayActionSheet(Resource.ChangeTheme, cancel, null, themeChanger.ThemesForUser.ToArray());
-                if (string.IsNullOrEmpty(result) || result.Equals(cancel))
-                    return;
-
-                themeChanger.ChangeTheme(result);
-                UpdateTheme();
-                menuSet.UpdateTheme();
-                menuSet.UpdatePages();
+                Application.Current.ChangeTheme();
             }
             catch (Exception ex)
             {
@@ -74,13 +65,6 @@ namespace Http_Post
             Btn_Theme.Btn_Text = Resource.ChangeTheme;
             Btn_LogOut.Btn_Text = Resource.LogOut;
             Btn_Profile.Btn_Text = Resource.TitleProfile;
-        }
-
-        private void UpdateTheme()
-        {
-            Btn_Lang.UpdateTheme();
-            Btn_Theme.UpdateTheme();
-            Btn_LogOut.UpdateTheme();
         }
 
         private void LogOut_Clicked(object sender, EventArgs e)

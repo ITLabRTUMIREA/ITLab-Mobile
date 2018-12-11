@@ -3,23 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.EventPage"
              Title="Events"
-             xmlns:Controls="clr-namespace:Http_Post.Controls"
-             Style="{DynamicResource themeStack}">
-        <StackLayout x:Name="stacklayout" Padding="5"
-                     Style="{DynamicResource themeStack}">
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
+        <StackLayout x:Name="stacklayout" Padding="5">
             <ListView x:Name="listView"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="ListView_ItemTapped"
-                      SeparatorVisibility="None"
-                      Style="{DynamicResource themeStack}">
+                      SeparatorVisibility="None">
             <ListView.Header>
-                <StackLayout Style="{DynamicResource themeStack}">
+                <StackLayout>
                     <Label Text="Header Testing!"
-                               FontSize="Large"
-                               Style="{DynamicResource themeLabel}"/>
+                               FontSize="Large"/>
                     <Label Text="Header Testing!"
-                               FontSize="Small"
-                               Style="{DynamicResource themeLabel}"/>
+                               FontSize="Small"/>
                 </StackLayout>
             </ListView.Header>
                 <ListView.ItemTemplate>

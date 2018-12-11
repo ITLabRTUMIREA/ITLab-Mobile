@@ -17,7 +17,6 @@ namespace Http_Post.Popup.Event
                 Padding = new Thickness(0, 40, 0, 0),
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.CenterAndExpand,
-                Style = styleStack,
             }; // init here in a way to use it in 'catch' block
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
             grid.ColumnDefinitions.Add(new ColumnDefinition { Width = new GridLength(1, GridUnitType.Star) });
@@ -28,27 +27,23 @@ namespace Http_Post.Popup.Event
                     Text = Resource.Create,
                     HorizontalOptions = LayoutOptions.Center,
                     FontAttributes = FontAttributes.Bold,
-                    Style = styleLbl
                 };
                 #region Adding labels which will show user, where is beginig and ending time/date
                 var lblBegin = new Label
                 {
                     Text = "Begin", // TODO: localize??
                     HorizontalOptions = LayoutOptions.Center,
-                    Style = styleLbl
                 };
                 var lblEnd = new Label
                 {
                     Text = "End",
                     HorizontalOptions = LayoutOptions.Center,
-                    Style = styleLbl
                 };
                 #endregion
                 var entryDescription = new Editor
                 {
                     Text = "",
                     Placeholder = Resource.Description,
-                    Style = styleLbl,
                 };
                 #region Adding time/date pickers and create special layouts for them
                 var beginDate = new DatePicker
@@ -67,27 +62,23 @@ namespace Http_Post.Popup.Event
                 {
                     Text = "Places quantity",
                     HorizontalOptions = LayoutOptions.Center,
-                    Style = styleLbl
                 };
                 var lblPeople = new Label
                 {
                     Text = "People quantity",
                     HorizontalOptions = LayoutOptions.Center,
-                    Style = styleLbl
                 };
                 var editPlaces = new Editor
                 {
                     Text = "",
                     Placeholder = lblPlaces.Text,
                     Keyboard = Keyboard.Numeric,
-                    Style = styleLbl
                 };
                 var editPeople = new Editor
                 {
                     Text = "",
                     Placeholder = lblPeople.Text,
                     Keyboard = Keyboard.Numeric,
-                    Style = styleLbl
                 };
                 #endregion
                 btnOk.Clicked += async (s, e) =>
@@ -146,10 +137,7 @@ namespace Http_Post.Popup.Event
                 grid.Children.Add(btnOk, 0, 7);
                 grid.Children.Add(btnCancel, 1, 7);
                 #endregion
-                var page = new ContentPage()
-                {
-                    Style = styleStack
-                };
+                var page = new ContentPage();
                 page.Content = grid;
                 navigation.PushModalAsync(page);
                 entryDescription.Focus();
@@ -167,7 +155,6 @@ namespace Http_Post.Popup.Event
                     grid.Children.Add(new Label
                     {
                         Text = ex.Message,
-                        Style = styleLbl,
                         HorizontalOptions = LayoutOptions.Center
                     }, 0, 8);
                 }

@@ -26,12 +26,11 @@ namespace Http_Post
         {
             InitializeComponent();
             stackLayout.IsVisible = true;
-            SetProgress(0.0);
         }
 
         private async void Button_login(object sender, EventArgs e)
         {
-            SetProgress(0.0);
+            await progBar.ProgressTo(0, 350, Easing.Linear);
 
             text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
@@ -42,7 +41,7 @@ namespace Http_Post
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;
 
-                SetProgress(0.4d);
+                await progBar.ProgressTo(0.4, 350, Easing.Linear);
                 text_error.Text = "Loading...\nPlease Wait...";
 
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = Password };
@@ -52,27 +51,18 @@ namespace Http_Post
 
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                SetProgress(0.7d);
+                await progBar.ProgressTo(0.7, 350, Easing.Linear);
 
                 var result = await client.PostAsync("Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                SetProgress(1.0d);
+                await progBar.ProgressTo(1, 350, Easing.Linear);
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
                 Authorization(infoAboutStudent, true);
             }
             catch (Exception ex)
             {
                 ShowError(ex.Message + "\nCheck Internet connection");
-            }
-        }
-
-        private async void SetProgress(double value)
-        {
-            if (Device.Idiom == TargetIdiom.Phone)
-                progBar.IsVisible = false;
-            else {
-                await progBar.ProgressTo(value, 350, Easing.Linear);
             }
         }
 
@@ -98,6 +88,9 @@ namespace Http_Post
                     BarTextColor = Color.White
                 });*/
                 await Navigation.PushAsync(menu);
+
+                if (!NeedToRender)
+                    Init();
                 return;
             }
 
@@ -187,7 +180,6 @@ namespace Http_Post
                         return;
                     }
 
-                    //Init();
                     Authorization(infoAboutStudent, false);
                 }
                 else

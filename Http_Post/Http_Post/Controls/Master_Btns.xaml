@@ -6,8 +6,7 @@
     <ContentView.Content>
         <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
             <Image x:Name="Icon" WidthRequest="24" HeightRequest="24" Aspect="AspectFit" Source=""/>
-            <Button x:Name="Btn" Text="Default" Clicked="Btn_Clicked"
-                                        Style="{DynamicResource themeButton}"/>
+            <Button x:Name="Btn" Text="Default" Clicked="Btn_Clicked"/>
         </StackLayout>
     </ContentView.Content>
 

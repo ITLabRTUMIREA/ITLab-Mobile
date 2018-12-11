@@ -53,15 +53,6 @@ namespace Http_Post.Controls
         public Master_Btns ()
 		{
 			InitializeComponent ();
-
-            UpdateTheme();
 		}
-
-        public void UpdateTheme()
-        {
-            var col = Application.Current.Resources;
-            var th = new Classes.ThemeChanger().Theme;
-            col["themeButton"] = col[th + "_Btn"];
-        }
     }
 }
