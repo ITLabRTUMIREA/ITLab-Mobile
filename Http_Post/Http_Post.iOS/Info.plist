@@ -22,10 +22,8 @@
 	</array>
 	<key>MinimumOSVersion</key>
 	<string>10.3</string>
-	<key>CFBundleDisplayName</key>
-	<string>Http_Post</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.yourcompany.Http_Post</string>
+	<string>com.RTUITLab.ITLab-Mobile</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>CFBundleIconFiles</key>
@@ -50,5 +48,7 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>Http_Post</string>
+	<key>CFBundleDisplayName</key>
+	<string>ITLab-Mobile</string>
 </dict>
 </plist>

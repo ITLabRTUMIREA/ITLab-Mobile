@@ -8,17 +8,18 @@ namespace Http_Post.Styles
     static class ThemeManager
     {
         private static readonly string KEY = "theme";
+
         private static ResourceDictionary Dark { get; } = new DarkStyle();
         private static ResourceDictionary Light { get; } = new LightStyle();
 
-        private static ResourceDictionary GetCurrentTheme()
+        public static ResourceDictionary GetCurrentTheme()
         {
             if (App.Current.Properties.TryGetValue(KEY, out object name)) // if exists
-                return (ResourceDictionary)name; // return this theme
-            else // if not exist
+                return (ResourceDictionary)name; 
+            else
             {
-                App.Current.Properties.Add(KEY, Dark); // add dark theme
-                return Dark; // return dark theme
+                App.Current.Properties[KEY] = Light;
+                return Light;
             }
         }
 
@@ -28,27 +29,34 @@ namespace Http_Post.Styles
         }
 
         // method should be used only once and only from App.OnStart()
-        public static void LoadTheme(this Application app)
+        /*public static void LoadTheme(this ResourceDictionary res)
         {
-            app.Resources.MergedDictionaries.Add(GetCurrentTheme());
+            res.MergedDictionaries.Add(GetCurrentTheme());
         }
 
-        public static void ChangeTheme(this Application app)
+        public static void ChangeTheme(this ResourceDictionary res)
         {
-            if (app.Resources.MergedDictionaries.Contains(Dark)) // if dark
+            if (res.MergedDictionaries.Contains(Dark)) // if dark
             {
-                // cahnge to light
-                app.Resources.MergedDictionaries.Remove(Dark);
-                app.Resources.MergedDictionaries.Add(Light);
+                res.MergedDictionaries.Remove(Dark);
+                res.MergedDictionaries.Add(Light);
                 SetCurrentTheme(Light);
             }
-            else // if light
+            else
             {
-                // change to dark
-                app.Resources.MergedDictionaries.Remove(Light);
-                app.Resources.MergedDictionaries.Add(Dark);
+                res.MergedDictionaries.Remove(Light);
+                res.MergedDictionaries.Add(Dark);
                 SetCurrentTheme(Dark);
             }
+        }
+        */
+        public static void ChangeTheme()
+        {
+            if (GetCurrentTheme() == Dark)
+
+                SetCurrentTheme(Light);
+            else
+                SetCurrentTheme(Dark);
         }
     }
 }

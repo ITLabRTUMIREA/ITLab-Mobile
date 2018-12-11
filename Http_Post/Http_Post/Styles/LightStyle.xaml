@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Styles.LightStyle">
     <Style TargetType="Label">
-        <Setter Property="BackgroundColor" Value="Default"/>
-        <Setter Property="TextColor" Value="Default"/>
+        <Setter Property="BackgroundColor" Value="#f2f2f2"/>
+        <Setter Property="TextColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="Button">
         <Setter Property="BackgroundColor" Value="#f2f2f2"/>

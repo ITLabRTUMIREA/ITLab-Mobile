@@ -28,13 +28,10 @@
                 Clicked="Button_login" 
                 HorizontalOptions="Center"
                 WidthRequest="150"/>
-        <ProgressBar x:Name="progBar" Progress="0">
-            <ProgressBar.IsVisible>
-                <OnPlatform x:TypeArguments="x:Boolean">
-                    <On Platform="Android, IOS" Value="False"/>
-                </OnPlatform>
-            </ProgressBar.IsVisible>
-        </ProgressBar>
+        <ProgressBar x:Name="progBar"
+                     Progress="0"
+                     IsVisible="{OnPlatform Android=False, iOS=False, UWP=True}"
+                     ProgressColor="#4d79ff"/>
         <Label x:Name="text_error"
                FontSize="Small"
                HorizontalTextAlignment="Center"/>
