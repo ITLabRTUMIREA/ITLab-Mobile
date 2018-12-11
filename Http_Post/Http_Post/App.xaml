@@ -45,7 +45,7 @@
                 <Setter Property="TextColor" Value="Default"/>
             </Style>
             <Style x:Key="Light_Stack" TargetType="StackLayout">
-                <Setter Property="BackgroundColor" Value="Default"/>
+                <Setter Property="BackgroundColor" Value="White"/>
             </Style>
             <Style x:Key="Light_Bar" TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="Default"/>

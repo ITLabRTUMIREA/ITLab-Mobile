@@ -4,10 +4,12 @@
              x:Class="Http_Post.Controls.EventView">
     <ContentView Padding="5">
         <Frame x:Name="frame"
-               Padding="10">
+               Padding="10"
+               Style="{DynamicResource themeFrame}">
             <Grid x:Name="grid"
                   Margin="0"
-                  Padding="2">
+                  Padding="2"
+                  Style="{DynamicResource themeStack}">
                 <Grid.RowDefinitions>
                     <!-- Day of week, begin time -->
                     <RowDefinition Height="*"/>
@@ -21,26 +23,33 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Text="{Binding DayOfWeek}" 
-                       Grid.Row="0" Grid.Column="0"/>
+                       Grid.Row="0" Grid.Column="0"
+                       Style="{DynamicResource themeLabel}"/>
                 <Label Text="{Binding BeginHour}" 
-                       Grid.Row="0" Grid.Column="1"/>
+                       Grid.Row="0" Grid.Column="1"
+                       Style="{DynamicResource themeLabel}"/>
                 <Label Text="{Binding EventTitle}" 
-                       Grid.Row="1" Grid.Column="0"/>
+                       Grid.Row="1" Grid.Column="0"
+                       Style="{DynamicResource themeLabel}"/>
                 <Label Text="{Binding Duration}"
-                       Grid.Row="1" Grid.Column="1"/>
+                       Grid.Row="1" Grid.Column="1"
+                       Style="{DynamicResource themeLabel}"/>
                 <Label Text="{Binding EventTypeTitle}" 
                        Grid.Row="2" Grid.Column="0"
-                       VerticalOptions="Center"/>
+                       VerticalOptions="Center"
+                       Style="{DynamicResource themeLabel}"/>
                 <ProgressBar x:Name="progBar"
                              Progress="{Binding ProgressToBar}"
                              Grid.Row="2" Grid.Column="1"
                              HeightRequest="5"
                              VerticalOptions="Center"
-                             ProgressColor="#4d79ff"/>
+                             ProgressColor="#4d79ff"
+                       Style="{DynamicResource themeStack}"/>
                 <Label x:Name="lblPercent"
                        Text="{Binding СompletenessPercent}"
                        Grid.Row="2" Grid.Column="1"
-                       Margin="10">
+                       Style="{DynamicResource themeLabel}"
+                       Margin="10,0,0,0">
                     <Label.IsVisible>
                         <OnPlatform x:TypeArguments="x:Boolean">
                             <On Platform="Android, IOS" Value="False"/>

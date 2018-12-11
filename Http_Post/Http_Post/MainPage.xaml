@@ -10,20 +10,28 @@
                      Margin="12"
                      IsVisible="false">
 
-            <Label x:Name="text_label" Text="Enter login and password:" 
+            <Label x:Name="text_label" 
+                   Text="Enter login and password:" 
                    HorizontalOptions="Center"/>
 
-            <Entry x:Name="text_login" IsPassword="False" Placeholder="Login" 
+            <Entry x:Name="text_login"
+                   IsPassword="False"
+                   Placeholder="Login" 
                    HorizontalOptions="Center"
                    WidthRequest="250"
                    Completed="text_login_Completed"/>
 
-            <Entry x:Name="text_password" IsPassword="True" Placeholder="Password" 
+            <Entry x:Name="text_password"
+                   IsPassword="True"
+                   Placeholder="Password" 
                    HorizontalOptions="Center"
                    WidthRequest="250"
                    Completed="text_password_Completed"/>
 
-            <Button x:Name="button_login" Text="Login" FontSize="Small" Clicked="Button_login" 
+            <Button x:Name="button_login"
+                    Text="Login"
+                    FontSize="Small"
+                    Clicked="Button_login" 
                     HorizontalOptions="Center"
                     WidthRequest="150"
                     BindingContext="{x:Reference stackLayout}"

@@ -26,7 +26,6 @@ namespace Http_Post
         {
             InitializeComponent();
             stackLayout.IsVisible = true;
-            UpdateLanguage();
             SetProgress(0.0);
         }
 
@@ -60,7 +59,7 @@ namespace Http_Post
 
                 SetProgress(1.0d);
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
-                Authorization(infoAboutStudent);
+                Authorization(infoAboutStudent, true);
             }
             catch (Exception ex)
             {
@@ -77,14 +76,17 @@ namespace Http_Post
             }
         }
 
-        private async void Authorization (OneObjectResponse<LoginResponse> info)
+        private async void Authorization (OneObjectResponse<LoginResponse> info, bool NeedToRender)
         {
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.OK) // if is OK
             {
                 client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", info.Data.AccessToken);
 
-                text_error.TextColor = Color.Green;
-                text_error.Text = "Login successful!";
+                if (NeedToRender)
+                {
+                    text_error.TextColor = Color.Green;
+                    text_error.Text = "Login successful!";
+                }
 
                 RememberToken(info); // remember refresh token
                 new CurrentUserIdFactory().FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
@@ -164,15 +166,6 @@ namespace Http_Post
             return true;
         }
 
-        private void UpdateLanguage()
-        {
-            text_label.Text = "Enter login and password";
-            text_login.Placeholder = "Login";
-            text_password.Placeholder = "Password";
-            button_login.Text = "Login";
-            text_error.Text = "";
-        }
-
         private readonly string KEY = "refreshToken";
         private async void TryLogin()
         {
@@ -191,12 +184,11 @@ namespace Http_Post
                     if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     {
                         Init();
-                        ShowError(infoAboutStudent.StatusCode.ToString());
                         return;
                     }
 
-                    Init();
-                    Authorization(infoAboutStudent);
+                    //Init();
+                    Authorization(infoAboutStudent, false);
                 }
                 else
                     Init();

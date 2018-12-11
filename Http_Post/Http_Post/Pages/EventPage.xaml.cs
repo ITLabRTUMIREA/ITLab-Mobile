@@ -21,7 +21,6 @@ namespace Http_Post.Pages
 
         public EventPage()
         {
-            BindingContext = ThemeChanger.Theme;
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
 

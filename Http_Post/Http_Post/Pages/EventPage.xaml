@@ -24,7 +24,7 @@
             </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Controls:EventView Custom="{Binding .}"/>
+                        <Controls:EventView/>
                      </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>

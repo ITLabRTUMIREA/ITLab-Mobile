@@ -53,7 +53,10 @@ namespace Http_Post
         }
 
         public async void Logout()
-            => await Navigation.PopToRootAsync();
+        {
+            App.Current.Properties["refreshToken"] = "";
+            await Navigation.PopToRootAsync();
+        }
 
         protected override bool OnBackButtonPressed()
         {
