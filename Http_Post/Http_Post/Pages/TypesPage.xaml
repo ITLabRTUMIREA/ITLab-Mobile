@@ -5,7 +5,7 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <Grid Margin="0"
-                  Padding="2">
+              Padding="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -15,12 +15,27 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label x:Name="lblEventTypes"
+            <Button x:Name="btnEvent"
+                    Text="Event"
+                    CornerRadius="15"
+                    Grid.Column="0" Grid.Row="0"
+                    Clicked="btnEvents_Clicked"/>
+            <Button x:Name="btnEquipment"
+                    Text="Equipment"
+                    CornerRadius="15"
+                    Grid.Column="1" Grid.Row="0"
+                    Clicked="btnEquipment_Clicked"/>
+            <Button x:Name="btnRoles"
+                    Text="Roles"
+                    CornerRadius="15"
+                    Grid.Column="2" Grid.Row="0"
+                    Clicked="btnRoles_Clicked"/>
+            <!--<Label x:Name="lblEventTypes"
                        Grid.Column="0" Grid.Row="0"/>
             <Label x:Name="lblRoles"
                        Grid.Column="1" Grid.Row="0"/>
             <Label x:Name="lblEquipmentTypes"
-                       Grid.Column="2" Grid.Row="0"/>
+                       Grid.Column="2" Grid.Row="0"/>-->
             <ListView x:Name="listView"
                       SeparatorVisibility="None"
                       IsPullToRefreshEnabled="True"

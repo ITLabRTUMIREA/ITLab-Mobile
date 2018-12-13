@@ -83,6 +83,7 @@ namespace Http_Post
 
                 Menu menu = new Menu();
                 NavigationPage.SetHasBackButton(menu, false); // Don't add back button
+                NavigationPage.SetHasNavigationBar(menu, false);
                 /*Application.Current.MainPage = new NavigationPage(new Menu {
                     BarBackgroundColor = Color.FromHex("009688"),
                     BarTextColor = Color.White

@@ -9,15 +9,11 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Text="{Binding Title}"
+                <Label Text="{Binding Title}"
                    Grid.Row="0"/>
-            <Label Text="{Binding ShortTitle}"
-                   x:Name="lbl"
+                <Label Text="{Binding Description}"
                    Grid.Row="1"/>
-            <Label Text="{Binding Description}"
-                   Grid.Row="2"/>
             </Grid>
         </Frame>
     </ContentView>

@@ -3,9 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Styles.GeneralStyle">
 
-    <!--Style TargetType="Label">
+    <Style TargetType="Label">
         <Setter Property="FontSize" Value="Medium"/>
-    </Style-->
+    </Style>
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="Medium"/>
     </Style>
@@ -22,7 +22,7 @@
         <Setter Property="Spacing" Value="5"/>
     </Style>
     <Style TargetType="Button">
-        <!--Setter Property="BorderRadius" Value="7"/-->
+        <Setter Property="CornerRadius" Value="17"/>
     </Style>
     <Style TargetType="ListView">
         <Setter Property="HasUnevenRows" Value="True"/>

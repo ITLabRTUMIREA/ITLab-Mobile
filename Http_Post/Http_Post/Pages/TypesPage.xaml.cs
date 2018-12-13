@@ -33,9 +33,7 @@ namespace Http_Post.Pages
         public TypesPage()
         {
             InitializeComponent();
-            UpdateLanguage();
-
-            InitTapGestures();
+            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleTypes : "";
 
             listView.Refreshing += (s, e) => {
                 ChooseList();
@@ -45,55 +43,55 @@ namespace Http_Post.Pages
             ChooseList();
         }
 
-        void InitTapGestures()
-        {
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += (sender, e) =>
-            {
-                var lbl = (Label)sender;
-                if (lbl.Equals(lblEventTypes)) // if tapped event types
-                    types = Types.Event;
-                else if (lbl.Equals(lblRoles)) // if tapped roles
-                    types = Types.Role;
-                else if (lbl.Equals(lblEquipmentTypes)) // if tapped equipment types
-                    types = Types.Equipment;
-
-                ChooseList();
-            };
-            lblEventTypes.GestureRecognizers.Add(tapGestureRecognizer);
-            lblRoles.GestureRecognizers.Add(tapGestureRecognizer);
-            lblEquipmentTypes.GestureRecognizers.Add(tapGestureRecognizer);
-        }
-
         void ChooseList()
         {
-            lblEventTypes.FontAttributes = FontAttributes.None;
-            lblRoles.FontAttributes = FontAttributes.None;
-            lblEquipmentTypes.FontAttributes = FontAttributes.None;
-
+            btnEvent.FontAttributes = FontAttributes.None;
+            btnEquipment.FontAttributes = FontAttributes.None;
+            btnRoles.FontAttributes = FontAttributes.None;
+            
+            btnEquipment.FontAttributes = FontAttributes.None;
+            btnRoles.FontAttributes = FontAttributes.None;
             switch (types)
             {
                 case Types.Event:
-                    { 
-                        lblEventTypes.FontAttributes = FontAttributes.Bold;
+                    {
+                        btnEvent.FontAttributes = FontAttributes.Bold;
                         GetEventTypes();
                     }
                     break;
                 case Types.Role:
                     {
-                        lblRoles.FontAttributes = FontAttributes.Bold;
+                        btnRoles.FontAttributes = FontAttributes.Bold;
                         GetRoles();
                     }
                     break;
                 case Types.Equipment:
                     {
-                        lblEquipmentTypes.FontAttributes = FontAttributes.Bold;
+                        btnEquipment.FontAttributes = FontAttributes.Bold;
                         GetEquipmentTypes();
                     }
                     break;
             }
 
             ChangeToolBar();
+        }
+
+        void btnEvents_Clicked(object sender, EventArgs e)
+        {
+            types = Types.Event;
+            ChooseList();
+        }
+
+        void btnEquipment_Clicked(object sender, EventArgs e)
+        {
+            types = Types.Equipment;
+            ChooseList();
+        }
+
+        void btnRoles_Clicked(object sender, EventArgs e)
+        {
+            types = Types.Role;
+            ChooseList();
         }
 
         async void GetEventTypes()
@@ -295,14 +293,6 @@ namespace Http_Post.Pages
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
             }
-        }
-
-        void UpdateLanguage()
-        {
-            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleTypes : "";
-            lblEventTypes.Text = Resource.EventType;
-            lblRoles.Text = Resource.Roles;
-            lblEquipmentTypes.Text = Resource.EquipmentType;
         }
 
         void ChangeToolBar()

@@ -11,10 +11,6 @@ namespace Http_Post.Controls
         public TypeView()
         {
             InitializeComponent();
-
-            // TODO: check if field is null or empty
-            if (string.IsNullOrEmpty(lbl.Text))
-                lbl.IsVisible = false;
         }
     }
 }

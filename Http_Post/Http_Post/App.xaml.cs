@@ -19,8 +19,8 @@ namespace Http_Post
             //MainPage = new Http_Post.MainPage();
             MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = Color.FromHex("#ffe6ff"),
-                BarTextColor = Color.FromHex("#4d4d4d")
+                BarBackgroundColor = Color.FromHex("#1a1a1a"),
+                BarTextColor = Color.FromHex("#f2f2f2")
             };
             //MainPage = new MainPage();
 		}
@@ -33,8 +33,8 @@ namespace Http_Post
                             "android={Your Android App secret here}",
                             typeof(Analytics), typeof(Crashes));
 
-            Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
-            Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
+           Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
+           Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
         }
 
 		protected override void OnSleep ()
