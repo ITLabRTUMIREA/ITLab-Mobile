@@ -1,11 +1,6 @@
 ﻿using Models.PublicAPI.Responses.Event.Invitations;
 using Models.PublicAPI.Responses.General;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -37,6 +32,8 @@ namespace Http_Post.Controls
             target.Text = $"Needs {wish.TargetParticipantsCount} participants. (now: {wish.CurrentParticipantsCount})";
             btnAccept.Text = "Accept";
             btnReject.Text = "Reject";
+
+            lblTime.Text = wish.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
         }
 
         async void btnAccept_Clicked(object sender, EventArgs e)

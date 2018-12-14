@@ -6,7 +6,41 @@
         <!-- Application resource dictionary -->
 
         <ResourceDictionary>
-            
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium"/>
+            </Style>
+            <Style TargetType="Editor">
+                <Setter Property="AutoSize" Value="TextChanges"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="IsSpellCheckEnabled" Value="True"/>
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="Margin" Value="10"/>
+            </Style>
+            <Style TargetType="StackLayout">
+                <Setter Property="Padding" Value="5"/>
+                <Setter Property="Spacing" Value="5"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="CornerRadius" Value="17"/>
+            </Style>
+            <Style TargetType="ListView">
+                <Setter Property="HasUnevenRows" Value="True"/>
+                <Setter Property="SeparatorColor" Value="Silver"/>
+                <Setter Property="SelectionMode" Value="None"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="OutlineColor">
+                    <Setter.Value>
+                        <OnPlatform x:TypeArguments="Color">
+                            <On Platform="UWP" Value="#4d79ff" />
+                        </OnPlatform>
+                    </Setter.Value>
+                </Setter>
+            </Style>
         </ResourceDictionary>
 
     </Application.Resources>

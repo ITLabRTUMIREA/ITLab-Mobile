@@ -1,7 +1,5 @@
-using Http_Post.Extensions.Responses.Event;
 using Http_Post.Res;
 using Models.PublicAPI.Requests.Events.Event.Create;
-using Models.PublicAPI.Requests.Events.Event.Edit;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
@@ -22,72 +20,15 @@ namespace Http_Post.Pages
         HttpClient client = Services.HttpClientFactory.HttpClient;
         Guid eventTypeId;
         Guid eventId;
-        List<ShiftEditRequest> ShiftEdit = new List<ShiftEditRequest>();
-        List<ShiftCreateRequest> ShiftCreate = new List<ShiftCreateRequest>();
-        bool isCreating;
-
-        public CreateEventPage(EventViewExtended Event)
-        {
-            Init(false);
-            eventId = Event.Id; // set id
-            eventTypeId = Event.EventType.Id; // set event type id
-            ////////////////////////////////////////////////
-            editName.Text = Event.Title;
-            editEventType.Text = Event.EventType.Title;
-            editDescription.Text = Event.Description;
-            editAddress.Text = Event.Address;
-
-            /*foreach (var shift in Event.Shifts)
-            {
-                var places = new List<PlaceEditRequest>();
-                foreach (var place in shift.Places)
-                {
-                    var users = new List<PersonWorkRequest>();
-                    foreach (var user in place.Participants)
-                        users.Add(new PersonWorkRequest
-                        {
-                            Id = user.User.Id,
-                            EventRoleId = user.EventRole.Id
-                        });
-
-                    places.Add(new PlaceEditRequest
-                    {
-                        Id = place.Id,
-                        Description = place.Description,
-                        TargetParticipantsCount = place.TargetParticipantsCount,
-                        Invited = users
-                    });
-                }
-                ShiftEdit.Add(new ShiftEditRequest
-                {
-                    Id = shift.Id,
-                    BeginTime = shift.BeginTime,
-                    EndTime = shift.EndTime,
-                    Description = shift.Description,
-                    Places = places
-                });
-            }*/
-            
-            int ShiftNumber = 1;
-            foreach (var shift in Event.Shifts)
-            {
-                stackShift.Children.Add(new Controls.ShiftsView(shift, ShiftNumber, true));
-                ShiftNumber++;
-            }
-        }
+        List<ShiftCreateRequest> ShiftCreate = new List<ShiftCreateRequest>();        
 
         public CreateEventPage ()
 		{
-            Init(true);
-		}
-
-        void Init(bool creating)
-        {
             InitializeComponent();
             UpdateLanguage();
-            isCreating = creating;
         }
-
+        
+        // find event type
         async void editEventType_TextChanged(object sender, TextChangedEventArgs e)
         {
             Show();
@@ -142,40 +83,17 @@ namespace Http_Post.Pages
         {
             try
             {
-                string jsonContent = "";
-                if (isCreating)
+                var eventView = new EventCreateRequest
                 {
-                    var eventView = new EventCreateRequest
-                    {
-                        EventTypeId = eventTypeId,
-                        Address = editAddress.Text,
-                        Description = editDescription.Text,
-                        Title = editName.Text,
-                        Shifts = null
-                    };
-                    jsonContent = JsonConvert.SerializeObject(eventView);
-                }
-                else
-                {
-                    foreach(Controls.ShiftsView shift in stackShift.Children)
-                    {
-                        ShiftEdit.Add(shift.shiftEdit);
-                    }
-                    var eventView = new EventEditRequest
-                    {
-                        Id = eventId,
-                        Title = editName.Text,
-                        Description = editDescription.Text,
-                        Address = editAddress.Text,
-                        EventTypeId = eventTypeId,
-                        Shifts = ShiftEdit
-                    };
-                    jsonContent = JsonConvert.SerializeObject(eventView);
-                }
-
+                    EventTypeId = eventTypeId,
+                    Address = editAddress.Text,
+                    Description = editDescription.Text,
+                    Title = editName.Text,
+                    Shifts = ShiftCreate
+                };
+                var jsonContent = JsonConvert.SerializeObject(eventView);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var result = isCreating ?
-                    await client.PostAsync("event/", content) : await client.PutAsync("event/", content);
+                var result = await client.PostAsync("event/", content);
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventView>>(resultContent);
@@ -185,7 +103,6 @@ namespace Http_Post.Pages
                 await DisplayAlert("", Resource.ADMIN_Updated, "Ok");
 
                 await Navigation.PushAsync(new OneEventPage(message.Data.Id));
-
             }
             catch (Exception ex)
             {
@@ -244,31 +161,8 @@ namespace Http_Post.Pages
             if (shiftCreateRequest == null)
                 return;
 
-            if (isCreating)
-                ShiftCreate.Add(shiftCreateRequest);
-            else
-            {
-                ShiftEditRequest shiftEditRequest = FromCreateToEdit(shiftCreateRequest);
-                ShiftEdit.Add(shiftEditRequest);
-            }
-        }
-
-        ShiftEditRequest FromCreateToEdit(ShiftCreateRequest shift)
-        {
-            var places = new List<PlaceEditRequest>();
-            foreach(var place in shift.Places)
-                places.Add(new PlaceEditRequest
-                {
-                    TargetParticipantsCount = place.TargetParticipantsCount
-                });
-
-            return new ShiftEditRequest
-            {
-                BeginTime = shift.BeginTime,
-                EndTime = shift.EndTime,
-                Description = shift.Description,
-                Places = places
-            };
+            ShiftCreate.Add(shiftCreateRequest);
+            // TODO: show shifts
         }
 
         void Show()

@@ -52,9 +52,9 @@ namespace Http_Post
             try
             {
                 //Application.Current.Resources.ChangeTheme();
-                Application.Current.Resources.MergedDictionaries.Remove(ThemeManager.GetCurrentTheme());
-                ThemeManager.ChangeTheme();
-                Application.Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
+                //Application.Current.Resources.MergedDictionaries.Remove(ThemeManager.GetCurrentTheme());
+                //ThemeManager.ChangeTheme();
+                //Application.Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
             }
             catch (Exception ex)
             {

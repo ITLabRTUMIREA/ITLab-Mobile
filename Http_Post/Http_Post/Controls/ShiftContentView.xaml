@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Controls.ShiftContentView"
+             Margin="10,0,0,0"
+             Padding="2">
+  <ContentView.Content>
+      <StackLayout Padding="2"
+                   Margin="3"
+                   BackgroundColor="#f5f5f5">
+            <StackLayout Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShiftNumber_Tapped"/>
+                </StackLayout.GestureRecognizers>
+                <Label x:Name="lblShiftNumber"
+                       FontSize="Large"/>
+                <Image x:Name="image"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       Aspect="AspectFit"/>
+            </StackLayout>
+            <StackLayout x:Name="StackPlaces"
+                         Margin="5"
+                         Spacing="2"
+                         IsVisible="False">
+                <Label x:Name="lblBeginTitle"/>
+                <Label x:Name="lblBeginTime"
+                       Margin="20,0,0,0"/>
+                <Label x:Name="lblEndTitle"/>
+                <Label x:Name="lblEndTime"
+                       Margin="20,0,0,0"/>
+                <Label x:Name="lblDescription"
+                       FontAttributes="Italic"/>
+            </StackLayout>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

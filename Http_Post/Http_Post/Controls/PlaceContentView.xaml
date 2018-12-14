@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Controls.PlaceContentView"
+             Margin="10,0,0,0"
+             Padding="2">
+    <ContentView.Content>
+        <StackLayout Padding="2"
+                     Margin="3"
+                     Spacing="3"
+                     BackgroundColor="#e4e4e4">
+            <StackLayout Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="PlaceNumber_Tapped"/>
+                </StackLayout.GestureRecognizers>
+                <Label x:Name="lblPlaceNumber"
+                       FontSize="Large"/>
+                <Image x:Name="image"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       Aspect="AspectFit"/>
+            </StackLayout>
+            <StackLayout x:Name="stackToHide"
+                         IsVisible="False">
+                <Label x:Name="lblDescription"/>
+                <Button x:Name="btnWish"
+                        HorizontalOptions="Start"
+                        WidthRequest="200"
+                        Clicked="btnWish_Clicked"/>
+                <StackLayout x:Name="stackPart"
+                             Margin="0,10"
+                             IsVisible="False"/>
+                <StackLayout x:Name="stackEquip"
+                             Margin="0,15"
+                             IsVisible="False"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</ContentView>

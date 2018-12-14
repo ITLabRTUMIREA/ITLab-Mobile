@@ -3,11 +3,6 @@ using Models.PublicAPI.Responses.Event.Invitations;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -39,6 +34,8 @@ namespace Http_Post.Controls
             lblPlace.Text = "Place:";
             btnAccept.Text = "Accept";
             btnReject.Text = "Reject";
+
+            lblTime.Text = invitation.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
 		}
 
         async void btnAccept_Clicked(object sender, EventArgs e)

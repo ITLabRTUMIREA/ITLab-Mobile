@@ -20,7 +20,7 @@ namespace Http_Post
         void AddPages(bool isUpdating)
         {
             Children.Add(new NotificationPage());
-            Children[0].Icon = "Notification.png";
+            Children[0].Icon = "Notifications.png";
             Children.Add(new EventPage());
             Children[1].Icon = "News.png";
             Children.Add(new EquipmentPage());

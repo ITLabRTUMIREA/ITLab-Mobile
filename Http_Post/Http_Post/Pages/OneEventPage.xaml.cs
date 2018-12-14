@@ -55,11 +55,11 @@ namespace Http_Post.Pages
 
         void AddShifts()
         {
-            int ShiftNumber = 1;
+            int num = 1;
             foreach (var shift in OneEvent.Shifts)
             {
-                stackLayout.Children.Add(new ShiftsView(shift, ShiftNumber));
-                ShiftNumber++;
+                stackLayout.Children.Add(new ShiftContentView(shift, num));
+                num++;
             }
         }
 
@@ -79,7 +79,7 @@ namespace Http_Post.Pages
             var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "EditPencil.png");
             itemChange.Clicked += async (s, e) =>
             {
-                await Navigation.PushAsync(new CreateEventPage(OneEvent));
+                await Navigation.PushAsync(new CreateEventPage());
             };
             ToolbarItems.Add(itemChange);
         }

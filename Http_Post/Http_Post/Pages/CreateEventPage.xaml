@@ -4,13 +4,13 @@
              x:Class="Http_Post.Pages.CreateEventPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout>
-                <!-- Label, Editor for finding Event Type
-                Stacklayout will show available Event Types-->
+            <StackLayout Padding="5"
+                         Margin="10">
                 <Label x:Name="lblEventType"/>
                 <Editor x:Name="editEventType"
                         TextChanged="editEventType_TextChanged"/>
                 <StackLayout x:Name="stackEventType"
+                             Margin="5"
                              IsVisible="False"/>
                 <!-- Name of event -->
                 <Label x:Name="lblName"/>
@@ -35,12 +35,6 @@
                 <StackLayout x:Name="stackShift"
                              IsVisible="True"/>
 
-
-                <BoxView BackgroundColor="Silver"
-                         HorizontalOptions="FillAndExpand"
-                         HeightRequest="1"/>
-                <!-- Button to check all fields
-                If all is Ok - create event -->
                 <Button x:Name="btnSave"
                         WidthRequest="150"
                         Margin="0, 25"

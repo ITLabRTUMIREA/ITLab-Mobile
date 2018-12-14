@@ -16,11 +16,10 @@ namespace Http_Post
 		{
 			InitializeComponent();
 
-            //MainPage = new Http_Post.MainPage();
             MainPage = new NavigationPage(new MainPage())
             {
-                BarBackgroundColor = Color.FromHex("#1a1a1a"),
-                BarTextColor = Color.FromHex("#f2f2f2")
+                BarBackgroundColor = Color.FromHex("#f2f2f2"),
+                BarTextColor = Color.FromHex("#1a1a1a")
             };
             //MainPage = new MainPage();
 		}
@@ -33,8 +32,8 @@ namespace Http_Post
                             "android={Your Android App secret here}",
                             typeof(Analytics), typeof(Crashes));
 
-           Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
-           Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
+           //Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
+           //Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
         }
 
 		protected override void OnSleep ()

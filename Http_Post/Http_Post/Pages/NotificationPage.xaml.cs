@@ -44,8 +44,6 @@ namespace Http_Post.Pages
             try
             {
                 var response = await client.GetStringAsync("event/applications/invitations");
-
-                // TODO: placeid bug -> PlaceId == Guid.Empty
                 invitations = JsonConvert.DeserializeObject<ListResponse<EventApplicationView>>(response);
 
                 foreach (var invite in invitations.Data)

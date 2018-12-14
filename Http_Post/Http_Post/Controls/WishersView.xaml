@@ -44,7 +44,7 @@
                    HorizontalOptions="End"
                    VerticalOptions="Center"
                    Grid.Column="0" Grid.Row="3"/>
-            <Label Text="{Binding BeginTime, StringFormat='{}{0:dd.MM.yyyy HH:mm}'}"
+            <Label x:Name="lblTime"
                    VerticalOptions="Center"
                    Grid.Column="1" Grid.Row="3"/>
             <Label x:Name="lblRole"
