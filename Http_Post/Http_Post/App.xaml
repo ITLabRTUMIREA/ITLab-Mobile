@@ -28,7 +28,7 @@
                 <Setter Property="CornerRadius" Value="17"/>
             </Style>
             <Style TargetType="ListView">
-                <Setter Property="HasUnevenRows" Value="True"/>
+                <Setter Property="HasUnevenRows" Value="False"/>
                 <Setter Property="SeparatorColor" Value="Silver"/>
                 <Setter Property="SelectionMode" Value="None"/>
             </Style>

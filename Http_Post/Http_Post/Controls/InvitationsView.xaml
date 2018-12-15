@@ -1,79 +1,70 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Controls.InvitationsView"
-             Padding="5">
-    <ContentView.GestureRecognizers>
-        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-    </ContentView.GestureRecognizers>
-    <Frame Padding="10">
-        <Grid Margin="0"
-                ColumnSpacing="4"
-                RowSpacing="0"
-                Padding="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Label x:Name="lblTitle"
+             x:Class="Http_Post.Controls.InvitationsView">
+    <ContentView Padding="5">
+        <Frame Padding="10">
+            <Grid Margin="0"
+                  ColumnSpacing="4"
+                  RowSpacing="0"
+                  Padding="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Text="{Binding Title}"
                     FontSize="Large"
-                    TextColor="#4d79ff"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
                     Grid.ColumnSpan="2" Grid.Row="0"/>
-            <Label Text="{Binding Title}"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
+                <Label x:Name="lblBegin"
+                    HorizontalOptions="End"
                     VerticalOptions="Center"
-                    Grid.ColumnSpan="2" Grid.Row="1"/>
-            <Label x:Name="lblBegin"
+                    Grid.Column="0" Grid.Row="1"/>
+                <Label x:Name="lblTime"
+                    VerticalOptions="Center"
+                    Grid.Column="1" Grid.Row="1"/>
+                <Label x:Name="lblDuration"
                     HorizontalOptions="End"
                     VerticalOptions="Center"
                     Grid.Column="0" Grid.Row="2"/>
-            <Label x:Name="lblTime"
+                <Label Text="{Binding ShiftDurationInMinutes}"
                     VerticalOptions="Center"
                     Grid.Column="1" Grid.Row="2"/>
-            <Label x:Name="lblDuration"
+                <Label x:Name="lblRole"
                     HorizontalOptions="End"
                     VerticalOptions="Center"
                     Grid.Column="0" Grid.Row="3"/>
-            <Label Text="{Binding ShiftDurationInMinutes}"
+                <Label Text="{Binding EventRole.Title}"
                     VerticalOptions="Center"
                     Grid.Column="1" Grid.Row="3"/>
-            <Label x:Name="lblRole"
+                <Label x:Name="lblPlace"
                     HorizontalOptions="End"
                     VerticalOptions="Center"
                     Grid.Column="0" Grid.Row="4"/>
-            <Label Text="{Binding EventRole.Title}"
-                    VerticalOptions="Center"
-                    Grid.Column="1" Grid.Row="4"/>
-            <Label x:Name="lblPlace"
-                    HorizontalOptions="End"
-                    VerticalOptions="Center"
-                    Grid.Column="0" Grid.Row="5"/>
-            <Label x:Name="lblPlaceDesc"
+                <Label x:Name="lblPlaceDesc"
                    VerticalOptions="Center"
-                   Grid.Column="1" Grid.Row="5"/>
-            <Button x:Name="btnReject"
+                   Grid.Column="1" Grid.Row="4"/>
+                <Button x:Name="btnReject"
                     WidthRequest="170"
                     HorizontalOptions="Center"
-                    Grid.Column="0" Grid.Row="6"
+                    Grid.Column="0" Grid.Row="5"
                     Clicked="btnReject_Clicked"/>
-            <Button x:Name="btnAccept"
+                <Button x:Name="btnAccept"
                     WidthRequest="170"
                     HorizontalOptions="Center"
                     TextColor="Green"
-                    Grid.Column="1"  Grid.Row="6"
+                    Grid.Column="1"  Grid.Row="5"
                     Clicked="btnAccept_Clicked"/>
-        </Grid>
-    </Frame>
-</ContentView>
+            </Grid>
+        </Frame>
+    </ContentView>
+</ViewCell>

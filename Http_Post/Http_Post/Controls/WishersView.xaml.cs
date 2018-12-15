@@ -6,27 +6,30 @@ using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Controls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class WishersView : ContentView
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class WishersView : ViewCell
 	{
         Guid eventId;
         Guid placeId;
         Guid userId;
-        Action eventGood;
-        Action eventBad;
+        public new Guid Id;
 
-		public WishersView (WisherEventView wish, Action eventGood, Action eventBad)
+        public WishersView()
+        {
+            InitializeComponent();
+        }
+
+		public WishersView (WisherEventView wish)
 		{
-            BindingContext = wish;
-			InitializeComponent ();
-
+            Id = wish.Id;
             eventId = wish.Id;
             placeId = wish.PlaceId;
             userId = wish.User.Id;
-            this.eventGood = eventGood;
-            this.eventBad = eventBad;
+
+            BindingContext = wish;
+			InitializeComponent ();
+
             // TODO: localize
-            lblTitle.Text = "Wish";
             lblRole.Text = "Role:";
             lblShift.Text = "Shift:";
             target.Text = $"Needs {wish.TargetParticipantsCount} participants. (now: {wish.CurrentParticipantsCount})";
@@ -46,12 +49,10 @@ namespace Http_Post.Controls
                 var message = Newtonsoft.Json.JsonConvert.DeserializeObject<OneObjectResponse<WisherEventView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
-
-                eventGood?.Invoke();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                eventBad?.Invoke();
+
             }
         }
 
@@ -65,16 +66,11 @@ namespace Http_Post.Controls
                 var message = Newtonsoft.Json.JsonConvert.DeserializeObject<OneObjectResponse<WisherEventView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
-
-                eventGood?.Invoke();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                eventBad?.Invoke();
+                
             }
         }
-
-        async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-            => await Navigation.PushAsync(new Pages.OneEventPage(eventId));
     }
 }

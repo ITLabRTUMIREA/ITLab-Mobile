@@ -26,6 +26,7 @@ namespace Http_Post
         {
             InitializeComponent();
             stackLayout.IsVisible = true;
+            text_login.Focus();
         }
 
         private async void Button_login(object sender, EventArgs e)

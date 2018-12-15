@@ -170,14 +170,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Rg.Plugins.Popup">
-      <Version>1.1.4.168</Version>
-    </PackageReference>
-    <PackageReference Include="Xam.Plugins.Forms.Svg">
-      <Version>1.0.0.27</Version>
-    </PackageReference>
-    <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
+    <PackageReference Include="Xamarin.Forms">
+      <Version>3.4.0.1008975</Version>
+    </PackageReference>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Http_Post\Http_Post.csproj">

@@ -8,26 +8,29 @@ using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Controls
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class InvitationsView : ContentView
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class InvitationsView : ViewCell
     {
         Guid placeId;
         Guid eventId;
-        Action eventGood;
-        Action eventBad;
+        public new Guid Id;
 
-        public InvitationsView (EventApplicationView invitation, Action eventGood, Action eventBad)
+        public InvitationsView()
+        {
+            InitializeComponent();
+        }
+
+        public InvitationsView (EventApplicationView invitation)
 		{
+            Id = invitation.Id;
+            placeId = invitation.PlaceId;
+            eventId = invitation.Id;
+
             BindingContext = invitation;
 			InitializeComponent ();
 
-            placeId = invitation.PlaceId;
-            eventId = invitation.Id;
-            this.eventGood= eventGood;
-            this.eventBad = eventBad;
             // TODO: localize
             lblPlaceDesc.Text = string.IsNullOrEmpty(invitation.PlaceDescription) ? Resource.ErrorNoDescription : invitation.PlaceDescription;
-            lblTitle.Text = "Invitation";
             lblBegin.Text = "Begin:";
             lblDuration.Text = "Duration:";
             lblRole.Text = "Role:";
@@ -48,12 +51,10 @@ namespace Http_Post.Controls
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventApplicationView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
-
-                eventGood?.Invoke();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                eventBad?.Invoke();
+                
             }
         }
 
@@ -67,16 +68,11 @@ namespace Http_Post.Controls
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventApplicationView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
-
-                eventGood?.Invoke();
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                eventBad?.Invoke();
+                
             }
         }
-
-        async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-            => await Navigation.PushAsync(new Pages.OneEventPage(eventId));
     }
 }

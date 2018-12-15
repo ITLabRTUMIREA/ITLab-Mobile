@@ -105,11 +105,11 @@ namespace Http_Post.Popup.Event
                         await navigation.PopModalAsync();
                         tcs.SetResult(newShift);
                     }
-                    catch (FormatException ex)
+                    catch (FormatException)
                     {
                         editPeople.Focus();
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         //await DisplayAlert("Error", ex.Message, "Ok");
                     }

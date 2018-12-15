@@ -1,4 +1,5 @@
-﻿using Models.PublicAPI.Responses.Event.Invitations;
+﻿using Http_Post.Controls;
+using Models.PublicAPI.Responses.Event.Invitations;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
@@ -20,24 +21,28 @@ namespace Http_Post.Pages
         ListResponse<EventApplicationView> invitations;
         ListResponse<WisherEventView> wishers;
 
+        Image pathCollapse = new Image
+        {
+            Source = "ArrowRight.png"
+        };
+
+        Image pathExpand = new Image
+        {
+            Source = "ArrowDown.png"
+        };
+
         public NotificationPage ()
 		{
 			InitializeComponent ();
-            Title = Device.RuntimePlatform == Device.UWP ? "Notifications" : "";
-            GetAll();
-		}
 
-        void GetAll()
-        {
-            for (int i = 2; i < stackLayout.Children.Count; i++)
-                stackLayout.Children.RemoveAt(i);
+            Title = Device.RuntimePlatform == Device.UWP ? "Notifications" : "";
+            lblInvitation.Text = "Invitations: ";
+            lblWish.Text = "Wish: ";
+            imageInvitation.Source = pathCollapse.Source;
+            imageWish.Source = pathCollapse.Source;
             GetNotifications();
             GetWishers();
-        }
-
-        async void ShowError()
-            => await DisplayAlert("Error", "Что-то пошло не так", "Ok");
-
+		}
 
         async void GetNotifications()
         {
@@ -46,8 +51,12 @@ namespace Http_Post.Pages
                 var response = await client.GetStringAsync("event/applications/invitations");
                 invitations = JsonConvert.DeserializeObject<ListResponse<EventApplicationView>>(response);
 
-                foreach (var invite in invitations.Data)
-                    stackLayout.Children.Add(new Controls.InvitationsView(invite, GetAll, ShowError));
+                List<InvitationsView> invitationsViews = new List<InvitationsView>();
+                foreach (var item in invitations.Data)
+                    invitationsViews.Add(new InvitationsView(item));
+
+                listInvitation.ItemsSource = invitationsViews;
+                lblInvitation.Text = $"Invitations: {invitationsViews.Count}";
             }
             catch (Exception ex)
             {
@@ -60,11 +69,14 @@ namespace Http_Post.Pages
             try
             {
                 var response = await client.GetStringAsync("event/wishers");
-
                 wishers = JsonConvert.DeserializeObject<ListResponse<WisherEventView>>(response);
 
-                foreach (var wish in wishers.Data)
-                    stackLayout.Children.Add(new Controls.WishersView(wish, GetAll, ShowError));
+                List<WishersView> wishersViews = new List<WishersView>();
+                foreach (var item in wishers.Data)
+                    wishersViews.Add(new WishersView(item));
+
+                listWish.ItemsSource = wishersViews;
+                lblWish.Text = $"Wish: {wishersViews.Count}";
             }
             catch (Exception ex)
             {
@@ -72,9 +84,34 @@ namespace Http_Post.Pages
             }
         }
 
-        void Button_Tapped(object sender, EventArgs e)
+        void Invitation_Tapped(object sender, EventArgs e)
         {
-            GetAll();
+            if (imageInvitation.Source.Equals(pathCollapse.Source))
+                imageInvitation.Source = pathExpand.Source;
+            else
+                imageInvitation.Source = pathCollapse.Source;
+            listInvitation.IsVisible = !listInvitation.IsVisible;
+        }
+
+        void Wish_Tapped(object sender, EventArgs e)
+        {
+            if (imageWish.Source.Equals(pathCollapse.Source))
+                imageWish.Source = pathExpand.Source;
+            else
+                imageWish.Source = pathCollapse.Source;
+            listWish.IsVisible = !listWish.IsVisible;
+        }
+
+        async void listInvitation_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var tapped = (InvitationsView)e.Item;
+            await Navigation.PushAsync(new OneEventPage(tapped.Id));
+        }
+
+        async void listWish_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var tapped = (WishersView)e.Item;
+            await Navigation.PushAsync(new OneEventPage(tapped.Id));
         }
     }
 }
