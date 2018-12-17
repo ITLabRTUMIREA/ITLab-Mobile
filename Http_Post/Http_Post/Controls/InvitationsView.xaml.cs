@@ -11,20 +11,13 @@ namespace Http_Post.Controls
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class InvitationsView : ViewCell
     {
-        Guid placeId;
-        Guid eventId;
-        public new Guid Id;
+        EventApplicationView invitation;
+        INavigation navigation;
 
-        public InvitationsView()
-        {
-            InitializeComponent();
-        }
-
-        public InvitationsView (EventApplicationView invitation)
+        public InvitationsView (EventApplicationView invitation, INavigation navigation)
 		{
-            Id = invitation.Id;
-            placeId = invitation.PlaceId;
-            eventId = invitation.Id;
+            this.invitation = invitation;
+            this.navigation = navigation;
 
             BindingContext = invitation;
 			InitializeComponent ();
@@ -45,34 +38,37 @@ namespace Http_Post.Controls
         {
             try
             {
-                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/invitation/{placeId}/accept", null);
+                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/invitation/{invitation.PlaceId}/accept", null);
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventApplicationView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
+
+                MessagingCenter.Send<EventApplicationView>(invitation, "DeleteInvitation");
             }
             catch (Exception)
-            {
-                
-            }
+            { }
         }
 
         async void btnReject_Clicked(object sender, EventArgs e)
         {
             try
             {
-                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/invitation/{placeId}/reject", null);
+                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/invitation/{invitation.PlaceId}/reject", null);
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventApplicationView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
+
+                MessagingCenter.Send<EventApplicationView>(invitation, "DeleteInvitation");
             }
             catch (Exception)
-            {
-                
-            }
+            { }
         }
+
+        void ViewCell_Tapped(object sender, EventArgs e)
+            => navigation.PushAsync(new Pages.OneEventPage(invitation.Id));
     }
 }

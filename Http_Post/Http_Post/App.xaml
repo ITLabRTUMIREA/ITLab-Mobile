@@ -17,20 +17,16 @@
                 <Setter Property="FontSize" Value="Medium"/>
                 <Setter Property="IsSpellCheckEnabled" Value="True"/>
             </Style>
-            <Style TargetType="Grid">
-                <Setter Property="Margin" Value="10"/>
-            </Style>
-            <Style TargetType="StackLayout">
-                <Setter Property="Padding" Value="5"/>
-                <Setter Property="Spacing" Value="5"/>
-            </Style>
             <Style TargetType="Button">
-                <Setter Property="CornerRadius" Value="17"/>
+                <Setter Property="BorderRadius" Value="7"/>
             </Style>
             <Style TargetType="ListView">
-                <Setter Property="HasUnevenRows" Value="False"/>
+                <Setter Property="HasUnevenRows" Value="True"/>
                 <Setter Property="SeparatorColor" Value="Silver"/>
                 <Setter Property="SelectionMode" Value="None"/>
+            </Style>
+            <Style TargetType="TableView">
+                <Setter Property="HasUnevenRows" Value="True"/>
             </Style>
             <Style TargetType="Frame">
                 <Setter Property="OutlineColor">

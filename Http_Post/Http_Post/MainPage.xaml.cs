@@ -189,6 +189,7 @@ namespace Http_Post
             }
             catch (Exception ex)
             {
+                Init();
                 text_error.Text = ex.Message + '\n' + 
                     "Can't use refresh token to login";
             }

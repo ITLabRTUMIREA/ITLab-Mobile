@@ -6,30 +6,22 @@ using Xamarin.Forms.Xaml;
 
 namespace Http_Post.Controls
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class WishersView : ViewCell
+	[XamlCompilation(XamlCompilationOptions.Compile)]
+	public partial class WishesView : ViewCell
 	{
-        Guid eventId;
-        Guid placeId;
-        Guid userId;
-        public new Guid Id;
+        WisherEventView wish;
+        INavigation navigation;
 
-        public WishersView()
-        {
-            InitializeComponent();
-        }
-
-		public WishersView (WisherEventView wish)
+        public WishesView (WisherEventView wish, INavigation navigation)
 		{
-            Id = wish.Id;
-            eventId = wish.Id;
-            placeId = wish.PlaceId;
-            userId = wish.User.Id;
+            this.wish = wish;
+            this.navigation = navigation;
 
             BindingContext = wish;
-			InitializeComponent ();
+            InitializeComponent();
 
             // TODO: localize
+            lblName.Text = $"{wish.User.FirstName} {wish.User.LastName}";
             lblRole.Text = "Role:";
             lblShift.Text = "Shift:";
             target.Text = $"Needs {wish.TargetParticipantsCount} participants. (now: {wish.CurrentParticipantsCount})";
@@ -43,34 +35,37 @@ namespace Http_Post.Controls
         {
             try
             {
-                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/wish/{placeId}/{userId}/accept", null);
+                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/wish/{wish.PlaceId}/{wish.User.Id}/accept", null);
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = Newtonsoft.Json.JsonConvert.DeserializeObject<OneObjectResponse<WisherEventView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
+
+                MessagingCenter.Send<WisherEventView>(wish, "DeleteWish");
             }
             catch (Exception)
-            {
-
-            }
+            {}
         }
 
         async void btnReject_Clicked(object sender, EventArgs e)
         {
             try
             {
-                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/wish/{placeId}/{userId}/reject", null);
+                var result = await Services.HttpClientFactory.HttpClient.PostAsync($"event/wish/{wish.PlaceId}/{wish.User.Id}/reject", null);
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = Newtonsoft.Json.JsonConvert.DeserializeObject<OneObjectResponse<WisherEventView>>(resultContent);
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
+
+                MessagingCenter.Send<WisherEventView>(wish, "DeleteWish");
             }
             catch (Exception)
-            {
-                
-            }
+            {}
         }
+
+        void ViewCell_Tapped(object sender, EventArgs e)
+            => navigation.PushAsync(new Pages.OneEventPage(wish.Id));
     }
 }

@@ -54,7 +54,7 @@
     <EmbeddedResource Update="Controls\ShiftContentView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\WishersView.xaml">
+    <EmbeddedResource Update="Controls\WishesView.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="MainPage.xaml">

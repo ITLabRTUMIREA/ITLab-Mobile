@@ -4,6 +4,7 @@ using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -18,45 +19,65 @@ namespace Http_Post.Pages
 	public partial class NotificationPage : ContentPage
 	{
         HttpClient client = Services.HttpClientFactory.HttpClient;
-        ListResponse<EventApplicationView> invitations;
-        ListResponse<WisherEventView> wishers;
-
-        Image pathCollapse = new Image
-        {
-            Source = "ArrowRight.png"
-        };
-
-        Image pathExpand = new Image
-        {
-            Source = "ArrowDown.png"
-        };
+        ObservableCollection<EventApplicationView> invitations;
+        ObservableCollection<WisherEventView> wishes;
 
         public NotificationPage ()
 		{
 			InitializeComponent ();
 
             Title = Device.RuntimePlatform == Device.UWP ? "Notifications" : "";
-            lblInvitation.Text = "Invitations: ";
-            lblWish.Text = "Wish: ";
-            imageInvitation.Source = pathCollapse.Source;
-            imageWish.Source = pathCollapse.Source;
+            tableInvitations.Title = "Invitations: can't load";
+            tableWishes.Title = "Wishes: can't load";
+
+            invitations = new ObservableCollection<EventApplicationView>();
+            wishes = new ObservableCollection<WisherEventView>();
+
             GetNotifications();
-            GetWishers();
+            GetWishes();
+
+            Subscribe();
 		}
+
+        void Subscribe()
+        {
+            MessagingCenter.Subscribe<EventApplicationView>(
+                this,
+                "DeleteInvitation",
+                (sender) =>
+                {
+                    GetNotifications();
+                    GetWishes();
+                });
+            MessagingCenter.Subscribe<WisherEventView>(
+                this,
+                "DeleteWish",
+                (sender) =>
+                {
+                    GetNotifications();
+                    GetWishes();
+                });
+        }
 
         async void GetNotifications()
         {
             try
             {
+                this.invitations.Clear();
+                tableInvitations.Clear();
                 var response = await client.GetStringAsync("event/applications/invitations");
-                invitations = JsonConvert.DeserializeObject<ListResponse<EventApplicationView>>(response);
+                var invitations = JsonConvert.DeserializeObject<ListResponse<EventApplicationView>>(response);
+                
+                if (invitations.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {invitations.StatusCode}");
 
-                List<InvitationsView> invitationsViews = new List<InvitationsView>();
-                foreach (var item in invitations.Data)
-                    invitationsViews.Add(new InvitationsView(item));
+                foreach(var invitation in invitations.Data)
+                {
+                    this.invitations.Add(invitation);
+                    tableInvitations.Add(new InvitationsView(invitation, Navigation));
+                }
 
-                listInvitation.ItemsSource = invitationsViews;
-                lblInvitation.Text = $"Invitations: {invitationsViews.Count}";
+                tableInvitations.Title = $"Invitations: {this.invitations.Count}";
             }
             catch (Exception ex)
             {
@@ -64,54 +85,29 @@ namespace Http_Post.Pages
             }
         }
 
-        async void GetWishers()
+        async void GetWishes()
         {
             try
             {
+                this.wishes.Clear();
+                tableWishes.Clear();
                 var response = await client.GetStringAsync("event/wishers");
-                wishers = JsonConvert.DeserializeObject<ListResponse<WisherEventView>>(response);
+                var wishes = JsonConvert.DeserializeObject<ListResponse<WisherEventView>>(response);
 
-                List<WishersView> wishersViews = new List<WishersView>();
-                foreach (var item in wishers.Data)
-                    wishersViews.Add(new WishersView(item));
+                if (wishes.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                    throw new Exception($"Error: {wishes.StatusCode}");
 
-                listWish.ItemsSource = wishersViews;
-                lblWish.Text = $"Wish: {wishersViews.Count}";
+                foreach (var wish in wishes.Data)
+                {
+                    this.wishes.Add(wish);
+                    tableWishes.Add(new WishesView(wish, Navigation));
+                }
+                tableWishes.Title = $"Wishes: {this.wishes.Count}";
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", ex.Message, "Ok");
+               await DisplayAlert("Error", ex.Message, "Ok");
             }
-        }
-
-        void Invitation_Tapped(object sender, EventArgs e)
-        {
-            if (imageInvitation.Source.Equals(pathCollapse.Source))
-                imageInvitation.Source = pathExpand.Source;
-            else
-                imageInvitation.Source = pathCollapse.Source;
-            listInvitation.IsVisible = !listInvitation.IsVisible;
-        }
-
-        void Wish_Tapped(object sender, EventArgs e)
-        {
-            if (imageWish.Source.Equals(pathCollapse.Source))
-                imageWish.Source = pathExpand.Source;
-            else
-                imageWish.Source = pathCollapse.Source;
-            listWish.IsVisible = !listWish.IsVisible;
-        }
-
-        async void listInvitation_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var tapped = (InvitationsView)e.Item;
-            await Navigation.PushAsync(new OneEventPage(tapped.Id));
-        }
-
-        async void listWish_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            var tapped = (WishersView)e.Item;
-            await Navigation.PushAsync(new OneEventPage(tapped.Id));
         }
     }
 }
