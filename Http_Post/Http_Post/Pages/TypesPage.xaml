@@ -2,10 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.TypesPage"
-             xmlns:Controls="clr-namespace:Http_Post.Controls">
+             xmlns:Controls="clr-namespace:Http_Post.Controls"
+             Padding="5">
     <ContentPage.Content>
-        <Grid Margin="0"
-              Padding="2">
+        <Grid>
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="5,30,0,0"/>
+                    <On Platform="Android" Value="5,10,0,0"/>
+                    <On Platform="UWP" Value="5,10,0,0"/>
+                </OnPlatform>
+            </Grid.Margin>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
@@ -30,12 +37,6 @@
                     CornerRadius="15"
                     Grid.Column="2" Grid.Row="0"
                     Clicked="btnRoles_Clicked"/>
-            <!--<Label x:Name="lblEventTypes"
-                       Grid.Column="0" Grid.Row="0"/>
-            <Label x:Name="lblRoles"
-                       Grid.Column="1" Grid.Row="0"/>
-            <Label x:Name="lblEquipmentTypes"
-                       Grid.Column="2" Grid.Row="0"/>-->
             <ListView x:Name="listView"
                       SeparatorVisibility="None"
                       IsPullToRefreshEnabled="True"

@@ -3,8 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.EventPage"
              Title="Events"
-             xmlns:Controls="clr-namespace:Http_Post.Controls">
-        <StackLayout x:Name="stacklayout" Padding="5">
+             xmlns:Controls="clr-namespace:Http_Post.Controls"
+             Padding="5">
+        <StackLayout x:Name="stacklayout" Margin="5,25,0,0">
+        <StackLayout.Margin>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="iOS" Value="5,30,0,0"/>
+                    <On Platform="Android" Value="5,10,0,0"/>
+                    <On Platform="UWP" Value="5,10,0,0"/>
+                </OnPlatform>
+            </StackLayout.Margin>
             <ListView x:Name="listView"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="ListView_ItemTapped"
