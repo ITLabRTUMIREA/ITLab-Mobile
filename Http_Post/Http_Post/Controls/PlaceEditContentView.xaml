@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Controls.PlaceContentView"
+             x:Class="Http_Post.Controls.PlaceEditContentView"
              Margin="10,0,0,0"
              Padding="2">
     <ContentView.Content>
@@ -19,15 +19,33 @@
                        WidthRequest="24"
                        HeightRequest="24"
                        Aspect="AspectFit"/>
+                <Image Source="DeleteCross.png"
+                       Margin="20,0,0,0"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DeletePlace_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
             </StackLayout>
             <StackLayout x:Name="stackToHide"
-                         IsVisible="False">
-                <Label x:Name="lblDescription"
-                       FontAttributes="Italic"/>
-                <Button x:Name="btnWish"
-                        HorizontalOptions="Start"
-                        WidthRequest="200"
-                        Clicked="btnWish_Clicked"/>
+                       IsVisible="False">
+                <Editor x:Name="editDescription"
+                        FontAttributes="Italic"/>
+                <StackLayout Orientation="Horizontal"
+                             Padding="0"
+                             Margin="0"
+                             Spacing="2">
+                    <Button x:Name="btnInvite"
+                            HorizontalOptions="Start"
+                            WidthRequest="200"
+                            Clicked="btnInvite_Clicked"/>
+                    <Button x:Name="btnAddEquipment"
+                            HorizontalOptions="Start"
+                            WidthRequest="200"
+                            Clicked="btnAddEquipment_Clicked"/>
+                </StackLayout>
                 <StackLayout x:Name="stackPart"
                              Margin="0,5"
                              IsVisible="False"/>

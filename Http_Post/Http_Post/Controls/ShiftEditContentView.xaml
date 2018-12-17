@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Controls.ShiftEditContentView"
+             Padding="2"
+             Margin="10,0,0,0">
+  <ContentView.Content>
+      <StackLayout Padding="2"
+                   Margin="3"
+                   BackgroundColor="#f5f5f5">
+            <StackLayout Orientation="Horizontal">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="ShiftNumber_Tapped"/>
+                </StackLayout.GestureRecognizers>
+                <Label x:Name="lblShiftNumber"
+                       FontSize="Large"/>
+                <Image x:Name="image"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       Aspect="AspectFit"/>
+                <Image Source="CreateCircle.png"
+                       Margin="20,0,0,0"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="CreatePlace_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Source="DeleteCross.png"
+                       Margin="20,0,0,0"
+                       WidthRequest="24"
+                       HeightRequest="24"
+                       Aspect="AspectFit">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="DeleteShift_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <StackLayout x:Name="StackPlaces"
+                       Margin="2"
+                       Spacing="2"
+                       IsVisible="False">
+                <Label x:Name="lblBeginTitle"/>
+                <StackLayout Orientation="Horizontal"
+                             Margin="20,0,0,0">
+                    <DatePicker x:Name="DatePickerBegin"/>
+                    <TimePicker x:Name="TimePickerBegin"/>
+                </StackLayout>
+                <Label x:Name="lblEndTitle"/>
+                <StackLayout Orientation="Horizontal"
+                             Margin="20,0,0,0">
+                    <DatePicker x:Name="DatePickerEnd"/>
+                    <TimePicker x:Name="TimePickerEnd"/>
+                </StackLayout>
+                <Editor x:Name="editDescription"
+                       FontAttributes="Italic"/>
+            </StackLayout>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>

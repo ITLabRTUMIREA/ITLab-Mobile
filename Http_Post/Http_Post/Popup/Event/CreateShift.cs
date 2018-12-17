@@ -1,5 +1,5 @@
 ﻿using Http_Post.Res;
-using Models.PublicAPI.Requests.Events.Event.Create;
+using Models.PublicAPI.Requests.Events.Event.Edit;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,9 +9,9 @@ namespace Http_Post.Popup.Event
 {
     class CreateShift : TypeClass
     {
-        public Task<ShiftCreateRequest> AddShift (INavigation navigation)
+        public Task<ShiftEditRequest> AddShiftEditRequest (INavigation navigation)
         {
-            var tcs = new TaskCompletionSource<ShiftCreateRequest>();
+            var tcs = new TaskCompletionSource<ShiftEditRequest>();
             var grid = new Grid
             {
                 Padding = new Thickness(0, 40, 0, 0),
@@ -88,14 +88,14 @@ namespace Http_Post.Popup.Event
                         if (endDate.Date < beginDate.Date)
                             throw new Exception($"Error: {Resource.ErrorNoDate}"); // Ending date can't be less than begining date!
 
-                        var placesCreate = new List<PlaceCreateRequest>();
+                        var placesCreate = new List<PlaceEditRequest>();
                         for (int i = 0; i < Convert.ToInt32(editPlaces.Text); i++)
-                            placesCreate.Add(new PlaceCreateRequest
+                            placesCreate.Add(new PlaceEditRequest
                             {
                                 TargetParticipantsCount = Convert.ToInt32(editPeople.Text)
                             });
 
-                        var newShift = new ShiftCreateRequest
+                        var newShift = new ShiftEditRequest
                         {
                             Description = entryDescription.Text,
                             BeginTime = beginDate.Date + beginTime.Time,
@@ -111,7 +111,7 @@ namespace Http_Post.Popup.Event
                     }
                     catch (Exception)
                     {
-                        //await DisplayAlert("Error", ex.Message, "Ok");
+                        
                     }
                 };
                 btnCancel.Clicked += async (s, e) =>

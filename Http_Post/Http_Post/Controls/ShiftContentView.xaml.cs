@@ -1,11 +1,5 @@
 ﻿using Models.PublicAPI.Responses.Event;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -31,9 +25,11 @@ namespace Http_Post.Controls
 
             lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftView.Places.Count}";
             image.Source = pathCollapse.Source;
+
             lblBeginTitle.Text = "Begining time:";
             lblBeginTime.Text = shiftView.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
             lblEndTitle.Text = "Ending time:";
+
             lblEndTime.Text = shiftView.EndTime.ToLocalTime().ToString("dd.MM.yyyy HH: mm");
             lblDescription.Text = string.IsNullOrEmpty(shiftView.Description) ? Res.Resource.ErrorNoDescription : shiftView.Description;
 

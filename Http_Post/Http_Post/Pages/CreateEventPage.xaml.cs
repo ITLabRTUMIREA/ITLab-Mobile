@@ -1,5 +1,8 @@
+using Http_Post.Extensions.Responses.Event;
 using Http_Post.Res;
+using Models.PublicAPI.Requests;
 using Models.PublicAPI.Requests.Events.Event.Create;
+using Models.PublicAPI.Requests.Events.Event.Edit;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
@@ -18,16 +21,105 @@ namespace Http_Post.Pages
     public partial class CreateEventPage : ContentPage
 	{
         HttpClient client = Services.HttpClientFactory.HttpClient;
-        Guid eventTypeId;
-        Guid eventId;
-        List<ShiftCreateRequest> ShiftCreate = new List<ShiftCreateRequest>();        
+        List<ShiftEditRequest> ShiftEdit;
+        EventViewExtended _event;
+        bool _isCreating;
+
+        public CreateEventPage(EventViewExtended eventViewExtended)
+        {
+            Init(false);
+            _event = eventViewExtended;
+
+            editName.Text = _event.Title;
+            editEventType.Text = _event.EventType.Title;
+            Hide();
+            editDescription.Text = _event.Description;
+            editAddress.Text = _event.Address;
+
+            int number = 1;
+            List<ShiftEditRequest> shiftEdits = getFromNormalShifts(_event.Shifts);
+            foreach (var s in shiftEdits)
+            {
+                stackShift.Children.Add(new Controls.ShiftEditContentView(s, number));
+                number++;
+            }
+        }
+
+        List<ShiftEditRequest> getFromNormalShifts(List<ShiftView> shifts)
+        {
+            List<PlaceEditRequest> new_places = new List<PlaceEditRequest>(); // places
+            int i = 0;
+            foreach (var pl in shifts[i].Places)
+            {
+                List<PersonWorkRequest> inv = new List<PersonWorkRequest>(); // users
+                #region add users to list
+                foreach (var p in pl.Invited)
+                    inv.Add(new PersonWorkRequest
+                    {
+                        Id = p.User.Id,
+                        EventRoleId = p.EventRole.Id,
+                    });
+                foreach (var p in pl.Wishers)
+                    inv.Add(new PersonWorkRequest
+                    {
+                        Id = p.User.Id,
+                        EventRoleId = p.EventRole.Id,
+                    });
+                foreach (var p in pl.Participants)
+                    inv.Add(new PersonWorkRequest
+                    {
+                        Id = p.User.Id,
+                        EventRoleId = p.EventRole.Id,
+                    });
+                foreach (var p in pl.Unknowns)
+                    inv.Add(new PersonWorkRequest
+                    {
+                        Id = p.User.Id,
+                        EventRoleId = p.EventRole.Id,
+                    });
+                #endregion
+                List<DeletableRequest> equip = new List<DeletableRequest>(); // equip
+                foreach (var e in pl.Equipment)
+                    equip.Add(new DeletableRequest
+                    {
+                        Id = e.Id
+                    });
+                new_places.Add(new PlaceEditRequest
+                {
+                    Id = pl.Id,
+                    TargetParticipantsCount = pl.TargetParticipantsCount,
+                    Description = pl.Description,
+                    Invited = inv,
+                    Equipment = equip
+                });
+                i++;
+            }
+            List<ShiftEditRequest> shiftEdits = new List<ShiftEditRequest>();
+            foreach (var shift in shifts)
+                shiftEdits.Add(new ShiftEditRequest
+                {
+                    Id = shift.Id,
+                    Description = shift.Description,
+                    BeginTime = shift.BeginTime,
+                    EndTime = shift.EndTime,
+                    Places = new_places,
+                });
+            return shiftEdits;
+        }
 
         public CreateEventPage ()
 		{
+            Init(true);
+        }
+        
+        void Init(bool isCreating)
+        {
+            _isCreating = isCreating;
+            ShiftEdit = new List<ShiftEditRequest>();
             InitializeComponent();
             UpdateLanguage();
         }
-        
+
         // find event type
         async void editEventType_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -46,7 +138,7 @@ namespace Http_Post.Pages
                     var tapGestureRecognizer = new TapGestureRecognizer();
                     tapGestureRecognizer.Tapped += (s, args) => {
                         editEventType.Text = eq.Title;
-                        eventTypeId = eq.Id;
+                        _event.EventType.Id = eq.Id;
                         editName.Focus();
                     };
                     var label = new Label
@@ -83,15 +175,16 @@ namespace Http_Post.Pages
         {
             try
             {
-                var eventView = new EventCreateRequest
+                string jsonContent = "";
+                if (_isCreating)
                 {
-                    EventTypeId = eventTypeId,
-                    Address = editAddress.Text,
-                    Description = editDescription.Text,
-                    Title = editName.Text,
-                    Shifts = ShiftCreate
-                };
-                var jsonContent = JsonConvert.SerializeObject(eventView);
+
+                }
+                else
+                {
+
+                }
+
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
                 var result = await client.PostAsync("event/", content);
 
@@ -113,7 +206,7 @@ namespace Http_Post.Pages
         async Task<bool> CheckAllFieldsForNull()
         {
             // Event type
-            if (eventTypeId == Guid.Empty)
+            if (_event.EventType.Id == Guid.Empty)
             {
                 await DisplayAlert("Error", $"Please add '{lblEventType.Text}'", "Ok");
                 editEventType.Focus();
@@ -157,11 +250,11 @@ namespace Http_Post.Pages
         async void btnAddShift_Clicked(object sender, EventArgs e)
         {
             Hide();
-            ShiftCreateRequest shiftCreateRequest = await new Popup.Event.CreateShift().AddShift(Navigation);
-            if (shiftCreateRequest == null)
+            ShiftEditRequest shiftEditRequest = await new Popup.Event.CreateShift().AddShiftEditRequest(Navigation);
+            if (shiftEditRequest == null)
                 return;
 
-            ShiftCreate.Add(shiftCreateRequest);
+            ShiftEdit.Add(shiftEditRequest);
             // TODO: show shifts
         }
 

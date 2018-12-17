@@ -10,11 +10,14 @@ namespace Http_Post.Classes
 
         public readonly string[] languages = { Language.Russian.ToString(), Language.English.ToString() };
 
-        Dictionary<string, string> langDictionary = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> langDictionary = new Dictionary<string, string>()
+        {
+            { "RUSSIAN","ru-RU" },
+            { "ENGLISH", "en-US" }
+        };
 
         public Localization()
         {
-            MakeDictionary();
             if (App.Current.Properties.TryGetValue(KEY, out object name))
             {
                 // выполняем действия, если в словаре есть ключ "name"
@@ -22,12 +25,11 @@ namespace Http_Post.Classes
 
                 Resource.Culture = new CultureInfo(lang);
             }
-        }
-
-        private void MakeDictionary()
-        {
-            langDictionary.Add("RUSSIAN", "ru-RU");
-            langDictionary.Add("ENGLISH", "en-US");
+            else
+            {
+                App.Current.Properties[KEY] = langDictionary["ENGLISH"];
+                Resource.Culture = new CultureInfo(langDictionary["ENGLISH"]);
+            }
         }
 
         public void ChangeCulture (string lang)
