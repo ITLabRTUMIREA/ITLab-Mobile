@@ -21,11 +21,11 @@ namespace Http_Post.Popup.Event
         HttpClient client = Services.HttpClientFactory.HttpClient;
         Dictionary<string, Guid> nameToGuid;
         UserView user;
-        int num;
+        string Message;
 
-		public AddPersonToPlacePage (int num)
+		public AddPersonToPlacePage (string Message)
 		{
-            this.num = num;
+            this.Message = Message;
 			InitializeComponent ();
 
             btnCancel.Text = "Отмена";
@@ -116,7 +116,7 @@ namespace Http_Post.Popup.Event
             {
                 Id = user.Id,
                 EventRoleId = nameToGuid[pickerRoles.SelectedItem.ToString()]
-            }, num.ToString());
+            }, Message);
             await Navigation.PopModalAsync();
         }
 

@@ -8,6 +8,7 @@ using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,8 +38,8 @@ namespace Http_Post.Pages
             editAddress.Text = _event.Address;
 
             int number = 1;
-            List<ShiftEditRequest> shiftEdits = getFromNormalShifts(_event.Shifts);
-            foreach (var s in shiftEdits)
+            ShiftEdit = getFromNormalShifts(_event.Shifts);
+            foreach (var s in ShiftEdit.Reverse<ShiftEditRequest>())
             {
                 stackShift.Children.Add(new Controls.ShiftEditContentView(s, number));
                 number++;
@@ -47,55 +48,54 @@ namespace Http_Post.Pages
 
         List<ShiftEditRequest> getFromNormalShifts(List<ShiftView> shifts)
         {
-            List<PlaceEditRequest> new_places = new List<PlaceEditRequest>(); // places
-            int i = 0;
-            foreach (var pl in shifts[i].Places)
-            {
-                List<PersonWorkRequest> inv = new List<PersonWorkRequest>(); // users
-                #region add users to list
-                foreach (var p in pl.Invited)
-                    inv.Add(new PersonWorkRequest
-                    {
-                        Id = p.User.Id,
-                        EventRoleId = p.EventRole.Id,
-                    });
-                foreach (var p in pl.Wishers)
-                    inv.Add(new PersonWorkRequest
-                    {
-                        Id = p.User.Id,
-                        EventRoleId = p.EventRole.Id,
-                    });
-                foreach (var p in pl.Participants)
-                    inv.Add(new PersonWorkRequest
-                    {
-                        Id = p.User.Id,
-                        EventRoleId = p.EventRole.Id,
-                    });
-                foreach (var p in pl.Unknowns)
-                    inv.Add(new PersonWorkRequest
-                    {
-                        Id = p.User.Id,
-                        EventRoleId = p.EventRole.Id,
-                    });
-                #endregion
-                List<DeletableRequest> equip = new List<DeletableRequest>(); // equip
-                foreach (var e in pl.Equipment)
-                    equip.Add(new DeletableRequest
-                    {
-                        Id = e.Id
-                    });
-                new_places.Add(new PlaceEditRequest
-                {
-                    Id = pl.Id,
-                    TargetParticipantsCount = pl.TargetParticipantsCount,
-                    Description = pl.Description,
-                    Invited = inv,
-                    Equipment = equip
-                });
-                i++;
-            }
             List<ShiftEditRequest> shiftEdits = new List<ShiftEditRequest>();
             foreach (var shift in shifts)
+            {
+                List<PlaceEditRequest> new_places = new List<PlaceEditRequest>(); // places
+                foreach (var pl in shift.Places)
+                {
+                    List<PersonWorkRequest> inv = new List<PersonWorkRequest>(); // users
+                    #region add users to list
+                    foreach (var p in pl.Invited)
+                        inv.Add(new PersonWorkRequest
+                        {
+                            Id = p.User.Id,
+                            EventRoleId = p.EventRole.Id,
+                        });
+                    foreach (var p in pl.Wishers)
+                        inv.Add(new PersonWorkRequest
+                        {
+                            Id = p.User.Id,
+                            EventRoleId = p.EventRole.Id,
+                        });
+                    foreach (var p in pl.Participants)
+                        inv.Add(new PersonWorkRequest
+                        {
+                            Id = p.User.Id,
+                            EventRoleId = p.EventRole.Id,
+                        });
+                    foreach (var p in pl.Unknowns)
+                        inv.Add(new PersonWorkRequest
+                        {
+                            Id = p.User.Id,
+                            EventRoleId = p.EventRole.Id,
+                        });
+                    #endregion
+                    List<DeletableRequest> equip = new List<DeletableRequest>(); // equip
+                    foreach (var e in pl.Equipment)
+                        equip.Add(new DeletableRequest
+                        {
+                            Id = e.Id
+                        });
+                    new_places.Add(new PlaceEditRequest
+                    {
+                        Id = pl.Id,
+                        TargetParticipantsCount = pl.TargetParticipantsCount,
+                        Description = pl.Description,
+                        Invited = inv,
+                        Equipment = equip
+                    });
+                }
                 shiftEdits.Add(new ShiftEditRequest
                 {
                     Id = shift.Id,
@@ -104,6 +104,7 @@ namespace Http_Post.Pages
                     EndTime = shift.EndTime,
                     Places = new_places,
                 });
+            }
             return shiftEdits;
         }
 

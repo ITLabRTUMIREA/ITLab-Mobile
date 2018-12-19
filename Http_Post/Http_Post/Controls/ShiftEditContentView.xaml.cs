@@ -17,9 +17,11 @@ namespace Http_Post.Controls
             Source = "ArrowDown.png"
         };
         ShiftEditRequest shiftEdit;
+        int numberOfShift;
 
         public ShiftEditContentView (ShiftEditRequest shiftEditRequest, int numberOfShift)
 		{
+            this.numberOfShift = numberOfShift;
             shiftEdit = shiftEditRequest;
 			InitializeComponent ();
 
@@ -52,13 +54,14 @@ namespace Http_Post.Controls
 
         void AddPlaces()
         {
-            StackPlaces.Children.Clear();
+            for (int i = 6; i < StackPlaces.Children.Count; i++)
+                StackPlaces.Children.RemoveAt(i);
             int num = 1;
             foreach(var place in shiftEdit.Places)
             {
                 if (place.Delete)
                     continue;
-                StackPlaces.Children.Add(new PlaceEditContentView(place, num));
+                StackPlaces.Children.Add(new PlaceEditContentView(place, numberOfShift, num));
                 num++;
             }
         }

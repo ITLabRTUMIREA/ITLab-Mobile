@@ -4,6 +4,7 @@ using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using System.Net.Http;
 using Xamarin.Forms;
 using Http_Post.Controls;
@@ -44,7 +45,7 @@ namespace Http_Post.Pages
                 if (receivedData.StatusCode != ResponseStatusCode.OK)
                     throw new Exception($"error {receivedData.StatusCode}");
                 OneEvent = receivedData.Data;
-
+                
                 Init(); // init binding content 
 
             } catch (Exception ex)
@@ -56,7 +57,7 @@ namespace Http_Post.Pages
         void AddShifts()
         {
             int num = 1;
-            foreach (var shift in OneEvent.Shifts)
+            foreach (var shift in OneEvent.Shifts.Reverse<Models.PublicAPI.Responses.Event.ShiftView>())
             {
                 stackLayout.Children.Add(new ShiftContentView(shift, num));
                 num++;

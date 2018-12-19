@@ -1,4 +1,4 @@
-﻿using Models.PublicAPI.Requests.Events.Event.Edit;
+using Models.PublicAPI.Requests.Events.Event.Edit;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.People;
@@ -29,10 +29,12 @@ namespace Http_Post.Controls
         HttpClient client = Services.HttpClientFactory.HttpClient;
         IEnumerable<EventRoleView> roles;
         int numberOfPlace;
+        string txtMessage;
 
-        public PlaceEditContentView (PlaceEditRequest placeEditRequest, int numberOfPlace)
+        public PlaceEditContentView (PlaceEditRequest placeEditRequest, int numberOfShift, int numberOfPlace)
 		{
             this.numberOfPlace = numberOfPlace;
+            txtMessage = numberOfShift.ToString() + numberOfShift.ToString();
             placeEdit = placeEditRequest;
 			InitializeComponent ();
 
@@ -134,13 +136,13 @@ namespace Http_Post.Controls
         async void btnInvite_Clicked(object sender, System.EventArgs e)
         {
             MessagingCenter.Subscribe<PersonWorkRequest>(this,
-                numberOfPlace.ToString(),
+                txtMessage,
                 (person) =>
                 {
                     placeEdit.Invited.Add(person);
                     AddPeople();
                 });
-            await Navigation.PushModalAsync(new Popup.Event.AddPersonToPlacePage(numberOfPlace));
+            await Navigation.PushModalAsync(new Popup.Event.AddPersonToPlacePage(txtMessage));
         }
 
         async void btnAddEquipment_Clicked(object sender, System.EventArgs e)
