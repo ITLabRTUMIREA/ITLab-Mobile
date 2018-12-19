@@ -39,11 +39,11 @@
                              Spacing="2">
                     <Button x:Name="btnInvite"
                             HorizontalOptions="Start"
-                            WidthRequest="200"
+                            
                             Clicked="btnInvite_Clicked"/>
                     <Button x:Name="btnAddEquipment"
                             HorizontalOptions="Start"
-                            WidthRequest="200"
+                            
                             Clicked="btnAddEquipment_Clicked"/>
                 </StackLayout>
                 <StackLayout x:Name="stackPart"
