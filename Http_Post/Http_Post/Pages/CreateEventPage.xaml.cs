@@ -37,16 +37,11 @@ namespace Http_Post.Pages
             editDescription.Text = _event.Description;
             editAddress.Text = _event.Address;
 
-            int number = 1;
-            ShiftEdit = getFromNormalShifts(_event.Shifts);
-            foreach (var s in ShiftEdit.Reverse<ShiftEditRequest>())
-            {
-                stackShift.Children.Add(new Controls.ShiftEditContentView(s, number));
-                number++;
-            }
+            ShiftEdit = GetFromNormalShifts(_event.Shifts);
+            ShowShifts();
         }
 
-        List<ShiftEditRequest> getFromNormalShifts(List<ShiftView> shifts)
+        List<ShiftEditRequest> GetFromNormalShifts(List<ShiftView> shifts)
         {
             List<ShiftEditRequest> shiftEdits = new List<ShiftEditRequest>();
             foreach (var shift in shifts)
@@ -110,6 +105,8 @@ namespace Http_Post.Pages
 
         public CreateEventPage ()
 		{
+            _event = new EventViewExtended();
+            _event.EventType = new EventTypeView();
             Init(true);
         }
         
@@ -179,15 +176,32 @@ namespace Http_Post.Pages
                 string jsonContent = "";
                 if (_isCreating)
                 {
-
+                    EventCreateRequest eventCreateRequest = new EventCreateRequest
+                    {
+                        Title = editName.Text,
+                        EventTypeId = _event.EventType.Id,
+                        Description = editDescription.Text,
+                        Address = editAddress.Text,
+                        Shifts = GetFromEditToCreateShifts()
+                    };
+                    jsonContent = JsonConvert.SerializeObject(eventCreateRequest);
                 }
                 else
                 {
-
+                    EventEditRequest eventEditRequest = new EventEditRequest
+                    {
+                        Id = _event.Id,
+                        EventTypeId = _event.EventType.Id,
+                        Title = editName.Text,
+                        Address = editAddress.Text,
+                        Description = editDescription.Text,
+                        Shifts = ShiftEdit
+                    };
+                    jsonContent = JsonConvert.SerializeObject(eventEditRequest);
                 }
 
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-                var result = await client.PostAsync("event/", content);
+                var result = _isCreating ? await client.PostAsync("event/", content) : await client.PutAsync("event/", content);
 
                 var resultContent = await result.Content.ReadAsStringAsync();
                 var message = JsonConvert.DeserializeObject<OneObjectResponse<EventView>>(resultContent);
@@ -202,6 +216,44 @@ namespace Http_Post.Pages
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
             }
+        }
+
+        List<ShiftCreateRequest> GetFromEditToCreateShifts()
+        {
+            List<ShiftCreateRequest> shiftCreateRequests = new List<ShiftCreateRequest>();
+            foreach(var shift in ShiftEdit)
+            {
+                List<PlaceCreateRequest> placeCreateRequests = new List<PlaceCreateRequest>();
+                foreach(var place in shift.Places)
+                {
+                    List<PersonWorkRequest> inv = new List<PersonWorkRequest>();
+                    foreach (var invited in place.Invited)
+                        inv.Add(new PersonWorkRequest
+                        {
+                            Id = invited.Id,
+                            EventRoleId = invited.EventRoleId,
+                            Delete = invited.Delete
+                        });
+                    List<Guid> equipment = new List<Guid>();
+                    foreach (var equip in place.Equipment)
+                        equipment.Add(equip.Id);
+                    placeCreateRequests.Add(new PlaceCreateRequest
+                    {
+                        TargetParticipantsCount = place.TargetParticipantsCount,
+                        Description = place.Description,
+                        Equipment = equipment,
+                        Invited = inv
+                    });
+                }
+                shiftCreateRequests.Add(new ShiftCreateRequest
+                {
+                    BeginTime = shift.BeginTime.Value,
+                    EndTime = shift.EndTime.Value,
+                    Description = shift.Description,
+                    Places = placeCreateRequests
+                });
+            }
+            return shiftCreateRequests;
         }
 
         async Task<bool> CheckAllFieldsForNull()
@@ -255,8 +307,21 @@ namespace Http_Post.Pages
             if (shiftEditRequest == null)
                 return;
 
-            ShiftEdit.Add(shiftEditRequest);
-            // TODO: show shifts
+            ShiftEdit.Insert(0, shiftEditRequest);
+            ShowShifts();
+        }
+
+        void ShowShifts()
+        {
+            stackShift.Children.Clear();
+            int number = 1;
+            foreach (var shift in ShiftEdit.Reverse<ShiftEditRequest>())
+            {
+                if (shift.Delete)
+                    continue;
+                stackShift.Children.Add(new Controls.ShiftEditContentView(shift, number));
+                number++;
+            }
         }
 
         void Show()

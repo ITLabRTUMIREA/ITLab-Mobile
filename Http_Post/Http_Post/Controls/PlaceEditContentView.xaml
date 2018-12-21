@@ -32,7 +32,8 @@
             <StackLayout x:Name="stackToHide"
                        IsVisible="False">
                 <Editor x:Name="editDescription"
-                        FontAttributes="Italic"/>
+                        FontAttributes="Italic"
+                        TextChanged="editDescription_TextChanged"/>
                 <StackLayout Orientation="Horizontal"
                              Padding="0"
                              Margin="0"

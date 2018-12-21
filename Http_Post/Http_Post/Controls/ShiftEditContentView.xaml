@@ -43,21 +43,23 @@
                        IsVisible="False">
                 <Label x:Name="lblBeginTitle"/>
                 <StackLayout Orientation="Horizontal"
-                             Margin="20,0,0,0"
-                             IsVisible="True">
-                    <DatePicker x:Name="DatePickerBegin"/>
-                    <TimePicker x:Name="TimePickerBegin"/>
+                             Margin="20,0,0,0">
+                    <DatePicker x:Name="DatePickerBegin"
+                                PropertyChanged="DatePickerBegin_PropertyChanged"/>
+                    <TimePicker x:Name="TimePickerBegin"
+                                PropertyChanged="TimePickerBegin_PropertyChanged"/>
                 </StackLayout>
                 <Label x:Name="lblEndTitle"/>
                 <StackLayout Orientation="Horizontal"
-                             Margin="20,0,0,0"
-                             IsVisible="True">
-                    <DatePicker x:Name="DatePickerEnd"/>
-                    <TimePicker x:Name="TimePickerEnd"/>
+                             Margin="20,0,0,0">
+                    <DatePicker x:Name="DatePickerEnd"
+                                PropertyChanged="DatePickerEnd_PropertyChanged"/>
+                    <TimePicker x:Name="TimePickerEnd"
+                                PropertyChanged="TimePickerEnd_PropertyChanged"/>
                 </StackLayout>
                 <Editor x:Name="editDescription"
                         FontAttributes="Italic"
-                        IsVisible="True"/>
+                        TextChanged="editDescription_TextChanged"/>
             </StackLayout>
       </StackLayout>
   </ContentView.Content>

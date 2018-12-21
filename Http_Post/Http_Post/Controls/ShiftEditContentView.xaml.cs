@@ -25,10 +25,12 @@ namespace Http_Post.Controls
             shiftEdit = shiftEditRequest;
 			InitializeComponent ();
 
-            lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftEdit.Places.Count}";
             image.Source = pathCollapse.Source;
 
+            lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftEdit.Places.Count}";
             lblBeginTitle.Text = "Begining time:";
+            DateTime date = shiftEdit.BeginTime.Value;
+            DateTime date1 = shiftEditRequest.BeginTime.Value;
             DatePickerBegin.Date = shiftEdit.BeginTime.Value.ToLocalTime().Date;
             TimePickerBegin.Time = shiftEdit.BeginTime.Value.ToLocalTime().TimeOfDay;
 
@@ -64,6 +66,7 @@ namespace Http_Post.Controls
                 StackPlaces.Children.Add(new PlaceEditContentView(place, numberOfShift, num));
                 num++;
             }
+            lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {num - 1}";
         }
 
         void DeleteShift_Tapped(object sender, EventArgs e)
@@ -81,5 +84,20 @@ namespace Http_Post.Controls
             shiftEdit.Places.Add(placeEditRequest);
             AddPlaces();
         }
+
+        void editDescription_TextChanged(object sender, TextChangedEventArgs e)
+            => shiftEdit.Description = editDescription.Text;
+
+        void DatePickerBegin_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => shiftEdit.BeginTime = DatePickerBegin.Date + TimePickerBegin.Time;
+
+        private void TimePickerBegin_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => shiftEdit.BeginTime = DatePickerBegin.Date + TimePickerBegin.Time;
+
+        void DatePickerEnd_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => shiftEdit.EndTime = DatePickerEnd.Date + TimePickerEnd.Time;
+
+        void TimePickerEnd_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+            => shiftEdit.EndTime = DatePickerEnd.Date + TimePickerEnd.Time;
     }
 }

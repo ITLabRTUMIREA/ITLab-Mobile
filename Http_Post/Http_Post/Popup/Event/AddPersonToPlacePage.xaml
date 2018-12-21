@@ -6,8 +6,8 @@
     <ContentPage.Content>
         <StackLayout Margin="2"
                      Spacing="2"
-                     HorizontalOptions="Center"
-                     VerticalOptions="Center">
+                     HorizontalOptions="CenterAndExpand"
+                     VerticalOptions="StartAndExpand">
             <Label x:Name="lblTitle"
                    FontAttributes="Bold"/>
             <Entry x:Name="editName"

@@ -47,8 +47,8 @@ namespace Http_Post.Controls
 
             GetEventRoles();
 
-            AddPeople();
             AddEquipment();
+            AddPeople();
         }
 
         void PlaceNumber_Tapped(object sender, System.EventArgs e)
@@ -74,6 +74,14 @@ namespace Http_Post.Controls
             stackPart.Children.Clear();
             foreach(var person in placeEdit.Invited)
             {
+                var lblName = new Label
+                {
+                    FontAttributes = FontAttributes.Bold
+                };
+                var lblMail = new Label
+                {
+                    FontSize = lblName.FontSize - 4
+                };
                 try
                 {
                     var response = await client.GetStringAsync($"user/{person.Id}");
@@ -81,21 +89,17 @@ namespace Http_Post.Controls
 
                     var p = message.Data;
                     EventRoleView e = roles.Single(eventRole => eventRole.Id == person.EventRoleId);
-                    var lblName = new Label
-                    {
-                        Text = p.FirstName + " " + p.LastName + ", " + e.Title,
-                        FontAttributes = FontAttributes.Bold
-                    };
-                    var lblMail = new Label
-                    {
-                        Text = p.Email,
-                        FontSize = lblName.FontSize - 4
-                    };
-                    stackPart.Children.Add(lblName);
-                    stackPart.Children.Add(lblMail);
+                    lblName.Text = p.FirstName + " " + p.LastName + ", " + e.Title;
+                    lblMail.Text = p.Email;
+                    
                 }
                 catch (Exception)
-                { }
+                {
+                    lblName.Text = "Can't load name and role";
+                    lblMail.Text = "Can't load mail";
+                }
+                stackPart.Children.Add(lblName);
+                stackPart.Children.Add(lblMail);
             }
 
             stackPart.IsVisible = stackPart.Children.Count == 0 ? false : true;
@@ -107,27 +111,30 @@ namespace Http_Post.Controls
             stackEquip.Children.Clear();
             foreach (var equipment in placeEdit.Equipment)
             {
+                var lblType = new Label
+                {
+                    FontAttributes = FontAttributes.Bold
+                };
+                var lblSerial = new Label
+                {
+                    FontSize = lblType.FontSize - 4
+                };
                 try
                 {
                     var response = await client.GetStringAsync($"Equipment/{equipment.Id}");
                     var message = JsonConvert.DeserializeObject<OneObjectResponse<Models.PublicAPI.Responses.Equipment.EquipmentView>>(response);
 
                     Models.PublicAPI.Responses.Equipment.EquipmentView e = message.Data;
-                    var lblType = new Label
-                    {
-                        Text = e.EquipmentType.Title,
-                        FontAttributes = FontAttributes.Bold
-                    };
-                    var lblSerial = new Label
-                    {
-                        Text = e.SerialNumber,
-                        FontSize = lblType.FontSize - 4
-                    };
-                    stackEquip.Children.Add(lblType);
-                    stackEquip.Children.Add(lblSerial);
+                    lblType.Text = e.EquipmentType.Title;
+                    lblSerial.Text = e.SerialNumber;
                 }
                 catch (Exception)
-                { }
+                {
+                    lblType.Text = "Can't load type";
+                    lblSerial.Text = "Can't load serial number";
+                }
+                stackEquip.Children.Add(lblType);
+                stackEquip.Children.Add(lblSerial);
             }
 
             stackEquip.IsVisible = stackEquip.Children.Count == 0 ? false : true;
@@ -160,5 +167,8 @@ namespace Http_Post.Controls
             placeEdit.Delete = true;
             this.IsVisible = false;
         }
+
+        void editDescription_TextChanged(object sender, TextChangedEventArgs e)
+            => placeEdit.Description = editDescription.Text;
     }
 }
