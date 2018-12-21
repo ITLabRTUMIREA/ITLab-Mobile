@@ -28,10 +28,7 @@
                         HorizontalOptions="Center"
                         Margin="20"
                         Clicked="btnAddShift_Clicked"/>
-
-                <!--ListView x:Name="listShift"
-                          IsVisible="False"
-                          Style="{DynamicResource themeStack}"/-->
+                
                 <StackLayout x:Name="stackShift"
                              IsVisible="True"/>
 

@@ -26,40 +26,19 @@ namespace Http_Post
         private void Lang_Clicked(object sender, EventArgs e)
             => AskForLanguage(localization);
 
-        private async void AskForLanguage(Localization loc)
+        void AskForLanguage(Localization loc)
         {
-            try
-            {
-                string result = await DisplayActionSheet("Choose language", cancel, null, loc.languages);
+            loc.ChangeCulture();
 
-                if (string.IsNullOrEmpty(result) || result.Equals(cancel))
-                    return;
-
-                result = result.ToUpper();
-                loc.ChangeCulture(result);
-
-                UpdateLanguage();
-                menuSet.UpdatePages();
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
+            menuSet.UpdatePages();
         }
 
-        private async void Theme_Change (object sender, EventArgs e)
+        void Theme_Change (object sender, EventArgs e)
         {
-            try
-            {
-                //Application.Current.Resources.ChangeTheme();
-                //Application.Current.Resources.MergedDictionaries.Remove(ThemeManager.GetCurrentTheme());
-                //ThemeManager.ChangeTheme();
-                //Application.Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
+            //Application.Current.Resources.ChangeTheme();
+            //Application.Current.Resources.MergedDictionaries.Remove(ThemeManager.GetCurrentTheme());
+            //ThemeManager.ChangeTheme();
+            //Application.Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
         }
 
         private void UpdateLanguage()

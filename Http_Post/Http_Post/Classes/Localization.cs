@@ -8,65 +8,45 @@ namespace Http_Post.Classes
     {
         private readonly string KEY = "language";
 
-        public readonly string[] languages = { Language.Russian.ToString(), Language.English.ToString() };
-
         private static readonly Dictionary<string, string> langDictionary = new Dictionary<string, string>()
         {
-            { "RUSSIAN","ru-RU" },
-            { "ENGLISH", "en-US" }
+            { "russian","ru-RU" },
+            { "english", "en-US" }
         };
 
         public Localization()
         {
+            SetCulture();
+        }
+
+        void SetCulture()
+        {
+            Resource.Culture = new CultureInfo(GetCultureProperties());
+        }
+
+        string GetCultureProperties ()
+        {
             if (App.Current.Properties.TryGetValue(KEY, out object name))
             {
                 // выполняем действия, если в словаре есть ключ "name"
-                string lang = (string)name;
-
-                Resource.Culture = new CultureInfo(lang);
+                return (string)name;
             }
             else
             {
-                App.Current.Properties[KEY] = langDictionary["ENGLISH"];
-                Resource.Culture = new CultureInfo(langDictionary["ENGLISH"]);
+                App.Current.Properties[KEY] = langDictionary["russian"];
+                return langDictionary["russian"];
             }
         }
 
-        public void ChangeCulture (string lang)
+        public void ChangeCulture ()
         {
-            if (lang.Equals(Language.Russian.ToString().ToUpper()))
-            {
-                Resource.Culture = new CultureInfo("ru-RU");
-            }
-
-            else if (lang.Equals(Language.English.ToString().ToUpper()))
-            {
-                Resource.Culture = new CultureInfo("en-US");
-            }
-
-            RememberCulture(lang);
-        }
-
-        private void RememberCulture(string language)
-        {
-            language = langDictionary[language];
-            object name = "";
-            if (App.Current.Properties.TryGetValue(KEY, out name))
-            {
-                // выполняем действия, если в словаре есть ключ "name"
-                App.Current.Properties[KEY] = language;
-            }
+            string name = App.Current.Properties[KEY].ToString();
+            if (name == langDictionary["russian"])
+                App.Current.Properties[KEY] = langDictionary["english"];
             else
-            {
-                // Добавить ключ "name" в словарь
-                App.Current.Properties.Add(KEY, language);
-            }
-        }
+                App.Current.Properties[KEY] = langDictionary["russian"];
 
-        enum Language
-        {
-            Russian,
-            English,
+            SetCulture();
         }
     }
 }

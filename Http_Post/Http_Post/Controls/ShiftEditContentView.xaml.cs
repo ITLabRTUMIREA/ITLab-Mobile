@@ -16,28 +16,26 @@ namespace Http_Post.Controls
         {
             Source = "ArrowDown.png"
         };
-        ShiftEditRequest shiftEdit;
+        ShiftEditRequest shiftEdit = new ShiftEditRequest();
         int numberOfShift;
 
         public ShiftEditContentView (ShiftEditRequest shiftEditRequest, int numberOfShift)
 		{
             this.numberOfShift = numberOfShift;
-            shiftEdit = shiftEditRequest;
 			InitializeComponent ();
 
             image.Source = pathCollapse.Source;
 
             lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftEdit.Places.Count}";
             lblBeginTitle.Text = "Begining time:";
-            DateTime date = shiftEdit.BeginTime.Value;
-            DateTime date1 = shiftEditRequest.BeginTime.Value;
-            DatePickerBegin.Date = shiftEdit.BeginTime.Value.ToLocalTime().Date;
-            TimePickerBegin.Time = shiftEdit.BeginTime.Value.ToLocalTime().TimeOfDay;
+            DatePickerBegin.Date = shiftEditRequest.BeginTime.Value.ToLocalTime().Date;
+            TimePickerBegin.Time = shiftEditRequest.BeginTime.Value.ToLocalTime().TimeOfDay;
 
             lblEndTitle.Text = "Ending time:";
-            DatePickerEnd.Date = shiftEdit.EndTime.Value.ToLocalTime().Date;
-            TimePickerEnd.Time = shiftEdit.EndTime.Value.ToLocalTime().TimeOfDay;
+            DatePickerEnd.Date = shiftEditRequest.EndTime.Value.ToLocalTime().Date;
+            TimePickerEnd.Time = shiftEditRequest.EndTime.Value.ToLocalTime().TimeOfDay;
 
+            shiftEdit = shiftEditRequest;
             editDescription.Placeholder = Res.Resource.Description;
             editDescription.Text = shiftEdit.Description;
 

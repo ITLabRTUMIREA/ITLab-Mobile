@@ -92,7 +92,10 @@ namespace Http_Post
                 await Navigation.PushAsync(menu);
 
                 if (!NeedToRender)
+                {
                     Init();
+                    text_password.Text = ""; // clean password input
+                }
                 return;
             }
 
