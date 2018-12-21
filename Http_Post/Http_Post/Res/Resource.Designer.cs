@@ -61,6 +61,24 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        public static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string Address {
@@ -120,6 +138,15 @@ namespace Http_Post.Res {
         public static string ADMIN_Yes {
             get {
                 return ResourceManager.GetString("ADMIN_Yes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Begining.
+        /// </summary>
+        public static string Begining {
+            get {
+                return ResourceManager.GetString("Begining", resourceCulture);
             }
         }
         
@@ -187,6 +214,24 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        public static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ending.
+        /// </summary>
+        public static string Ending {
+            get {
+                return ResourceManager.GetString("Ending", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Equipment type.
         /// </summary>
         public static string EquipmentType {
@@ -210,6 +255,15 @@ namespace Http_Post.Res {
         public static string ErrorNoBeginTime {
             get {
                 return ResourceManager.GetString("ErrorNoBeginTime", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t load data.
+        /// </summary>
+        public static string ErrorNoData {
+            get {
+                return ResourceManager.GetString("ErrorNoData", resourceCulture);
             }
         }
         
@@ -268,6 +322,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Event.
+        /// </summary>
+        public static string Event {
+            get {
+                return ResourceManager.GetString("Event", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Event type.
         /// </summary>
         public static string EventType {
@@ -282,6 +345,33 @@ namespace Http_Post.Res {
         public static string Firstname {
             get {
                 return ResourceManager.GetString("Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invitations.
+        /// </summary>
+        public static string Invitations {
+            get {
+                return ResourceManager.GetString("Invitations", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invite.
+        /// </summary>
+        public static string Invite {
+            get {
+                return ResourceManager.GetString("Invite", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invited.
+        /// </summary>
+        public static string Invited {
+            get {
+                return ResourceManager.GetString("Invited", resourceCulture);
             }
         }
         
@@ -313,6 +403,24 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Need.
+        /// </summary>
+        public static string Needs {
+            get {
+                return ResourceManager.GetString("Needs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Now.
+        /// </summary>
+        public static string Now {
+            get {
+                return ResourceManager.GetString("Now", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Number.
         /// </summary>
         public static string Number {
@@ -336,6 +444,15 @@ namespace Http_Post.Res {
         public static string Owner {
             get {
                 return ResourceManager.GetString("Owner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Participant.
+        /// </summary>
+        public static string Participant {
+            get {
+                return ResourceManager.GetString("Participant", resourceCulture);
             }
         }
         
@@ -376,11 +493,20 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Roles.
+        ///   Looks up a localized string similar to Reject.
         /// </summary>
-        public static string Roles {
+        public static string Reject {
             get {
-                return ResourceManager.GetString("Roles", resourceCulture);
+                return ResourceManager.GetString("Reject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Role.
+        /// </summary>
+        public static string Role {
+            get {
+                return ResourceManager.GetString("Role", resourceCulture);
             }
         }
         
@@ -403,11 +529,29 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send wish.
+        /// </summary>
+        public static string SendWish {
+            get {
+                return ResourceManager.GetString("SendWish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Serial number.
         /// </summary>
         public static string SerialNumber {
             get {
                 return ResourceManager.GetString("SerialNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shift.
+        /// </summary>
+        public static string Shift {
+            get {
+                return ResourceManager.GetString("Shift", resourceCulture);
             }
         }
         
@@ -493,6 +637,15 @@ namespace Http_Post.Res {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Notifications.
+        /// </summary>
+        public static string TitleNotifications {
+            get {
+                return ResourceManager.GetString("TitleNotifications", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Profile.
         /// </summary>
         public static string TitleProfile {
@@ -534,6 +687,33 @@ namespace Http_Post.Res {
         public static string TitleUsers {
             get {
                 return ResourceManager.GetString("TitleUsers", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wisher.
+        /// </summary>
+        public static string Wisher {
+            get {
+                return ResourceManager.GetString("Wisher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wishes.
+        /// </summary>
+        public static string Wishes {
+            get {
+                return ResourceManager.GetString("Wishes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You&apos;ve sent wish.
+        /// </summary>
+        public static string YouSentWish {
+            get {
+                return ResourceManager.GetString("YouSentWish", resourceCulture);
             }
         }
     }

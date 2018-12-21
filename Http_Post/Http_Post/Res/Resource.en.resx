@@ -317,10 +317,6 @@
     <value>Users</value>
     <comment>Title of pages and buttons</comment>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Roles</value>
-    <comment>Roles title</comment>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
     <comment>Delete text</comment>
@@ -328,5 +324,89 @@
   <data name="TitleShort" xml:space="preserve">
     <value>Short title</value>
     <comment>Equipment short title</comment>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+    <comment>Accept</comment>
+  </data>
+  <data name="Begining" xml:space="preserve">
+    <value>Begining</value>
+    <comment>Begining</comment>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+    <comment>Duration</comment>
+  </data>
+  <data name="ErrorNoData" xml:space="preserve">
+    <value>Can't load data</value>
+    <comment>Error when can't load something</comment>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Event</value>
+    <comment>Event types title</comment>
+  </data>
+  <data name="Invitations" xml:space="preserve">
+    <value>Invitations</value>
+    <comment>Invitations</comment>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Reject</value>
+    <comment>Reject</comment>
+  </data>
+  <data name="TitleNotifications" xml:space="preserve">
+    <value>Notifications</value>
+    <comment>Title of pages and buttons</comment>
+  </data>
+  <data name="Wishes" xml:space="preserve">
+    <value>Wishes</value>
+    <comment>Wishes</comment>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+    <comment>Add title</comment>
+  </data>
+  <data name="Ending" xml:space="preserve">
+    <value>Ending</value>
+    <comment>Ending title</comment>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Invite</value>
+    <comment>Invite title</comment>
+  </data>
+  <data name="Invited" xml:space="preserve">
+    <value>Invited</value>
+    <comment>Invited title</comment>
+  </data>
+  <data name="Needs" xml:space="preserve">
+    <value>Need</value>
+    <comment>Needs title</comment>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Now</value>
+    <comment>Now title</comment>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Participant</value>
+    <comment>Participant title</comment>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Role</value>
+    <comment>Role title</comment>
+  </data>
+  <data name="SendWish" xml:space="preserve">
+    <value>Send wish</value>
+    <comment>Send wish title</comment>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Shift</value>
+    <comment>Shift title</comment>
+  </data>
+  <data name="Wisher" xml:space="preserve">
+    <value>Wisher</value>
+    <comment>Wisher title</comment>
+  </data>
+  <data name="YouSentWish" xml:space="preserve">
+    <value>You've sent wish</value>
+    <comment>Title for btn when user sent wish</comment>
   </data>
 </root>

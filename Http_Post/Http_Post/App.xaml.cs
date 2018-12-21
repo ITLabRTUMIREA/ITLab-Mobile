@@ -27,13 +27,16 @@ namespace Http_Post
 		protected override void OnStart ()
 		{
             // Handle when your app starts
-            AppCenter.Start("ios=44f28903-3a0a-4349-ac68-193463cc7927;" +
+            AppCenter.Start("ios={Your iOS App secret here};" +
                             "uwp={Your UWP App secret here};" +
                             "android={Your Android App secret here}",
                             typeof(Analytics), typeof(Crashes));
 
-           //Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
-           //Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
+            //Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
+            //Current.Resources.Add(ThemeManager.GetCurrentTheme());
+            //Current.Resources.LoadTheme();
+            //Current.Resources.Add(new GeneralStyle()); // Apply general theme
+            //Current.Resources.LoadTheme(); // get and load current theme
         }
 
 		protected override void OnSleep ()

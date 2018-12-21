@@ -317,10 +317,6 @@
     <value>Пользователи</value>
     <comment>Title of pages and buttons</comment>
   </data>
-  <data name="Roles" xml:space="preserve">
-    <value>Роли</value>
-    <comment>Roles title</comment>
-  </data>
   <data name="Delete" xml:space="preserve">
     <value>Удалить</value>
     <comment>Delete text</comment>
@@ -328,5 +324,89 @@
   <data name="TitleShort" xml:space="preserve">
     <value>Короткое название</value>
     <comment>Equipment short title</comment>
+  </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Принять</value>
+    <comment>Accept</comment>
+  </data>
+  <data name="Begining" xml:space="preserve">
+    <value>Начало</value>
+    <comment>Begining</comment>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Длительность</value>
+    <comment>Duration</comment>
+  </data>
+  <data name="ErrorNoData" xml:space="preserve">
+    <value>Не удалось загрузить данные</value>
+    <comment>Error when can't load something</comment>
+  </data>
+  <data name="Event" xml:space="preserve">
+    <value>Событие</value>
+    <comment>Event types title</comment>
+  </data>
+  <data name="Invitations" xml:space="preserve">
+    <value>Приглашения</value>
+    <comment>Invitations</comment>
+  </data>
+  <data name="Reject" xml:space="preserve">
+    <value>Отменить</value>
+    <comment>Reject</comment>
+  </data>
+  <data name="TitleNotifications" xml:space="preserve">
+    <value>Уведомления</value>
+    <comment>Title of pages and buttons</comment>
+  </data>
+  <data name="Wishes" xml:space="preserve">
+    <value>Заявки</value>
+    <comment>Wishes</comment>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Добавить</value>
+    <comment>Add title</comment>
+  </data>
+  <data name="Ending" xml:space="preserve">
+    <value>Конец</value>
+    <comment>Ending title</comment>
+  </data>
+  <data name="Invite" xml:space="preserve">
+    <value>Пригласить</value>
+    <comment>Invite title</comment>
+  </data>
+  <data name="Invited" xml:space="preserve">
+    <value>Приглашённый</value>
+    <comment>Invited title</comment>
+  </data>
+  <data name="Needs" xml:space="preserve">
+    <value>Нужно</value>
+    <comment>Needs title</comment>
+  </data>
+  <data name="Now" xml:space="preserve">
+    <value>Сейчас</value>
+    <comment>Now title</comment>
+  </data>
+  <data name="Participant" xml:space="preserve">
+    <value>Участник</value>
+    <comment>Participant title</comment>
+  </data>
+  <data name="Role" xml:space="preserve">
+    <value>Роль</value>
+    <comment>Role title</comment>
+  </data>
+  <data name="SendWish" xml:space="preserve">
+    <value>Отправить заявку</value>
+    <comment>Send wish title</comment>
+  </data>
+  <data name="Shift" xml:space="preserve">
+    <value>Смена</value>
+    <comment>Shift title</comment>
+  </data>
+  <data name="Wisher" xml:space="preserve">
+    <value>Желающий</value>
+    <comment>Wisher title</comment>
+  </data>
+  <data name="YouSentWish" xml:space="preserve">
+    <value>Вы отправили заявку</value>
+    <comment>Title for btn when user sent wish</comment>
   </data>
 </root>

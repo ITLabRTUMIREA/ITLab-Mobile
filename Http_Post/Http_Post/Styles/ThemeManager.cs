@@ -12,7 +12,7 @@ namespace Http_Post.Styles
         private static ResourceDictionary Dark { get; } = new DarkStyle();
         private static ResourceDictionary Light { get; } = new LightStyle();
 
-        public static ResourceDictionary GetCurrentTheme()
+        private static ResourceDictionary GetCurrentTheme()
         {
             if (App.Current.Properties.TryGetValue(KEY, out object name)) // if exists
                 return (ResourceDictionary)name; 
@@ -29,27 +29,42 @@ namespace Http_Post.Styles
         }
 
         // method should be used only once and only from App.OnStart()
-        /*public static void LoadTheme(this ResourceDictionary res)
+        public static void LoadTheme(this ResourceDictionary res)
         {
             res.MergedDictionaries.Add(GetCurrentTheme());
         }
 
-        public static void ChangeTheme(this ResourceDictionary res)
+        public static void ChangeTheme(this ResourceDictionary app)
         {
-            if (res.MergedDictionaries.Contains(Dark)) // if dark
+            if (app.MergedDictionaries.Contains(Dark)) // if dark
             {
-                res.MergedDictionaries.Remove(Dark);
-                res.MergedDictionaries.Add(Light);
+                // cahnge to light
+                app.MergedDictionaries.Remove(Dark);
+                app.MergedDictionaries.Add(Light);
                 SetCurrentTheme(Light);
             }
             else
             {
-                res.MergedDictionaries.Remove(Light);
-                res.MergedDictionaries.Add(Dark);
+                // change to dark
+                app.MergedDictionaries.Remove(Light);
+                app.MergedDictionaries.Add(Dark);
                 SetCurrentTheme(Dark);
             }
+
+            //if (GetCurrentTheme() == Dark)
+            //{
+            //    app.Clear();
+            //    SetCurrentTheme(Light);
+            //    app.LoadTheme();
+            //}
+            //else
+            //{
+            //    app.Clear();
+            //    SetCurrentTheme(Dark);
+            //    app.LoadTheme();
+            //}
         }
-        */
+        /*
         public static void ChangeTheme()
         {
             if (GetCurrentTheme() == Dark)
@@ -58,5 +73,6 @@ namespace Http_Post.Styles
             else
                 SetCurrentTheme(Dark);
         }
+        */
     }
 }

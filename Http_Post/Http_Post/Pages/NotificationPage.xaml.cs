@@ -26,9 +26,9 @@ namespace Http_Post.Pages
 		{
 			InitializeComponent ();
 
-            Title = Device.RuntimePlatform == Device.UWP ? "Notifications" : "";
-            tableInvitations.Title = "Invitations: can't load";
-            tableWishes.Title = "Wishes: can't load";
+            Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleNotifications : "";
+            tableInvitations.Title = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
+            tableWishes.Title = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
 
             invitations = new ObservableCollection<EventApplicationView>();
             wishes = new ObservableCollection<WisherEventView>();
@@ -77,7 +77,7 @@ namespace Http_Post.Pages
                     tableInvitations.Add(new InvitationsView(invitation, Navigation));
                 }
 
-                tableInvitations.Title = $"Invitations: {this.invitations.Count}";
+                tableInvitations.Title = $"{Res.Resource.Invitations}: {this.invitations.Count}";
             }
             catch (Exception ex)
             {
@@ -102,7 +102,7 @@ namespace Http_Post.Pages
                     this.wishes.Add(wish);
                     tableWishes.Add(new WishesView(wish, Navigation));
                 }
-                tableWishes.Title = $"Wishes: {this.wishes.Count}";
+                tableWishes.Title = $"{Res.Resource.Wishes}: {this.wishes.Count}";
             }
             catch (Exception ex)
             {

@@ -24,12 +24,12 @@ namespace Http_Post.Controls
 
             // TODO: localize
             lblPlaceDesc.Text = string.IsNullOrEmpty(invitation.PlaceDescription) ? Resource.ErrorNoDescription : invitation.PlaceDescription;
-            lblBegin.Text = "Begin:";
-            lblDuration.Text = "Duration:";
-            lblRole.Text = "Role:";
-            lblPlace.Text = "Place:";
-            btnAccept.Text = "Accept";
-            btnReject.Text = "Reject";
+            lblBegin.Text = $"{Resource.Begining}:";
+            lblDuration.Text = $"{Resource.Duration}:";
+            lblRole.Text = $"{Resource.Role}:";
+            lblPlace.Text = $"{Resource.Place}:";
+            btnAccept.Text = Resource.Accept;
+            btnReject.Text = Resource.Reject;
 
             lblTime.Text = invitation.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
 		}

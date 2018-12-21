@@ -42,12 +42,12 @@ namespace Http_Post.Controls
             editDescription.Placeholder = Res.Resource.Description;
             editDescription.Text = placeEdit.Description;
             image.Source = pathCollapse.Source;
-            btnInvite.Text = "Invite people";
-            btnAddEquipment.Text = "Add equipment";
-
-            GetEventRoles();
+            btnInvite.Text = Res.Resource.Invite;
+            btnAddEquipment.Text = Res.Resource.Add + " " + Res.Resource.TitleEquipment;
 
             AddEquipment();
+
+            GetEventRoles();
             AddPeople();
         }
 
@@ -71,6 +71,7 @@ namespace Http_Post.Controls
 
         async void AddPeople()
         {
+            await System.Threading.Tasks.Task.Delay(450);
             stackPart.Children.Clear();
             foreach(var person in placeEdit.Invited)
             {
@@ -95,8 +96,8 @@ namespace Http_Post.Controls
                 }
                 catch (Exception)
                 {
-                    lblName.Text = "Can't load name and role";
-                    lblMail.Text = "Can't load mail";
+                    lblName.Text = Res.Resource.ErrorNoData + " " + Res.Resource.Name;
+                    lblMail.Text = Res.Resource.ErrorNoData;
                 }
                 stackPart.Children.Add(lblName);
                 stackPart.Children.Add(lblMail);
@@ -130,8 +131,8 @@ namespace Http_Post.Controls
                 }
                 catch (Exception)
                 {
-                    lblType.Text = "Can't load type";
-                    lblSerial.Text = "Can't load serial number";
+                    lblType.Text = Res.Resource.ErrorNoData + " " + Res.Resource.EquipmentType;
+                    lblSerial.Text = Res.Resource.ErrorNoData + " "+ Res.Resource.SerialNumber;
                 }
                 stackEquip.Children.Add(lblType);
                 stackEquip.Children.Add(lblSerial);

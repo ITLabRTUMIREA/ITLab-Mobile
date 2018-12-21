@@ -22,11 +22,11 @@ namespace Http_Post.Controls
 
             // TODO: localize
             lblName.Text = $"{wish.User.FirstName} {wish.User.LastName}";
-            lblRole.Text = "Role:";
-            lblShift.Text = "Shift:";
-            target.Text = $"Needs {wish.TargetParticipantsCount} participants. (now: {wish.CurrentParticipantsCount})";
-            btnAccept.Text = "Accept";
-            btnReject.Text = "Reject";
+            lblRole.Text = $"{Res.Resource.Role}:";
+            lblShift.Text = $"{Res.Resource.Shift}:";
+            target.Text = $"{Res.Resource.Needs} {wish.TargetParticipantsCount} {Res.Resource.Participants}. ({Res.Resource.Now}: {wish.CurrentParticipantsCount})";
+            btnAccept.Text = Res.Resource.Accept;
+            btnReject.Text = Res.Resource.Reject;
 
             lblTime.Text = wish.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
         }

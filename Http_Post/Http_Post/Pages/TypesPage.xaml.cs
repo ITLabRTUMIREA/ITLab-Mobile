@@ -34,6 +34,9 @@ namespace Http_Post.Pages
         {
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleTypes : "";
+            btnEvent.Text = Resource.Event;
+            btnRoles.Text = Resource.Role;
+            btnEquipment.Text = Resource.TitleEquipment;
 
             listView.Refreshing += (s, e) => {
                 ChooseList();
@@ -46,9 +49,6 @@ namespace Http_Post.Pages
         void ChooseList()
         {
             btnEvent.FontAttributes = FontAttributes.None;
-            btnEquipment.FontAttributes = FontAttributes.None;
-            btnRoles.FontAttributes = FontAttributes.None;
-            
             btnEquipment.FontAttributes = FontAttributes.None;
             btnRoles.FontAttributes = FontAttributes.None;
             switch (types)

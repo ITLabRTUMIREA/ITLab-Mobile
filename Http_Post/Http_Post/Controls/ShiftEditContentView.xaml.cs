@@ -27,11 +27,11 @@ namespace Http_Post.Controls
             image.Source = pathCollapse.Source;
 
             lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftEdit.Places.Count}";
-            lblBeginTitle.Text = "Begining time:";
+            lblBeginTitle.Text = $"{Res.Resource.Begining}:";
             DatePickerBegin.Date = shiftEditRequest.BeginTime.Value.ToLocalTime().Date;
             TimePickerBegin.Time = shiftEditRequest.BeginTime.Value.ToLocalTime().TimeOfDay;
 
-            lblEndTitle.Text = "Ending time:";
+            lblEndTitle.Text = $"{Res.Resource.Ending}:";
             DatePickerEnd.Date = shiftEditRequest.EndTime.Value.ToLocalTime().Date;
             TimePickerEnd.Time = shiftEditRequest.EndTime.Value.ToLocalTime().TimeOfDay;
 

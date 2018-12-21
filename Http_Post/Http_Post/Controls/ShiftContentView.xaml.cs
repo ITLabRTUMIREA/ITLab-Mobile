@@ -26,11 +26,11 @@ namespace Http_Post.Controls
             lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftView.Places.Count}";
             image.Source = pathCollapse.Source;
 
-            lblBeginTitle.Text = "Begining time:";
+            lblBeginTitle.Text = $"{Res.Resource.Begining}:";
             lblBeginTime.Text = shiftView.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
-            lblEndTitle.Text = "Ending time:";
+            lblEndTitle.Text = $"{Res.Resource.Ending}:";
 
-            lblEndTime.Text = shiftView.EndTime.ToLocalTime().ToString("dd.MM.yyyy HH: mm");
+            lblEndTime.Text = shiftView.EndTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
             lblDescription.Text = string.IsNullOrEmpty(shiftView.Description) ? Res.Resource.ErrorNoDescription : shiftView.Description;
 
             AddPlaces();

@@ -39,6 +39,7 @@ namespace Http_Post
             //Application.Current.Resources.MergedDictionaries.Remove(ThemeManager.GetCurrentTheme());
             //ThemeManager.ChangeTheme();
             //Application.Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
+            //Application.Current.Resources.ChangeTheme();
         }
 
         private void UpdateLanguage()

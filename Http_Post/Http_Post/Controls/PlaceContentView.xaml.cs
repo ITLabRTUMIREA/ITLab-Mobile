@@ -27,7 +27,7 @@ namespace Http_Post.Controls
             lblPlaceNumber.Text = $"#{numberOfPlace} | {Res.Resource.Participants}: {total} {Res.Resource.Of} {placeView.TargetParticipantsCount}";
             lblDescription.Text = string.IsNullOrEmpty(placeView.Description) ? Res.Resource.ErrorNoDescription : placeView.Description;
             image.Source = pathCollapse.Source;
-            btnWish.Text = "Send wish";
+            btnWish.Text = Res.Resource.SendWish;
 
             AddPeople();
             AddEquipment();
@@ -45,10 +45,11 @@ namespace Http_Post.Controls
 
         void AddPeople()
         {
+            stackPart.Children.Clear();
             foreach (var part in place.Participants)
             {
                 var lblName = new Label { Text = part.User.FirstName + " " + part.User.LastName + ", " + part.EventRole.Title, FontAttributes = FontAttributes.Bold };
-                var lblParticipant = new Label { Text = "participant", FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
+                var lblParticipant = new Label { Text = Res.Resource.Participant, FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
                 var lblMail= new Label { Text = part.User.Email, FontSize = lblName.FontSize - 4 };
                 stackPart.Children.Add(lblName);
                 stackPart.Children.Add(lblParticipant);
@@ -58,7 +59,7 @@ namespace Http_Post.Controls
             foreach (var inv in place.Invited)
             {
                 var lblName = new Label { Text = inv.User.FirstName + " " + inv.User.LastName + ", " + inv.EventRole.Title, FontAttributes = FontAttributes.Bold };
-                var lblInvited = new Label { Text = "invited", FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
+                var lblInvited = new Label { Text = Res.Resource.Invited, FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
                 var lblMail = new Label { Text = inv.User.Email, FontSize = lblName.FontSize - 4 };
                 stackPart.Children.Add(lblName);
                 stackPart.Children.Add(lblInvited);
@@ -68,7 +69,7 @@ namespace Http_Post.Controls
             foreach (var wishers in place.Wishers)
             {
                 var lblName = new Label { Text = wishers.User.FirstName + " " + wishers.User.LastName + ", " + wishers.EventRole.Title, FontAttributes = FontAttributes.Bold };
-                var lblWisher = new Label { Text = "wisher", FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
+                var lblWisher = new Label { Text = Res.Resource.Wisher, FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
                 var lblMail = new Label { Text = wishers.User.Email, FontSize = lblName.FontSize - 4 };
                 stackPart.Children.Add(lblName);
                 stackPart.Children.Add(lblWisher);
@@ -78,7 +79,7 @@ namespace Http_Post.Controls
             foreach (var unknowns in place.Unknowns)
             {
                 var lblName = new Label { Text = unknowns.User.FirstName + " " + unknowns.User.LastName + ", " + unknowns.EventRole.Title, FontAttributes = FontAttributes.Bold };
-                var lblUnknown = new Label { Text = "unknown", FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
+                var lblUnknown = new Label { Text = "UNKNOWN", FontSize = lblName.FontSize - 2, FontAttributes = FontAttributes.Italic };
                 var lblMail = new Label { Text = unknowns.User.Email, FontSize = lblName.FontSize - 4 };
                 stackPart.Children.Add(lblName);
                 stackPart.Children.Add(lblUnknown);
@@ -115,7 +116,7 @@ namespace Http_Post.Controls
                 if (message.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {message.StatusCode}");
 
-                btnWish.Text = "Ok";
+                btnWish.Text = Res.Resource.YouSentWish;
             }
             catch (Exception)
             {

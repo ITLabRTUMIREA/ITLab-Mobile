@@ -23,17 +23,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button x:Name="btnEvent"
-                    Text="Event"
                     CornerRadius="15"
                     Grid.Column="0" Grid.Row="0"
                     Clicked="btnEvents_Clicked"/>
             <Button x:Name="btnEquipment"
-                    Text="Equipment"
                     CornerRadius="15"
                     Grid.Column="1" Grid.Row="0"
                     Clicked="btnEquipment_Clicked"/>
             <Button x:Name="btnRoles"
-                    Text="Roles"
                     CornerRadius="15"
                     Grid.Column="2" Grid.Row="0"
                     Clicked="btnRoles_Clicked"/>
