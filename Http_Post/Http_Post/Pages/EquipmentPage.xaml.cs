@@ -24,8 +24,6 @@ namespace Http_Post.Pages
             Init();
             GetEquipment();
 
-
-            // TODO: fix bug - not enough space
             listView.Refreshing += (s, e) => {
                 GetEquipment();
                 listView.IsRefreshing = false;
@@ -37,33 +35,6 @@ namespace Http_Post.Pages
         {
             InitializeComponent();
             UpdateLanguage();
-
-            var tapGestureRecognizer = new TapGestureRecognizer();
-            tapGestureRecognizer.Tapped += (s, e) =>
-            {
-                Label_Type.FontAttributes = FontAttributes.None;
-                Label_Owner.FontAttributes = FontAttributes.None;
-                Label_Number.FontAttributes = FontAttributes.None;
-                var lbl = (Label)s;
-                if (lbl.Equals(Label_Type))
-                {
-                    listView.ItemsSource = listEquip.OrderBy(se => se.EquipmentType.Title);
-                    Label_Type.FontAttributes = FontAttributes.Bold;
-                }
-                else if (lbl.Equals(Label_Owner))
-                {
-                    listView.ItemsSource = listEquip.OrderBy(se => se.OwnerName);
-                    Label_Owner.FontAttributes = FontAttributes.Bold;
-                }
-                else if (lbl.Equals(Label_Number))
-                {
-                    listView.ItemsSource = listEquip.OrderBy(se => se.Number);
-                    Label_Number.FontAttributes = FontAttributes.Bold;
-                }
-            };
-            Label_Type.GestureRecognizers.Add(tapGestureRecognizer);
-            Label_Owner.GestureRecognizers.Add(tapGestureRecognizer);
-            Label_Number.GestureRecognizers.Add(tapGestureRecognizer);
         }
 
         async void GetEquipment()
@@ -88,9 +59,10 @@ namespace Http_Post.Pages
                     }
                 }
 
-                listEquip = equip.Data;
-                listView.ItemsSource = listEquip.OrderBy(s=>s.Number);
-                Label_Number.FontAttributes = FontAttributes.Bold;
+                listEquip = equip.Data.OrderBy(se => se.EquipmentType.Title);
+                reserve = false;
+                listView.ItemsSource = listEquip;
+                btnType.FontAttributes = FontAttributes.Bold;
             }
             catch (Exception ex)
             {
@@ -107,15 +79,14 @@ namespace Http_Post.Pages
         void UpdateLanguage()
         {
             Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleEquipment : "";
-            Label_Type.Text = Resource.EquipmentType;
-            Label_Owner.Text = Resource.Owner;
-            Label_Number.Text = Resource.Number;
+            btnType.Text = Resource.EquipmentType;
+            btnOwner.Text = Resource.Owner;
+            btnNumber.Text = Resource.Number;
         }
 
         void ChangeToolBar()
         {
             if (!GetRight())
-
                 return;
 
             var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "CreateCircle.png");
@@ -133,6 +104,49 @@ namespace Http_Post.Pages
                 if (item.Equals(whatToCheck))
                     return true;
             return false;
+        }
+
+        bool reserve;
+        void btnType_Clicked(object sender, EventArgs e)
+        {
+            if (!reserve && btnType.FontAttributes == FontAttributes.Bold)
+                listEquip = listEquip.OrderByDescending(se => se.EquipmentType.Title);
+            else
+                listEquip = listEquip.OrderBy(se => se.EquipmentType.Title);
+
+            reserve = !reserve;
+            listView.ItemsSource = listEquip; 
+            btnType.FontAttributes = FontAttributes.Bold;
+            btnOwner.FontAttributes = FontAttributes.None;
+            btnNumber.FontAttributes = FontAttributes.None;
+        }
+
+        void btnOwner_Clicked(object sender, EventArgs e)
+        {
+            if (!reserve && btnOwner.FontAttributes == FontAttributes.Bold)
+                listEquip = listEquip.OrderByDescending(se => se.OwnerName);
+            else
+                listEquip = listEquip.OrderBy(se => se.OwnerName);
+
+            reserve = !reserve;
+            listView.ItemsSource = listEquip;
+            btnType.FontAttributes = FontAttributes.None;
+            btnOwner.FontAttributes = FontAttributes.Bold;
+            btnNumber.FontAttributes = FontAttributes.None;
+        }
+
+        void btnNumber_Clicked(object sender, EventArgs e)
+        {
+            if (!reserve && btnNumber.FontAttributes == FontAttributes.Bold)
+                listEquip = listEquip.OrderByDescending(se => se.Number);
+            else
+                listEquip = listEquip.OrderBy(se => se.Number);
+
+            reserve = !reserve;
+            listView.ItemsSource = listEquip;
+            btnType.FontAttributes = FontAttributes.None;
+            btnOwner.FontAttributes = FontAttributes.None;
+            btnNumber.FontAttributes = FontAttributes.Bold;
         }
     }
 }

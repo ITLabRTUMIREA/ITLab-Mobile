@@ -22,7 +22,6 @@ namespace Http_Post.Controls
             BindingContext = invitation;
 			InitializeComponent ();
 
-            // TODO: localize
             lblPlaceDesc.Text = string.IsNullOrEmpty(invitation.PlaceDescription) ? Resource.ErrorNoDescription : invitation.PlaceDescription;
             lblBegin.Text = $"{Resource.Begining}:";
             lblDuration.Text = $"{Resource.Duration}:";

@@ -6,12 +6,10 @@
              Padding="5">
     <Grid>
         <Grid.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="5,30,0,0"/>
-                    <On Platform="Android" Value="5,10,0,0"/>
-                    <On Platform="UWP" Value="5,10,0,0"/>
-                </OnPlatform>
-            </Grid.Margin>
+            <OnPlatform x:TypeArguments="Thickness" 
+                        iOS="5,30,0,0"
+                        Default="5,10,0,0"/>
+        </Grid.Margin>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
@@ -21,16 +19,25 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Label x:Name="Label_Type"
-                       Grid.Column="0" Grid.Row="0"/>
-        <Label x:Name="Label_Owner"
-                       Grid.Column="1" Grid.Row="0"/>
-        <Label x:Name="Label_Number"
-                       Grid.Column="2" Grid.Row="0"/>
+        <Button x:Name="btnType"
+                FontAttributes="None"
+                Grid.Column="0"
+                Grid.Row="0"
+                Clicked="btnType_Clicked"/>
+        <Button x:Name="btnOwner"
+                FontAttributes="None"
+                Grid.Column="1"
+                Grid.Row="0"
+                Clicked="btnOwner_Clicked"/>
+        <Button x:Name="btnNumber"
+                FontAttributes="None"
+                Grid.Column="2"
+                Grid.Row="0"
+                Clicked="btnNumber_Clicked"/>
         <ListView x:Name="listView"
-                      SeparatorVisibility="None"
-                      IsPullToRefreshEnabled="True"
-                      ItemTapped="listView_ItemTapped"
+                  SeparatorVisibility="None"
+                  IsPullToRefreshEnabled="True"
+                  ItemTapped="listView_ItemTapped"
                   Grid.ColumnSpan="3" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>

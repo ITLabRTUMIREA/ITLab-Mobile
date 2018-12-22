@@ -6,6 +6,9 @@
         <!-- Application resource dictionary -->
 
         <ResourceDictionary>
+            <Style TargetType="ContentPage">
+                <Setter Property="Padding" Value="5"/>
+            </Style>
             <Style TargetType="Label">
                 <Setter Property="FontSize" Value="Medium"/>
             </Style>

@@ -20,7 +20,6 @@ namespace Http_Post.Controls
             BindingContext = wish;
             InitializeComponent();
 
-            // TODO: localize
             lblName.Text = $"{wish.User.FirstName} {wish.User.LastName}";
             lblRole.Text = $"{Res.Resource.Role}:";
             lblShift.Text = $"{Res.Resource.Shift}:";

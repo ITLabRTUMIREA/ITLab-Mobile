@@ -31,12 +31,12 @@ namespace Http_Post.Popup.Event
                 #region Adding labels which will show user, where is beginig and ending time/date
                 var lblBegin = new Label
                 {
-                    Text = "Begin", // TODO: localize??
+                    Text = Res.Resource.Begining,
                     HorizontalOptions = LayoutOptions.Center,
                 };
                 var lblEnd = new Label
                 {
-                    Text = "End",
+                    Text = Res.Resource.Ending,
                     HorizontalOptions = LayoutOptions.Center,
                 };
                 #endregion
