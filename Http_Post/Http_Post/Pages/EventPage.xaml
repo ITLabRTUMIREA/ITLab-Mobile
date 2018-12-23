@@ -5,25 +5,24 @@
              Title="Events"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Padding="5">
-        <StackLayout x:Name="stacklayout" Margin="5,25,0,0">
+        <StackLayout x:Name="stacklayout">
         <StackLayout.Margin>
-                <OnPlatform x:TypeArguments="Thickness">
-                    <On Platform="iOS" Value="5,30,0,0"/>
-                    <On Platform="Android" Value="5,10,0,0"/>
-                    <On Platform="UWP" Value="5,10,0,0"/>
-                </OnPlatform>
-            </StackLayout.Margin>
+            <OnPlatform x:TypeArguments="Thickness"
+                            iOS="5,30,0,0"
+                            Default="5,10,0,0"/>
+        </StackLayout.Margin>
             <ListView x:Name="listView"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="ListView_ItemTapped"
                       SeparatorVisibility="None">
             <ListView.Header>
-                <StackLayout>
-                    <Label Text="Header Testing!"
-                               FontSize="Large"/>
-                    <Label Text="Header Testing!"
-                               FontSize="Small"/>
-                </StackLayout>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <Label Text="ВСЁ ЕЩЁ В ТЕСТЕ"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
             </ListView.Header>
                 <ListView.ItemTemplate>
                     <DataTemplate>

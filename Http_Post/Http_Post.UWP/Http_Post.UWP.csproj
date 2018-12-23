@@ -115,6 +115,7 @@
   <ItemGroup>
     <Content Include="ArrowDown.png" />
     <Content Include="ArrowRight.png" />
+    <Content Include="ArrowUp.png" />
     <Content Include="CreateCircle.png" />
     <Content Include="DeleteCross.png" />
     <Content Include="EditPencil.png" />

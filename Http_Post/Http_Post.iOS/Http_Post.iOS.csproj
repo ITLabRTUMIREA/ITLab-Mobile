@@ -178,4 +178,7 @@
       <Version>3.4.0.1008975</Version>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ArrowUp.png" />
+  </ItemGroup>
 </Project>

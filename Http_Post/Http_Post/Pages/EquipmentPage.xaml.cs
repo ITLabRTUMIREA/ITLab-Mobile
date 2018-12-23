@@ -18,8 +18,16 @@ namespace Http_Post.Pages
 	{
         HttpClient client = HttpClientFactory.HttpClient;
         IEnumerable<CompactEquipmentViewExtended> listEquip = new List<CompactEquipmentViewExtended>();
+        Image imgUp = new Image
+        {
+            Source = "ArrowUp.png"
+        };
+        Image imgDown = new Image
+        {
+            Source = "ArrowDown.png"
+        };
 
-		public EquipmentPage ()
+        public EquipmentPage ()
 		{
             Init();
             GetEquipment();
@@ -110,11 +118,19 @@ namespace Http_Post.Pages
         void btnType_Clicked(object sender, EventArgs e)
         {
             if (!reserve && btnType.FontAttributes == FontAttributes.Bold)
+            {
                 listEquip = listEquip.OrderByDescending(se => se.EquipmentType.Title);
+                imageType.Source = imgUp.Source;
+            }
             else
+            {
                 listEquip = listEquip.OrderBy(se => se.EquipmentType.Title);
+                imageType.Source = imgDown.Source;
+                imageOwner.Source = imgDown.Source;
+                imageNumber.Source = imgDown.Source;
+            }
 
-            reserve = !reserve;
+            reserve = btnType.FontAttributes == FontAttributes.Bold ? !reserve : false;
             listView.ItemsSource = listEquip; 
             btnType.FontAttributes = FontAttributes.Bold;
             btnOwner.FontAttributes = FontAttributes.None;
@@ -124,11 +140,19 @@ namespace Http_Post.Pages
         void btnOwner_Clicked(object sender, EventArgs e)
         {
             if (!reserve && btnOwner.FontAttributes == FontAttributes.Bold)
+            {
                 listEquip = listEquip.OrderByDescending(se => se.OwnerName);
+                imageOwner.Source = imgUp.Source;
+            }
             else
+            {
                 listEquip = listEquip.OrderBy(se => se.OwnerName);
+                imageOwner.Source = imgDown.Source;
+                imageType.Source = imgDown.Source;
+                imageNumber.Source = imgDown.Source;
+            }
 
-            reserve = !reserve;
+            reserve = btnOwner.FontAttributes == FontAttributes.Bold ? !reserve : false;
             listView.ItemsSource = listEquip;
             btnType.FontAttributes = FontAttributes.None;
             btnOwner.FontAttributes = FontAttributes.Bold;
@@ -138,11 +162,19 @@ namespace Http_Post.Pages
         void btnNumber_Clicked(object sender, EventArgs e)
         {
             if (!reserve && btnNumber.FontAttributes == FontAttributes.Bold)
+            {
                 listEquip = listEquip.OrderByDescending(se => se.Number);
+                imageNumber.Source = imgUp.Source;
+            }
             else
+            {
                 listEquip = listEquip.OrderBy(se => se.Number);
+                imageNumber.Source = imgDown.Source;
+                imageOwner.Source = imgDown.Source;
+                imageType.Source = imgDown.Source;
+            }
 
-            reserve = !reserve;
+            reserve = btnNumber.FontAttributes == FontAttributes.Bold ? !reserve : false;
             listView.ItemsSource = listEquip;
             btnType.FontAttributes = FontAttributes.None;
             btnOwner.FontAttributes = FontAttributes.None;
