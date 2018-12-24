@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.EquipmentPage"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
+             xmlns:img="clr-namespace:Http_Post.Images"
              Padding="5">
     <Grid>
         <Grid.Margin>

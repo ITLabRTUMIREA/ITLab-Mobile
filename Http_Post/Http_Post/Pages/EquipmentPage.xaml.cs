@@ -18,17 +18,19 @@ namespace Http_Post.Pages
 	{
         HttpClient client = HttpClientFactory.HttpClient;
         IEnumerable<CompactEquipmentViewExtended> listEquip = new List<CompactEquipmentViewExtended>();
-        Image imgUp = new Image
+        Image imgUp = new Image()
         {
             Source = "ArrowUp.png"
         };
-        Image imgDown = new Image
+        Image imgDown = new Image()
         {
             Source = "ArrowDown.png"
         };
 
         public EquipmentPage ()
 		{
+            //imgDown.Source = Images.ImageManager.GetSource("ArrowDown");
+            //imgUp.Source = Images.ImageManager.GetSource("ArrowUp");
             Init();
             GetEquipment();
 

@@ -21,6 +21,68 @@
   <ItemGroup>
     <Compile Remove="Controls\TypeView.cs" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Dark\ArrowDown.png" />
+    <None Remove="Images\Dark\ArrowRight.png" />
+    <None Remove="Images\Dark\ArrowUp.png" />
+    <None Remove="Images\Dark\CreateCircle.png" />
+    <None Remove="Images\Dark\DeleteCross.png" />
+    <None Remove="Images\Dark\EditPencil.png" />
+    <None Remove="Images\Dark\Exit.png" />
+    <None Remove="Images\Dark\Language.png" />
+    <None Remove="Images\Dark\News.png" />
+    <None Remove="Images\Dark\Notifications.png" />
+    <None Remove="Images\Dark\Person.png" />
+    <None Remove="Images\Dark\SettingsGear.png" />
+    <None Remove="Images\Dark\Types.png" />
+    <None Remove="Images\Dark\Usb.png" />
+    <None Remove="Images\Light\ArrowDown.png" />
+    <None Remove="Images\Light\ArrowRight.png" />
+    <None Remove="Images\Light\ArrowUp.png" />
+    <None Remove="Images\Light\CreateCircle.png" />
+    <None Remove="Images\Light\DeleteCross.png" />
+    <None Remove="Images\Light\EditPencil.png" />
+    <None Remove="Images\Light\Exit.png" />
+    <None Remove="Images\Light\Language.png" />
+    <None Remove="Images\Light\News.png" />
+    <None Remove="Images\Light\Notifications.png" />
+    <None Remove="Images\Light\Person.png" />
+    <None Remove="Images\Light\SettingsGear.png" />
+    <None Remove="Images\Light\Types.png" />
+    <None Remove="Images\Light\Usb.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Dark\ArrowDown.png" />
+    <EmbeddedResource Include="Images\Dark\ArrowRight.png" />
+    <EmbeddedResource Include="Images\Dark\ArrowUp.png" />
+    <EmbeddedResource Include="Images\Dark\CreateCircle.png" />
+    <EmbeddedResource Include="Images\Dark\DeleteCross.png" />
+    <EmbeddedResource Include="Images\Dark\EditPencil.png" />
+    <EmbeddedResource Include="Images\Dark\Exit.png" />
+    <EmbeddedResource Include="Images\Dark\Language.png" />
+    <EmbeddedResource Include="Images\Dark\News.png" />
+    <EmbeddedResource Include="Images\Dark\Notifications.png" />
+    <EmbeddedResource Include="Images\Dark\Person.png" />
+    <EmbeddedResource Include="Images\Dark\SettingsGear.png" />
+    <EmbeddedResource Include="Images\Dark\Types.png" />
+    <EmbeddedResource Include="Images\Dark\Usb.png" />
+    <EmbeddedResource Include="Images\Light\ArrowDown.png" />
+    <EmbeddedResource Include="Images\Light\ArrowRight.png" />
+    <EmbeddedResource Include="Images\Light\ArrowUp.png" />
+    <EmbeddedResource Include="Images\Light\CreateCircle.png" />
+    <EmbeddedResource Include="Images\Light\DeleteCross.png" />
+    <EmbeddedResource Include="Images\Light\EditPencil.png" />
+    <EmbeddedResource Include="Images\Light\Exit.png" />
+    <EmbeddedResource Include="Images\Light\Language.png" />
+    <EmbeddedResource Include="Images\Light\News.png" />
+    <EmbeddedResource Include="Images\Light\Notifications.png" />
+    <EmbeddedResource Include="Images\Light\Person.png" />
+    <EmbeddedResource Include="Images\Light\SettingsGear.png" />
+    <EmbeddedResource Include="Images\Light\Types.png" />
+    <EmbeddedResource Include="Images\Light\Usb.png" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
       <DependentUpon>*.xaml</DependentUpon>

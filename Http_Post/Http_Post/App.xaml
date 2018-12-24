@@ -21,7 +21,7 @@
                 <Setter Property="IsSpellCheckEnabled" Value="True"/>
             </Style>
             <Style TargetType="Button">
-                <Setter Property="BorderRadius" Value="7"/>
+                <Setter Property="CornerRadius" Value="15"/>
             </Style>
             <Style TargetType="ListView">
                 <Setter Property="HasUnevenRows" Value="True"/>
