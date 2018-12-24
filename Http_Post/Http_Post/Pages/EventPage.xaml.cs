@@ -1,5 +1,4 @@
-using Http_Post.Classes;
-using Http_Post.Extensions.Responses.Event;
+﻿using Http_Post.Extensions.Responses.Event;
 using Http_Post.Services;
 using Models.PublicAPI.Responses.Event;
 using Models.PublicAPI.Responses.General;
@@ -14,18 +13,25 @@ namespace Http_Post.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EventPage : ContentPage
-	{
+    {
         HttpClient client = HttpClientFactory.HttpClient;
 
-        private ListResponse<CompactEventViewExtended> events;
+        private ListResponse<CompactEventViewExtended> eventsAll;
+        private ListResponse<CompactEventViewExtended> eventsToday;
+        bool _All;
+        bool clicked;
 
         public EventPage()
         {
+            _All = clicked = false;
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
+            btnShowEvents.Text = "Show all events";
+            lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {
                 GetEvents();
+                lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
                 listView.IsRefreshing = false;
             };
             GetEvents();
@@ -36,29 +42,34 @@ namespace Http_Post.Pages
         {
             try
             {
-                var response = await client.GetStringAsync("event/");
+                var response = await client.GetStringAsync($"event/?begin={DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss")}");
+                eventsToday = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
-                events = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
+                response = await client.GetStringAsync("event/");
+                eventsAll = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
-                listView.ItemsSource = events.Data.Reverse();
+                listView.ItemsSource = eventsToday.Data.Reverse();
+                btnShowEvents.IsVisible = true;
             }
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
+                clicked = false;
             }
         }
 
-        public void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
+        async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             try
-            { 
-                var item = (CompactEventView) e.Item;
-            
-                Navigation.PushAsync(new OneEventPage(item.Id));
+            {
+                var item = (CompactEventView)e.Item;
+
+                await Navigation.PushAsync(new OneEventPage(item.Id));
             }
             catch (Exception ex)
             {
-                stacklayout.Children.Add(new Label { Text = ex.Message });
+                await DisplayAlert("Error", ex.Message, "Ok");
+                clicked = false;
             }
         }
 
@@ -72,7 +83,7 @@ namespace Http_Post.Pages
             {
                 await Navigation.PushAsync(new CreateEventPage());
             };
-            
+
             ToolbarItems.Add(itemChange);
         }
 
@@ -83,6 +94,13 @@ namespace Http_Post.Pages
                 if (item.Equals(whatToCheck))
                     return true;
             return false;
+        }
+
+        void btnShowEvents_Clicked(object sender, EventArgs e)
+        {
+            _All = !_All;
+            btnShowEvents.Text = _All ? "Show for today" : "Show all events";
+            listView.ItemsSource = _All ? eventsAll.Data.Reverse() : eventsToday.Data.Reverse();
         }
     }
 }
