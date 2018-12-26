@@ -10,8 +10,6 @@ namespace Http_Post.Services
 
         public void FirstSet(Guid id, List<string> roles)
         {
-            if (Id != Guid.Empty)
-                return;
             Id = id;
             Roles = new List<string>();
             Roles = roles;

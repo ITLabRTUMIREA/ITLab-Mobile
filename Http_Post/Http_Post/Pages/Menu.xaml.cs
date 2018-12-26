@@ -1,5 +1,6 @@
 using Http_Post.Classes;
 using Http_Post.Pages;
+using Plugin.Settings;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -42,7 +43,7 @@ namespace Http_Post
 
         public async void Logout()
         {
-            App.Current.Properties["refreshToken"] = "";
+            CrossSettings.Current.AddOrUpdateValue("refreshToken", "");
             await Navigation.PopToRootAsync();
         }
 
@@ -59,7 +60,7 @@ namespace Http_Post
 
         async Task SaveAndClose()
         {
-            await App.Current.SavePropertiesAsync();
+            //await App.Current.SavePropertiesAsync();
             DependencyService.Get<IAndroidMethods>().CloseApp(); // AndroidMethods class provides this function
         }
     }

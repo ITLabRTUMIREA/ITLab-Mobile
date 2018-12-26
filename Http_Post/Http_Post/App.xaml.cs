@@ -32,11 +32,7 @@ namespace Http_Post
                             "android={Your Android App secret here}",
                             typeof(Analytics), typeof(Crashes));
 
-            //Current.Resources.MergedDictionaries.Add(new GeneralStyle()); // Apply general theme
-            //Current.Resources.Add(ThemeManager.GetCurrentTheme());
-            //Current.Resources.LoadTheme();
-            //Current.Resources.Add(new GeneralStyle()); // Apply general theme
-            //Current.Resources.LoadTheme(); // get and load current theme
+            Current.Resources.LoadTheme();
         }
 
 		protected override void OnSleep ()

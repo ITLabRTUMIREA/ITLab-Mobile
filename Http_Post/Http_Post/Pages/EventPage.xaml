@@ -37,5 +37,11 @@
                 AbsoluteLayout.LayoutFlags="PositionProportional"
                 BorderRadius="30"
                 Clicked="btnMyEvents_Clicked"/>
+        <Button x:Name="btnCreate"
+                IsVisible="False"
+                AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BorderRadius="30"
+                Clicked="btnCreate_Clicked"/>
     </AbsoluteLayout>
 </ContentPage>

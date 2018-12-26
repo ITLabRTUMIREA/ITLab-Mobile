@@ -22,7 +22,8 @@ namespace Http_Post.Controls
 
         private static void ImageSourceChanged(BindableObject bindableObject, object oldValue, object newValue)
         {
-            (bindableObject as Master_Btns).Icon.Source = Convert.ToString(newValue);
+            //(bindableObject as Master_Btns).Icon.Source = Convert.ToString(newValue);
+            (bindableObject as Master_Btns).Icon.Source = Images.ImageManager.GetSourceImage(newValue.ToString());
         }
 
         public static readonly BindableProperty BtnTextProperty = BindableProperty.Create("Btn_Text",

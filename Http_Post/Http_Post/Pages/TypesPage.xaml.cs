@@ -37,6 +37,7 @@ namespace Http_Post.Pages
             btnEvent.Text = Resource.Event;
             btnRoles.Text = Resource.Role;
             btnEquipment.Text = Resource.TitleEquipment;
+            btnCreate.Image = "CreateCircle.png";
 
             listView.Refreshing += (s, e) => {
                 ChooseList();
@@ -72,8 +73,7 @@ namespace Http_Post.Pages
                     }
                     break;
             }
-
-            ChangeToolBar();
+            btnCreate.IsVisible = GetRight();
         }
 
         void btnEvents_Clicked(object sender, EventArgs e)
@@ -293,17 +293,6 @@ namespace Http_Post.Pages
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
             }
-        }
-
-        void ChangeToolBar()
-        {
-            ToolbarItems.Clear();
-            if (!GetRight())
-                return;
-
-            var itemCreate = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "CreateCircle.png");
-            itemCreate.Clicked += btnCreate_Clicked;
-            ToolbarItems.Add(itemCreate);
         }
 
         bool GetRight()

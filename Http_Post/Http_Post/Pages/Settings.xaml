@@ -9,11 +9,10 @@
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Margin="5">
-                <Controls:Master_Btns x:Name="Btn_Profile" ImageSource="Person.png" Clicked="BtnProfile_Clicked"/>
-
-                <Controls:Master_Btns x:Name="Btn_Lang" ImageSource="Language.png" Btn_Text="Change Language" Clicked="Lang_Clicked"/>
-                <Controls:Master_Btns x:Name="Btn_Theme" ImageSource="EditPencil.png" Clicked="Theme_Change"/>
-                <Controls:Master_Btns x:Name="Btn_LogOut" ImageSource="Exit.png" Clicked="LogOut_Clicked"/>
+                <Controls:Master_Btns x:Name="Btn_Profile" ImageSource="Person" Clicked="BtnProfile_Clicked"/>
+                <Controls:Master_Btns x:Name="Btn_Lang" ImageSource="Language" Btn_Text="Change Language" Clicked="Lang_Clicked"/>
+                <Controls:Master_Btns x:Name="Btn_Theme" ImageSource="EditPencil" Clicked="Theme_Change"/>
+                <Controls:Master_Btns x:Name="Btn_LogOut" ImageSource="Exit" Clicked="LogOut_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

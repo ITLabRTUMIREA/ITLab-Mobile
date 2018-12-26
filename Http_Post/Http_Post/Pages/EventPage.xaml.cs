@@ -27,6 +27,7 @@ namespace Http_Post.Pages
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
             btnShowEvents.Image = "Today.png";
             btnMyEvents.Image = "Person.png";
+            btnCreate.Image = "CreateCircle.png";
             lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {
@@ -35,7 +36,7 @@ namespace Http_Post.Pages
                 listView.IsRefreshing = false;
             };
             GetEvents();
-            ChangeToolBar();
+            btnCreate.IsVisible = GetRight();
         }
 
         async void GetEvents()
@@ -70,20 +71,6 @@ namespace Http_Post.Pages
             }
         }
 
-        void ChangeToolBar()
-        {
-            if (!GetRight())
-                return;
-
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "CreateCircle.png");
-            itemChange.Clicked += async (s, e) =>
-            {
-                await Navigation.PushAsync(new CreateEventPage());
-            };
-
-            ToolbarItems.Add(itemChange);
-        }
-
         bool GetRight()
         {
             string whatToCheck = "CanEditEvent";
@@ -105,5 +92,8 @@ namespace Http_Post.Pages
             listView.ItemsSource = eventsAll.Data.Where(ev => ev.Participating);
             _All = !_All;
         }
+
+        async void btnCreate_Clicked(object sender, EventArgs e)
+            => await Navigation.PushAsync(new CreateEventPage());
     }
 }

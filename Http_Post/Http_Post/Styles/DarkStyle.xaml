@@ -5,10 +5,20 @@
     <Style TargetType="Label">
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
         <Setter Property="TextColor" Value="#f2f2f2"/>
+        <Setter Property="FontSize" Value="Medium"/>
+    </Style>
+    <Style TargetType="Entry">
+        <Setter Property="FontSize" Value="Medium"/>
+    </Style>
+    <Style TargetType="Editor">
+        <Setter Property="AutoSize" Value="TextChanges"/>
+        <Setter Property="FontSize" Value="Medium"/>
+        <Setter Property="IsSpellCheckEnabled" Value="True"/>
     </Style>
     <Style TargetType="Button">
         <Setter Property="BackgroundColor" Value="#303030"/>
         <Setter Property="TextColor" Value="#f2f2f2"/>
+        <Setter Property="CornerRadius" Value="17"/>
     </Style>
     <Style TargetType="StackLayout">
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
@@ -26,5 +36,10 @@
     <Style TargetType="Frame">
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
         <Setter Property="OutlineColor" Value="#4d79ff"/>
+    </Style>
+    <Style TargetType="ListView">
+        <Setter Property="HasUnevenRows" Value="True"/>
+        <Setter Property="SeparatorColor" Value="Silver"/>
+        <Setter Property="SelectionMode" Value="None"/>
     </Style>
 </ResourceDictionary>

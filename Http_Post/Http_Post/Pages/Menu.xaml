@@ -3,5 +3,5 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             x:Class="Http_Post.Menu"
             Title="ITLab-Mobile"
-            BarBackgroundColor="#f2f2f2"
-            BarTextColor="#1a1a1a"/>
+            BarBackgroundColor="#1a1a1a"
+            BarTextColor="#f2f2f2"/>

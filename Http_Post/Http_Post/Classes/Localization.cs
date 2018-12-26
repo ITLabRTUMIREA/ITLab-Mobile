@@ -1,4 +1,5 @@
 ﻿using Http_Post.Res;
+using Plugin.Settings;
 using System.Collections.Generic;
 using System.Globalization;
 
@@ -26,26 +27,23 @@ namespace Http_Post.Classes
 
         string GetCultureProperties ()
         {
-            if (App.Current.Properties.TryGetValue(KEY, out object name))
-            {
-                // выполняем действия, если в словаре есть ключ "name"
-                return (string)name;
-            }
+            string culture = CrossSettings.Current.GetValueOrDefault(KEY, "");
+            if (culture != "")
+                return culture;
             else
             {
-                App.Current.Properties[KEY] = langDictionary["russian"];
+                CrossSettings.Current.AddOrUpdateValue(KEY, langDictionary["russian"]);
                 return langDictionary["russian"];
             }
         }
 
         public void ChangeCulture ()
         {
-            string name = App.Current.Properties[KEY].ToString();
-            if (name == langDictionary["russian"])
-                App.Current.Properties[KEY] = langDictionary["english"];
+            string culture = CrossSettings.Current.GetValueOrDefault(KEY, "");
+            if (culture == langDictionary["russian"])
+                CrossSettings.Current.AddOrUpdateValue(KEY, langDictionary["english"]);
             else
-                App.Current.Properties[KEY] = langDictionary["russian"];
-
+                CrossSettings.Current.AddOrUpdateValue(KEY, langDictionary["russian"]);
             SetCulture();
         }
     }

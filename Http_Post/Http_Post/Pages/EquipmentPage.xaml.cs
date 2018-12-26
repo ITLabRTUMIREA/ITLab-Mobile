@@ -20,25 +20,24 @@ namespace Http_Post.Pages
         IEnumerable<CompactEquipmentViewExtended> listEquip = new List<CompactEquipmentViewExtended>();
         Image imgUp = new Image()
         {
-            Source = "ArrowUp.png"
+            Source = Images.ImageManager.GetSourceImage("ArrowUp")
         };
         Image imgDown = new Image()
         {
-            Source = "ArrowDown.png"
+            Source = Images.ImageManager.GetSourceImage("ArrowDown")
         };
 
         public EquipmentPage ()
 		{
-            //imgDown.Source = Images.ImageManager.GetSource("ArrowDown");
-            //imgUp.Source = Images.ImageManager.GetSource("ArrowUp");
             Init();
             GetEquipment();
+            btnCreate.Image = "CreateCircle.png";
+            btnCreate.IsVisible = GetRight();
 
             listView.Refreshing += (s, e) => {
                 GetEquipment();
                 listView.IsRefreshing = false;
             };
-            ChangeToolBar();
         }
 
         void Init()
@@ -92,19 +91,6 @@ namespace Http_Post.Pages
             btnType.Text = Resource.EquipmentType;
             btnOwner.Text = Resource.Owner;
             btnNumber.Text = Resource.Number;
-        }
-
-        void ChangeToolBar()
-        {
-            if (!GetRight())
-                return;
-
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "CreateCircle.png");
-            itemChange.Clicked += async(s,e) =>
-            {
-                await Navigation.PushAsync(new CreateEquipment());
-            };
-            ToolbarItems.Add(itemChange);
         }
 
         bool GetRight()
@@ -182,5 +168,8 @@ namespace Http_Post.Pages
             btnOwner.FontAttributes = FontAttributes.None;
             btnNumber.FontAttributes = FontAttributes.Bold;
         }
+
+        async void btnCreate_Clicked(object sender, EventArgs e)
+            => await Navigation.PushAsync(new CreateEquipment());
     }
 }

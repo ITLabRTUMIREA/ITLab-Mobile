@@ -4,8 +4,9 @@
              x:Class="Http_Post.Pages.TypesPage"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Padding="5">
-    <ContentPage.Content>
-        <Grid>
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All">
             <Grid.Margin>
                 <OnPlatform x:TypeArguments="Thickness"
                             iOS="5,30,0,0"
@@ -65,5 +66,11 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-    </ContentPage.Content>
+        <Button x:Name="btnCreate"
+                IsVisible="False"
+                AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BorderRadius="30"
+                Clicked="btnCreate_Clicked"/>
+    </AbsoluteLayout>
 </ContentPage>

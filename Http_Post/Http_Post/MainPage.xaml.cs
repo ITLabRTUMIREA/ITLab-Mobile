@@ -3,6 +3,7 @@ using Models.PublicAPI.Requests.Account;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
+using Plugin.Settings;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -168,26 +169,22 @@ namespace Http_Post
         {
             try
             {
-                if (App.Current.Properties.TryGetValue(KEY, out object value))
+                string token = CrossSettings.Current.GetValueOrDefault(KEY, "");
+                var jsonContent = JsonConvert.SerializeObject(token);
+                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
+
+                var response = await client.PostAsync("Authentication/refresh", content);
+                string result = await response.Content.ReadAsStringAsync();
+
+                OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
+                if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                 {
-                    value = JsonConvert.SerializeObject(value);
-                    var content = new StringContent(value.ToString(), Encoding.UTF8, "application/json");
-
-                    var response = await client.PostAsync("Authentication/refresh", content);
-
-                    string result = await response.Content.ReadAsStringAsync();
-
-                    OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
-                    if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
-                    {
-                        Init();
-                        return;
-                    }
-
-                    Authorization(infoAboutStudent, false);
-                }
-                else
                     Init();
+                    return;
+                }
+
+                Authorization(infoAboutStudent, false);
+                Init();
             }
             catch (Exception ex)
             {
@@ -209,7 +206,8 @@ namespace Http_Post
 
         private void RememberToken(OneObjectResponse<LoginResponse> infoAboutStudent)
         {
-            App.Current.Properties[KEY] = infoAboutStudent.Data.RefreshToken;
+            //App.Current.Properties[KEY] = infoAboutStudent.Data.RefreshToken;
+            CrossSettings.Current.AddOrUpdateValue(KEY, infoAboutStudent.Data.RefreshToken);
         }
     }
 }

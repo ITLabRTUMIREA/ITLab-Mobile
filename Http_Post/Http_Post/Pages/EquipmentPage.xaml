@@ -5,70 +5,79 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              xmlns:img="clr-namespace:Http_Post.Images"
              Padding="5">
-    <Grid>
-        <Grid.Margin>
-            <OnPlatform x:TypeArguments="Thickness" 
+    <AbsoluteLayout>
+        <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
+              AbsoluteLayout.LayoutFlags="All">
+            <Grid.Margin>
+                <OnPlatform x:TypeArguments="Thickness" 
                         iOS="5,30,0,0"
                         Default="5,10,0,0"/>
-        </Grid.Margin>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="24"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="24"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="24"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Button x:Name="btnType"
+            </Grid.Margin>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="24"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btnType"
                 FontAttributes="None"
                 Grid.Column="0"
                 Grid.Row="0"
                 Clicked="btnType_Clicked"/>
-        <Image x:Name="imageType"
+            <Image x:Name="imageType"
                WidthRequest="24"
                HeightRequest="24"
+               Source="{img:ImageResource ArrowDown}"
                Aspect="AspectFit"
-               Source="ArrowDown.png"
                Grid.Column="1"
                Grid.Row="0"/>
-        <Button x:Name="btnOwner"
+            <Button x:Name="btnOwner"
                 FontAttributes="None"
                 Grid.Column="2"
                 Grid.Row="0"
                 Clicked="btnOwner_Clicked"/>
-        <Image x:Name="imageOwner"
+            <Image x:Name="imageOwner"
                WidthRequest="24"
                HeightRequest="24"
+               Source="{img:ImageResource ArrowDown}"
                Aspect="AspectFit"
-               Source="ArrowDown.png"
                Grid.Column="3"
                Grid.Row="0"/>
-        <Button x:Name="btnNumber"
+            <Button x:Name="btnNumber"
                 FontAttributes="None"
                 Grid.Column="4"
                 Grid.Row="0"
                 Clicked="btnNumber_Clicked"/>
-        <Image x:Name="imageNumber"
+            <Image x:Name="imageNumber"
                WidthRequest="24"
                HeightRequest="24"
+               Source="{img:ImageResource ArrowDown}"
                Aspect="AspectFit"
-               Source="ArrowDown.png"
                Grid.Column="5"
                Grid.Row="0"/>
-        <ListView x:Name="listView"
+            <ListView x:Name="listView"
                   SeparatorVisibility="None"
                   IsPullToRefreshEnabled="True"
                   ItemTapped="listView_ItemTapped"
                   Grid.ColumnSpan="6" Grid.Row="1">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Controls:EquipmentView/>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </Grid>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Controls:EquipmentView/>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+        <Button x:Name="btnCreate"
+                IsVisible="False"
+                AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                AbsoluteLayout.LayoutFlags="PositionProportional"
+                BorderRadius="30"
+                Clicked="btnCreate_Clicked"/>
+    </AbsoluteLayout>
 </ContentPage>

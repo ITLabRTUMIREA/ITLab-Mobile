@@ -35,11 +35,7 @@ namespace Http_Post
 
         void Theme_Change (object sender, EventArgs e)
         {
-            //Application.Current.Resources.ChangeTheme();
-            //Application.Current.Resources.MergedDictionaries.Remove(ThemeManager.GetCurrentTheme());
-            //ThemeManager.ChangeTheme();
-            //Application.Current.Resources.MergedDictionaries.Add(ThemeManager.GetCurrentTheme());
-            //Application.Current.Resources.ChangeTheme();
+            Application.Current.Resources.ChangeTheme();
         }
 
         private void UpdateLanguage()

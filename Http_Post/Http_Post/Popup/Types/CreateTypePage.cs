@@ -71,6 +71,7 @@ namespace Http_Post.Popup.Types
             var tcs = new TaskCompletionSource<EventRoleCreateRequest>();
             try
             {
+                entryTitle.Placeholder = Res.Resource.Role;
                 btnOk.Clicked += async (s, e) =>
                 {
                     if (string.IsNullOrEmpty(entryTitle.Text) || string.IsNullOrWhiteSpace(entryTitle.Text))

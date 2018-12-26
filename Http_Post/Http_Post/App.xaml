@@ -5,6 +5,7 @@
     <Application.Resources>
         <!-- Application resource dictionary -->
 
+        <!--
         <ResourceDictionary>
             <Style TargetType="ContentPage">
                 <Setter Property="Padding" Value="5"/>
@@ -41,6 +42,7 @@
                 </Setter>
             </Style>
         </ResourceDictionary>
+        -->
 
     </Application.Resources>
 </Application>
