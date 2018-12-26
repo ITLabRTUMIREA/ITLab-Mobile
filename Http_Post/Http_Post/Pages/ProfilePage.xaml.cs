@@ -26,6 +26,7 @@ namespace Http_Post.Pages
         {
             BindingContext = User;
             InitializeComponent();
+            Title = User.Email;
             UpdateLanguage();
         }
 
@@ -50,7 +51,6 @@ namespace Http_Post.Pages
 
         private void UpdateLanguage()
         {
-            Title = Resource.TitleProfile;
             Lbl_Firstname.Text = Resource.Firstname;
             Lbl_Lastname.Text = Resource.Lastname;
             Lbl_PhoneNumber.Text = Resource.PhoneNumber;

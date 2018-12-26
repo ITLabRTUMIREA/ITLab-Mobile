@@ -26,6 +26,7 @@ namespace Http_Post.Pages
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
             btnShowEvents.Image = "Today.png";
+            btnMyEvents.Image = "Person.png";
             lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {
@@ -48,7 +49,6 @@ namespace Http_Post.Pages
                 eventsAll = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
 
                 listView.ItemsSource = eventsToday.Data.Reverse();
-                btnShowEvents.IsVisible = true;
             }
             catch (Exception ex)
             {
@@ -98,6 +98,12 @@ namespace Http_Post.Pages
             _All = !_All;
             btnShowEvents.Image = _All ? "News.png" : "Today.png";
             listView.ItemsSource = _All ? eventsAll.Data.Reverse() : eventsToday.Data.Reverse();
+        }
+
+        void btnMyEvents_Clicked(object sender, EventArgs e)
+        {
+            listView.ItemsSource = eventsAll.Data.Where(ev => ev.Participating);
+            _All = !_All;
         }
     }
 }

@@ -2,52 +2,33 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.ProfilePage">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style TargetType="Entry">
-                <Setter Property="HeightRequest" Value="10"/>
-                <Setter Property="Margin" Value="0,0,0,20"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
     <ContentPage.Content>
         <StackLayout Spacing="5"
                      Margin="20,20,0,0">
-            <!-- Email -->
-            <Label x:Name="Lbl_Email"
-                   HorizontalOptions="Center"
-                    Margin="0,0,0,20"
-                    Text="{Binding Email}"/>
-            <!-- Firstname -->
             <Label x:Name="Lbl_Firstname"
                    HorizontalOptions="Center"/>
             <Entry x:Name="Entry_Firstname"
+                   Text="{Binding FirstName}"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
                    WidthRequest="300"
-                    Margin="0,0,0,20"
-                    HeightRequest="50"/>
-            <!-- Lastname -->
+                   HeightRequest="50"/>
             <Label x:Name="Lbl_Lastname"
                    HorizontalOptions="Center"/>
             <Entry x:Name="Entry_Lastname"
+                   Text="{Binding LastName}"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
                    WidthRequest="300"
-                    Margin="0,0,0,20"
-                    HeightRequest="50"
-                    Text="{Binding LastName}"/>
-            <!-- Phone number -->
+                   HeightRequest="50"/>
             <Label x:Name="Lbl_PhoneNumber"
                    HorizontalOptions="Center"/>
             <Entry x:Name="Entry_PhoneNumber"
+                   Text="{Binding PhoneNumber}"
                    HorizontalOptions="Center"
                    HorizontalTextAlignment="Center"
                    WidthRequest="300"
-                    Margin="0,0,0,20"
-                    HeightRequest="50"
-                    Text="{Binding PhoneNumber}"/>
-            <!-- Button to save changes -->
+                   HeightRequest="50"/>
             <Button x:Name="Btn_Save"
                     HorizontalOptions="Center"
                     WidthRequest="150"
