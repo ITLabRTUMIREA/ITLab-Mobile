@@ -19,14 +19,13 @@ namespace Http_Post.Pages
         private ListResponse<CompactEventViewExtended> eventsAll;
         private ListResponse<CompactEventViewExtended> eventsToday;
         bool _All;
-        bool clicked;
 
         public EventPage()
         {
-            _All = clicked = false;
+            _All = false;
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
-            btnShowEvents.Text = "Show all events";
+            btnShowEvents.Image = "Today.png";
             lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {
@@ -54,7 +53,6 @@ namespace Http_Post.Pages
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
-                clicked = false;
             }
         }
 
@@ -69,7 +67,6 @@ namespace Http_Post.Pages
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
-                clicked = false;
             }
         }
 
@@ -99,7 +96,7 @@ namespace Http_Post.Pages
         void btnShowEvents_Clicked(object sender, EventArgs e)
         {
             _All = !_All;
-            btnShowEvents.Text = _All ? "Show for today" : "Show all events";
+            btnShowEvents.Image = _All ? "News.png" : "Today.png";
             listView.ItemsSource = _All ? eventsAll.Data.Reverse() : eventsToday.Data.Reverse();
         }
     }

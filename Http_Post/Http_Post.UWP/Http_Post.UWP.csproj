@@ -159,6 +159,7 @@
     <Content Include="Refresh.png" />
     <Content Include="Repair.png" />
     <Content Include="SettingGear.png" />
+    <Content Include="Today.png" />
     <Content Include="TwoLinesHorizontal.png" />
   </ItemGroup>
   <ItemGroup>
