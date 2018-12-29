@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Http_Post.Controls.CircleButton">
+    <ContentView.Content>
+        <AbsoluteLayout>
+            <Button x:Name="btnCircle"
+                    BorderRadius="30"
+                    AbsoluteLayout.LayoutBounds="0.5,0.5,60,60"
+                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                    Clicked="btnCircle_Clicked"/>
+            <Image x:Name="imageCircle"
+                   Aspect="AspectFit"
+                   AbsoluteLayout.LayoutBounds="0.5,0.5,24,24"
+                   AbsoluteLayout.LayoutFlags="PositionProportional">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="btnCircle_Clicked"/>
+                </Image.GestureRecognizers>
+            </Image>
+        </AbsoluteLayout>
+    </ContentView.Content>
+</ContentView>

@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using Plugin.Settings;
+using Xamarin.Forms;
 
 namespace Http_Post.Images
 {
@@ -8,7 +9,8 @@ namespace Http_Post.Images
         {
             // light theme -> dark icons (that's why in light folder locate dark icons)
             // TODO: get 'Black' or 'White' from ThemeManager
-            return ImageSource.FromResource($"Http_Post.Images.Light.{Source}.png");
+            string theme = CrossSettings.Current.GetValueOrDefault("theme", null);
+            return ImageSource.FromResource($"Http_Post.Images.{theme}.{Source}.png");
         }
     }
 }

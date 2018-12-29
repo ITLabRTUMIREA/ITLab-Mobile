@@ -27,21 +27,19 @@
                        Margin="0,10,0,0"/>
             </ListView.Footer>
         </ListView>
-        <Button x:Name="btnShowEvents"
-                AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                BorderRadius="30"
-                Clicked="btnShowEvents_Clicked"/>
-        <Button x:Name="btnMyEvents"
-                AbsoluteLayout.LayoutBounds="0.95,0.82,60,60"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                BorderRadius="30"
-                Clicked="btnMyEvents_Clicked"/>
-        <Button x:Name="btnCreate"
-                IsVisible="False"
-                AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                BorderRadius="30"
-                Clicked="btnCreate_Clicked"/>
+        <Controls:CircleButton x:Name="btnShowEvents"
+                               BtnTapped="btnShowEvents_Clicked"
+                               ImageSource="Today"
+                               AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <Controls:CircleButton BtnTapped="btnMyEvents_Clicked"
+                               ImageSource="Person"
+                               AbsoluteLayout.LayoutBounds="0.95,0.82,60,60"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <Controls:CircleButton x:Name="btnCreate"
+                               ImageSource="CreateCircle"
+                               BtnTapped="btnCreate_Clicked"
+                               IsVisible="False"
+                               AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"/>
     </AbsoluteLayout>
 </ContentPage>

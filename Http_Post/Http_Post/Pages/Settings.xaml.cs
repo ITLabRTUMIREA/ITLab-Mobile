@@ -2,6 +2,7 @@ using Http_Post.Classes;
 using Http_Post.Pages;
 using Http_Post.Res;
 using Http_Post.Styles;
+using Plugin.Settings;
 using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -12,14 +13,14 @@ namespace Http_Post
     public partial class Settings : ContentPage
     {
         Localization localization = new Localization();
-        Menu menuSet;
 
         string cancel = Resource.ADMIN_Cancel;
+        Menu menu;
 
         public Settings(Menu menu)
         {
+            this.menu = menu;
             InitializeComponent();
-            menuSet = menu;
             UpdateLanguage();
         }
 
@@ -29,13 +30,21 @@ namespace Http_Post
         void AskForLanguage(Localization loc)
         {
             loc.ChangeCulture();
-
-            menuSet.UpdatePages();
+            //menu.UpdatePages();
+            ReloadApp();
         }
 
         void Theme_Change (object sender, EventArgs e)
         {
             Application.Current.Resources.ChangeTheme();
+            ReloadApp();
+        }
+
+        void ReloadApp()
+        {
+            Menu menu = new Menu();
+            NavigationPage.SetHasNavigationBar(menu, false);
+            Application.Current.MainPage = new NavigationPage(menu);
         }
 
         private void UpdateLanguage()
@@ -46,8 +55,11 @@ namespace Http_Post
             Btn_Profile.Btn_Text = Resource.TitleProfile;
         }
 
-        private void LogOut_Clicked(object sender, EventArgs e)
-            => menuSet.Logout();
+        void LogOut_Clicked(object sender, EventArgs e)
+        {
+            CrossSettings.Current.AddOrUpdateValue("refreshToken", "");
+            Application.Current.MainPage = new MainPage();
+        }
 
         private async void BtnProfile_Clicked(object sender, EventArgs e)
             => await Navigation.PushAsync(new ProfilePage());

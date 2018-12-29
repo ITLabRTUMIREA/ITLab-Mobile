@@ -25,9 +25,6 @@ namespace Http_Post.Pages
             _All = false;
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
-            btnShowEvents.Image = "Today.png";
-            btnMyEvents.Image = "Person.png";
-            btnCreate.Image = "CreateCircle.png";
             lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {
@@ -59,16 +56,8 @@ namespace Http_Post.Pages
 
         async void ListView_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            try
-            {
-                var item = (CompactEventView)e.Item;
-
-                await Navigation.PushAsync(new OneEventPage(item.Id));
-            }
-            catch (Exception ex)
-            {
-                await DisplayAlert("Error", ex.Message, "Ok");
-            }
+            var item = (CompactEventView)e.Item;
+            await Navigation.PushAsync(new OneEventPage(item.Id));
         }
 
         bool GetRight()
@@ -83,13 +72,13 @@ namespace Http_Post.Pages
         void btnShowEvents_Clicked(object sender, EventArgs e)
         {
             _All = !_All;
-            btnShowEvents.Image = _All ? "News.png" : "Today.png";
+            btnShowEvents.ImageSource = _All ? "News" : "Today";
             listView.ItemsSource = _All ? eventsAll.Data.Reverse() : eventsToday.Data.Reverse();
         }
 
         void btnMyEvents_Clicked(object sender, EventArgs e)
         {
-            listView.ItemsSource = eventsAll.Data.Where(ev => ev.Participating);
+            listView.ItemsSource = eventsAll.Data.Where(ev => ev.Participating).Reverse();
             _All = !_All;
         }
 

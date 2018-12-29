@@ -78,24 +78,19 @@ namespace Http_Post
                     text_error.TextColor = Color.Green;
                     text_error.Text = "Login successful!";
                 }
-
-                RememberToken(info); // remember refresh token
-                new CurrentUserIdFactory().FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
-
-                Menu menu = new Menu();
-                NavigationPage.SetHasBackButton(menu, false); // Don't add back button
-                NavigationPage.SetHasNavigationBar(menu, false);
-                /*Application.Current.MainPage = new NavigationPage(new Menu {
-                    BarBackgroundColor = Color.FromHex("009688"),
-                    BarTextColor = Color.White
-                });*/
-                await Navigation.PushAsync(menu);
-
                 if (!NeedToRender)
                 {
                     Init();
                     text_password.Text = ""; // clean password input
                 }
+
+                RememberToken(info); // remember refresh token
+                new CurrentUserIdFactory().FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
+
+                Menu menu = new Menu();
+                NavigationPage.SetHasNavigationBar(menu, false);
+                Application.Current.MainPage = new NavigationPage(menu);
+                //await Navigation.PushAsync(menu);
                 return;
             }
 
