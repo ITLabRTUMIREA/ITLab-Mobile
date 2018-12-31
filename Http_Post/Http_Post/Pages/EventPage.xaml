@@ -38,7 +38,7 @@
                                AbsoluteLayout.LayoutBounds="0.95,0.82,60,60"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton x:Name="btnCreate"
-                               ImageSource="CreateCircle"
+                               ImageSource="CreatePlus"
                                BtnTapped="btnCreate_Clicked"
                                IsVisible="False"
                                AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"
