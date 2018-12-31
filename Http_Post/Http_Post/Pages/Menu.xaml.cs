@@ -22,15 +22,15 @@ namespace Http_Post
         void AddPages(bool isUpdating)
         {
             Children.Add(new NotificationPage());
-            Children[0].Icon = "Notifications.png";
+            
             Children.Add(new EventPage());
-            Children[1].Icon = "News.png";
+            
             Children.Add(new EquipmentPage());
-            Children[2].Icon = "Repair.png";
+            
             Children.Add(new TypesPage());
-            Children[3].Icon = "TwoLinesHorizontal.png";
+            
             Children.Add(new Settings(this));
-            Children[4].Icon = "SettingGear.png";
+            
             if (isUpdating)
                 CurrentPage = Children[Children.Count - 1];
         }

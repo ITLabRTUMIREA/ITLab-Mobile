@@ -1,4 +1,5 @@
 ﻿using Models.PublicAPI.Responses.Event;
+using Plugin.Settings;
 using System;
 using System.Globalization;
 
@@ -8,7 +9,7 @@ namespace Http_Post.Extensions.Responses.Event
     {
         // day of week
         public string DayOfWeek
-            => BeginTime.ToString("dddd" , CultureInfo.GetCultureInfo(App.Current.Properties["language"].ToString()));
+            => BeginTime.ToString("dddd" , CultureInfo.GetCultureInfo(CrossSettings.Current.GetValueOrDefault("language", null)));
         // begin time
         public string BeginHour
             => BeginTime.ToLocalTime().Hour.ToString();

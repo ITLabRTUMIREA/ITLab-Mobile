@@ -37,7 +37,6 @@ namespace Http_Post.Pages
             btnEvent.Text = Resource.Event;
             btnRoles.Text = Resource.Role;
             btnEquipment.Text = Resource.TitleEquipment;
-            btnCreate.Image = "CreateCircle.png";
 
             listView.Refreshing += (s, e) => {
                 ChooseList();

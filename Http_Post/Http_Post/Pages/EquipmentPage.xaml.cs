@@ -18,11 +18,11 @@ namespace Http_Post.Pages
 	{
         HttpClient client = HttpClientFactory.HttpClient;
         IEnumerable<CompactEquipmentViewExtended> listEquip = new List<CompactEquipmentViewExtended>();
-        Image imgUp = new Image()
+        FFImageLoading.Svg.Forms.SvgCachedImage imgUp = new FFImageLoading.Svg.Forms.SvgCachedImage()
         {
             Source = Images.ImageManager.GetSourceImage("ArrowUp")
         };
-        Image imgDown = new Image()
+        FFImageLoading.Svg.Forms.SvgCachedImage imgDown = new FFImageLoading.Svg.Forms.SvgCachedImage()
         {
             Source = Images.ImageManager.GetSourceImage("ArrowDown")
         };
@@ -31,7 +31,6 @@ namespace Http_Post.Pages
 		{
             Init();
             GetEquipment();
-            btnCreate.Image = "CreateCircle.png";
             btnCreate.IsVisible = GetRight();
 
             listView.Refreshing += (s, e) => {

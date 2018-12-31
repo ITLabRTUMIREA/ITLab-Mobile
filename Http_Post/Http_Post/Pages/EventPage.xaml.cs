@@ -84,5 +84,8 @@ namespace Http_Post.Pages
 
         async void btnCreate_Clicked(object sender, EventArgs e)
             => await Navigation.PushAsync(new CreateEventPage());
+
+        void btnRefresh_BtnTapped(object sender, EventArgs e)
+            => listView.BeginRefresh();
     }
 }

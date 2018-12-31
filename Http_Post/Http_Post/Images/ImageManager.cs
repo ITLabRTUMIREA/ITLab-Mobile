@@ -5,12 +5,16 @@ namespace Http_Post.Images
 {
     static class ImageManager
     {
-        public static ImageSource GetSourceImage(string Source)
+        public static string GetSourceImage(string Source)
         {
             // light theme -> dark icons (that's why in light folder locate dark icons)
-            // TODO: get 'Black' or 'White' from ThemeManager
+            if (Source == null)
+            {
+                return null;
+            }
             string theme = CrossSettings.Current.GetValueOrDefault("theme", null);
-            return ImageSource.FromResource($"Http_Post.Images.{theme}.{Source}.png");
+            //var imageSource = ImageSource.FromResource($"resource://Http_Post.Images.{theme}.{Source}.svg");
+            return $"resource://Http_Post.Images.{theme}.{Source}.svg";
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FFImageLoading.Forms.Platform;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace Http_Post.UWP
         {
             this.InitializeComponent();
 
+            CachedImageRenderer.Init();
             LoadApplication(new Http_Post.App());
         }
     }

@@ -48,4 +48,7 @@
         <Setter Property="SeparatorColor" Value="Silver"/>
         <Setter Property="SelectionMode" Value="None"/>
     </Style>
+    <Style TargetType="TableView">
+        <Setter Property="HasUnevenRows" Value="True"/>
+    </Style>
 </ResourceDictionary>

@@ -12,10 +12,11 @@
 
   <ItemGroup>
     <PackageReference Include="ITLab.Models.PublicAPI" Version="1.0.5221" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.10.0" />
-    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.10.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="1.12.0" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="1.12.0" />
     <PackageReference Include="Xam.Plugins.Settings" Version="3.1.1" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.4.859" />
     <PackageReference Include="Xamarin.Forms" Version="3.4.0.1008975" />
   </ItemGroup>
 
@@ -24,65 +25,53 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Images\Dark\ArrowDown.png" />
-    <None Remove="Images\Dark\ArrowRight.png" />
-    <None Remove="Images\Dark\ArrowUp.png" />
-    <None Remove="Images\Dark\CreateCircle.png" />
-    <None Remove="Images\Dark\DeleteCross.png" />
-    <None Remove="Images\Dark\EditPencil.png" />
-    <None Remove="Images\Dark\Exit.png" />
-    <None Remove="Images\Dark\Language.png" />
-    <None Remove="Images\Dark\News.png" />
-    <None Remove="Images\Dark\Notifications.png" />
-    <None Remove="Images\Dark\Person.png" />
-    <None Remove="Images\Dark\SettingsGear.png" />
-    <None Remove="Images\Dark\Types.png" />
-    <None Remove="Images\Dark\Usb.png" />
-    <None Remove="Images\Light\ArrowDown.png" />
-    <None Remove="Images\Light\ArrowRight.png" />
-    <None Remove="Images\Light\ArrowUp.png" />
-    <None Remove="Images\Light\CreateCircle.png" />
-    <None Remove="Images\Light\DeleteCross.png" />
-    <None Remove="Images\Light\EditPencil.png" />
-    <None Remove="Images\Light\Exit.png" />
-    <None Remove="Images\Light\Language.png" />
-    <None Remove="Images\Light\News.png" />
-    <None Remove="Images\Light\Notifications.png" />
-    <None Remove="Images\Light\Person.png" />
-    <None Remove="Images\Light\SettingsGear.png" />
-    <None Remove="Images\Light\Types.png" />
-    <None Remove="Images\Light\Usb.png" />
+    <None Remove="Images\Dark\ArrowDown.svg" />
+    <None Remove="Images\Dark\ArrowRight.svg" />
+    <None Remove="Images\Dark\ArrowUp.svg" />
+    <None Remove="Images\Dark\CreateCircle.svg" />
+    <None Remove="Images\Dark\EditPencil.svg" />
+    <None Remove="Images\Dark\Exit.svg" />
+    <None Remove="Images\Dark\Language.svg" />
+    <None Remove="Images\Dark\News.svg" />
+    <None Remove="Images\Dark\Person.svg" />
+    <None Remove="Images\Dark\Refresh.svg" />
+    <None Remove="Images\Dark\Today.svg" />
+    <None Remove="Images\Light\ArrowDown.svg" />
+    <None Remove="Images\Light\ArrowRight.svg" />
+    <None Remove="Images\Light\ArrowUp.svg" />
+    <None Remove="Images\Light\CreateCircle.svg" />
+    <None Remove="Images\Light\EditPencil.svg" />
+    <None Remove="Images\Light\Exit.svg" />
+    <None Remove="Images\Light\Language.svg" />
+    <None Remove="Images\Light\News.svg" />
+    <None Remove="Images\Light\Person.svg" />
+    <None Remove="Images\Light\Refresh.svg" />
+    <None Remove="Images\Light\Today.svg" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Images\Dark\ArrowDown.png" />
-    <EmbeddedResource Include="Images\Dark\ArrowRight.png" />
-    <EmbeddedResource Include="Images\Dark\ArrowUp.png" />
-    <EmbeddedResource Include="Images\Dark\CreateCircle.png" />
-    <EmbeddedResource Include="Images\Dark\DeleteCross.png" />
-    <EmbeddedResource Include="Images\Dark\EditPencil.png" />
-    <EmbeddedResource Include="Images\Dark\Exit.png" />
-    <EmbeddedResource Include="Images\Dark\Language.png" />
-    <EmbeddedResource Include="Images\Dark\News.png" />
-    <EmbeddedResource Include="Images\Dark\Notifications.png" />
-    <EmbeddedResource Include="Images\Dark\Person.png" />
-    <EmbeddedResource Include="Images\Dark\SettingsGear.png" />
-    <EmbeddedResource Include="Images\Dark\Types.png" />
-    <EmbeddedResource Include="Images\Dark\Usb.png" />
-    <EmbeddedResource Include="Images\Light\ArrowDown.png" />
-    <EmbeddedResource Include="Images\Light\ArrowRight.png" />
-    <EmbeddedResource Include="Images\Light\ArrowUp.png" />
-    <EmbeddedResource Include="Images\Light\CreateCircle.png" />
-    <EmbeddedResource Include="Images\Light\DeleteCross.png" />
-    <EmbeddedResource Include="Images\Light\EditPencil.png" />
-    <EmbeddedResource Include="Images\Light\Exit.png" />
-    <EmbeddedResource Include="Images\Light\Language.png" />
-    <EmbeddedResource Include="Images\Light\News.png" />
-    <EmbeddedResource Include="Images\Light\Notifications.png" />
-    <EmbeddedResource Include="Images\Light\Person.png" />
-    <EmbeddedResource Include="Images\Light\SettingsGear.png" />
-    <EmbeddedResource Include="Images\Light\Types.png" />
-    <EmbeddedResource Include="Images\Light\Usb.png" />
+    <EmbeddedResource Include="Images\Dark\ArrowDown.svg" />
+    <EmbeddedResource Include="Images\Dark\ArrowRight.svg" />
+    <EmbeddedResource Include="Images\Dark\ArrowUp.svg" />
+    <EmbeddedResource Include="Images\Dark\CreateCircle.svg" />
+    <EmbeddedResource Include="Images\Dark\EditPencil.svg" />
+    <EmbeddedResource Include="Images\Dark\Exit.svg" />
+    <EmbeddedResource Include="Images\Dark\Language.svg" />
+    <EmbeddedResource Include="Images\Dark\News.svg" />
+    <EmbeddedResource Include="Images\Dark\Person.svg" />
+    <EmbeddedResource Include="Images\Dark\Refresh.svg" />
+    <EmbeddedResource Include="Images\Dark\Today.svg" />
+    <EmbeddedResource Include="Images\Light\ArrowDown.svg" />
+    <EmbeddedResource Include="Images\Light\ArrowRight.svg" />
+    <EmbeddedResource Include="Images\Light\ArrowUp.svg" />
+    <EmbeddedResource Include="Images\Light\CreateCircle.svg" />
+    <EmbeddedResource Include="Images\Light\EditPencil.svg" />
+    <EmbeddedResource Include="Images\Light\Exit.svg" />
+    <EmbeddedResource Include="Images\Light\Language.svg" />
+    <EmbeddedResource Include="Images\Light\News.svg" />
+    <EmbeddedResource Include="Images\Light\Person.svg" />
+    <EmbeddedResource Include="Images\Light\Refresh.svg" />
+    <EmbeddedResource Include="Images\Light\Today.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">

@@ -1,30 +1,41 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Pages.OneEventPage">
+             x:Class="Http_Post.Pages.OneEventPage"
+             xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout x:Name="stackLayout"
-                         Margin="20,20,0,20">
-                <!-- Event title -->
-                <Label Text="{Binding EventTitle}"
-                       FontAttributes="Bold"/>
-                <!-- Event type title (maybe smaller font size) -->
-                <Label Text="{Binding EventTypeTitle}"
-                       FontSize="Small"/>
-                <!-- Event begin and end hours -->
-                <Label x:Name="lblBeginTime"/>
-                <Label x:Name="lblEndTime"/>
-                <!-- Event description (italic?) -->
-                <Label Text="{Binding EventDescription}"
-                       FontAttributes="Italic"/>
-                <!-- Event address -->
-                <Label Text="{Binding EventAddress}"/>
-                <!-- Shifts -->
-                <Label x:Name="lblShifts"
-                       Margin="0, 10"
-                       FontAttributes="Italic, Bold"/>
-            </StackLayout>
+            <AbsoluteLayout>
+                <StackLayout x:Name="stackLayout"
+                             Margin="20,20,0,20"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             AbsoluteLayout.LayoutFlags="All">
+                    <!-- Event title -->
+                    <Label Text="{Binding EventTitle}"
+                           FontAttributes="Bold"/>
+                    <!-- Event type title (maybe smaller font size) -->
+                    <Label Text="{Binding EventTypeTitle}"
+                           FontSize="Small"/>
+                    <!-- Event begin and end hours -->
+                    <Label x:Name="lblBeginTime"/>
+                    <Label x:Name="lblEndTime"/>
+                    <!-- Event description (italic?) -->
+                    <Label Text="{Binding EventDescription}"
+                           FontAttributes="Italic"/>
+                    <!-- Event address -->
+                    <Label Text="{Binding EventAddress}"/>
+                    <!-- Shifts -->
+                    <Label x:Name="lblShifts"
+                           Margin="0, 10"
+                           FontAttributes="Italic, Bold"/>
+                </StackLayout>
+                <Controls:CircleButton x:Name="btnEdit"
+                                       IsVisible="False"
+                                       BtnTapped="btnEdit_Clicked"
+                                       ImageSource="EditPencil"
+                                       AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                                       AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            </AbsoluteLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

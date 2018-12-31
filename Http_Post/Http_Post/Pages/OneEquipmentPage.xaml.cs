@@ -26,7 +26,7 @@ namespace Http_Post.Pages
             UpdateLanguage();
             GetEquip();
 
-            ChangeToolBar(canEdit);
+            btnEdit.IsVisible = canEdit;
 		}
 
         async void GetEquip()
@@ -71,18 +71,7 @@ namespace Http_Post.Pages
             lblOwnerTitle.Text = Resource.Owner;
         }
 
-        async void btnChange_Clicked(object sender, EventArgs e)
+        async void btnEdit_Clicked (object sender, EventArgs e)
             => await Navigation.PushAsync(new CreateEquipment(equipment));
-
-        void ChangeToolBar(bool can)
-        {
-            ToolbarItems.Clear();
-            if (!can)
-                return;
-
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 0, ToolbarItemOrder.Primary, "EditPencil.png");
-            itemChange.Clicked += btnChange_Clicked;
-            ToolbarItems.Add(itemChange);
-        }
     }
 }

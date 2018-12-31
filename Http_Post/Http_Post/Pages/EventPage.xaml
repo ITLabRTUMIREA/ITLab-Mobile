@@ -2,9 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Pages.EventPage"
-             Title="Events"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
-             Padding="5">
+             Title="Events"
+             Padding="5"
+             Icon="News1.png">
     <AbsoluteLayout>
         <AbsoluteLayout.Margin>
             <OnPlatform x:TypeArguments="Thickness"
@@ -40,6 +41,16 @@
                                ImageSource="CreateCircle"
                                BtnTapped="btnCreate_Clicked"
                                IsVisible="False"
-                               AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"/>
+                               AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <Controls:CircleButton ImageSource="Refresh"
+                               BtnTapped="btnRefresh_BtnTapped"
+                               AbsoluteLayout.LayoutBounds="0.95,0.03,60,60"
+                               AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Controls:CircleButton.IsVisible>
+                <OnPlatform UWP="True"
+                            Default="False"/>
+            </Controls:CircleButton.IsVisible>
+        </Controls:CircleButton>
     </AbsoluteLayout>
 </ContentPage>

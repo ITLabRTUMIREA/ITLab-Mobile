@@ -132,59 +132,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Language.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Exit.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\EditPencil.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\DeleteCross.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\CreateCircle.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ArrowRight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\ArrowDown.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\TwoLinesHorizontal.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\SettingGear.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Repair.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Refresh.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Person.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\News.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <BundleResource Include="Resources\Notifications.png" />
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
+      <Version>2.4.4.859</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>3.4.0.1008975</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\ArrowUp.png" />
+    <BundleResource Include="Resources\News1.png" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="Resources\Today.png" />
+    <BundleResource Include="Resources\Notifications1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SettingsGear1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Types1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Usb1.png" />
   </ItemGroup>
 </Project>

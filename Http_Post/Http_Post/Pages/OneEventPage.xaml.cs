@@ -23,7 +23,6 @@ namespace Http_Post.Pages
         {
             eventId = id;
             Show();
-            ChangeToolBar();
         }
 
         private void Init()
@@ -33,6 +32,7 @@ namespace Http_Post.Pages
 
             UpdateLanguage();
             AddShifts();
+            btnEdit.IsVisible = GetRight();
         }
 
         private async void Show()
@@ -72,19 +72,6 @@ namespace Http_Post.Pages
             lblEndTime.Text = OneEvent.Shifts[OneEvent.Shifts.Count - 1].EndTime.ToLocalTime().ToString("dd MMMM, yyyy. HH:mm");
         }
 
-        void ChangeToolBar()
-        {
-            if (!GetRight())
-                return;
-
-            var itemChange = new ToolBar.ToolBarItems().Item(null, 1, ToolbarItemOrder.Primary, "EditPencil.png");
-            itemChange.Clicked += async (s, e) =>
-            {
-                await Navigation.PushAsync(new CreateEventPage(OneEvent));
-            };
-            ToolbarItems.Add(itemChange);
-        }
-
         bool GetRight()
         {
             string whatToCheck = "CanEditEvent";
@@ -93,5 +80,8 @@ namespace Http_Post.Pages
                     return true;
             return false;
         }
+
+        async void btnEdit_Clicked(object sender, EventArgs e)
+            => await Navigation.PushAsync(new CreateEventPage(OneEvent));
     }
 }

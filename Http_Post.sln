@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http_Post.iOS", "Http_Post\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http_Post.UWP", "Http_Post\Http_Post.UWP\Http_Post.UWP.csproj", "{05CB8975-6077-4799-A6BE-57E5640F9E66}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Http_Post", "Http_Post\Http_Post\Http_Post.csproj", "{92974B09-E033-413F-86CD-AE0B58AD4B18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Http_Post", "Http_Post\Http_Post\Http_Post.csproj", "{92974B09-E033-413F-86CD-AE0B58AD4B18}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -188,9 +188,9 @@ Global
 		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x64.ActiveCfg = Debug|x64
 		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x64.Build.0 = Debug|x64
 		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x64.Deploy.0 = Debug|x64
-		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x86.ActiveCfg = Debug|x86
-		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x86.Build.0 = Debug|x86
-		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x86.Deploy.0 = Debug|x86
+		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x86.ActiveCfg = Debug|x64
+		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x86.Build.0 = Debug|x64
+		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Debug|x86.Deploy.0 = Debug|x64
 		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Release|Any CPU.ActiveCfg = Release|x86
 		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Release|ARM.ActiveCfg = Release|ARM
 		{05CB8975-6077-4799-A6BE-57E5640F9E66}.Release|ARM.Build.0 = Release|ARM

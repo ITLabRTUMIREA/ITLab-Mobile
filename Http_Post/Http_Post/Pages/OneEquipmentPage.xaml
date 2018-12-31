@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Controls="clr-namespace:Http_Post.Controls"
              x:Class="Http_Post.Pages.OneEquipmentPage">
     <ContentPage.Content>
         <ScrollView>
-            <StackLayout Spacing="5"
-                         Margin="20,20,0,20">
-                <Label x:Name="lblTypeTitle"/>
-                <Label x:Name="lblType"
-                   Margin="0,0,0,20"/>
-                <Label x:Name="lblNumberTitle"/>
-                <Label x:Name="lblNumber"
-                   Margin="0,0,0,20"/>
-                <Label x:Name="lblDescriptionTitle"/>
-                <Label x:Name="lblDescription"
-                   Margin="0,0,0,20"/>
-                <Label x:Name="lblOwnerTitle"/>
-                <Label x:Name="lblOwner"
-                   Margin="0,0,0,20"/>
-            </StackLayout>
+            <AbsoluteLayout>
+                <StackLayout Spacing="5"
+                             Margin="20,20,0,20"
+                             AbsoluteLayout.LayoutBounds="0,0,1,1"
+                             AbsoluteLayout.LayoutFlags="All">
+                    <Label x:Name="lblTypeTitle"/>
+                    <Label x:Name="lblType"
+                           Margin="0,0,0,20"/>
+                    <Label x:Name="lblNumberTitle"/>
+                    <Label x:Name="lblNumber"
+                           Margin="0,0,0,20"/>
+                    <Label x:Name="lblDescriptionTitle"/>
+                    <Label x:Name="lblDescription"
+                           Margin="0,0,0,20"/>
+                    <Label x:Name="lblOwnerTitle"/>
+                    <Label x:Name="lblOwner"
+                           Margin="0,0,0,20"/>
+                </StackLayout>
+                <Controls:CircleButton x:Name="btnEdit"
+                                       BtnTapped="btnEdit_Clicked"
+                                       ImageSource="EditPencil"
+                                       IsVisible="False"
+                                       AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                                       AbsoluteLayout.LayoutFlags="PositionProportional"/>
+            </AbsoluteLayout>
         </ScrollView>
     </ContentPage.Content>
 </ContentPage>

@@ -113,17 +113,8 @@
     <None Include="Http_Post.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ArrowDown.png" />
-    <Content Include="ArrowRight.png" />
-    <Content Include="ArrowUp.png" />
-    <Content Include="CreateCircle.png" />
-    <Content Include="DeleteCross.png" />
-    <Content Include="EditPencil.png" />
-    <Content Include="Exit.png" />
-    <Content Include="Language.png" />
-    <Content Include="News.png" />
-    <Content Include="Notifications.png" />
-    <Content Include="Person.png" />
+    <Content Include="News1.png" />
+    <Content Include="Notifications1.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />
@@ -156,11 +147,9 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="Refresh.png" />
-    <Content Include="Repair.png" />
-    <Content Include="SettingGear.png" />
-    <Content Include="Today.png" />
-    <Content Include="TwoLinesHorizontal.png" />
+    <Content Include="SettingsGear1.png" />
+    <Content Include="Types1.png" />
+    <Content Include="Usb1.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -176,6 +165,9 @@
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.1.9" />
     <PackageReference Include="Xam.Plugins.Settings">
       <Version>3.1.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms">
+      <Version>2.4.4.859</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Forms">
       <Version>3.4.0.1008975</Version>

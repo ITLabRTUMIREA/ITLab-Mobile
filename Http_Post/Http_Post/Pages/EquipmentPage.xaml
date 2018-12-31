@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Pages.EquipmentPage"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              xmlns:img="clr-namespace:Http_Post.Images"
-             Padding="5">
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Http_Post.Pages.EquipmentPage"
+             Padding="5"
+             Icon="Usb1.png">
     <AbsoluteLayout>
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">
@@ -30,37 +32,34 @@
                 Grid.Column="0"
                 Grid.Row="0"
                 Clicked="btnType_Clicked"/>
-            <Image x:Name="imageType"
-               WidthRequest="24"
-               HeightRequest="24"
-               Source="{img:ImageResource ArrowDown}"
-               Aspect="AspectFit"
-               Grid.Column="1"
-               Grid.Row="0"/>
+            <svg:SvgCachedImage x:Name="imageType"
+                                Source="{img:ImageResource ArrowDown}"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                Grid.Column="1"
+                                Grid.Row="0"/>
             <Button x:Name="btnOwner"
                 FontAttributes="None"
                 Grid.Column="2"
                 Grid.Row="0"
                 Clicked="btnOwner_Clicked"/>
-            <Image x:Name="imageOwner"
-               WidthRequest="24"
-               HeightRequest="24"
-               Source="{img:ImageResource ArrowDown}"
-               Aspect="AspectFit"
-               Grid.Column="3"
-               Grid.Row="0"/>
+            <svg:SvgCachedImage x:Name="imageOwner"
+                                Source="{img:ImageResource ArrowDown}"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                Grid.Column="3"
+                                Grid.Row="0"/>
             <Button x:Name="btnNumber"
                 FontAttributes="None"
                 Grid.Column="4"
                 Grid.Row="0"
                 Clicked="btnNumber_Clicked"/>
-            <Image x:Name="imageNumber"
-               WidthRequest="24"
-               HeightRequest="24"
-               Source="{img:ImageResource ArrowDown}"
-               Aspect="AspectFit"
-               Grid.Column="5"
-               Grid.Row="0"/>
+            <svg:SvgCachedImage x:Name="imageNumber"
+                                Source="{img:ImageResource ArrowDown}"
+                                WidthRequest="24"
+                                HeightRequest="24"
+                                Grid.Column="5"
+                                Grid.Row="0"/>
             <ListView x:Name="listView"
                   SeparatorVisibility="None"
                   IsPullToRefreshEnabled="True"
@@ -73,11 +72,11 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-        <Button x:Name="btnCreate"
-                IsVisible="False"
-                AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
-                AbsoluteLayout.LayoutFlags="PositionProportional"
-                BorderRadius="30"
-                Clicked="btnCreate_Clicked"/>
+        <Controls:CircleButton x:Name="btnCreate"
+                               BtnTapped="btnCreate_Clicked"
+                               IsVisible="False"
+                               ImageSource="CreateCircle"
+                               AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"/>
     </AbsoluteLayout>
 </ContentPage>
