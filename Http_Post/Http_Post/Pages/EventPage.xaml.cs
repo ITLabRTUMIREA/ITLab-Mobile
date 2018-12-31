@@ -42,11 +42,11 @@ namespace Http_Post.Pages
             {
                 var response = await client.GetStringAsync($"event/?begin={DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss")}");
                 eventsToday = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
+                listView.ItemsSource = eventsToday.Data.Reverse();
+                btnShowEvents.ImageSource = "Today";
 
                 response = await client.GetStringAsync("event/");
                 eventsAll = JsonConvert.DeserializeObject<ListResponse<CompactEventViewExtended>>(response);
-
-                listView.ItemsSource = eventsToday.Data.Reverse();
             }
             catch (Exception ex)
             {

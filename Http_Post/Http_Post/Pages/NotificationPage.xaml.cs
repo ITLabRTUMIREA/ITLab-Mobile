@@ -27,7 +27,6 @@ namespace Http_Post.Pages
 			InitializeComponent ();
 
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleNotifications : "";
-            //Icon = Images.ImageManager.GetSourceImage("Notifications");
             tableInvitations.Title = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
             tableWishes.Title = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
 

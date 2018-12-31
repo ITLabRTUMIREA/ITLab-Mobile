@@ -28,10 +28,9 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button x:Name="btnType"
-                FontAttributes="None"
-                Grid.Column="0"
-                Grid.Row="0"
-                Clicked="btnType_Clicked"/>
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Clicked="btnType_Clicked"/>
             <svg:SvgCachedImage x:Name="imageType"
                                 Source="{img:ImageResource ArrowDown}"
                                 WidthRequest="24"
@@ -39,10 +38,9 @@
                                 Grid.Column="1"
                                 Grid.Row="0"/>
             <Button x:Name="btnOwner"
-                FontAttributes="None"
-                Grid.Column="2"
-                Grid.Row="0"
-                Clicked="btnOwner_Clicked"/>
+                    Grid.Column="2"
+                    Grid.Row="0"
+                    Clicked="btnOwner_Clicked"/>
             <svg:SvgCachedImage x:Name="imageOwner"
                                 Source="{img:ImageResource ArrowDown}"
                                 WidthRequest="24"
@@ -50,10 +48,9 @@
                                 Grid.Column="3"
                                 Grid.Row="0"/>
             <Button x:Name="btnNumber"
-                FontAttributes="None"
-                Grid.Column="4"
-                Grid.Row="0"
-                Clicked="btnNumber_Clicked"/>
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    Clicked="btnNumber_Clicked"/>
             <svg:SvgCachedImage x:Name="imageNumber"
                                 Source="{img:ImageResource ArrowDown}"
                                 WidthRequest="24"
@@ -61,10 +58,10 @@
                                 Grid.Column="5"
                                 Grid.Row="0"/>
             <ListView x:Name="listView"
-                  SeparatorVisibility="None"
-                  IsPullToRefreshEnabled="True"
-                  ItemTapped="listView_ItemTapped"
-                  Grid.ColumnSpan="6" Grid.Row="1">
+                      SeparatorVisibility="None"
+                      IsPullToRefreshEnabled="True"
+                      ItemTapped="listView_ItemTapped"
+                      Grid.ColumnSpan="6" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:EquipmentView/>
@@ -78,5 +75,14 @@
                                ImageSource="CreatePlus"
                                AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+        <Controls:CircleButton ImageSource="Refresh"
+                               BtnTapped="btnRefresh_BtnTapped"
+                               AbsoluteLayout.LayoutBounds="0.95,0.05,60,60"
+                               AbsoluteLayout.LayoutFlags="PositionProportional">
+            <Controls:CircleButton.IsVisible>
+                <OnPlatform UWP="True"
+                            Default="False"/>
+            </Controls:CircleButton.IsVisible>
+        </Controls:CircleButton>
     </AbsoluteLayout>
 </ContentPage>

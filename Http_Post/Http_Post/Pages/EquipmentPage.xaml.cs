@@ -29,7 +29,8 @@ namespace Http_Post.Pages
 
         public EquipmentPage ()
 		{
-            Init();
+            InitializeComponent();
+            UpdateLanguage();
             GetEquipment();
             btnCreate.IsVisible = GetRight();
 
@@ -37,12 +38,6 @@ namespace Http_Post.Pages
                 GetEquipment();
                 listView.IsRefreshing = false;
             };
-        }
-
-        void Init()
-        {
-            InitializeComponent();
-            UpdateLanguage();
         }
 
         async void GetEquipment()
@@ -170,5 +165,8 @@ namespace Http_Post.Pages
 
         async void btnCreate_Clicked(object sender, EventArgs e)
             => await Navigation.PushAsync(new CreateEquipment());
+
+        void btnRefresh_BtnTapped(object sender, EventArgs e)
+            => listView.BeginRefresh();
     }
 }

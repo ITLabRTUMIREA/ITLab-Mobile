@@ -314,5 +314,8 @@ namespace Http_Post.Pages
                     return true;
             return false;
         }
+
+        void btnRefresh_BtnTapped(object sender, EventArgs e)
+            => listView.BeginRefresh();
     }
 }
