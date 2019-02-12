@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Threading;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,19 +19,12 @@ namespace Http_Post.Pages
 	{
         HttpClient client = HttpClientFactory.HttpClient;
         IEnumerable<CompactEquipmentViewExtended> listEquip = new List<CompactEquipmentViewExtended>();
-        FFImageLoading.Svg.Forms.SvgCachedImage imgUp = new FFImageLoading.Svg.Forms.SvgCachedImage()
-        {
-            Source = Images.ImageManager.GetSourceImage("ArrowUp")
-        };
-        FFImageLoading.Svg.Forms.SvgCachedImage imgDown = new FFImageLoading.Svg.Forms.SvgCachedImage()
-        {
-            Source = Images.ImageManager.GetSourceImage("ArrowDown")
-        };
 
         public EquipmentPage ()
 		{
             InitializeComponent();
             UpdateLanguage();
+            UpdateFrames();
             GetEquipment();
             btnCreate.IsVisible = GetRight();
 
@@ -38,6 +32,16 @@ namespace Http_Post.Pages
                 GetEquipment();
                 listView.IsRefreshing = false;
             };
+        }
+
+        void UpdateFrames()
+        {
+            frameType.ImageLeft = Images.ImageManager.GetSourceImage("Types");
+            default_color = frameType.FrameColor;
+            frameType.FrameColor = Color.FromHex("#ff8080");
+            frameOwner.ImageLeft = Images.ImageManager.GetSourceImage("Person");
+            frameNumber.ImageLeft = Images.ImageManager.GetSourceImage("Number_1_to_3");
+            frameOwner.ImageRight = frameNumber.ImageRight = frameType.ImageRight = Images.ImageManager.GetSourceImage("ArrowDown");
         }
 
         async void GetEquipment()
@@ -65,7 +69,6 @@ namespace Http_Post.Pages
                 listEquip = equip.Data.OrderBy(se => se.EquipmentType.Title);
                 reserve = false;
                 listView.ItemsSource = listEquip;
-                btnType.FontAttributes = FontAttributes.Bold;
             }
             catch (Exception ex)
             {
@@ -82,9 +85,6 @@ namespace Http_Post.Pages
         void UpdateLanguage()
         {
             Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleEquipment : "";
-            btnType.Text = Resource.EquipmentType;
-            btnOwner.Text = Resource.Owner;
-            btnNumber.Text = Resource.Number;
         }
 
         bool GetRight()
@@ -97,70 +97,62 @@ namespace Http_Post.Pages
         }
 
         bool reserve;
-        void btnType_Clicked(object sender, EventArgs e)
+        Color default_color;
+        void frameType_Clicked(object sender, EventArgs e)
         {
-            if (!reserve && btnType.FontAttributes == FontAttributes.Bold)
+            reserve = frameType.FrameColor == Color.FromHex("#ff8080") ? !reserve : false;
+            if (reserve)
             {
                 listEquip = listEquip.OrderByDescending(se => se.EquipmentType.Title);
-                imageType.Source = imgUp.Source;
+                frameType.ImageRight = Images.ImageManager.GetSourceImage("ArrowUp");
             }
             else
             {
                 listEquip = listEquip.OrderBy(se => se.EquipmentType.Title);
-                imageType.Source = imgDown.Source;
-                imageOwner.Source = imgDown.Source;
-                imageNumber.Source = imgDown.Source;
+                frameOwner.ImageRight = frameNumber.ImageRight = frameType.ImageRight = Images.ImageManager.GetSourceImage("ArrowDown");
             }
 
-            reserve = btnType.FontAttributes == FontAttributes.Bold ? !reserve : false;
-            listView.ItemsSource = listEquip; 
-            btnType.FontAttributes = FontAttributes.Bold;
-            btnOwner.FontAttributes = FontAttributes.None;
-            btnNumber.FontAttributes = FontAttributes.None;
+            frameType.FrameColor = frameOwner.FrameColor = frameNumber.FrameColor = default_color;
+            frameType.FrameColor = Color.FromHex("#ff8080");
+            listView.ItemsSource = listEquip;
         }
 
-        void btnOwner_Clicked(object sender, EventArgs e)
+        void frameOwner_Clicked(object sender, EventArgs e)
         {
-            if (!reserve && btnOwner.FontAttributes == FontAttributes.Bold)
+            reserve = frameOwner.FrameColor == Color.FromHex("#ff8080") ? !reserve : false;
+            if (reserve)
             {
                 listEquip = listEquip.OrderByDescending(se => se.OwnerName);
-                imageOwner.Source = imgUp.Source;
+                frameOwner.ImageRight = Images.ImageManager.GetSourceImage("ArrowUp");
             }
             else
             {
                 listEquip = listEquip.OrderBy(se => se.OwnerName);
-                imageOwner.Source = imgDown.Source;
-                imageType.Source = imgDown.Source;
-                imageNumber.Source = imgDown.Source;
+                frameOwner.ImageRight = frameNumber.ImageRight = frameType.ImageRight = Images.ImageManager.GetSourceImage("ArrowDown");
             }
 
-            reserve = btnOwner.FontAttributes == FontAttributes.Bold ? !reserve : false;
+            frameType.FrameColor = frameOwner.FrameColor = frameNumber.FrameColor = default_color;
+            frameOwner.FrameColor = Color.FromHex("#ff8080");
             listView.ItemsSource = listEquip;
-            btnType.FontAttributes = FontAttributes.None;
-            btnOwner.FontAttributes = FontAttributes.Bold;
-            btnNumber.FontAttributes = FontAttributes.None;
         }
 
-        void btnNumber_Clicked(object sender, EventArgs e)
+        void frameNumber_Clicked(object sender, EventArgs e)
         {
-            if (!reserve && btnNumber.FontAttributes == FontAttributes.Bold)
+            reserve = frameNumber.FrameColor == Color.FromHex("#ff8080") ? !reserve : false;
+            if (reserve)
             {
                 listEquip = listEquip.OrderByDescending(se => se.Number);
-                imageNumber.Source = imgUp.Source;
+                frameNumber.ImageRight = Images.ImageManager.GetSourceImage("ArrowUp");
             }
             else
             {
                 listEquip = listEquip.OrderBy(se => se.Number);
-                imageNumber.Source = imgDown.Source;
-                imageOwner.Source = imgDown.Source;
-                imageType.Source = imgDown.Source;
+                frameOwner.ImageRight = frameNumber.ImageRight = frameType.ImageRight = Images.ImageManager.GetSourceImage("ArrowDown");
             }
 
-            reserve = btnNumber.FontAttributes == FontAttributes.Bold ? !reserve : false;
+            frameType.FrameColor = frameOwner.FrameColor = frameNumber.FrameColor = default_color;
+            frameNumber.FrameColor = Color.FromHex("#ff8080");
             listView.ItemsSource = listEquip;
-            btnType.FontAttributes = FontAttributes.None;
-            btnOwner.FontAttributes = FontAttributes.None;
-            btnNumber.FontAttributes = FontAttributes.Bold;
         }
 
         async void btnCreate_Clicked(object sender, EventArgs e)

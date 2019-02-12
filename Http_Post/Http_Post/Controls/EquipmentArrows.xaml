@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             x:Class="Http_Post.Controls.EquipmentArrows"
+             Padding="0"
+             Margin="0">
+    <Frame Padding="1"
+           Margin="0"
+           x:Name="frame">
+        <Frame.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+        </Frame.GestureRecognizers>
+        <Grid Padding="0"
+              Margin="0"
+              RowSpacing="0"
+              ColumnSpacing="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <svg:SvgCachedImage WidthRequest="24"
+                                HeightRequest="24"
+                                x:Name="imageLeft"
+                                Grid.Row="0"
+                                Grid.Column="0"/>
+            <svg:SvgCachedImage WidthRequest="24"
+                                HeightRequest="24"
+                                x:Name="imageRight"
+                                Grid.Row="0"
+                                Grid.Column="1"/>
+        </Grid>
+    </Frame>
+</ContentView>

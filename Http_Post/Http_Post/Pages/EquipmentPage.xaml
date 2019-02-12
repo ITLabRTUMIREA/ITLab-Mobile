@@ -17,51 +17,31 @@
             </Grid.Margin>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="24"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="24"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="24"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnType"
-                    Grid.Column="0"
-                    Grid.Row="0"
-                    Clicked="btnType_Clicked"/>
-            <svg:SvgCachedImage x:Name="imageType"
-                                Source="{img:ImageResource ArrowDown}"
-                                WidthRequest="24"
-                                HeightRequest="24"
-                                Grid.Column="1"
-                                Grid.Row="0"/>
-            <Button x:Name="btnOwner"
-                    Grid.Column="2"
-                    Grid.Row="0"
-                    Clicked="btnOwner_Clicked"/>
-            <svg:SvgCachedImage x:Name="imageOwner"
-                                Source="{img:ImageResource ArrowDown}"
-                                WidthRequest="24"
-                                HeightRequest="24"
-                                Grid.Column="3"
-                                Grid.Row="0"/>
-            <Button x:Name="btnNumber"
-                    Grid.Column="4"
-                    Grid.Row="0"
-                    Clicked="btnNumber_Clicked"/>
-            <svg:SvgCachedImage x:Name="imageNumber"
-                                Source="{img:ImageResource ArrowDown}"
-                                WidthRequest="24"
-                                HeightRequest="24"
-                                Grid.Column="5"
-                                Grid.Row="0"/>
+            <Controls:EquipmentArrows x:Name="frameType"
+                                      tapped="frameType_Clicked"
+                                      Grid.Row="0"
+                                      Grid.Column="0"/>
+            <Controls:EquipmentArrows x:Name="frameOwner"
+                                      tapped="frameOwner_Clicked"
+                                      Grid.Row="0"
+                                      Grid.Column="1"/>
+            <Controls:EquipmentArrows x:Name="frameNumber"
+                                      tapped="frameNumber_Clicked"
+                                      Grid.Row="0"
+                                      Grid.Column="2"/>
             <ListView x:Name="listView"
                       SeparatorVisibility="None"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="listView_ItemTapped"
-                      Grid.ColumnSpan="6" Grid.Row="1">
+                      Grid.ColumnSpan="3"
+                      Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:EquipmentView/>

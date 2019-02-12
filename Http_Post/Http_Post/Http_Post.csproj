@@ -33,9 +33,11 @@
     <None Remove="Images\Dark\Exit.svg" />
     <None Remove="Images\Dark\Language.svg" />
     <None Remove="Images\Dark\News.svg" />
+    <None Remove="Images\Dark\Number_1_to_3.svg" />
     <None Remove="Images\Dark\Person.svg" />
     <None Remove="Images\Dark\Refresh.svg" />
     <None Remove="Images\Dark\Today.svg" />
+    <None Remove="Images\Dark\Types.svg" />
     <None Remove="Images\Light\ArrowDown.svg" />
     <None Remove="Images\Light\ArrowRight.svg" />
     <None Remove="Images\Light\ArrowUp.svg" />
@@ -44,9 +46,11 @@
     <None Remove="Images\Light\Exit.svg" />
     <None Remove="Images\Light\Language.svg" />
     <None Remove="Images\Light\News.svg" />
+    <None Remove="Images\Light\Number_1_to_3.svg" />
     <None Remove="Images\Light\Person.svg" />
     <None Remove="Images\Light\Refresh.svg" />
     <None Remove="Images\Light\Today.svg" />
+    <None Remove="Images\Light\Types.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -58,9 +62,11 @@
     <EmbeddedResource Include="Images\Dark\Exit.svg" />
     <EmbeddedResource Include="Images\Dark\Language.svg" />
     <EmbeddedResource Include="Images\Dark\News.svg" />
+    <EmbeddedResource Include="Images\Dark\Number_1_to_3.svg" />
     <EmbeddedResource Include="Images\Dark\Person.svg" />
     <EmbeddedResource Include="Images\Dark\Refresh.svg" />
     <EmbeddedResource Include="Images\Dark\Today.svg" />
+    <EmbeddedResource Include="Images\Dark\Types.svg" />
     <EmbeddedResource Include="Images\Light\ArrowDown.svg" />
     <EmbeddedResource Include="Images\Light\ArrowRight.svg" />
     <EmbeddedResource Include="Images\Light\ArrowUp.svg" />
@@ -69,9 +75,11 @@
     <EmbeddedResource Include="Images\Light\Exit.svg" />
     <EmbeddedResource Include="Images\Light\Language.svg" />
     <EmbeddedResource Include="Images\Light\News.svg" />
+    <EmbeddedResource Include="Images\Light\Number_1_to_3.svg" />
     <EmbeddedResource Include="Images\Light\Person.svg" />
     <EmbeddedResource Include="Images\Light\Refresh.svg" />
     <EmbeddedResource Include="Images\Light\Today.svg" />
+    <EmbeddedResource Include="Images\Light\Types.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
@@ -92,6 +100,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Controls\CircleButton.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Controls\EquipmentArrows.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\EventView.xaml">
