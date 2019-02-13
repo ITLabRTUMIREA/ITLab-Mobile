@@ -36,8 +36,10 @@
     <None Remove="Images\Dark\Number_1_to_3.svg" />
     <None Remove="Images\Dark\Person.svg" />
     <None Remove="Images\Dark\Refresh.svg" />
+    <None Remove="Images\Dark\Role.svg" />
     <None Remove="Images\Dark\Today.svg" />
     <None Remove="Images\Dark\Types.svg" />
+    <None Remove="Images\Dark\Usb.svg" />
     <None Remove="Images\Light\ArrowDown.svg" />
     <None Remove="Images\Light\ArrowRight.svg" />
     <None Remove="Images\Light\ArrowUp.svg" />
@@ -49,8 +51,10 @@
     <None Remove="Images\Light\Number_1_to_3.svg" />
     <None Remove="Images\Light\Person.svg" />
     <None Remove="Images\Light\Refresh.svg" />
+    <None Remove="Images\Light\Role.svg" />
     <None Remove="Images\Light\Today.svg" />
     <None Remove="Images\Light\Types.svg" />
+    <None Remove="Images\Light\Usb.svg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,8 +69,10 @@
     <EmbeddedResource Include="Images\Dark\Number_1_to_3.svg" />
     <EmbeddedResource Include="Images\Dark\Person.svg" />
     <EmbeddedResource Include="Images\Dark\Refresh.svg" />
+    <EmbeddedResource Include="Images\Dark\Role.svg" />
     <EmbeddedResource Include="Images\Dark\Today.svg" />
     <EmbeddedResource Include="Images\Dark\Types.svg" />
+    <EmbeddedResource Include="Images\Dark\Usb.svg" />
     <EmbeddedResource Include="Images\Light\ArrowDown.svg" />
     <EmbeddedResource Include="Images\Light\ArrowRight.svg" />
     <EmbeddedResource Include="Images\Light\ArrowUp.svg" />
@@ -78,8 +84,10 @@
     <EmbeddedResource Include="Images\Light\Number_1_to_3.svg" />
     <EmbeddedResource Include="Images\Light\Person.svg" />
     <EmbeddedResource Include="Images\Light\Refresh.svg" />
+    <EmbeddedResource Include="Images\Light\Role.svg" />
     <EmbeddedResource Include="Images\Light\Today.svg" />
     <EmbeddedResource Include="Images\Light\Types.svg" />
+    <EmbeddedResource Include="Images\Light\Usb.svg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="App.xaml.cs">
@@ -99,10 +107,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Controls\CircleButton.xaml">
+    <EmbeddedResource Update="Controls\ButtonsArrows.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\EquipmentArrows.xaml">
+    <EmbeddedResource Update="Controls\CircleButton.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Controls\EventView.xaml">

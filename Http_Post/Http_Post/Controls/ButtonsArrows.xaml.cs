@@ -10,7 +10,7 @@ using Xamarin.Forms.Xaml;
 namespace Http_Post.Controls
 {
 	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class EquipmentArrows : ContentView
+	public partial class ButtonsArrows : ContentView
 	{
         public event EventHandler tapped;
         public string ImageLeft
@@ -25,16 +25,16 @@ namespace Http_Post.Controls
         }
         public Color FrameColor
         {
-            get { return frame.OutlineColor; }
-            set { frame.OutlineColor = value; }
+            get { return frame.BorderColor; }
+            set { frame.BorderColor = value; }
         }
 
-		public EquipmentArrows ()
+        public ButtonsArrows ()
 		{
 			InitializeComponent ();
 		}
 
         void TapGestureRecognizer_Tapped(object sender, EventArgs e)
             => tapped?.Invoke(sender, e);
-    }
+	}
 }

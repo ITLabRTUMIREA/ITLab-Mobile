@@ -36,8 +36,8 @@ namespace Http_Post.Pages
 
         void UpdateFrames()
         {
-            frameType.ImageLeft = Images.ImageManager.GetSourceImage("Types");
             default_color = frameType.FrameColor;
+            frameType.ImageLeft = Images.ImageManager.GetSourceImage("Types");
             frameType.FrameColor = Color.FromHex("#ff8080");
             frameOwner.ImageLeft = Images.ImageManager.GetSourceImage("Person");
             frameNumber.ImageLeft = Images.ImageManager.GetSourceImage("Number_1_to_3");

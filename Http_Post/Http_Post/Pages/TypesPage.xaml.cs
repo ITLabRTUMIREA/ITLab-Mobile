@@ -21,6 +21,7 @@ namespace Http_Post.Pages
     public partial class TypesPage : ContentPage
     {
         HttpClient client = HttpClientFactory.HttpClient;
+        Color default_color;
 
         enum Types
         {
@@ -34,9 +35,7 @@ namespace Http_Post.Pages
         {
             InitializeComponent();
             Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleTypes : "";
-            btnEvent.Text = Resource.Event;
-            btnRoles.Text = Resource.Role;
-            btnEquipment.Text = Resource.TitleEquipment;
+            UpdateFrames();
 
             listView.Refreshing += (s, e) => {
                 ChooseList();
@@ -46,28 +45,35 @@ namespace Http_Post.Pages
             ChooseList();
         }
 
+        void UpdateFrames()
+        {
+            default_color = frameEvent.FrameColor;
+            frameEvent.ImageLeft = Images.ImageManager.GetSourceImage("News");
+            frameRole.ImageLeft = Images.ImageManager.GetSourceImage("Role");
+            frameEquipment.ImageLeft = Images.ImageManager.GetSourceImage("Usb");
+            frameRole.ImageRight = frameEvent.ImageRight = frameEquipment.ImageRight = Images.ImageManager.GetSourceImage("ArrowDown");
+        }
+
         void ChooseList()
         {
-            btnEvent.FontAttributes = FontAttributes.None;
-            btnEquipment.FontAttributes = FontAttributes.None;
-            btnRoles.FontAttributes = FontAttributes.None;
+            frameRole.FrameColor = frameEvent.FrameColor = frameEquipment.FrameColor = default_color;
             switch (types)
             {
                 case Types.Event:
                     {
-                        btnEvent.FontAttributes = FontAttributes.Bold;
+                        frameEvent.FrameColor = Color.FromHex("#ff8080");
                         GetEventTypes();
                     }
                     break;
                 case Types.Role:
                     {
-                        btnRoles.FontAttributes = FontAttributes.Bold;
+                        frameRole.FrameColor = Color.FromHex("#ff8080");
                         GetRoles();
                     }
                     break;
                 case Types.Equipment:
                     {
-                        btnEquipment.FontAttributes = FontAttributes.Bold;
+                        frameEquipment.FrameColor = Color.FromHex("#ff8080");
                         GetEquipmentTypes();
                     }
                     break;
@@ -75,19 +81,19 @@ namespace Http_Post.Pages
             btnCreate.IsVisible = GetRight();
         }
 
-        void btnEvents_Clicked(object sender, EventArgs e)
+        void frameEvents_Clicked(object sender, EventArgs e)
         {
             types = Types.Event;
             ChooseList();
         }
 
-        void btnEquipment_Clicked(object sender, EventArgs e)
+        void frameEquipment_Clicked(object sender, EventArgs e)
         {
             types = Types.Equipment;
             ChooseList();
         }
 
-        void btnRoles_Clicked(object sender, EventArgs e)
+        void frameRoles_Clicked(object sender, EventArgs e)
         {
             types = Types.Role;
             ChooseList();

@@ -24,15 +24,15 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Controls:EquipmentArrows x:Name="frameType"
+            <Controls:ButtonsArrows x:Name="frameType"
                                       tapped="frameType_Clicked"
                                       Grid.Row="0"
                                       Grid.Column="0"/>
-            <Controls:EquipmentArrows x:Name="frameOwner"
+            <Controls:ButtonsArrows x:Name="frameOwner"
                                       tapped="frameOwner_Clicked"
                                       Grid.Row="0"
                                       Grid.Column="1"/>
-            <Controls:EquipmentArrows x:Name="frameNumber"
+            <Controls:ButtonsArrows x:Name="frameNumber"
                                       tapped="frameNumber_Clicked"
                                       Grid.Row="0"
                                       Grid.Column="2"/>

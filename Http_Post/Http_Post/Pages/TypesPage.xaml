@@ -17,49 +17,30 @@
             </Grid.Margin>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="24"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="24"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="24"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Button x:Name="btnEvent"
-                    CornerRadius="15"
-                    Grid.Column="0" Grid.Row="0"
-                    Clicked="btnEvents_Clicked"/>
-            <svg:SvgCachedImage Source="{img:ImageResource ArrowDown}"
-                                WidthRequest="24"
-                                HeightRequest="24"
-                                Aspect="AspectFit"
-                                Grid.Column="1"
-                                Grid.Row="0"/>
-            <Button x:Name="btnEquipment"
-                    CornerRadius="15"
-                    Grid.Column="2" Grid.Row="0"
-                    Clicked="btnEquipment_Clicked"/>
-            <svg:SvgCachedImage Source="{img:ImageResource ArrowDown}"
-                                WidthRequest="24"
-                                HeightRequest="24"
-                                Grid.Column="3"
-                                Grid.Row="0"/>
-            <Button x:Name="btnRoles"
-                    CornerRadius="15"
-                    Grid.Column="4" Grid.Row="0"
-                    Clicked="btnRoles_Clicked"/>
-            <svg:SvgCachedImage Source="{img:ImageResource ArrowDown}"
-                                WidthRequest="24"
-                                HeightRequest="24"
-                                Grid.Column="5"
-                                Grid.Row="0"/>
+            <Controls:ButtonsArrows x:Name="frameEvent"
+                                    tapped="frameEvents_Clicked"
+                                    Grid.Row="0"
+                                    Grid.Column="0"/>
+            <Controls:ButtonsArrows x:Name="frameRole"
+                                    tapped="frameRoles_Clicked"
+                                    Grid.Row="0"
+                                    Grid.Column="1"/>
+            <Controls:ButtonsArrows x:Name="frameEquipment"
+                                    tapped="frameEquipment_Clicked"
+                                    Grid.Row="0"
+                                    Grid.Column="2"/>
             <ListView x:Name="listView"
                       SeparatorVisibility="None"
                       IsPullToRefreshEnabled="True"
                       ItemTapped="listView_ItemTapped"
-                      Grid.ColumnSpan="6" Grid.Row="1">
+                      Grid.ColumnSpan="3" Grid.Row="1">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Controls:TypeView/>
