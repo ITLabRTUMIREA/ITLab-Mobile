@@ -5,18 +5,24 @@
     <ContentView Padding="5">
         <Frame Padding="2">
             <Grid ColumnSpacing="4"
-                  RowSpacing="0">
+                  RowSpacing="4">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition>
+                        <RowDefinition.Height>
+                            <OnPlatform UWP="0"
+                                        Default="Auto"/>
+                        </RowDefinition.Height>
+                    </RowDefinition>
                 </Grid.RowDefinitions>
                 <Label x:Name="lblName"
                        HorizontalOptions="Center"
@@ -42,16 +48,35 @@
                        VerticalOptions="Center"
                        Grid.ColumnSpan="2" Grid.Row="4"/>
                 <Button x:Name="btnReject"
-                       WidthRequest="170"
+                       WidthRequest="120"
                        HorizontalOptions="Center"
-                       Grid.Column="0" Grid.Row="5"
-                       Clicked="btnReject_Clicked"/>
+                       Grid.Row="5"
+                       Clicked="btnReject_Clicked">
+                    <Grid.Column>
+                        <OnPlatform UWP="0"/>
+                    </Grid.Column>
+                    <Grid.ColumnSpan>
+                        <OnPlatform UWP="1"
+                                    Default="2"/>
+                    </Grid.ColumnSpan>
+                </Button>
                 <Button x:Name="btnAccept"
-                       WidthRequest="170"
+                       WidthRequest="120"
                        HorizontalOptions="Center"
                        TextColor="Green"
-                       Grid.Column="1"  Grid.Row="5"
-                       Clicked="btnAccept_Clicked"/>
+                       Clicked="btnAccept_Clicked">
+                    <Grid.Column>
+                        <OnPlatform UWP="1"/>
+                    </Grid.Column>
+                    <Grid.ColumnSpan>
+                        <OnPlatform UWP="1"
+                                    Default="2"/>
+                    </Grid.ColumnSpan>
+                    <Grid.Row>
+                        <OnPlatform UWP="5"
+                                    Default="6"/>
+                    </Grid.Row>
+                </Button>
             </Grid>
         </Frame>
     </ContentView>
