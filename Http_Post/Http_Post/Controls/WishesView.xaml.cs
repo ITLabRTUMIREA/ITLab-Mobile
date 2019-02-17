@@ -10,23 +10,23 @@ namespace Http_Post.Controls
 	public partial class WishesView : ViewCell
 	{
         WisherEventView wish;
-        INavigation navigation;
 
-        public WishesView (WisherEventView wish, INavigation navigation)
-		{
-            this.wish = wish;
-            this.navigation = navigation;
-
-            BindingContext = wish;
+        public WishesView()
+        {
             InitializeComponent();
+            BindingContextChanged += WishesView_BindingContextChanged;
 
-            lblName.Text = $"{wish.User.FirstName} {wish.User.LastName}";
-            lblRole.Text = $"{Res.Resource.Role}:";
-            lblShift.Text = $"{Res.Resource.Shift}:";
-            target.Text = $"{Res.Resource.Needs} {wish.TargetParticipantsCount} {Res.Resource.Participants}. ({Res.Resource.Now}: {wish.CurrentParticipantsCount})";
             btnAccept.Text = Res.Resource.Accept;
             btnReject.Text = Res.Resource.Reject;
+        }
 
+        void WishesView_BindingContextChanged(object sender, EventArgs e)
+        {
+            wish = BindingContext as WisherEventView;
+            if (wish == null)
+                return;
+            lblName.Text = $"{wish.User.FirstName} {wish.User.LastName}";
+            target.Text = $"{Res.Resource.Needs} {wish.TargetParticipantsCount} {Res.Resource.Participants}. ({Res.Resource.Now}: {wish.CurrentParticipantsCount})";
             lblTime.Text = wish.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
         }
 
@@ -63,8 +63,5 @@ namespace Http_Post.Controls
             catch (Exception)
             {}
         }
-
-        void ViewCell_Tapped(object sender, EventArgs e)
-            => navigation.PushAsync(new Pages.OneEventPage(wish.Id));
     }
 }

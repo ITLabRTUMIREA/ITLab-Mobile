@@ -37,7 +37,7 @@ namespace Http_Post
             text_error.Text = String.Empty; // Clear error field
             try
             {                
-                Login = text_login.Text;
+                Login = text_login.Text.Trim();
                 Password = text_password.Text;
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
                     return;

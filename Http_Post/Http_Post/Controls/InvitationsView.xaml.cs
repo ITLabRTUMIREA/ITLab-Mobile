@@ -12,26 +12,26 @@ namespace Http_Post.Controls
     public partial class InvitationsView : ViewCell
     {
         EventApplicationView invitation;
-        INavigation navigation;
 
-        public InvitationsView (EventApplicationView invitation, INavigation navigation)
-		{
-            this.invitation = invitation;
-            this.navigation = navigation;
+        public InvitationsView()
+        {
+            InitializeComponent();
+            BindingContextChanged += InvitationsView_BindingContextChanged;
 
-            BindingContext = invitation;
-			InitializeComponent ();
-
-            lblPlaceDesc.Text = string.IsNullOrEmpty(invitation.PlaceDescription) ? Resource.ErrorNoDescription : invitation.PlaceDescription;
-            lblBegin.Text = $"{Resource.Begining}:";
             lblDuration.Text = $"{Resource.Duration}:";
-            lblRole.Text = $"{Resource.Role}:";
             lblPlace.Text = $"{Resource.Place}:";
             btnAccept.Text = Resource.Accept;
             btnReject.Text = Resource.Reject;
+        }
 
-            lblTime.Text = invitation.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
-		}
+        void InvitationsView_BindingContextChanged(object sender, EventArgs e)
+        {
+            invitation = BindingContext as EventApplicationView;
+            if (invitation == null)
+                return;
+            lblPlaceDesc.Text = string.IsNullOrEmpty(invitation?.PlaceDescription) ? Resource.ErrorNoDescription : invitation.PlaceDescription;
+            lblTime.Text = invitation?.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
+        }
 
         async void btnAccept_Clicked(object sender, EventArgs e)
         {
@@ -66,8 +66,5 @@ namespace Http_Post.Controls
             catch (Exception)
             { }
         }
-
-        void ViewCell_Tapped(object sender, EventArgs e)
-            => navigation.PushAsync(new Pages.OneEventPage(invitation.Id));
     }
 }

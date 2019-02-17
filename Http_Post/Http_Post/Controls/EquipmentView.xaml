@@ -14,8 +14,10 @@
                 <Label Text="{Binding EquipmentType.Title}"
                        Grid.Column="0"/>
                 <Label Text="{Binding OwnerName}"
+                       HorizontalOptions="Center"
                        Grid.Column="1"/>
                 <Label Text="{Binding Number}"
+                       HorizontalOptions="Center"
                        Grid.Column="2"/>
             </Grid>
         </Frame>

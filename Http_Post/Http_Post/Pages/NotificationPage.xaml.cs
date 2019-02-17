@@ -19,24 +19,19 @@ namespace Http_Post.Pages
 	public partial class NotificationPage : ContentPage
 	{
         HttpClient client = Services.HttpClientFactory.HttpClient;
-        ObservableCollection<EventApplicationView> invitations;
-        ObservableCollection<WisherEventView> wishes;
 
         public NotificationPage ()
 		{
 			InitializeComponent ();
 
             Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleNotifications : "";
-            tableInvitations.Title = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
-            tableWishes.Title = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
-
-            invitations = new ObservableCollection<EventApplicationView>();
-            wishes = new ObservableCollection<WisherEventView>();
-
-            GetNotifications();
-            GetWishes();
+            lblInvitations.Text = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
+            lblWishes.Text = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
 
             Subscribe();
+
+            GetInvitations();
+            GetWishes();
 		}
 
         void Subscribe()
@@ -46,7 +41,7 @@ namespace Http_Post.Pages
                 "DeleteInvitation",
                 (sender) =>
                 {
-                    GetNotifications();
+                    GetInvitations();
                     GetWishes();
                 });
             MessagingCenter.Subscribe<WisherEventView>(
@@ -54,30 +49,23 @@ namespace Http_Post.Pages
                 "DeleteWish",
                 (sender) =>
                 {
-                    GetNotifications();
+                    GetInvitations();
                     GetWishes();
                 });
         }
 
-        async void GetNotifications()
+        async void GetInvitations()
         {
             try
             {
-                this.invitations.Clear();
-                tableInvitations.Clear();
                 var response = await client.GetStringAsync("event/applications/invitations");
                 var invitations = JsonConvert.DeserializeObject<ListResponse<EventApplicationView>>(response);
                 
                 if (invitations.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {invitations.StatusCode}");
 
-                foreach(var invitation in invitations.Data)
-                {
-                    this.invitations.Add(invitation);
-                    tableInvitations.Add(new InvitationsView(invitation, Navigation));
-                }
-
-                tableInvitations.Title = $"{Res.Resource.Invitations}: {this.invitations.Count}";
+                lblInvitations.Text = $"{Res.Resource.Invitations}: {invitations.Data.Count()}";
+                listInvitations.ItemsSource = invitations.Data;
             }
             catch (Exception ex)
             {
@@ -85,29 +73,35 @@ namespace Http_Post.Pages
             }
         }
 
+        void listInvitations_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var tapped = e.Item as EventApplicationView;
+            Navigation.PushAsync(new Pages.OneEventPage(tapped.Id));
+        }
+
         async void GetWishes()
         {
             try
             {
-                this.wishes.Clear();
-                tableWishes.Clear();
                 var response = await client.GetStringAsync("event/wishers");
                 var wishes = JsonConvert.DeserializeObject<ListResponse<WisherEventView>>(response);
 
                 if (wishes.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {wishes.StatusCode}");
 
-                foreach (var wish in wishes.Data)
-                {
-                    this.wishes.Add(wish);
-                    tableWishes.Add(new WishesView(wish, Navigation));
-                }
-                tableWishes.Title = $"{Res.Resource.Wishes}: {this.wishes.Count}";
+                lblWishes.Text = $"{Res.Resource.Wishes}: {wishes.Data.Count()}";
+                listWishes.ItemsSource = wishes.Data;
             }
             catch (Exception ex)
             {
-               await DisplayAlert("Error", ex.Message, "Ok");
+                await DisplayAlert("Error", ex.Message, "Ok");
             }
+        }
+
+        void listWishes_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            var tapped = e.Item as WisherEventView;
+            Navigation.PushAsync(new Pages.OneEventPage(tapped.Id));
         }
     }
 }

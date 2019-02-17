@@ -1,15 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:Controls="clr-namespace:Http_Post.Controls"
              x:Class="Http_Post.Pages.NotificationPage"
              Padding="20"
              Icon="Notifications1.png">
     <ContentPage.Content>
-        <TableView Intent="Data">
-            <TableRoot>
-                <TableSection x:Name="tableInvitations"/>
-                <TableSection x:Name="tableWishes"/>
-            </TableRoot>
-        </TableView>
+        <StackLayout>
+            <Grid Padding="0"
+                  Margin="0">
+                <Grid.IsVisible>
+                    <OnPlatform UWP="True"
+                                Default="True"/>
+                </Grid.IsVisible>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label x:Name="lblInvitations"
+                       Grid.Row="0"
+                       Grid.Column="0"/>
+                <ListView x:Name="listInvitations"
+                          ItemTapped="listInvitations_ItemTapped"
+                          SeparatorVisibility="None"
+                          Grid.Row="1"
+                          Grid.Column="0">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Controls:InvitationsView />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label x:Name="lblWishes"
+                       Grid.Row="0"
+                       Grid.Column="1"/>
+                <ListView x:Name="listWishes"
+                          ItemTapped="listWishes_ItemTapped"
+                          SeparatorVisibility="None"
+                          Grid.Row="1"
+                          Grid.Column="1">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Controls:WishesView />
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

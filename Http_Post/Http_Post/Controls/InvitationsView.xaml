@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ViewCell xmlns="http://xamarin.com/schemas/2014/forms" 
           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-          x:Class="Http_Post.Controls.InvitationsView"
-          Tapped="ViewCell_Tapped">
+          x:Class="Http_Post.Controls.InvitationsView">
     <ContentView Padding="5">
         <Frame Padding="2">
             <Grid ColumnSpacing="4"
@@ -24,32 +23,28 @@
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
                        Grid.ColumnSpan="2" Grid.Row="0"/>
-                <Label x:Name="lblBegin"
-                       HorizontalOptions="End"
-                       VerticalOptions="Center"
-                       Grid.Column="0" Grid.Row="1"/>
                 <Label x:Name="lblTime"
                        VerticalOptions="Center"
-                       Grid.Column="1" Grid.Row="1"/>
+                       HorizontalOptions="Center"
+                       Grid.ColumnSpan="2" Grid.Row="1"/>
                 <Label x:Name="lblDuration"
+                       LineBreakMode="MiddleTruncation"
                        HorizontalOptions="End"
                        VerticalOptions="Center"
                        Grid.Column="0" Grid.Row="2"/>
                 <Label Text="{Binding ShiftDurationInMinutes}"
                        VerticalOptions="Center"
                        Grid.Column="1" Grid.Row="2"/>
-                <Label x:Name="lblRole"
-                       HorizontalOptions="End"
-                       VerticalOptions="Center"
-                       Grid.Column="0" Grid.Row="3"/>
                 <Label Text="{Binding EventRole.Title}"
                        VerticalOptions="Center"
-                       Grid.Column="1" Grid.Row="3"/>
+                       HorizontalOptions="Center"
+                       Grid.ColumnSpan="2" Grid.Row="3"/>
                 <Label x:Name="lblPlace"
                        HorizontalOptions="End"
                        VerticalOptions="Center"
                        Grid.Column="0" Grid.Row="4"/>
                 <Label x:Name="lblPlaceDesc"
+                       LineBreakMode="TailTruncation"
                        VerticalOptions="Center"
                        Grid.Column="1" Grid.Row="4"/>
                 <Button x:Name="btnReject"
@@ -65,5 +60,5 @@
                         Clicked="btnAccept_Clicked"/>
             </Grid>
         </Frame>
-    </ContentView>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                    </ContentView>
 </ViewCell>
