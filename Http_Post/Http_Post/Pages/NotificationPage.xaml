@@ -1,10 +1,14 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              x:Class="Http_Post.Pages.NotificationPage"
-             Padding="20"
              Icon="Notifications1.png">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="5,30,0,0"
+                    Default="5,15,0,0"/>
+    </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout>
             <Grid Padding="0"

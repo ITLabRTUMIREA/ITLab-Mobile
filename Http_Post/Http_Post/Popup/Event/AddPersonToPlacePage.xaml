@@ -1,11 +1,15 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Http_Post.Popup.Event.AddPersonToPlacePage"
-             Padding="5">
+             x:Class="Http_Post.Popup.Event.AddPersonToPlacePage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="5,40,0,0"
+                    Default="5,15,0,0"/>
+    </ContentPage.Padding>
     <ContentPage.Content>
         <StackLayout Margin="2"
-                     Spacing="2"
+                     Spacing="5"
                      HorizontalOptions="CenterAndExpand"
                      VerticalOptions="StartAndExpand">
             <Label x:Name="lblTitle"

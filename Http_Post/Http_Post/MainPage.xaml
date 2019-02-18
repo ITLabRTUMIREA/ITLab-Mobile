@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.MainPage"
              Title="Login">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness"
+                    iOS="5,25,0,0"
+                    Default="5,15,0,0"/>
+    </ContentPage.Padding>
     <StackLayout x:Name="stackLayout"
                      Spacing ="10"
-                     Margin="12"
                      IsVisible="False">
         <Label x:Name="text_label"
               Text="Enter login and password:"
