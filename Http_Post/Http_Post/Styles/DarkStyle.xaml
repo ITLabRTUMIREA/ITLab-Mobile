@@ -42,7 +42,13 @@
         <Setter Property="SeparatorColor" Value="Silver"/>
         <Setter Property="SelectionMode" Value="None"/>
     </Style>
-    <Style TargetType="TableView">
-        <Setter Property="HasUnevenRows" Value="True"/>
+    <Style TargetType="StackLayout" Class="ShiftContentStack">
+        <Setter Property="BackgroundColor" Value="#333"/>
+    </Style>
+    <Style TargetType="Label" Class="ShiftContentLabel">
+        <Setter Property="BackgroundColor" Value="#333"/>
+    </Style>
+    <Style TargetType="Image" Class="ShiftContentImage">
+        <Setter Property="BackgroundColor" Value="#333"/>
     </Style>
 </ResourceDictionary>

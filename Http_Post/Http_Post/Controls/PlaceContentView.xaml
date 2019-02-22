@@ -7,8 +7,7 @@
     <ContentView.Content>
         <StackLayout Padding="2"
                      Margin="3"
-                     Spacing="3"
-                     BackgroundColor="#e4e4e4">
+                     Spacing="3">
             <StackLayout Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="PlaceNumber_Tapped"/>

@@ -7,30 +7,39 @@
   <ContentView.Content>
       <StackLayout Padding="2"
                    Margin="3"
-                   BackgroundColor="#f5f5f5">
-            <StackLayout Orientation="Horizontal">
+                   StyleClass="ShiftContentStack">
+            <StackLayout Orientation="Horizontal"
+                         StyleClass="ShiftContentStack">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ShiftNumber_Tapped"/>
                 </StackLayout.GestureRecognizers>
                 <Label x:Name="lblShiftNumber"
-                       FontSize="Large"/>
+                       FontSize="Large"
+                       StyleClass="ShiftContentLabel"/>
                 <Image x:Name="image"
                        WidthRequest="24"
                        HeightRequest="24"
-                       Aspect="AspectFit"/>
+                       Aspect="AspectFit"
+                       StyleClass="ShiftContentImage"/>
             </StackLayout>
             <StackLayout x:Name="StackPlaces"
                          Margin="5"
                          Spacing="2"
-                         IsVisible="False">
-                <Label x:Name="lblBeginTitle"/>
+                         IsVisible="False"
+                         StyleClass="ShiftContentStack">
+                <Label x:Name="lblBeginTitle"
+                       StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblBeginTime"
-                       Margin="20,0,0,0"/>
-                <Label x:Name="lblEndTitle"/>
+                       Margin="20,0,0,0"
+                       StyleClass="ShiftContentLabel"/>
+                <Label x:Name="lblEndTitle"
+                       StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblEndTime"
-                       Margin="20,0,0,0"/>
+                       Margin="20,0,0,0"
+                       StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblDescription"
-                       FontAttributes="Italic"/>
+                       FontAttributes="Italic"
+                       StyleClass="ShiftContentLabel"/>
             </StackLayout>
       </StackLayout>
   </ContentView.Content>
