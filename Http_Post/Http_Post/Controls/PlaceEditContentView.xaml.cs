@@ -17,14 +17,7 @@ namespace Http_Post.Controls
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PlaceEditContentView : ContentView
     {
-        Image pathCollapse = new Image
-        {
-            Source = "ArrowRight.png"
-        };
-        Image pathExpand = new Image
-        {
-            Source = "ArrowDown.png"
-        };
+        bool isDown;
         PlaceEditRequest placeEdit;
         HttpClient client = Services.HttpClientFactory.HttpClient;
         IEnumerable<EventRoleView> roles;
@@ -41,7 +34,8 @@ namespace Http_Post.Controls
             lblPlaceNumber.Text = $"#{numberOfPlace} | {Res.Resource.Participants}: {placeEdit.Invited.Count} {Res.Resource.Of} {placeEdit.TargetParticipantsCount}";
             editDescription.Placeholder = Res.Resource.Description;
             editDescription.Text = placeEdit.Description;
-            image.Source = pathCollapse.Source;
+            image.Source = Images.ImageManager.GetSourceImage("ArrowDown");
+            isDown = true;
             btnInvite.Text = Res.Resource.Invite;
             btnAddEquipment.Text = Res.Resource.Add + " " + Res.Resource.TitleEquipment;
 
@@ -53,12 +47,10 @@ namespace Http_Post.Controls
 
         void PlaceNumber_Tapped(object sender, System.EventArgs e)
         {
-            if (image.Source.Equals(pathCollapse.Source))
-                image.Source = pathExpand.Source;
-            else
-                image.Source = pathCollapse.Source;
-
+            isDown = !isDown;
             stackToHide.IsVisible = !stackToHide.IsVisible;
+            image.Source = isDown ? Images.ImageManager.GetSourceImage("ArrowDown")
+                : Images.ImageManager.GetSourceImage("ArrowUp");
         }
 
         async void GetEventRoles()

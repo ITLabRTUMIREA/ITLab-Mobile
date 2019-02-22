@@ -1,36 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:src="clr-namespace:Http_Post.Images"
              x:Class="Http_Post.Controls.PlaceEditContentView"
-             Margin="10,0,0,0"
-             Padding="2">
+             Padding="10,7,0,0">
     <ContentView.Content>
         <StackLayout Padding="2"
                      Margin="3"
-                     Spacing="3"
-                     BackgroundColor="#e4e4e4">
+                     Spacing="3">
             <StackLayout Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="PlaceNumber_Tapped"/>
                 </StackLayout.GestureRecognizers>
                 <Label x:Name="lblPlaceNumber"
                        FontSize="Large"/>
-                <Image x:Name="image"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Aspect="AspectFit"/>
-                <Image Source="DeleteCross.png"
-                       Margin="20,0,0,0"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Aspect="AspectFit">
-                    <Image.GestureRecognizers>
+                <svg:SvgCachedImage x:Name="image"
+                                    WidthRequest="24"
+                                    HeightRequest="24"/>
+                <svg:SvgCachedImage Source="{src:ImageResource DeleteCross}"
+                                    Margin="20,0,0,0"
+                                    WidthRequest="24"
+                                    HeightRequest="24">
+                    <svg:SvgCachedImage.GestureRecognizers>
                         <TapGestureRecognizer Tapped="DeletePlace_Tapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
+                    </svg:SvgCachedImage.GestureRecognizers>
+                </svg:SvgCachedImage>
             </StackLayout>
             <StackLayout x:Name="stackToHide"
-                       IsVisible="False">
+                         IsVisible="False">
                 <Editor x:Name="editDescription"
                         FontAttributes="Italic"
                         TextChanged="editDescription_TextChanged"/>
@@ -44,7 +42,6 @@
                             Clicked="btnInvite_Clicked"/>
                     <Button x:Name="btnAddEquipment"
                             HorizontalOptions="Start"
-                            
                             Clicked="btnAddEquipment_Clicked"/>
                 </StackLayout>
                 <StackLayout x:Name="stackPart"

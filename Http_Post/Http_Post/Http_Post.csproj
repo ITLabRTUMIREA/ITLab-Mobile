@@ -29,6 +29,7 @@
     <None Remove="Images\Dark\ArrowRight.svg" />
     <None Remove="Images\Dark\ArrowUp.svg" />
     <None Remove="Images\Dark\CreatePlus.svg" />
+    <None Remove="Images\Dark\DeleteCross.svg" />
     <None Remove="Images\Dark\EditPencil.svg" />
     <None Remove="Images\Dark\Exit.svg" />
     <None Remove="Images\Dark\Language.svg" />
@@ -44,6 +45,7 @@
     <None Remove="Images\Light\ArrowRight.svg" />
     <None Remove="Images\Light\ArrowUp.svg" />
     <None Remove="Images\Light\CreatePlus.svg" />
+    <None Remove="Images\Light\DeleteCross.svg" />
     <None Remove="Images\Light\EditPencil.svg" />
     <None Remove="Images\Light\Exit.svg" />
     <None Remove="Images\Light\Language.svg" />
@@ -62,6 +64,7 @@
     <EmbeddedResource Include="Images\Dark\ArrowRight.svg" />
     <EmbeddedResource Include="Images\Dark\ArrowUp.svg" />
     <EmbeddedResource Include="Images\Dark\CreatePlus.svg" />
+    <EmbeddedResource Include="Images\Dark\DeleteCross.svg" />
     <EmbeddedResource Include="Images\Dark\EditPencil.svg" />
     <EmbeddedResource Include="Images\Dark\Exit.svg" />
     <EmbeddedResource Include="Images\Dark\Language.svg" />
@@ -77,6 +80,7 @@
     <EmbeddedResource Include="Images\Light\ArrowRight.svg" />
     <EmbeddedResource Include="Images\Light\ArrowUp.svg" />
     <EmbeddedResource Include="Images\Light\CreatePlus.svg" />
+    <EmbeddedResource Include="Images\Light\DeleteCross.svg" />
     <EmbeddedResource Include="Images\Light\EditPencil.svg" />
     <EmbeddedResource Include="Images\Light\Exit.svg" />
     <EmbeddedResource Include="Images\Light\Language.svg" />

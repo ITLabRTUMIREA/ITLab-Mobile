@@ -9,11 +9,15 @@
     </Style>
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="Medium"/>
+        <Setter Property="TextColor" Value="#737373"/>
+        <Setter Property="PlaceholderColor" Value="#999"/>
     </Style>
     <Style TargetType="Editor">
         <Setter Property="AutoSize" Value="TextChanges"/>
         <Setter Property="FontSize" Value="Medium"/>
         <Setter Property="IsSpellCheckEnabled" Value="True"/>
+        <Setter Property="TextColor" Value="#737373"/>
+        <Setter Property="PlaceholderColor" Value="#999"/>
     </Style>
     <Style TargetType="Button">
         <Setter Property="BackgroundColor" Value="#303030"/>
@@ -48,7 +52,13 @@
     <Style TargetType="Label" Class="ShiftContentLabel">
         <Setter Property="BackgroundColor" Value="#333"/>
     </Style>
-    <Style TargetType="Image" Class="ShiftContentImage">
+    <Style TargetType="DatePicker" Class="ShiftContentDatePicker">
+        <Setter Property="BackgroundColor" Value="#333"/>
+    </Style>
+    <Style TargetType="TimePicker" Class="ShiftContentTimePicker">
+        <Setter Property="BackgroundColor" Value="#333"/>
+    </Style>
+    <Style TargetType="Editor" Class="ShiftContentEditor">
         <Setter Property="BackgroundColor" Value="#333"/>
     </Style>
 </ResourceDictionary>

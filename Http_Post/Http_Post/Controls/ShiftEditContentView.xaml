@@ -1,65 +1,75 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:src="clr-namespace:Http_Post.Images"
              x:Class="Http_Post.Controls.ShiftEditContentView"
-             Padding="2"
-             Margin="10,0,0,0">
+             Padding="10,25,0,0">
   <ContentView.Content>
-      <StackLayout Padding="2"
-                   Margin="3"
-                   BackgroundColor="#f5f5f5">
-            <StackLayout Orientation="Horizontal">
+      <StackLayout Padding="0"
+                   Margin="0"
+                   StyleClass="ShiftContentStack">
+            <StackLayout Orientation="Horizontal"
+                         StyleClass="ShiftContentStack">
                 <StackLayout.GestureRecognizers>
                     <TapGestureRecognizer Tapped="ShiftNumber_Tapped"/>
                 </StackLayout.GestureRecognizers>
                 <Label x:Name="lblShiftNumber"
-                       FontSize="Large"/>
-                <Image x:Name="image"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Aspect="AspectFit"/>
-                <Image Source="CreateCircle.png"
-                       Margin="20,0,0,0"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Aspect="AspectFit">
-                    <Image.GestureRecognizers>
+                       FontSize="Large"
+                       StyleClass="ShiftContentLabel"/>
+                <svg:SvgCachedImage x:Name="image"
+                                    WidthRequest="24"
+                                    HeightRequest="24"/>
+                <svg:SvgCachedImage Source="{src:ImageResource CreatePlus}"
+                                    Margin="20,0,0,0"
+                                    WidthRequest="24"
+                                    HeightRequest="24">
+                    <svg:SvgCachedImage.GestureRecognizers>
                         <TapGestureRecognizer Tapped="CreatePlace_Tapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
-                <Image Source="DeleteCross.png"
-                       Margin="20,0,0,0"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Aspect="AspectFit">
-                    <Image.GestureRecognizers>
+                    </svg:SvgCachedImage.GestureRecognizers>
+                </svg:SvgCachedImage>
+                <svg:SvgCachedImage Source="{src:ImageResource DeleteCross}"
+                                    Margin="20,0,0,0"
+                                    WidthRequest="24"
+                                    HeightRequest="24">
+                    <svg:SvgCachedImage.GestureRecognizers>
                         <TapGestureRecognizer Tapped="DeleteShift_Tapped"/>
-                    </Image.GestureRecognizers>
-                </Image>
+                    </svg:SvgCachedImage.GestureRecognizers>
+                </svg:SvgCachedImage>
             </StackLayout>
             <StackLayout x:Name="StackPlaces"
-                       Margin="2"
-                       Spacing="2"
-                       IsVisible="False">
-                <Label x:Name="lblBeginTitle"/>
+                         Margin="2"
+                         Spacing="2"
+                         IsVisible="False"
+                         StyleClass="ShiftContentStack">
+                <Label x:Name="lblBeginTitle"
+                       StyleClass="ShiftContentLabel"/>
                 <StackLayout Orientation="Horizontal"
-                             Margin="20,0,0,0">
+                             Margin="20,0,0,0"
+                             StyleClass="ShiftContentStack">
                     <DatePicker x:Name="DatePickerBegin"
-                                PropertyChanged="DatePickerBegin_PropertyChanged"/>
+                                PropertyChanged="DatePickerBegin_PropertyChanged"
+                                StyleClass="ShiftContentDatePicker"/>
                     <TimePicker x:Name="TimePickerBegin"
-                                PropertyChanged="TimePickerBegin_PropertyChanged"/>
+                                PropertyChanged="TimePickerBegin_PropertyChanged"
+                                StyleClass="ShiftContentTimePicker"/>
                 </StackLayout>
-                <Label x:Name="lblEndTitle"/>
+                <Label x:Name="lblEndTitle"
+                       StyleClass="ShiftContentLabel"/>
                 <StackLayout Orientation="Horizontal"
-                             Margin="20,0,0,0">
+                             Margin="20,0,0,0"
+                             StyleClass="ShiftContentStack">
                     <DatePicker x:Name="DatePickerEnd"
-                                PropertyChanged="DatePickerEnd_PropertyChanged"/>
+                                PropertyChanged="DatePickerEnd_PropertyChanged"
+                                StyleClass="ShiftContentDatePicker"/>
                     <TimePicker x:Name="TimePickerEnd"
-                                PropertyChanged="TimePickerEnd_PropertyChanged"/>
+                                PropertyChanged="TimePickerEnd_PropertyChanged"
+                                StyleClass="ShiftContentTimePicker"/>
                 </StackLayout>
                 <Editor x:Name="editDescription"
                         FontAttributes="Italic"
-                        TextChanged="editDescription_TextChanged"/>
+                        TextChanged="editDescription_TextChanged"
+                        StyleClass="ShiftContentEditor"/>
             </StackLayout>
       </StackLayout>
   </ContentView.Content>
