@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Controls.ShiftContentView"
              Margin="10,0,0,0"
              Padding="2">
@@ -16,11 +17,9 @@
                 <Label x:Name="lblShiftNumber"
                        FontSize="Large"
                        StyleClass="ShiftContentLabel"/>
-                <Image x:Name="image"
-                       WidthRequest="24"
-                       HeightRequest="24"
-                       Aspect="AspectFit"
-                       StyleClass="ShiftContentImage"/>
+                <svg:SvgCachedImage x:Name="image"
+                                    WidthRequest="24"
+                                    HeightRequest="24"/>
             </StackLayout>
             <StackLayout x:Name="StackPlaces"
                          Margin="5"

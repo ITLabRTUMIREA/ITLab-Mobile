@@ -8,14 +8,7 @@ namespace Http_Post.Controls
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class ShiftContentView : ContentView
 	{
-        Image pathCollapse = new Image
-        {
-            Source = "ArrowRight.png"
-        };
-        Image pathExpand = new Image
-        {
-            Source = "ArrowDown.png"
-        };
+        bool isDown;
         ShiftView shift;
 
 		public ShiftContentView (ShiftView shiftView, int numberOfShift)
@@ -24,7 +17,8 @@ namespace Http_Post.Controls
 			InitializeComponent ();
 
             lblShiftNumber.Text = $"#{numberOfShift} | {Res.Resource.Places}: {shiftView.Places.Count}";
-            image.Source = pathCollapse.Source;
+            image.Source = Images.ImageManager.GetSourceImage("ArrowDown");
+            isDown = true;
 
             lblBeginTitle.Text = $"{Res.Resource.Begining}:";
             lblBeginTime.Text = shiftView.BeginTime.ToLocalTime().ToString("dd.MM.yyyy HH:mm");
@@ -38,12 +32,10 @@ namespace Http_Post.Controls
 
         void ShiftNumber_Tapped(object sender, EventArgs e)
         {
-            if (image.Source.Equals(pathCollapse.Source))
-                image.Source = pathExpand.Source;
-            else
-                image.Source = pathCollapse.Source;
-
+            isDown = !isDown;
             StackPlaces.IsVisible = !StackPlaces.IsVisible;
+            image.Source = isDown ? Images.ImageManager.GetSourceImage("ArrowDown")
+                : Images.ImageManager.GetSourceImage("ArrowUp");
         }
 
         void AddPlaces()

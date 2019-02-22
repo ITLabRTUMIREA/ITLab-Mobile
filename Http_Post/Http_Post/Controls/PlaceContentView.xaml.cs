@@ -8,14 +8,7 @@ namespace Http_Post.Controls
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class PlaceContentView : ContentView
 	{
-        Image pathCollapse = new Image
-        {
-            Source = "ArrowRight.png"
-        };
-        Image pathExpand = new Image
-        {
-            Source = "ArrowDown.png"
-        };
+        bool isDown;
         PlaceView place;
 
         public PlaceContentView (PlaceView placeView, int numberOfPlace)
@@ -26,7 +19,8 @@ namespace Http_Post.Controls
             int total = placeView.Participants.Count + placeView.Wishers.Count + placeView.Invited.Count + placeView.Unknowns.Count;
             lblPlaceNumber.Text = $"#{numberOfPlace} | {Res.Resource.Participants}: {total} {Res.Resource.Of} {placeView.TargetParticipantsCount}";
             lblDescription.Text = string.IsNullOrEmpty(placeView.Description) ? Res.Resource.ErrorNoDescription : placeView.Description;
-            image.Source = pathCollapse.Source;
+            image.Source = Images.ImageManager.GetSourceImage("ArrowDown");
+            isDown = true;
             btnWish.Text = Res.Resource.SendWish;
 
             AddPeople();
@@ -35,12 +29,10 @@ namespace Http_Post.Controls
 
         void PlaceNumber_Tapped(object sender, EventArgs e)
         {
-            if (image.Source.Equals(pathCollapse.Source))
-                image.Source = pathExpand.Source;
-            else
-                image.Source = pathCollapse.Source;
-
+            isDown = !isDown;
             stackToHide.IsVisible = !stackToHide.IsVisible;
+            image.Source = isDown ? Images.ImageManager.GetSourceImage("ArrowDown")
+                : Images.ImageManager.GetSourceImage("ArrowUp");
         }
 
         void AddPeople()
