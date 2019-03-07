@@ -109,6 +109,7 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <Content Include="Assets\ProximaNova-Regular.ttf" />
     <None Include="Certificate.pfx" />
     <None Include="Http_Post.UWP_TemporaryKey.pfx" />
   </ItemGroup>

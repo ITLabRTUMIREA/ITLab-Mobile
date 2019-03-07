@@ -6,21 +6,49 @@
         <Setter Property="BackgroundColor" Value="#f2f2f2"/>
         <Setter Property="TextColor" Value="#1a1a1a"/>
         <Setter Property="FontSize" Value="Medium"/>
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform Android="ProximaNova-Regular.ttf#ProximaNova"
+                            iOS="ProximaNova-Regular.ttf"
+                            UWP="ProximaNova-Regular.ttf#ProximaNova"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="Medium"/>
         <Setter Property="TextColor" Value="#404040"/>
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform Android="ProximaNova-Regular.ttf#ProximaNova"
+                            iOS="ProximaNova-Regular.ttf"
+                            UWP="Assets/ProximaNova-Regular.ttf#ProximaNova"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="Editor">
         <Setter Property="AutoSize" Value="TextChanges"/>
         <Setter Property="FontSize" Value="Medium"/>
         <Setter Property="IsSpellCheckEnabled" Value="True"/>
         <Setter Property="TextColor" Value="#404040"/>
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform Android="ProximaNova-Regular.ttf#ProximaNova"
+                            iOS="ProximaNova-Regular.ttf"
+                            UWP="Assets/ProximaNova-Regular.ttf#ProximaNova"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="Button">
         <Setter Property="BackgroundColor" Value="#e9e9e9"/>
         <Setter Property="TextColor" Value="#1a1a1a"/>
         <Setter Property="CornerRadius" Value="17"/>
+        <Setter Property="FontFamily">
+            <Setter.Value>
+                <OnPlatform Android="ProximaNova-Regular.ttf#ProximaNova"
+                            iOS="ProximaNova-Regular.ttf"
+                            UWP="Assets/ProximaNova-Regular.ttf#ProximaNova"/>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="StackLayout">
         <Setter Property="BackgroundColor" Value="#f2f2f2"/>

@@ -49,10 +49,9 @@ namespace Http_Post
 
         protected override bool OnBackButtonPressed()
         {
-            //Bug - can't save App.Current.Properties
             if (Device.RuntimePlatform == Device.Android)
             {
-                DisplayAlert("", "Вы уверены что хотите выйти?", "Да", "Нет").ContinueWith(t => t.Result ? SaveAndClose() : Task.CompletedTask);
+                DisplayAlert("", "Shure to quit?", "Yes", "No").ContinueWith(t => t.Result ? SaveAndClose() : Task.CompletedTask);
                 return true;
             }
             return base.OnBackButtonPressed();
