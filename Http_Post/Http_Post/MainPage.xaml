@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
+             xmlns:img="clr-namespace:Http_Post.Images"
              x:Class="Http_Post.MainPage"
-             Title="Login">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness"
-                    iOS="5,25,0,0"
-                    Default="5,15,0,0"/>
-    </ContentPage.Padding>
+             Title="Login"
+             Padding="5">
     <StackLayout x:Name="stackLayout"
-                     Spacing ="10"
-                     IsVisible="False">
+                 Spacing ="10"
+                 Padding="0,30,0,0">
         <Label x:Name="text_label"
               Text="Enter login and password:"
                HorizontalOptions="Center"/>
@@ -31,12 +29,11 @@
                 Clicked="Button_login" 
                 HorizontalOptions="Center"
                 WidthRequest="150"/>
-        <ProgressBar x:Name="progBar"
-                     Progress="0"
-                     IsVisible="{OnPlatform Android=False, iOS=False, UWP=True}"
-                     ProgressColor="#4d79ff"/>
         <Label x:Name="text_error"
                FontSize="Small"
                HorizontalTextAlignment="Center"/>
+        <svg:SvgCachedImage x:Name="imgLoading"
+                            IsVisible="False"
+                            Source="{img:ImageResource Loading}" />
     </StackLayout>
 </ContentPage>

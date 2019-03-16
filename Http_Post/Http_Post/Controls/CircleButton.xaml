@@ -5,26 +5,16 @@
              x:Class="Http_Post.Controls.CircleButton">
     <ContentView.Content>
         <AbsoluteLayout>
+            <AbsoluteLayout.GestureRecognizers>
+                <TapGestureRecognizer Tapped="btnCircle_Clicked"/>
+            </AbsoluteLayout.GestureRecognizers>
             <Button x:Name="btnCircle"
                     BorderRadius="30"
                     AbsoluteLayout.LayoutBounds="0.5,0.5,60,60"
-                    AbsoluteLayout.LayoutFlags="PositionProportional"
-                    Clicked="btnCircle_Clicked"/>
-            <!--Image x:Name="imageCircle"
-                   Aspect="AspectFit"
-                   AbsoluteLayout.LayoutBounds="0.5,0.5,24,24"
-                   AbsoluteLayout.LayoutFlags="PositionProportional">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="btnCircle_Clicked"/>
-                </Image.GestureRecognizers>
-            </Image-->
+                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
             <svg:SvgCachedImage x:Name="imageCircle"
                                 AbsoluteLayout.LayoutBounds="0.5,0.5,24,24"
-                                AbsoluteLayout.LayoutFlags="PositionProportional">
-                <svg:SvgCachedImage.GestureRecognizers>
-                    <TapGestureRecognizer Tapped="btnCircle_Clicked"/>
-                </svg:SvgCachedImage.GestureRecognizers>
-            </svg:SvgCachedImage>
+                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         </AbsoluteLayout>
     </ContentView.Content>
 </ContentView>

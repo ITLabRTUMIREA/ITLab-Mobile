@@ -33,6 +33,7 @@
     <None Remove="Images\Dark\EditPencil.svg" />
     <None Remove="Images\Dark\Exit.svg" />
     <None Remove="Images\Dark\Language.svg" />
+    <None Remove="Images\Dark\Loading.svg" />
     <None Remove="Images\Dark\News.svg" />
     <None Remove="Images\Dark\Number_1_to_3.svg" />
     <None Remove="Images\Dark\Person.svg" />
@@ -49,6 +50,7 @@
     <None Remove="Images\Light\EditPencil.svg" />
     <None Remove="Images\Light\Exit.svg" />
     <None Remove="Images\Light\Language.svg" />
+    <None Remove="Images\Light\Loading.svg" />
     <None Remove="Images\Light\News.svg" />
     <None Remove="Images\Light\Number_1_to_3.svg" />
     <None Remove="Images\Light\Person.svg" />
@@ -68,6 +70,7 @@
     <EmbeddedResource Include="Images\Dark\EditPencil.svg" />
     <EmbeddedResource Include="Images\Dark\Exit.svg" />
     <EmbeddedResource Include="Images\Dark\Language.svg" />
+    <EmbeddedResource Include="Images\Dark\Loading.svg" />
     <EmbeddedResource Include="Images\Dark\News.svg" />
     <EmbeddedResource Include="Images\Dark\Number_1_to_3.svg" />
     <EmbeddedResource Include="Images\Dark\Person.svg" />
@@ -84,6 +87,7 @@
     <EmbeddedResource Include="Images\Light\EditPencil.svg" />
     <EmbeddedResource Include="Images\Light\Exit.svg" />
     <EmbeddedResource Include="Images\Light\Language.svg" />
+    <EmbeddedResource Include="Images\Light\Loading.svg" />
     <EmbeddedResource Include="Images\Light\News.svg" />
     <EmbeddedResource Include="Images\Light\Number_1_to_3.svg" />
     <EmbeddedResource Include="Images\Light\Person.svg" />

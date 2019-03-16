@@ -16,12 +16,7 @@ namespace Http_Post
 		{
 			InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage())
-            {
-                BarBackgroundColor = Color.FromHex("#f2f2f2"),
-                BarTextColor = Color.FromHex("#1a1a1a")
-            };
-            //MainPage = new MainPage();
+            MainPage = new MainPage();
 		}
 
 		protected override void OnStart ()

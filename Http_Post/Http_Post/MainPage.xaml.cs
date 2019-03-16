@@ -7,6 +7,8 @@ using Plugin.Settings;
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,23 +17,24 @@ namespace Http_Post
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
 	{
-        private readonly HttpClient client = HttpClientFactory.HttpClient;
-        private string Login, Password;
+        readonly HttpClient client = HttpClientFactory.HttpClient;
+        string Login, Password;
 
-		public MainPage()
+        public MainPage()
 		{
+            Init();
             TryLogin();
         }
 
         void Init()
         {
             InitializeComponent();
-            stackLayout.IsVisible = true;
+            StartRotation();
         }
 
         private async void Button_login(object sender, EventArgs e)
         {
-            await progBar.ProgressTo(0, 350, Easing.Linear);
+            PageLoading(true);
 
             text_error.TextColor = Color.Default; // Set Default Color
             text_error.Text = String.Empty; // Clear error field
@@ -40,9 +43,11 @@ namespace Http_Post
                 Login = text_login.Text.Trim();
                 Password = text_password.Text;
                 if (!CheckForNull()) // if fields are empty -> user needs to enter them
+                {
+                    PageLoading(false);
                     return;
+                }
 
-                await progBar.ProgressTo(0.4, 350, Easing.Linear);
                 text_error.Text = "Loading...\nPlease Wait...";
 
                 AccountLoginRequest loginData = new AccountLoginRequest { Username = Login, Password = Password };
@@ -52,12 +57,11 @@ namespace Http_Post
 
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
-                await progBar.ProgressTo(0.7, 350, Easing.Linear);
-
                 var result = await client.PostAsync("Authentication/login", content);
                 string resultContent = await result.Content.ReadAsStringAsync();
 
-                await progBar.ProgressTo(1, 350, Easing.Linear);
+                PageLoading(false);
+
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(resultContent);
                 Authorization(infoAboutStudent, true);
             }
@@ -67,7 +71,7 @@ namespace Http_Post
             }
         }
 
-        private async void Authorization (OneObjectResponse<LoginResponse> info, bool NeedToRender)
+        private void Authorization (OneObjectResponse<LoginResponse> info, bool NeedToRender)
         {
             if (info.StatusCode == Models.PublicAPI.Responses.ResponseStatusCode.OK) // if is OK
             {
@@ -108,29 +112,29 @@ namespace Http_Post
                 return;
             }
 
-            text_login.Focus();
             ShowError(info.StatusCode.ToString());
+            text_login.Focus();
         }
 
-        private void ShowError(string error)
+        void ShowError(string error)
         {
             text_error.TextColor = Color.Red;
             text_error.Text = error;
         }
 
-        private bool CheckForNull()
+        bool CheckForNull()
         {
             if (Login == null || Login == String.Empty) // if login is empty -> enter it
             {
-                text_login.Focus();
                 ShowError("Enter Login");
+                text_login.Focus();
                 return false;
             }
 
             if (Password == null || Password == String.Empty) // if password is empty -> enter it
             {
-                text_password.Focus();
                 ShowError("Enter Password");
+                text_password.Focus();
                 return false;
             }
 
@@ -140,7 +144,7 @@ namespace Http_Post
             return true;
         }
 
-        private bool CheckEmail()
+        bool CheckEmail()
         {
             if (!Login.Contains("@")) // if no '@' -> reEnter
             {
@@ -159,17 +163,21 @@ namespace Http_Post
             return true;
         }
 
-        private readonly string KEY = "refreshToken";
-        private async void TryLogin()
+        readonly string KEY = "refreshToken";
+        async void TryLogin()
         {
             try
             {
+                PageLoading(true);
+
                 string token = CrossSettings.Current.GetValueOrDefault(KEY, "");
                 var jsonContent = JsonConvert.SerializeObject(token);
                 var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
 
                 var response = await client.PostAsync("Authentication/refresh", content);
                 string result = await response.Content.ReadAsStringAsync();
+
+                PageLoading(false);
 
                 OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
                 if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
@@ -189,19 +197,39 @@ namespace Http_Post
             }
         }
 
-        private void text_login_Completed(object sender, EventArgs e)
+        void PageLoading(bool y)
+        {
+            imgLoading.IsVisible = y;
+            button_login.IsEnabled = !y;
+            text_login.IsEnabled = !y;
+            text_password.IsEnabled = !y;
+        }
+
+        void StartRotation()
+        {
+            Task.Factory.StartNew(async () =>
+            {
+                var i = 0;
+                while (true)
+                {
+                    await imgLoading.RotateTo(i += 100);
+                    await Task.Delay(100);
+                }
+            });
+        }
+
+        void text_login_Completed(object sender, EventArgs e)
         {
             text_password.Focus();
         }
 
-        private void text_password_Completed(object sender, EventArgs e)
+        void text_password_Completed(object sender, EventArgs e)
         {
             Button_login(button_login, EventArgs.Empty);
         }
 
-        private void RememberToken(OneObjectResponse<LoginResponse> infoAboutStudent)
+        void RememberToken(OneObjectResponse<LoginResponse> infoAboutStudent)
         {
-            //App.Current.Properties[KEY] = infoAboutStudent.Data.RefreshToken;
             CrossSettings.Current.AddOrUpdateValue(KEY, infoAboutStudent.Data.RefreshToken);
         }
     }
