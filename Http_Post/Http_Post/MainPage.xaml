@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
-             xmlns:img="clr-namespace:Http_Post.Images"
              x:Class="Http_Post.MainPage"
              Title="Login"
              Padding="5">
@@ -32,8 +30,8 @@
         <Label x:Name="text_error"
                FontSize="Small"
                HorizontalTextAlignment="Center"/>
-        <svg:SvgCachedImage x:Name="imgLoading"
-                            IsVisible="False"
-                            Source="{img:ImageResource Loading}" />
+        <ActivityIndicator x:Name="indicator"
+                           Color="#4d79ff"
+                           IsRunning="False"/>
     </StackLayout>
 </ContentPage>

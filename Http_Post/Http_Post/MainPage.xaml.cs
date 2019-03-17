@@ -29,7 +29,6 @@ namespace Http_Post
         void Init()
         {
             InitializeComponent();
-            StartRotation();
         }
 
         private async void Button_login(object sender, EventArgs e)
@@ -199,23 +198,10 @@ namespace Http_Post
 
         void PageLoading(bool y)
         {
-            imgLoading.IsVisible = y;
+            indicator.IsRunning = y;
             button_login.IsEnabled = !y;
             text_login.IsEnabled = !y;
             text_password.IsEnabled = !y;
-        }
-
-        void StartRotation()
-        {
-            Task.Factory.StartNew(async () =>
-            {
-                var i = 0;
-                while (true)
-                {
-                    await imgLoading.RotateTo(i += 100);
-                    await Task.Delay(100);
-                }
-            });
         }
 
         void text_login_Completed(object sender, EventArgs e)
