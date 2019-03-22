@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Http_Post.Styles.DarkStyle">
@@ -52,7 +52,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="#1a1a1a"/>
+    </Style>
     <Style TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="#1a1a1a"/>
+    </Style>
+    <Style TargetType="Grid">
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="NavigationPage">
@@ -63,7 +69,7 @@
     <Style TargetType="TabbedPage">
         <Setter Property="BarBackgroundColor" Value="#262626"/>
         <Setter Property="BarTextColor" Value="#f2f2f2"/>
-        <Setter Property="BackgroundColor" Value="##1a1a1a"/>
+        <Setter Property="BackgroundColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="Frame">
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
@@ -73,6 +79,7 @@
         <Setter Property="HasUnevenRows" Value="True"/>
         <Setter Property="SeparatorColor" Value="Silver"/>
         <Setter Property="SelectionMode" Value="None"/>
+        <Setter Property="BackgroundColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="StackLayout" Class="ShiftContentStack">
         <Setter Property="BackgroundColor" Value="#333"/>

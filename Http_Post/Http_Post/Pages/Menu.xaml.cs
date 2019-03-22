@@ -29,7 +29,7 @@ namespace Http_Post
             
             Children.Add(new TypesPage());
             
-            Children.Add(new Settings(this));
+            Children.Add(new Settings());
             
             if (isUpdating)
                 CurrentPage = Children[Children.Count - 1];

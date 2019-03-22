@@ -15,11 +15,9 @@ namespace Http_Post
         Localization localization = new Localization();
 
         string cancel = Resource.ADMIN_Cancel;
-        Menu menu;
 
-        public Settings(Menu menu)
+        public Settings()
         {
-            this.menu = menu;
             InitializeComponent();
             UpdateLanguage();
         }
@@ -30,7 +28,6 @@ namespace Http_Post
         void AskForLanguage(Localization loc)
         {
             loc.ChangeCulture();
-            //menu.UpdatePages();
             ReloadApp();
         }
 

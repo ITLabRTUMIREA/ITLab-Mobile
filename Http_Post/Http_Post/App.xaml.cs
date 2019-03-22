@@ -22,9 +22,9 @@ namespace Http_Post
 		protected override void OnStart ()
 		{
             // Handle when your app starts
-            AppCenter.Start("ios={Your iOS App secret here};" +
-                            "uwp={Your UWP App secret here};" +
-                            "android={Your Android App secret here}",
+            AppCenter.Start("ios=44f28903-3a0a-4349-ac68-193463cc7927;" +
+                            "uwp=05d9ea9f-a247-4e8e-bc3f-26b2813cf42b;" +
+                            "android=e1b02111-657f-44ee-82c6-21af51918f52",
                             typeof(Analytics), typeof(Crashes));
 
             Current.Resources.LoadTheme();

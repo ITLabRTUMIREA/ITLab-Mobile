@@ -6,7 +6,7 @@
              Icon="Notifications1.png">
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness"
-                    iOS="5,30,0,0"
+                    iOS="5,35,0,0"
                     Default="5,15,0,0"/>
     </ContentPage.Padding>
     <ContentPage.Content>
