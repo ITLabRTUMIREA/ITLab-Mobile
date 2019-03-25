@@ -26,15 +26,13 @@
 	<string>com.RTUITLab.ITLab-Mobile</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>CFBundleDisplayName</key>
 	<string>ITLab-Mobile</string>
 	<key>CFBundleName</key>
 	<string>ITLab-Mobile</string>
-	<key>XSLaunchImageAssets</key>
-	<string>Assets.xcassets/LaunchImage.launchimage</string>
 	<key>XSAppIconAssets</key>
 	<string>Assets.xcassets/AppIcon.appiconset</string>
+	<key>XSLaunchImageAssets</key>
+	<string>Assets.xcassets/LaunchImage.launchimage</string>
 </dict>
 </plist>

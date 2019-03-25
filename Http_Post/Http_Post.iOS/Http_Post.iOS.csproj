@@ -158,9 +158,6 @@
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Contents.json" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default%402x.png" />
-    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-568h%402x.png" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait.png" />
     <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\Default-Portrait%402x.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-58-1.png" />
@@ -181,5 +178,15 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-152.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-167.png" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Icon-1024.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage2x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage1x.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImageRetina4-1.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage2x-1.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImageRetina4.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage11ios.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage12ios.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage12iosXR.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage7RetinaHD.png" />
+    <ImageAsset Include="Assets.xcassets\LaunchImage.launchimage\LaunchImage7RetinaHD47.png" />
   </ItemGroup>
 </Project>

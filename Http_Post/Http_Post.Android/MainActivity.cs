@@ -10,7 +10,7 @@ using FFImageLoading.Forms.Platform;
 
 namespace Http_Post.Droid
 {
-    [Activity(Label = "ITLab-Mobile", Icon = "@drawable/logo", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "ITLab-Mobile", Icon = "@drawable/Logos", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle bundle)
