@@ -49,13 +49,27 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="Default"/>
+    </Style>
+    <Style TargetType="StackLayout">
+        <Setter Property="BackgroundColor" Value="Default"/>
+    </Style>
+    <Style TargetType="AbsoluteLayout">
+        <Setter Property="BackgroundColor" Value="Default"/>
+    </Style>
+    <Style TargetType="Grid">
+        <Setter Property="BackgroundColor" Value="Default"/>
+    </Style>
     <Style TargetType="NavigationPage">
         <Setter Property="BarBackgroundColor" Value="#1a1a1a"/>
         <Setter Property="BarTextColor" Value="#f2f2f2"/>
+        <Setter Property="BackgroundColor" Value="Default"/>
     </Style>
     <Style TargetType="TabbedPage">
         <Setter Property="BarBackgroundColor" Value="#f2f2f2"/>
         <Setter Property="BarTextColor" Value="#1a1a1a"/>
+        <Setter Property="BackgroundColor" Value="Default"/>
     </Style>
     <Style TargetType="Frame">
         <Setter Property="HasShadow">

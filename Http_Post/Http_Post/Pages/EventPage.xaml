@@ -4,14 +4,14 @@
              x:Class="Http_Post.Pages.EventPage"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Title="Events"
-             Padding="5"
+             Padding="0,0,0,0"
              Icon="News12.png">
     <AbsoluteLayout>
-        <AbsoluteLayout.Margin>
+        <AbsoluteLayout.Padding>
             <OnPlatform x:TypeArguments="Thickness"
-                        iOS="5,30,0,0"
-                        Default="5,10,0,0"/>
-        </AbsoluteLayout.Margin>
+                        iOS="5,30,5,5"
+                        Default="5,10,5,5"/>
+        </AbsoluteLayout.Padding>
         <ListView x:Name="listView"
                   AbsoluteLayout.LayoutBounds="0.5,0,1,1"
                   AbsoluteLayout.LayoutFlags="All"

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
@@ -8,13 +8,13 @@
             <AbsoluteLayout.GestureRecognizers>
                 <TapGestureRecognizer Tapped="btnCircle_Clicked"/>
             </AbsoluteLayout.GestureRecognizers>
-            <Button x:Name="btnCircle"
-                    BorderRadius="30"
-                    AbsoluteLayout.LayoutBounds="0.5,0.5,60,60"
-                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
-            <svg:SvgCachedImage x:Name="imageCircle"
-                                AbsoluteLayout.LayoutBounds="0.5,0.5,24,24"
-                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
+         <Button x:Name="btnCircle"
+                 BorderRadius="30"
+                 AbsoluteLayout.LayoutBounds="0.5,0.5,60,60"
+                 AbsoluteLayout.LayoutFlags="PositionProportional"/>
+         <svg:SvgCachedImage x:Name="imageCircle"
+                             AbsoluteLayout.LayoutBounds="0.5,0.5,24,24"
+                             AbsoluteLayout.LayoutFlags="PositionProportional"/>
         </AbsoluteLayout>
     </ContentView.Content>
 </ContentView>

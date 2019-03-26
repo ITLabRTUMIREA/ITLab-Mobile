@@ -5,15 +5,15 @@
              xmlns:img="clr-namespace:Http_Post.Images"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Pages.EquipmentPage"
-             Padding="5"
+             Padding="0,0,0,0"
              Icon="Usb12.png">
     <AbsoluteLayout>
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">
             <Grid.Margin>
                 <OnPlatform x:TypeArguments="Thickness" 
-                        iOS="5,30,0,0"
-                        Default="5,10,0,0"/>
+                        iOS="5,30,5,5"
+                        Default="5,10,5,5"/>
             </Grid.Margin>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>

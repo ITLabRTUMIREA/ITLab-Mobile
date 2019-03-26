@@ -4,17 +4,19 @@
              x:Class="Http_Post.Settings"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Title="Settings"
-             Padding="5"
+             Padding="0,0,0,0"
              Icon="SettingsGear12.png">
-    
     <ContentPage.Content>
-        <ScrollView>
-            <StackLayout Margin="5">
-                <Controls:Master_Btns x:Name="Btn_Profile" ImageSource="Person" Clicked="BtnProfile_Clicked"/>
-                <Controls:Master_Btns x:Name="Btn_Lang" ImageSource="Language" Btn_Text="Change Language" Clicked="Lang_Clicked"/>
-                <Controls:Master_Btns x:Name="Btn_Theme" ImageSource="EditPencil" Clicked="Theme_Change"/>
-                <Controls:Master_Btns x:Name="Btn_LogOut" ImageSource="Exit" Clicked="LogOut_Clicked"/>
-            </StackLayout>
-        </ScrollView>
+        <StackLayout>
+            <StackLayout.Padding>
+                <OnPlatform x:TypeArguments="Thickness"
+                            iOS="5,30,5,5"
+                            Default="5,15,5,5"/>
+            </StackLayout.Padding>    
+            <Controls:Master_Btns x:Name="Btn_Profile" ImageSource="Person" Clicked="BtnProfile_Clicked"/>
+            <Controls:Master_Btns x:Name="Btn_Lang" ImageSource="Language" Btn_Text="Change Language" Clicked="Lang_Clicked"/>
+            <Controls:Master_Btns x:Name="Btn_Theme" ImageSource="EditPencil" Clicked="Theme_Change"/>
+            <Controls:Master_Btns x:Name="Btn_LogOut" ImageSource="Exit" Clicked="LogOut_Clicked"/>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>
