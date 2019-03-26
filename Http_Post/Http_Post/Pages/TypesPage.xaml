@@ -6,7 +6,7 @@
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Pages.TypesPage"
              Padding="5"
-             Icon="Types1.png">
+             Icon="Types12.png">
     <AbsoluteLayout>
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">

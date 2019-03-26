@@ -5,7 +5,7 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Title="Settings"
              Padding="5"
-             Icon="SettingsGear1.png">
+             Icon="SettingsGear12.png">
     
     <ContentPage.Content>
         <ScrollView>

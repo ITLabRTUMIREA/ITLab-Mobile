@@ -5,7 +5,7 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Title="Events"
              Padding="5"
-             Icon="News1.png">
+             Icon="News12.png">
     <AbsoluteLayout>
         <AbsoluteLayout.Margin>
             <OnPlatform x:TypeArguments="Thickness"

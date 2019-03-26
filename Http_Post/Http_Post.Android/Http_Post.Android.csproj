@@ -81,6 +81,11 @@
     <AndroidResource Include="Resources\drawable-xhdpi\Logos.png" />
     <AndroidResource Include="Resources\drawable-hdpi\Logos.png" />
     <AndroidResource Include="Resources\drawable\Logos.png" />
+    <AndroidResource Include="Resources\drawable\News12.png" />
+    <AndroidResource Include="Resources\drawable\Notifications12.png" />
+    <AndroidResource Include="Resources\drawable\SettingsGear12.png" />
+    <AndroidResource Include="Resources\drawable\Types12.png" />
+    <AndroidResource Include="Resources\drawable\Usb12.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
