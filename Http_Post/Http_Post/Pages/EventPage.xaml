@@ -5,12 +5,13 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Title="Events"
              Padding="0,0,0,0"
-             Icon="News12.png">
+             Icon="News.png">
     <AbsoluteLayout>
         <AbsoluteLayout.Padding>
             <OnPlatform x:TypeArguments="Thickness"
-                        iOS="5,30,5,5"
-                        Default="5,10,5,5"/>
+                        iOS="10,30,5,5"
+                        Default="10,15,5,5"
+                        Android="10,5,5,5"/>
         </AbsoluteLayout.Padding>
         <ListView x:Name="listView"
                   AbsoluteLayout.LayoutBounds="0.5,0,1,1"
@@ -31,21 +32,21 @@
         <Controls:CircleButton x:Name="btnShowEvents"
                                BtnTapped="btnShowEvents_Clicked"
                                ImageSource="Today"
-                               AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                               AbsoluteLayout.LayoutBounds="0.95,0.97,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton BtnTapped="btnMyEvents_Clicked"
                                ImageSource="Person"
-                               AbsoluteLayout.LayoutBounds="0.95,0.82,60,60"
+                               AbsoluteLayout.LayoutBounds="0.95,0.82,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton x:Name="btnCreate"
                                ImageSource="CreatePlus"
                                BtnTapped="btnCreate_Clicked"
                                IsVisible="False"
-                               AbsoluteLayout.LayoutBounds="0.95,0.67,60,60"
+                               AbsoluteLayout.LayoutBounds="0.95,0.67,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton ImageSource="Refresh"
                                BtnTapped="btnRefresh_BtnTapped"
-                               AbsoluteLayout.LayoutBounds="0.95,0.03,60,60"
+                               AbsoluteLayout.LayoutBounds="0.95,0.03,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional">
             <Controls:CircleButton.IsVisible>
                 <OnPlatform UWP="True"

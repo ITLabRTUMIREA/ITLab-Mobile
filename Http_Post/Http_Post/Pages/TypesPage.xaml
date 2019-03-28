@@ -2,18 +2,17 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:Controls="clr-namespace:Http_Post.Controls"
-             xmlns:img="clr-namespace:Http_Post.Images"
-             xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Pages.TypesPage"
              Padding="0,0,0,0"
-             Icon="Types12.png">
+             Icon="Types.png">
     <AbsoluteLayout>
         <Grid AbsoluteLayout.LayoutBounds="0,0,1,1"
               AbsoluteLayout.LayoutFlags="All">
             <Grid.Margin>
                 <OnPlatform x:TypeArguments="Thickness"
-                            iOS="5,30,5,5"
-                            Default="5,10,5,5"/>
+                            iOS="10,30,5,5"
+                            Default="10,10,5,5"
+                            Android="10,5,5,5"/>
             </Grid.Margin>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -52,11 +51,11 @@
                                IsVisible="False"
                                BtnTapped="btnCreate_Clicked"
                                ImageSource="CreatePlus"
-                               AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
+                               AbsoluteLayout.LayoutBounds="0.95,0.97,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton ImageSource="Refresh"
                                BtnTapped="btnRefresh_BtnTapped"
-                               AbsoluteLayout.LayoutBounds="0.95,0.05,60,60"
+                               AbsoluteLayout.LayoutBounds="0.95,0.05,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional">
             <Controls:CircleButton.IsVisible>
                 <OnPlatform UWP="True"

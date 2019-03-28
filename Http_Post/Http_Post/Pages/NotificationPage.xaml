@@ -4,13 +4,14 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              x:Class="Http_Post.Pages.NotificationPage"
              Padding="0,0,0,0"
-             Icon="Notifications12.png">
+             Icon="Notifications.png">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout.Padding>
-                <OnPlatform x:TypeArguments="Thickness"
-                        iOS="5,30,5,5"
-                        Default="5,10,5,5"/>
+                <OnPlatform x:DataType="Thickness"
+                            iOS="10,30,5,5"
+                            Default="10,15,5,5"
+                            Android="10,5,5,5"/>
             </StackLayout.Padding>
             <Grid Padding="0"
                   Margin="0">
