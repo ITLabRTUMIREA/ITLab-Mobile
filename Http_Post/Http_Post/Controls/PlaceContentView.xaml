@@ -19,8 +19,7 @@
                                     WidthRequest="24"
                                     HeightRequest="24"/>
             </StackLayout>
-            <StackLayout x:Name="stackToHide"
-                         IsVisible="False">
+            <StackLayout x:Name="stackToHide">
                 <Label x:Name="lblDescription"
                        FontAttributes="Italic"/>
                 <Button x:Name="btnWish"
@@ -28,11 +27,9 @@
                         WidthRequest="200"
                         Clicked="btnWish_Clicked"/>
                 <StackLayout x:Name="stackPart"
-                             Margin="0,5"
-                             IsVisible="False"/>
+                             Margin="0,5"/>
                 <StackLayout x:Name="stackEquip"
-                             Margin="0,5"
-                             IsVisible="False"/>
+                             Margin="0,5"/>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>

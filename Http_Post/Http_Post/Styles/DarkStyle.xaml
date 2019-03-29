@@ -65,13 +65,11 @@
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="#262626"/>
+        <Setter Property="BarBackgroundColor" Value="#000"/>
         <Setter Property="BarTextColor" Value="#f2f2f2"/>
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="TabbedPage">
-        <Setter Property="BarBackgroundColor" Value="#262626"/>
-        <Setter Property="BarTextColor" Value="#f2f2f2"/>
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
     </Style>
     <Style TargetType="Frame">

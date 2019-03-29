@@ -49,6 +49,9 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style TargetType="ContentView">
+        <Setter Property="BackgroundColor" Value="Default"/>
+    </Style>
     <Style TargetType="ContentPage">
         <Setter Property="BackgroundColor" Value="Default"/>
     </Style>
@@ -62,13 +65,11 @@
         <Setter Property="BackgroundColor" Value="Default"/>
     </Style>
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="#1a1a1a"/>
+        <Setter Property="BarBackgroundColor" Value="#000"/>
         <Setter Property="BarTextColor" Value="#f2f2f2"/>
         <Setter Property="BackgroundColor" Value="Default"/>
     </Style>
     <Style TargetType="TabbedPage">
-        <Setter Property="BarBackgroundColor" Value="#f2f2f2"/>
-        <Setter Property="BarTextColor" Value="#1a1a1a"/>
         <Setter Property="BackgroundColor" Value="Default"/>
     </Style>
     <Style TargetType="Frame">

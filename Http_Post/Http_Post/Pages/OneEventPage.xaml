@@ -35,6 +35,9 @@
                                        ImageSource="EditPencil"
                                        AbsoluteLayout.LayoutBounds="0.95,0.97,60,60"
                                        AbsoluteLayout.LayoutFlags="PositionProportional"/>
+                <StackLayout
+                    HeightRequest="300"
+                    IsVisible="False"/>
             </AbsoluteLayout>
         </ScrollView>
     </ContentPage.Content>

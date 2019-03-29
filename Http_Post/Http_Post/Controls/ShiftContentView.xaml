@@ -24,7 +24,6 @@
             <StackLayout x:Name="StackPlaces"
                          Margin="5"
                          Spacing="2"
-                         IsVisible="False"
                          StyleClass="ShiftContentStack">
                 <Label x:Name="lblBeginTitle"
                        StyleClass="ShiftContentLabel"/>
