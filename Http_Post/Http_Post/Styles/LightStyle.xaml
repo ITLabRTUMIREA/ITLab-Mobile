@@ -62,8 +62,8 @@
         <Setter Property="BackgroundColor" Value="#fff"/>
     </Style>
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="#000"/>
-        <Setter Property="BarTextColor" Value="#f2f2f2"/>
+        <Setter Property="BarBackgroundColor" Value="#fff"/>
+        <Setter Property="BarTextColor" Value="#000"/>
         <Setter Property="BackgroundColor" Value="#fff"/>
     </Style>
     <Style TargetType="TabbedPage">
