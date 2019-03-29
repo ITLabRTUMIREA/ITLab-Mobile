@@ -34,6 +34,7 @@ namespace Http_Post.Pages
         public TypesPage()
         {
             InitializeComponent();
+            this.IsEnabled = false;
             Title = Device.RuntimePlatform == Device.Android ? "" : Resource.TitleTypes;
             UpdateFrames();
 
@@ -43,6 +44,7 @@ namespace Http_Post.Pages
             };
             types = Types.Event; // by default
             ChooseList();
+            this.IsEnabled = true;
         }
 
         void UpdateFrames()

@@ -23,7 +23,7 @@ namespace Http_Post.Pages
         public NotificationPage ()
 		{
 			InitializeComponent ();
-
+            this.IsEnabled = false;
             Title = Device.RuntimePlatform == Device.Android ? "" : Res.Resource.TitleNotifications;
             lblInvitations.Text = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
             lblWishes.Text = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
@@ -32,6 +32,7 @@ namespace Http_Post.Pages
 
             GetInvitations();
             GetWishes();
+            this.IsEnabled = true;
 		}
 
         void Subscribe()

@@ -23,6 +23,7 @@ namespace Http_Post.Pages
         public EquipmentPage ()
 		{
             InitializeComponent();
+            this.IsEnabled = false;
             UpdateLanguage();
             UpdateFrames();
             GetEquipment();
@@ -32,6 +33,7 @@ namespace Http_Post.Pages
                 GetEquipment();
                 listView.IsRefreshing = false;
             };
+            this.IsEnabled = true;
         }
 
         void UpdateFrames()

@@ -61,12 +61,7 @@ namespace Http_Post.Pages
             {
                 stackLayout.Children.Add(new ShiftContentView(shift, num));
                 num++;
-            }
-            ScrollView scrollView = new ScrollView
-            {
-                Content = absoluteLayout
-            };
-            this.Content = scrollView;
+            }      
         }
 
         void UpdateLanguage()

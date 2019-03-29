@@ -24,16 +24,20 @@ namespace Http_Post.Pages
         {
             _All = false;
             InitializeComponent();
+            this.IsEnabled = false;
             Title = Device.RuntimePlatform == Device.Android ? "" : Res.Resource.TitleEvents;
             lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {
+                this.IsEnabled = false;
                 GetEvents();
                 lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
                 listView.IsRefreshing = false;
+                this.IsEnabled = true;
             };
             GetEvents();
             btnCreate.IsVisible = GetRight();
+            this.IsEnabled = true;
         }
 
         async void GetEvents()
