@@ -48,6 +48,12 @@ namespace Http_Post.Pages
 
                 equipment = equip.Data;
                 SetInfo();
+
+                ScrollView scrollView = new ScrollView
+                {
+                    Content = absoluteLayout
+                };
+                this.Content = scrollView;
             }
             catch (Exception ex)
             {

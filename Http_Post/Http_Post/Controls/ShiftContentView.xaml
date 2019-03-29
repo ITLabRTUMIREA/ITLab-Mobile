@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
@@ -24,6 +24,7 @@
             <StackLayout x:Name="StackPlaces"
                          Margin="5"
                          Spacing="2"
+                         IsVisible="false"
                          StyleClass="ShiftContentStack">
                 <Label x:Name="lblBeginTitle"
                        StyleClass="ShiftContentLabel"/>

@@ -5,7 +5,7 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.Content>
         <ScrollView>
-            <AbsoluteLayout>
+            <AbsoluteLayout x:Name="absoluteLayout">
                 <StackLayout x:Name="stackLayout"
                              Margin="20,20,0,20"
                              AbsoluteLayout.LayoutBounds="0,0,1,1"

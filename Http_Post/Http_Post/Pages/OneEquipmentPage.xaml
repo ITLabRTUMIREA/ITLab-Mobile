@@ -5,7 +5,7 @@
              x:Class="Http_Post.Pages.OneEquipmentPage">
     <ContentPage.Content>
         <ScrollView>
-            <AbsoluteLayout>
+            <AbsoluteLayout x:Name="absoluteLayout">
                 <StackLayout Spacing="5"
                              Margin="20,20,0,20"
                              AbsoluteLayout.LayoutBounds="0,0,1,1"

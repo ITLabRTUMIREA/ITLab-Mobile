@@ -64,7 +64,7 @@ namespace Http_Post.Pages
             }
             ScrollView scrollView = new ScrollView
             {
-                Content = stackLayout
+                Content = absoluteLayout
             };
             this.Content = scrollView;
         }
