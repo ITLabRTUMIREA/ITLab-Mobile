@@ -77,6 +77,13 @@
     <Style TargetType="Frame">
         <Setter Property="BackgroundColor" Value="#1a1a1a"/>
         <Setter Property="OutlineColor" Value="#4d79ff"/>
+        <Setter Property="HasShadow">
+            <Setter.Value>
+                <OnPlatform x:TypeArguments="x:Boolean">
+                    <On Platform="iOS" Value="False" />
+                </OnPlatform>
+            </Setter.Value>
+        </Setter>
     </Style>
     <Style TargetType="ListView">
         <Setter Property="HasUnevenRows" Value="True"/>

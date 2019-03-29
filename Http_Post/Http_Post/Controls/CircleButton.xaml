@@ -4,16 +4,20 @@
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Controls.CircleButton"
              Padding="0"
-             Margin="0">
+             Margin="0"
+             BackgroundColor="Transparent">
     <ContentView.GestureRecognizers>
         <TapGestureRecognizer Tapped="btnCircle_Clicked"/>
     </ContentView.GestureRecognizers>
     <ContentView.Content>
         <Frame CornerRadius="20"
                Padding="0"
-               Margin="0">
+               Margin="0"
+               OutlineColor="Default"
+               BackgroundColor="Transparent">
             <AbsoluteLayout Margin="0"
-                            Padding="0">
+                            Padding="0"
+                            BackgroundColor="Transparent">
                 <Button x:Name="btnCircle"
                         Clicked="btnCircle_Clicked"
                         BorderRadius="20"

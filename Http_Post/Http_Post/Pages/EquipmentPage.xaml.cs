@@ -84,7 +84,7 @@ namespace Http_Post.Pages
 
         void UpdateLanguage()
         {
-            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleEquipment : "";
+            Title = Device.RuntimePlatform == Device.Android ? "" : Resource.TitleEquipment;
         }
 
         bool GetRight()

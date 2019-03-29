@@ -5,7 +5,7 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls"
              Title="Events"
              Padding="0,0,0,0"
-             Icon="News.png">
+             Icon="Icon-50.png">
     <AbsoluteLayout>
         <AbsoluteLayout.Padding>
             <OnPlatform x:TypeArguments="Thickness"
@@ -36,13 +36,13 @@
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton BtnTapped="btnMyEvents_Clicked"
                                ImageSource="Person"
-                               AbsoluteLayout.LayoutBounds="0.95,0.82,40,40"
+                               AbsoluteLayout.LayoutBounds="0.95,0.88,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton x:Name="btnCreate"
                                ImageSource="CreatePlus"
                                BtnTapped="btnCreate_Clicked"
                                IsVisible="False"
-                               AbsoluteLayout.LayoutBounds="0.95,0.67,40,40"
+                               AbsoluteLayout.LayoutBounds="0.95,0.79,40,40"
                                AbsoluteLayout.LayoutFlags="PositionProportional"/>
         <Controls:CircleButton ImageSource="Refresh"
                                BtnTapped="btnRefresh_BtnTapped"

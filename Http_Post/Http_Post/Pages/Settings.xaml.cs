@@ -46,7 +46,7 @@ namespace Http_Post
 
         private void UpdateLanguage()
         {
-            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleSettings : "";
+            Title = Device.RuntimePlatform == Device.Android ? "" : Resource.TitleSettings;
             Btn_Theme.Btn_Text = Resource.ChangeTheme;
             Btn_LogOut.Btn_Text = Resource.LogOut;
             Btn_Profile.Btn_Text = Resource.TitleProfile;

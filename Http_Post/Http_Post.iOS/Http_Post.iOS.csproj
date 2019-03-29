@@ -106,6 +106,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="Resources\ProximaNova-Regular.ttf" />
     <BundleResource Include="Resources\logo.png" />
+    <BundleResource Include="Resources\News.png" />
+    <BundleResource Include="Resources\Icon-50.png" />
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\Icon-60%403x.png" />

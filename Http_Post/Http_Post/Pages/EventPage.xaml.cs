@@ -24,7 +24,7 @@ namespace Http_Post.Pages
         {
             _All = false;
             InitializeComponent();
-            Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleEvents : "";
+            Title = Device.RuntimePlatform == Device.Android ? "" : Res.Resource.TitleEvents;
             lblFooter.Text = Res.Resource.ADMIN_Updated + ": " + DateTime.Now.ToString("f");
 
             listView.Refreshing += (s, e) => {

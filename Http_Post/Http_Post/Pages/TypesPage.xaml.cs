@@ -34,7 +34,7 @@ namespace Http_Post.Pages
         public TypesPage()
         {
             InitializeComponent();
-            Title = Device.RuntimePlatform == Device.UWP ? Resource.TitleTypes : "";
+            Title = Device.RuntimePlatform == Device.Android ? "" : Resource.TitleTypes;
             UpdateFrames();
 
             listView.Refreshing += (s, e) => {

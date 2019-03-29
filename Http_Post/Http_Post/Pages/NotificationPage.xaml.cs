@@ -24,7 +24,7 @@ namespace Http_Post.Pages
 		{
 			InitializeComponent ();
 
-            Title = Device.RuntimePlatform == Device.UWP ? Res.Resource.TitleNotifications : "";
+            Title = Device.RuntimePlatform == Device.Android ? "" : Res.Resource.TitleNotifications;
             lblInvitations.Text = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
             lblWishes.Text = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
 
