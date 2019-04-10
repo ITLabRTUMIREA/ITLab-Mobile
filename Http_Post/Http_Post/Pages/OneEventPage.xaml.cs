@@ -9,6 +9,7 @@ using System.Net.Http;
 using Xamarin.Forms;
 using Http_Post.Controls;
 using Xamarin.Forms.Xaml;
+using Plugin.Clipboard;
 
 namespace Http_Post.Pages
 {
@@ -88,5 +89,12 @@ namespace Http_Post.Pages
 
         async void btnEdit_Clicked(object sender, EventArgs e)
             => await Navigation.PushAsync(new CreateEventPage(OneEvent));
+
+        async void Copy_Clicked(object sender, EventArgs e)
+        {
+            await new ShareClass().ShareUri($"{Res.secret.baseAddress}events/{eventId}");
+
+            //CrossClipboard.Current.SetText($"{Res.secret.baseAddress}events/{eventId}");
+        }
     }
 }

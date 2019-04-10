@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using Xamarin.Forms;
 
@@ -6,18 +7,17 @@ namespace Http_Post.Services
 {
     class HttpClientFactory
     {
-        //private const string url = "http://localhost:5000/api/";
-        //private const string url = "https://dev.rtuitlab.ru/api/";
-
-        private const string url = "https://rtuitlab.ru/api/";
         public static HttpClient HttpClient { get; } = CreateHttpClient();
         private static HttpClient CreateHttpClient()
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent());
-            httpClient.BaseAddress = new Uri(url);
+            httpClient.BaseAddress = new Uri(Res.secret.baseAddress + "api/");
             return httpClient;
         }
+
+        // А если я, в Гугл плэй или Эпп сторе, 
+        // А ну он же сбилдит это всё
         private static string UserAgent()
         {
             //TODO: Get correct app version
