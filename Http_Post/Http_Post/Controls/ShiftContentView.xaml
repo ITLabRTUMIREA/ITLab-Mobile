@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Controls.ShiftContentView"
-             Margin="10,0,0,0"
-             Padding="2">
+             Margin="0,0,0,0"
+             Padding="8,2,10,0">
   <ContentView.Content>
-      <StackLayout Padding="2"
-                   Margin="3"
+      <StackLayout Padding="0"
+                   Margin="0"
                    StyleClass="ShiftContentStack">
             <StackLayout Orientation="Horizontal"
                          StyleClass="ShiftContentStack">
@@ -22,18 +22,19 @@
                                     HeightRequest="24"/>
             </StackLayout>
             <StackLayout x:Name="StackPlaces"
-                         Margin="5"
-                         Spacing="2"
+                         Margin="1"
+                         Spacing="4"
+                         IsVisible="false"
                          StyleClass="ShiftContentStack">
                 <Label x:Name="lblBeginTitle"
                        StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblBeginTime"
-                       Margin="20,0,0,0"
+                       Margin="10,0,0,0"
                        StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblEndTitle"
                        StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblEndTime"
-                       Margin="20,0,0,0"
+                       Margin="10,0,0,0"
                        StyleClass="ShiftContentLabel"/>
                 <Label x:Name="lblDescription"
                        FontAttributes="Italic"

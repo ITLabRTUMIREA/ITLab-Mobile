@@ -1,13 +1,13 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:svg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Http_Post.Controls.PlaceContentView"
-             Margin="10,0,0,0"
-             Padding="2">
+             Margin="0,0,0,0"
+             Padding="8,0,10,6">
     <ContentView.Content>
-        <StackLayout Padding="2"
-                     Margin="3"
+        <StackLayout Padding="0"
+                     Margin="0"
                      Spacing="3">
             <StackLayout Orientation="Horizontal">
                 <StackLayout.GestureRecognizers>
@@ -19,7 +19,8 @@
                                     WidthRequest="24"
                                     HeightRequest="24"/>
             </StackLayout>
-            <StackLayout x:Name="stackToHide">
+            <StackLayout x:Name="stackToHide"
+                         IsVisible="false">
                 <Label x:Name="lblDescription"
                        FontAttributes="Italic"/>
                 <Button x:Name="btnWish"
@@ -27,9 +28,11 @@
                         WidthRequest="200"
                         Clicked="btnWish_Clicked"/>
                 <StackLayout x:Name="stackPart"
-                             Margin="0,5"/>
+                             Margin="0,5"
+                             IsVisible="false"/>
                 <StackLayout x:Name="stackEquip"
-                             Margin="0,5"/>
+                             Margin="0,5"
+                             IsVisible="false"/>
             </StackLayout>
         </StackLayout>
     </ContentView.Content>
