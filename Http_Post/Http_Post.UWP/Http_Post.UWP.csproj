@@ -110,12 +110,11 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <Content Include="Assets\ProximaNova-Regular.ttf" />
+    <Content Include="Share.png" />
     <None Include="Certificate.pfx" />
     <None Include="Http_Post.UWP_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="News1.png" />
-    <Content Include="Notifications1.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-100.png" />
     <Content Include="Assets\LockScreenLogo.scale-125.png" />
@@ -148,9 +147,6 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
-    <Content Include="SettingsGear1.png" />
-    <Content Include="Types1.png" />
-    <Content Include="Usb1.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

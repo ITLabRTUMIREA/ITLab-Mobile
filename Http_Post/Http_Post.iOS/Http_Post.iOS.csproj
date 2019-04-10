@@ -254,4 +254,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\Types.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Share.png" />
+  </ItemGroup>
 </Project>

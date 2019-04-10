@@ -6,7 +6,8 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="copy"
                      Text="Copy"
-                     Order="Secondary" 
+                     Icon="Share.png"
+                     Order="Primary" 
                      Priority="0"
                      Clicked="Copy_Clicked"/>
     </ContentPage.ToolbarItems>
