@@ -16,6 +16,7 @@
     <Style TargetType="Entry">
         <Setter Property="FontSize" Value="Medium"/>
         <Setter Property="TextColor" Value="#404040"/>
+        <Setter Property="IsTextPredictionEnabled" Value="True"/>
         <Setter Property="FontFamily">
             <Setter.Value>
                 <OnPlatform Android="ProximaNova-Regular.ttf#ProximaNova"
@@ -27,6 +28,7 @@
     <Style TargetType="Editor">
         <Setter Property="AutoSize" Value="TextChanges"/>
         <Setter Property="FontSize" Value="Medium"/>
+        <Setter Property="IsTextPredictionEnabled" Value="True"/>
         <Setter Property="IsSpellCheckEnabled" Value="True"/>
         <Setter Property="TextColor" Value="#404040"/>
         <Setter Property="FontFamily">
@@ -62,21 +64,14 @@
         <Setter Property="BackgroundColor" Value="#fff"/>
     </Style>
     <Style TargetType="NavigationPage">
-        <Setter Property="BarBackgroundColor" Value="#fff"/>
-        <Setter Property="BarTextColor" Value="#000"/>
+        <Setter Property="BarBackgroundColor" Value="#0d0d0d"/>
+        <Setter Property="BarTextColor" Value="#f2f2f2"/>
         <Setter Property="BackgroundColor" Value="#fff"/>
     </Style>
     <Style TargetType="TabbedPage">
         <Setter Property="BackgroundColor" Value="#fff"/>
     </Style>
     <Style TargetType="Frame">
-        <Setter Property="HasShadow">
-            <Setter.Value>
-                <OnPlatform x:TypeArguments="x:Boolean">
-                    <On Platform="iOS" Value="False" />
-                </OnPlatform>
-            </Setter.Value>
-        </Setter>
         <Setter Property="OutlineColor">
             <Setter.Value>
                 <OnPlatform x:TypeArguments="Color">

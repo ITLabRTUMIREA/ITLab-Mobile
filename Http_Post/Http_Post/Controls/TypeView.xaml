@@ -4,6 +4,12 @@
           x:Class="Http_Post.Controls.TypeView">
     <ContentView Padding="5">
         <Frame Padding="10">
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean"
+                            Default="False">
+                    <On Platform="Android" Value="True"/>
+                </OnPlatform>
+            </Frame.HasShadow>
             <Grid Margin="0"
                   Padding="2">
             <Grid.RowDefinitions>

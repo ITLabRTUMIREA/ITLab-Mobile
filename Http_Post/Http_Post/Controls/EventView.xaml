@@ -4,6 +4,12 @@
              x:Class="Http_Post.Controls.EventView">
     <ContentView Padding="5">
         <Frame Padding="10">
+            <Frame.HasShadow>
+                <OnPlatform x:TypeArguments="x:Boolean"
+                            Default="False">
+                    <On Platform="Android" Value="True"/>
+                </OnPlatform>
+            </Frame.HasShadow>
             <Grid Margin="0"
                   Padding="2">
                 <Grid.RowDefinitions>
@@ -41,7 +47,7 @@
                        Margin="10,0,0,0">
                     <Label.IsVisible>
                         <OnPlatform x:TypeArguments="x:Boolean">
-                            <On Platform="Android, IOS" Value="False"/>
+                            <On Platform="Android, iOS" Value="False"/>
                         </OnPlatform>
                     </Label.IsVisible>
                 </Label>
