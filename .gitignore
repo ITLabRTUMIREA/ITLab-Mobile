@@ -260,3 +260,7 @@ paket-files/
 __pycache__/
 *.pyc
 /Http_Post/Http_Post/Res/secret.resx
+
+Http_Post/Http_Post/Res/secret\.Designer\.cs
+
+iOS_ipa_file/

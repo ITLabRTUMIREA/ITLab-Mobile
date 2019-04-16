@@ -67,6 +67,7 @@ namespace Http_Post
             catch (Exception ex)
             {
                 ShowError(ex.Message + "\nCheck Internet connection");
+                PageLoading(false);
             }
         }
 

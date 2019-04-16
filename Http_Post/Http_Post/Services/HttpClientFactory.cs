@@ -16,8 +16,6 @@ namespace Http_Post.Services
             return httpClient;
         }
 
-        // А если я, в Гугл плэй или Эпп сторе, 
-        // А ну он же сбилдит это всё
         private static string UserAgent()
         {
             //TODO: Get correct app version

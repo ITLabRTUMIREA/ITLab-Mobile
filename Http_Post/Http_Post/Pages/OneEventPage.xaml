@@ -5,10 +5,8 @@
              xmlns:Controls="clr-namespace:Http_Post.Controls">
     <ContentPage.ToolbarItems>
         <ToolbarItem x:Name="copy"
-                     Text="Copy"
                      Icon="Share.png"
-                     Order="Primary" 
-                     Priority="0"
+                     Order="Primary"
                      Clicked="Copy_Clicked"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
