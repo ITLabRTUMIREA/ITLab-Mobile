@@ -9,7 +9,6 @@ using System.Net.Http;
 using Xamarin.Forms;
 using Http_Post.Controls;
 using Xamarin.Forms.Xaml;
-using Plugin.Clipboard;
 
 namespace Http_Post.Pages
 {
