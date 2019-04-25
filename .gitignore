@@ -264,3 +264,6 @@ __pycache__/
 Http_Post/Http_Post/Res/secret\.Designer\.cs
 
 iOS_ipa_file/
+/Http_Post/Http_Post.Android/google-services.json
+/Http_Post/Http_Post/Res/secret.json
+/Http_Post/Http_Post.Android/proguard.cfg

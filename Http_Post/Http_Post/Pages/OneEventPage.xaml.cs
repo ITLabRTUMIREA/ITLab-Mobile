@@ -87,8 +87,6 @@ namespace Http_Post.Pages
         async void Copy_Clicked(object sender, EventArgs e)
         {
             await new ShareClass().ShareUri($"{Res.secret.baseAddress}events/{eventId}");
-
-            //CrossClipboard.Current.SetText($"{Res.secret.baseAddress}events/{eventId}");
         }
     }
 }
