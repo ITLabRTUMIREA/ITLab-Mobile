@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace Http_Post.Services
 {
-    class CurrentUserIdFactory
+    static class CurrentUserIdFactory
     {
         private static Guid Id { set; get; }
         private static List<string> Roles { set; get; }
 
-        public void FirstSet(Guid id, List<string> roles)
+        public static void FirstSet(Guid id, List<string> roles)
         {
             Id = id;
             Roles = new List<string>();

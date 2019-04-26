@@ -17,11 +17,12 @@ namespace Http_Post
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class MainPage : ContentPage
 	{
-        readonly HttpClient client = HttpClientFactory.HttpClient;
+        readonly HttpClient client;
         string Login, Password;
 
         public MainPage()
 		{
+            client = HttpClientFactory.HttpClient;
             Init();
             TryLogin();
         }
@@ -89,7 +90,7 @@ namespace Http_Post
                 }
 
                 RememberToken(info); // remember refresh token
-                new CurrentUserIdFactory().FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
+                CurrentUserIdFactory.FirstSet(info.Data.User.Id, info.Data.Roles); // set user id and uesr roles in system
 
                 Menu menu = new Menu();
                 NavigationPage.SetHasNavigationBar(menu, false);

@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AndroidMethods.cs" />
+    <Compile Include="ConfigurationAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +101,7 @@
     <AndroidAsset Include="Assets\ProximaNova-Regular.ttf" />
     <GoogleServicesJson Include="google-services.json" />
     <ProguardConfiguration Include="proguard.cfg" />
+    <AndroidAsset Include="Assets\secret.json" />
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>

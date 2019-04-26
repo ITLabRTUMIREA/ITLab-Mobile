@@ -24,7 +24,7 @@ namespace Http_Post.Droid
             Xamarin.Essentials.Platform.Init(this, bundle);
             global::Xamarin.Forms.Forms.Init(this, bundle);
             FFImageLoading.Forms.Platform.CachedImageRenderer.Init(false);
-
+            
             LoadApplication(new App());
         }
 

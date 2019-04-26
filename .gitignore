@@ -267,3 +267,8 @@ iOS_ipa_file/
 /Http_Post/Http_Post.Android/google-services.json
 /Http_Post/Http_Post/Res/secret.json
 /Http_Post/Http_Post.Android/proguard.cfg
+/Http_Post/Http_Post.Android/Assets/secret.json
+/Http_Post/Http_Post.Android/Resources/values/secret.json
+/Http_Post/Http_Post.iOS/Resources/secret.json
+/Http_Post/Http_Post.iOS/Assets/secret.json
+/Http_Post/Http_Post.UWP/Resources/secret.json

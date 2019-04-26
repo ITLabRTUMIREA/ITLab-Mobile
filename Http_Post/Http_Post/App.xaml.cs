@@ -4,6 +4,7 @@ using Microsoft.AppCenter.Crashes;
 using Xamarin.Forms;
 using Http_Post.Styles;
 using Microsoft.AppCenter.Push;
+using Http_Post.Services;
 
 namespace Http_Post
 {
@@ -18,8 +19,23 @@ namespace Http_Post
 
         protected override void OnStart()
         {
-            string str = Services.ReadDataFromSecret.GetValue("BaseAddress");
+            AddAppCenter();
 
+            Current.Resources.LoadTheme();
+        }
+
+        protected override void OnSleep()
+        {
+            // Handle when your app sleeps
+        }
+
+        protected override void OnResume()
+        {
+            // Handle when your app resumes
+        }
+
+        private void AddAppCenter()
+        {
             if (!AppCenter.Configured)
             {
                 Push.PushNotificationReceived += (sender, e) =>
@@ -45,26 +61,11 @@ namespace Http_Post
                 };
             }
 
-            AppCenter.Start("ios=44f28903-3a0a-4349-ac68-193463cc7927;" +
-                            "uwp=05d9ea9f-a247-4e8e-bc3f-26b2813cf42b;" +
-                            "android=e1b02111-657f-44ee-82c6-21af51918f52",
-                            typeof(Analytics), typeof(Crashes));
-            AppCenter.Start("ios=44f28903-3a0a-4349-ac68-193463cc7927;" +
-                            "uwp=05d9ea9f-a247-4e8e-bc3f-26b2813cf42b;" +
-                            "android=e1b02111-657f-44ee-82c6-21af51918f52",
-                            typeof(Push));
+            AppCenter.Start(DependencyService.Get<IConfiguration>().AppCenterId.Value.ToString(),
+                typeof(Crashes), typeof(Analytics));
 
-            Current.Resources.LoadTheme();
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
+            AppCenter.Start(DependencyService.Get<IConfiguration>().AppCenterId.Value.ToString(),
+                typeof(Push));
         }
     }
 }

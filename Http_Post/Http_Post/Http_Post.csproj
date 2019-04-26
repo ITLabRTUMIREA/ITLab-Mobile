@@ -123,11 +123,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resource.resx</DependentUpon>
     </Compile>
-    <Compile Update="Res\secret.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>secret.resx</DependentUpon>
-    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -218,10 +213,6 @@
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Settings.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Res\secret.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>secret.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Styles\DarkStyle.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

@@ -1,8 +1,7 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace Http_Post.Services
 {
@@ -17,11 +16,11 @@ namespace Http_Post.Services
             });
         }
 
-        public async Task ShareUri(string uri)
+        public async Task ShareEvent(Guid eventId)
         {
             await Share.RequestAsync(new ShareTextRequest
             {
-                Uri = uri,
+                Uri = $"{DependencyService.Get<IConfiguration>().BaseUrl}events/{eventId}",
                 Title = "Share Web Link"
             });
         }

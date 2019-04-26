@@ -12,7 +12,11 @@ namespace Http_Post.Services
         {
             var httpClient = new HttpClient();
             httpClient.DefaultRequestHeaders.Add("User-Agent", UserAgent());
-            httpClient.BaseAddress = new Uri(Res.secret.baseAddress + "api/");
+
+            var configuration = DependencyService.Get<IConfiguration>();
+            var isReady = configuration.BaseUrl.IsValueCreated;
+            var baseAddr = configuration.BaseUrl.Value;
+            httpClient.BaseAddress = new Uri(baseAddr + "api/");
             return httpClient;
         }
 

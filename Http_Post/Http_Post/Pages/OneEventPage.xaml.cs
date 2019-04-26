@@ -86,7 +86,7 @@ namespace Http_Post.Pages
 
         async void Copy_Clicked(object sender, EventArgs e)
         {
-            await new ShareClass().ShareUri($"{Res.secret.baseAddress}events/{eventId}");
+            await new ShareClass().ShareEvent(eventId);
         }
     }
 }
