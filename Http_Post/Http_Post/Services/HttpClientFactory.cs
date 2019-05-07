@@ -76,7 +76,7 @@ namespace Http_Post.Services
         {
             string result = await responseMessage.Content.ReadAsStringAsync();
             var loginResponse = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
-            if (loginResponse.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+            if (loginResponse.StatusCode == ResponseStatusCode.OK)
             {
                 CrossSettings.Current.AddOrUpdateValue(KEY, loginResponse.Data.RefreshToken);
                 CrossSettings.Current.AddOrUpdateValue("access_token", loginResponse.Data.AccessToken);
