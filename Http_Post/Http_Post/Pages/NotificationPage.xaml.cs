@@ -1,4 +1,5 @@
 ﻿using Http_Post.Controls;
+using Http_Post.Services;
 using Models.PublicAPI.Responses.Event.Invitations;
 using Models.PublicAPI.Responses.General;
 using Newtonsoft.Json;
@@ -25,15 +26,33 @@ namespace Http_Post.Pages
 			InitializeComponent ();
             this.IsEnabled = false;
             Title = Device.RuntimePlatform == Device.Android ? "" : Res.Resource.TitleNotifications;
-            lblInvitations.Text = $"{Res.Resource.Invitations}: {Res.Resource.ErrorNoData}";
-            lblWishes.Text = $"{Res.Resource.Wishes}: {Res.Resource.ErrorNoData}";
+
+            lblInfo.Text = "No events";
+            SetPadding();
 
             Subscribe();
 
             GetInvitations();
-            GetWishes();
+            if (GetRight())
+                GetWishes();
             this.IsEnabled = true;
 		}
+
+        void SetPadding()
+        {
+            switch (Device.RuntimePlatform)
+            {
+                case Device.iOS:
+                    stack.Padding = new Thickness(10, 30, 5, 5);
+                    return;
+                case Device.Android:
+                    stack.Padding = new Thickness(10, 5, 5, 5);
+                    return;
+                case Device.UWP:
+                    stack.Padding = new Thickness(10, 15, 5, 5);
+                    return;
+            }
+        }
 
         void Subscribe()
         {
@@ -65,7 +84,7 @@ namespace Http_Post.Pages
                 if (invitations.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {invitations.StatusCode}");
 
-                lblInvitations.Text = $"{Res.Resource.Invitations}: {invitations.Data.Count()}";
+                lblInfo.IsVisible = invitations.Data.Count() == 0 ? true : false;
                 listInvitations.ItemsSource = invitations.Data;
             }
             catch (Exception ex)
@@ -80,17 +99,27 @@ namespace Http_Post.Pages
             Navigation.PushAsync(new Pages.OneEventPage(tapped.Id));
         }
 
+        bool GetRight()
+        {
+            string whatToCheck = "CanEditEvent";
+            foreach (var item in CurrentUserIdFactory.UserRoles)
+                if (item.Equals(whatToCheck))
+                    return true;
+            return false;
+        }
+
         async void GetWishes()
         {
             try
             {
+                listWishes.IsVisible = true;
                 var response = await client.GetStringAsync("event/wishers");
                 var wishes = JsonConvert.DeserializeObject<ListResponse<WisherEventView>>(response);
 
                 if (wishes.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
                     throw new Exception($"Error: {wishes.StatusCode}");
 
-                lblWishes.Text = $"{Res.Resource.Wishes}: {wishes.Data.Count()}";
+                lblInfo.IsVisible = wishes.Data.Count() == 0 ? true : false;
                 listWishes.ItemsSource = wishes.Data;
             }
             catch (Exception ex)

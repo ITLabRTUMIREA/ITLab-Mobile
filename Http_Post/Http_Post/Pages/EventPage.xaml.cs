@@ -55,6 +55,7 @@ namespace Http_Post.Pages
             catch (Exception ex)
             {
                 await DisplayAlert("Error", ex.Message, "Ok");
+                this.IsEnabled = true;
             }
         }
 

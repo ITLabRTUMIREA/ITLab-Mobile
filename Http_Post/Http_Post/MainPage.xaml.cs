@@ -1,5 +1,6 @@
 ﻿using Http_Post.Services;
 using Models.PublicAPI.Requests.Account;
+using Models.PublicAPI.Responses;
 using Models.PublicAPI.Responses.General;
 using Models.PublicAPI.Responses.Login;
 using Newtonsoft.Json;
@@ -164,30 +165,21 @@ namespace Http_Post
             return true;
         }
 
-        readonly string KEY = "refreshToken";
+        readonly string KEY = "refresh_token";
         async void TryLogin()
         {
             try
             {
                 PageLoading(true);
 
-                string token = CrossSettings.Current.GetValueOrDefault(KEY, "");
-                var jsonContent = JsonConvert.SerializeObject(token);
-                var content = new StringContent(jsonContent, Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync("Authentication/refresh", content);
-                string result = await response.Content.ReadAsStringAsync();
-
-                PageLoading(false);
-
-                OneObjectResponse<LoginResponse> infoAboutStudent = JsonConvert.DeserializeObject<OneObjectResponse<LoginResponse>>(result);
-                if (infoAboutStudent.StatusCode != Models.PublicAPI.Responses.ResponseStatusCode.OK)
+                var refreshSuccess = await client.RefreshToken();
+                if (refreshSuccess.StatusCode != ResponseStatusCode.OK)
                 {
                     Init();
                     return;
                 }
 
-                Authorization(infoAboutStudent, false);
+                Authorization(refreshSuccess, false); // Navigate to menu and remember token
                 Init();
             }
             catch (Exception ex)
@@ -219,6 +211,7 @@ namespace Http_Post
         void RememberToken(OneObjectResponse<LoginResponse> infoAboutStudent)
         {
             CrossSettings.Current.AddOrUpdateValue(KEY, infoAboutStudent.Data.RefreshToken);
+            CrossSettings.Current.AddOrUpdateValue("access_token", infoAboutStudent.Data.AccessToken);
         }
     }
 }

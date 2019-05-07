@@ -5,7 +5,7 @@
              x:Class="Http_Post.Pages.NotificationPage"
              Padding="0,0,0,0"
              Icon="Notifications.png">
-    <ContentPage.Content>
+    <!--<ContentPage.Content>
         <StackLayout>
             <StackLayout.Padding>
                 <OnPlatform x:DataType="Thickness"
@@ -57,5 +57,29 @@
                 </ListView>
             </Grid>
         </StackLayout>
-    </ContentPage.Content>
+    </ContentPage.Content>-->
+    <StackLayout x:Name="stack">
+        <Label x:Name="lblInfo"
+               FontSize="Medium"
+               IsVisible="False"/>
+        <ListView x:Name="listInvitations"
+                  ItemTapped="listInvitations_ItemTapped"
+                  SeparatorVisibility="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Controls:InvitationsView />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView x:Name="listWishes"
+                  ItemTapped="listWishes_ItemTapped"
+                  SeparatorVisibility="None"
+                  IsVisible="False">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Controls:WishesView />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
