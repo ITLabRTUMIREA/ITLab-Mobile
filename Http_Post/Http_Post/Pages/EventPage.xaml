@@ -19,6 +19,11 @@
                   IsPullToRefreshEnabled="True"
                   ItemTapped="ListView_ItemTapped"
                   SeparatorVisibility="None">
+            <ListView.Header>
+                <Label x:Name="lblHeader"
+                       Margin="5,5,0,0"
+                       Text="No actual events"/>
+            </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Controls:EventView/>

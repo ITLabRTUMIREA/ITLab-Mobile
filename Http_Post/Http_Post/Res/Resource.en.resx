@@ -409,4 +409,8 @@
     <value>You've sent wish</value>
     <comment>Title for btn when user sent wish</comment>
   </data>
+  <data name="ActualEvents" xml:space="preserve">
+    <value>Actual events</value>
+    <comment>Title for actual events</comment>
+  </data>
 </root>

@@ -27,7 +27,7 @@ namespace Http_Post.Pages
             this.IsEnabled = false;
             Title = Device.RuntimePlatform == Device.Android ? "" : Res.Resource.TitleNotifications;
 
-            lblInfo.Text = "No events";
+            lblInfo.Text = Res.Resource.ErrorNoEvent;
             SetPadding();
 
             Subscribe();

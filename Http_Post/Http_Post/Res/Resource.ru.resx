@@ -409,4 +409,8 @@
     <value>Вы отправили заявку</value>
     <comment>Title for btn when user sent wish</comment>
   </data>
+  <data name="ActualEvents" xml:space="preserve">
+    <value>Актуальные события</value>
+    <comment>Title for actual events</comment>
+  </data>
 </root>
